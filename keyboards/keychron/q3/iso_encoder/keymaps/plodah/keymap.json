@@ -399,6 +399,10 @@
         ]
     ],
     "config": {
+        "features": {
+            "encoder_map": true,
+            "via": true
+        },
         "rgb_matrix": {
             "animations": {
                 "alphas_mods": false,
