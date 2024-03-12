@@ -4,6 +4,9 @@
         ["keychron/q3/iso_encoder", "plodah"],
         ["keychron/q1v1/iso_encoder", "plodah"],
         ["keychron/q10/iso_encoder", "plodah"],
-        ["keychron/q9/iso_encoder", "plodah"]
+        ["keychron/q9/iso_encoder", "plodah"],
+        ["ymdk/yd60mq/12led", "plodah_jpnspace"],
+        ["ymdk/yd60mq/12led", "plodah_splitspace"],
+        ["winry/winry315", "plodah"]
     ]
 }
