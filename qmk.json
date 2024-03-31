@@ -1,12 +1,14 @@
 {
     "userspace_version": "1.0",
     "build_targets": [
-        ["keychron/q3/iso_encoder", "plodah"],
         ["keychron/q1v1/iso_encoder", "plodah"],
-        ["keychron/q10/iso_encoder", "plodah"],
+        ["keychron/q3/iso_encoder", "plodah"],
         ["keychron/q9/iso_encoder", "plodah"],
+        ["keychron/q10/iso_encoder", "plodah"],
+        ["ploopyco/madromys", "plodah"],
+        ["ploopyco/trackball_thumb", "plodah"],
+        ["winry/winry315", "plodah"],
         ["ymdk/yd60mq/12led", "plodah_jpnspace"],
-        ["ymdk/yd60mq/12led", "plodah_splitspace"],
-        ["winry/winry315", "plodah"]
+        ["ymdk/yd60mq/12led", "plodah_splitspace"]
     ]
 }

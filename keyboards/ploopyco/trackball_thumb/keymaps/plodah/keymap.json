@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "keyboard": "ploopyco/trackball_thumb/rev1_001",
+    "keymap": "via",
+    "layout": "LAYOUT",
+    "layers": [
+        [
+            "LT(1, KC_BTN5)", "KC_BTN1", "KC_BTN3", "KC_BTN2", "KC_BTN5",
+            "LT(1, KC_BTN4)"
+        ],
+        [
+            "MO(2)", "DRAG_SCROLL", "_______", "S(C(KC_T))", "DPI_CONFIG",
+            "MO(2)"
+        ],
+        [
+            "_______", "DRAG_SCROLL", "_______", "S(C(KC_T))", "G(KC_L)",
+            "_______"
+        ]
+    ],
+    "config": {
+        "dynamic_keymap":{
+            "layer_count": 4
+        },
+        "build": {
+            "lto": true
+        },
+        "features": {
+            "via": true
+        }
+    }
+}

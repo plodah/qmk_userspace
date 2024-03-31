@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "keyboard": "ploopyco/madromys",
+    "keymap": "plodah",
+    "layout": "LAYOUT",
+    "layers": [
+        [
+            "LT(1, KC_BTN4)",  "LT(1, KC_BTN5)", "KC_BTN3", "KC_BTN2",
+            "KC_BTN1",                            "DRAG_SCROLL"
+        ],
+        [
+            "MO(2)",  "MO(2)", "S(C(KC_T))", "_______",
+            "_______",                            "_______"
+        ],
+        [
+            "_______",  "_______", "C(A(KC_DEL))", "G(KC_L)",
+            "_______",                            "_______"
+        ]
+    ],
+    "config": {
+        "dynamic_keymap":{
+            "layer_count": 4
+        },
+        "build": {
+            "lto": true
+        },
+        "features": {
+            "via": true
+        },
+        "bootmagic": {
+            "matrix": [0, 1]
+        }
+    }
+}
