@@ -1,0 +1,39 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "keyboard": "ploopyco/mouse",
+    "keymap": "plodah",
+    "layout": "LAYOUT",
+    "layers": [
+        [
+            "C(KC_C)", "KC_BTN1", "KC_BTN3", "KC_BTN2", "C(KC_V)",
+            "LT(1, KC_BTN4)",
+            "LT(1, KC_BTN5)",     "DRAG_SCROLL"
+        ],
+        [
+            "_______", "_______", "_______", "_______", "_______",
+            "_______",
+            "_______",            "DPI_CONFIG"
+        ],
+        [
+            "_______", "_______","_______", "_______", "_______",
+            "_______",
+            "_______",           "_______"
+        ]
+    ],
+    "config": {
+        "dynamic_keymap":{
+            "layer_count": 4
+        },
+        "build": {
+            "lto": true
+        },
+        "features": {
+            "via": true
+        },
+        "bootmagic": {
+            "matrix": [0, 4]
+        }
+    }
+}
