@@ -7,6 +7,7 @@
         ["keychron/q10/iso_encoder", "plodah"],
         ["ploopyco/madromys", "plodah"],
         ["ploopyco/mouse", "plodah"],
+        ["ploopyco/trackball_mini", "plodah"],
         ["ploopyco/trackball_thumb", "plodah"],
         ["winry/winry315", "plodah"],
         ["ymdk/yd60mq/12led", "plodah_jpnspace"],

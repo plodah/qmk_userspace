@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "keyboard": "ploopyco/trackball_mini",
+    "keymap": "plodah",
+    "layout": "LAYOUT",
+    "layers": [
+        [
+            "KC_BTN1", "KC_BTN3", "LT(1, KC_BTN4)", "KC_BTN2", "LT(1, KC_BTN5)"
+        ],
+        [
+            "G(KC_L)", "DRAG_SCROLL", "MO(2)", "DPI_CONFIG", "MO(2)"
+        ],
+        [
+            "_______", "_______","_______", "_______", "_______"
+        ]
+    ],
+    "config": {
+        "dynamic_keymap":{
+            "layer_count": 4
+        },
+        "build": {
+            "lto": true
+        },
+        "features": {
+            "via": true
+        },
+        "bootmagic": {
+            "matrix": [0, 0]
+        }
+    }
+}
