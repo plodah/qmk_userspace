@@ -10,7 +10,7 @@
             "KC_BTN1", "KC_BTN3", "LT(1, KC_BTN4)", "KC_BTN2", "LT(1, KC_BTN5)"
         ],
         [
-            "G(KC_L)", "DRAG_SCROLL", "MO(2)", "DPI_CONFIG", "MO(2)"
+            "G(KC_L)", "DPI_CONFIG", "MO(2)", "DRAG_SCROLL", "MO(2)"
         ],
         [
             "_______", "_______","_______", "_______", "_______"
@@ -28,6 +28,11 @@
         },
         "bootmagic": {
             "matrix": [0, 0]
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 420,
+            "toggle": 3
         }
     }
 }
