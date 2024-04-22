@@ -32,6 +32,11 @@
         },
         "bootmagic": {
             "matrix": [0, 0]
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 420,
+            "toggle": 3
         }
     }
 }
