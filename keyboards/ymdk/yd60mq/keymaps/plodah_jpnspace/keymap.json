@@ -10,7 +10,9 @@
             "layer_count": 5
         },
         "features": {
+            "backlight": false,
             "dynamic_macro": true,
+            "rgblight": false,
             "via": true
         }
     },
