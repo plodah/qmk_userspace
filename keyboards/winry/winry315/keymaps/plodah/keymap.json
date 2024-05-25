@@ -7,6 +7,9 @@
     "keyboard": "winry/winry315",
     "keymap": "winry315_plodah",
     "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
         "dynamic_keymap": {
             "layer_count": 10
         },

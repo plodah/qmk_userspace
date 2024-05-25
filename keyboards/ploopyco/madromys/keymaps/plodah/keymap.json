@@ -5,6 +5,25 @@
     "keyboard": "ploopyco/madromys",
     "keymap": "plodah",
     "layout": "LAYOUT",
+    "config": {
+        "bootmagic": {
+            "matrix": [0, 1]
+        },
+        "build": {
+            "lto": true
+        },
+        "dynamic_keymap":{
+            "layer_count": 4
+        },
+        "features": {
+            "via": true
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 420,
+            "toggle": 3
+        }
+    },
     "layers": [
         [
             "LT(1, KC_BTN4)",  "LT(1, KC_BTN5)", "KC_BTN3", "KC_BTN2",
@@ -18,24 +37,5 @@
             "_______",  "_______", "G(KC_L)", "LCA(KC_DEL)",
             "_______",                            "_______"
         ]
-    ],
-    "config": {
-        "dynamic_keymap":{
-            "layer_count": 4
-        },
-        "build": {
-            "lto": true
-        },
-        "features": {
-            "via": true
-        },
-        "bootmagic": {
-            "matrix": [0, 1]
-        },
-        "tapping": {
-            "permissive_hold": true,
-            "term": 420,
-            "toggle": 3
-        }
-    }
+    ]
 }

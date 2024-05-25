@@ -7,10 +7,14 @@
     "keymap": "keychron_q9/iso_encoder_plodah",
     "layout": "LAYOUT_iso_53",
     "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
         "dynamic_keymap": {
             "layer_count": 6
         },
         "features": {
+            "dynamic_macro": true,
             "encoder_map": true,
             "via": true
         },

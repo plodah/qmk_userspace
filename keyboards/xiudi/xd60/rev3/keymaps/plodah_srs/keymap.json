@@ -6,6 +6,9 @@
     "keymap": "xiudi_xd60_plodah_srs",
     "layout": "LAYOUT_60_iso_split_bs_rshift",
     "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
         "dynamic_keymap": {
             "layer_count": 5
         },

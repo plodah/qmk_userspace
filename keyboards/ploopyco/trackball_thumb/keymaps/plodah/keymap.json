@@ -5,6 +5,26 @@
     "keyboard": "ploopyco/trackball_thumb/rev1_001",
     "keymap": "via",
     "layout": "LAYOUT",
+    "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
+        "build": {
+            "lto": true
+        },
+        "debounce": 20,
+        "dynamic_keymap":{
+            "layer_count": 4
+        },
+        "features": {
+            "via": true
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 420,
+            "toggle": 3
+        }
+    },
     "layers": [
         [
             "LT(1, KC_BTN5)", "KC_BTN1", "KC_BTN3", "KC_BTN2", "KC_BTN5",
@@ -18,25 +38,5 @@
             "_______", "DRAG_SCROLL", "_______", "G(KC_L)", "LCA(KC_DEL)",
             "_______"
         ]
-    ],
-    "config": {
-        "build": {
-            "lto": true
-        },
-        "debounce": 20,
-        "dynamic_keymap":{
-            "layer_count": 4
-        },
-        "features": {
-            "via": true
-        },
-        "bootmagic": {
-            "matrix": [0, 0]
-        },
-        "tapping": {
-            "permissive_hold": true,
-            "term": 420,
-            "toggle": 3
-        }
-    }
+    ]
 }

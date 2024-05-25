@@ -6,6 +6,9 @@
     "keymap": "ymdk_yd60mq_12led_plodah_jpnspace",
     "layout": "LAYOUT_all",
     "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
         "dynamic_keymap": {
             "layer_count": 5
         },

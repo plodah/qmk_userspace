@@ -7,6 +7,9 @@
     "keyboard": "kprepublic/bm65hsrgb_iso/rev2",
     "keymap": "bm65hsrgb_iso_rev2_plodah",
     "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
         "dynamic_keymap": {
             "layer_count": 4
         },

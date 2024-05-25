@@ -5,6 +5,20 @@
     "keyboard": "ploopyco/mouse",
     "keymap": "plodah",
     "layout": "LAYOUT",
+    "config": {
+        "bootmagic": {
+            "matrix": [0, 4]
+        },
+        "build": {
+            "lto": true
+        },
+        "dynamic_keymap":{
+            "layer_count": 4
+        },
+        "features": {
+            "via": true
+        }
+    },
     "layers": [
         [
             "C(KC_C)", "KC_BTN1", "KC_BTN3", "KC_BTN2", "C(KC_V)",
@@ -21,19 +35,5 @@
             "_______",
             "_______",           "_______"
         ]
-    ],
-    "config": {
-        "dynamic_keymap":{
-            "layer_count": 4
-        },
-        "build": {
-            "lto": true
-        },
-        "features": {
-            "via": true
-        },
-        "bootmagic": {
-            "matrix": [0, 4]
-        }
-    }
+    ]
 }

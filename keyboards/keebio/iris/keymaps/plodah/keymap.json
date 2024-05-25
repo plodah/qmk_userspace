@@ -37,23 +37,6 @@
         ]
     ],
     "config": {
-        "debounce": 20,
-        "dynamic_keymap":{
-            "layer_count": 4
-        },
-        "features": {
-            "via": true,
-            "rgblight": true,
-            "backlight": true
-        },
-        "bootmagic": {
-            "matrix": [0, 0]
-        },
-        "tapping": {
-            "permissive_hold": true,
-            "term": 420,
-            "toggle": 3
-        },
         "backlight": {
             "default":{
                 "on": true,
@@ -62,10 +45,27 @@
             },
             "levels": 7
         },
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
+        "debounce": 20,
+        "dynamic_keymap":{
+            "layer_count": 4
+        },
+        "features": {
+            "backlight": true,
+            "rgblight": true,
+            "via": true
+        },
         "split":{
             "handedness":{
                 "pin": "C6"
             }
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 420,
+            "toggle": 3
         }
     }
 }
