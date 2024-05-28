@@ -10,6 +10,9 @@
         "bootmagic": {
             "matrix": [0, 0]
         },
+        "combo": {
+            "term": 35
+        },
         "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 4
@@ -18,7 +21,7 @@
             "autocorrect": false,
             "auto_shift": false,
             "backlight": false,
-            "combo": false,
+            "combo": true,
             "dynamic_macro": true,
             "rgblight": false,
             "rgb_matrix": false,

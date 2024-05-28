@@ -10,6 +10,9 @@
         "bootmagic": {
             "matrix": [0, 0]
         },
+        "combo": {
+            "term": 35
+        },
         "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 4

@@ -1,0 +1,67 @@
+fitler -> filter
+SOmething -> Something
+:thier -> their
+abotu -> about
+profuct -> product
+verisons -> versions
+lenght -> length
+ouput -> output
+widht -> width
+:esle -> else
+:adn: -> and
+:agian -> again
+:andteh -> and the
+:andthe -> and the
+:aslo: -> also
+:asthe: -> as the
+:atthe -> at the
+:ergard -> regard
+:gt: -> git
+:haev -> have
+:hten: -> then
+:hte: -> the
+:htere -> there
+:hting -> thing
+:inot: -> into
+:iwll -> will
+:iwth -> with
+:lastr: -> last
+:leran -> learn
+:loev -> love
+:lsat -> last
+:lveo -> love
+:lvoe -> love
+:nad: -> and
+:nto: -> not
+:onyl: -> only
+:ocuntry -> country
+:ot: -> to
+:ous: -> our
+:oru: -> our
+:owrk -> work
+:smae: -> same
+:smoe: -> some
+:socre -> score
+:soem: -> some
+:sohw: -> show
+:sourth: -> south
+:stpo: -> stop
+:syas: -> says
+:szie -> size
+:tath: -> that
+:teh: -> the
+:tehy: -> they
+:thn: -> then
+:thna: -> than
+:thne: -> then
+:thsi: -> this
+:thta: -> that
+:tiem: -> time
+:tihs: -> this
+:tje: -> the
+:tjhe: -> the
+:tkae: -> take
+:tothe -> to the
+:ture -> true
+:turth -> truth
+:tust: -> trust
