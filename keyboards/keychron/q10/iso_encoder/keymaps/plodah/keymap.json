@@ -2,20 +2,26 @@
     "version": 1,
     "notes": "In order for RGB animations to take effect, must remove equivalent settings from qmk_firmware/../info.json",
     "author": "Plodah",
-    "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
+    "documentation": "qmk compile -kb keychron/q10/iso_encoder -km plodah",
     "keyboard": "keychron/q10/iso_encoder",
-    "keymap": "keychron_q10_iso_encoder_plodah",
+    "keymap": "plodah",
     "layout": "LAYOUT_iso_90",
     "config": {
         "bootmagic": {
             "matrix": [0, 1]
         },
+        "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 6
         },
         "features": {
+            "autocorrect": false,
+            "auto_shift": false,
+            "backlight": false,
+            "combo": false,
             "dynamic_macro": true,
-            "encoder_map": true,
+            "rgblight": false,
+            "rgb_matrix": true,
             "via": true
         },
         "rgb_matrix": {
@@ -78,6 +84,11 @@
             "speed_steps": 8,
             "timeout": 270000,
             "val_steps": 8
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 420,
+            "toggle": 3
         }
     },
     "encoders": [

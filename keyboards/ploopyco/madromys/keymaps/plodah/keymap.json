@@ -2,6 +2,7 @@
     "version": 1,
     "notes": "Hello",
     "author": "Plodah",
+    "documentation": "qmk compile -kb ploopyco/madromys -km plodah",
     "keyboard": "ploopyco/madromys",
     "keymap": "plodah",
     "layout": "LAYOUT",
@@ -12,16 +13,19 @@
         "build": {
             "lto": true
         },
+        "debounce": 20,
         "dynamic_keymap":{
             "layer_count": 4
         },
         "features": {
+            "autocorrect": false,
+            "auto_shift": false,
+            "backlight": false,
+            "combo": false,
+            "dynamic_macro": false,
+            "rgblight": false,
+            "rgb_matrix": false,
             "via": true
-        },
-        "tapping": {
-            "permissive_hold": true,
-            "term": 420,
-            "toggle": 3
         }
     },
     "layers": [

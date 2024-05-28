@@ -2,7 +2,7 @@
     "version": 1,
     "notes": "In order for RGB animations to take effect, must remove equivalent settings from qmk_firmware/../info.json",
     "author": "Plodah",
-    "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
+    "documentation": "qmk compile -kb winry/winry315 -km plodah",
     "layout": "LAYOUT_all",
     "keyboard": "winry/winry315",
     "keymap": "winry315_plodah",
@@ -10,12 +10,20 @@
         "bootmagic": {
             "matrix": [0, 0]
         },
+        "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 10
         },
         "features": {
-            "via": true,
-            "encoder_map": true
+            "autocorrect": false,
+            "auto_shift": false,
+            "backlight": false,
+            "combo": false,
+            "dynamic_macro": false,
+            "encoder_map": true,
+            "rgblight": false,
+            "rgb_matrix": false,
+            "via": true
         },
         "rgblight": {
             "animations": {

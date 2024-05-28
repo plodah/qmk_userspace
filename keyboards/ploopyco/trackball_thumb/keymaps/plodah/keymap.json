@@ -2,6 +2,7 @@
     "version": 1,
     "notes": "Hello",
     "author": "Plodah",
+    "documentation": "qmk compile -kb ploopyco/trackball_thumb/rev1_001 -km plodah",
     "keyboard": "ploopyco/trackball_thumb/rev1_001",
     "keymap": "via",
     "layout": "LAYOUT",
@@ -17,6 +18,13 @@
             "layer_count": 4
         },
         "features": {
+            "autocorrect": false,
+            "auto_shift": false,
+            "backlight": false,
+            "combo": false,
+            "dynamic_macro": false,
+            "rgblight": false,
+            "rgb_matrix": false,
             "via": true
         },
         "tapping": {

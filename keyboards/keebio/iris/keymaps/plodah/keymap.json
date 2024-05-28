@@ -2,9 +2,47 @@
     "version": 1,
     "notes": "Hello",
     "author": "Plodah",
+    "documentation": "qmk compile -kb keebio/iris/rev2 -km plodah",
     "keyboard": "keebio/iris/rev2",
     "keymap": "plodah",
     "layout": "LAYOUT",
+    "config": {
+        "backlight": {
+            "default": {
+                "on": true,
+                "breathing": false,
+                "brightness": 2
+            },
+            "levels": 7
+        },
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
+        "debounce": 20,
+        "dynamic_keymap": {
+            "layer_count": 4
+        },
+        "features": {
+            "autocorrect": false,
+            "auto_shift": false,
+            "backlight": true,
+            "combo": false,
+            "dynamic_macro": false,
+            "rgblight": true,
+            "rgb_matrix": false,
+            "via": true
+        },
+        "split": {
+            "handedness": {
+                "pin": "C6"
+            }
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 420,
+            "toggle": 3
+        }
+    },
     "layers": [
 
         [
@@ -35,37 +73,5 @@
             "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
                                                     "_______",  "_______",          "_______",  "_______",          "_______",  "_______"
         ]
-    ],
-    "config": {
-        "backlight": {
-            "default":{
-                "on": true,
-                "breathing": false,
-                "brightness": 2
-            },
-            "levels": 7
-        },
-        "bootmagic": {
-            "matrix": [0, 0]
-        },
-        "debounce": 20,
-        "dynamic_keymap":{
-            "layer_count": 4
-        },
-        "features": {
-            "backlight": true,
-            "rgblight": true,
-            "via": true
-        },
-        "split":{
-            "handedness":{
-                "pin": "C6"
-            }
-        },
-        "tapping": {
-            "permissive_hold": true,
-            "term": 420,
-            "toggle": 3
-        }
-    }
+    ]
 }
