@@ -1,2 +1,1 @@
-VPATH += $(QMK_USERSPACE)/users/plodah
-INTROSPECTION_KEYMAP_C = combos.c
+USER_NAME = plodah
