@@ -6,6 +6,7 @@
         ["keychron/q3/iso_encoder", "plodah"],
         ["keychron/q9/iso_encoder", "plodah"],
         ["keychron/q10/iso_encoder", "plodah"],
+        ["keychron/v2/iso_encoder", "plodah"],
         ["keychron/v6/iso_encoder", "plodah"],
         ["ploopyco/madromys", "plodah"],
         ["ploopyco/mouse", "plodah"],
