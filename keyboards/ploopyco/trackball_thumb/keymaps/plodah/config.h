@@ -18,6 +18,8 @@
 
 #pragma once
 
+#define IS_MOUSE
+
 #ifdef PLOOPY_SCROLL_DEBOUNCE
 #  undef PLOOPY_SCROLL_DEBOUNCE
 #endif
