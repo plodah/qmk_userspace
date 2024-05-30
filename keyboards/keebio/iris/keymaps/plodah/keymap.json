@@ -26,13 +26,20 @@
             "layer_count": 4
         },
         "features": {
-            "autocorrect": true,
             "auto_shift": false,
+            "autocorrect": true,
             "backlight": true,
+            "bootmagic": true,
+            "caps_word": false,
             "combo": true,
             "dynamic_macro": false,
+            "dynamic_tapping_term": false,
+            "leader": false,
+            "os_detection": false,
             "rgblight": true,
             "rgb_matrix": false,
+            "space_cadet": false,
+            "tap_dance": false,
             "via": true
         },
         "split": {
@@ -46,6 +53,9 @@
             "toggle": 3
         }
     },
+    "keycodes": [
+        { "key": "QK_VERS" }
+    ],
     "layers": [
 
         [

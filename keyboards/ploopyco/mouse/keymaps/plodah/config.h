@@ -19,6 +19,7 @@
 #pragma once
 
 #define IS_MOUSE
+#define ENABLE_COMPILE_KEYCODE
 
 #ifdef PLOOPY_SCROLL_DEBOUNCE
 #  undef PLOOPY_SCROLL_DEBOUNCE

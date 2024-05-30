@@ -18,13 +18,20 @@
             "layer_count": 6
         },
         "features": {
-            "autocorrect": true,
             "auto_shift": false,
+            "autocorrect": true,
             "backlight": false,
+            "bootmagic": true,
+            "caps_word": false,
             "combo": true,
             "dynamic_macro": true,
+            "dynamic_tapping_term": false,
+            "leader": false,
+            "os_detection": false,
             "rgblight": false,
             "rgb_matrix": true,
+            "space_cadet": false,
+            "tap_dance": false,
             "via": true
         },
         "rgb_matrix": {
@@ -94,6 +101,9 @@
             "toggle": 3
         }
     },
+    "keycodes": [
+        { "key": "QK_VERS" }
+    ],
     "encoders": [
         [
             {
@@ -131,7 +141,7 @@
         ],
         [
             "_______",  "_______",  "KC_F13",   "KC_F14",   "KC_F15",   "KC_F16",   "KC_F17",   "KC_F18",               "KC_F19",   "KC_F20",   "KC_F21",   "KC_F22",   "KC_F23",   "KC_F24",   "_______",  "_______",
-            "_______",  "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",                 "MC_7",     "MC_8",     "MC_9",     "MC_10",    "MC_11",    "MC_12",    "_______",  "KC_END",
+            "_______",  "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",                 "MC_7",     "MC_8",     "MC_9",     "MC_10",    "QK_VERS",  "QK_MAKE",  "_______",  "KC_END",
             "_______",  "_______",  "KC_PGUP",  "KC_UP",    "KC_PGDN",  "_______",  "_______",              "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "_______",
             "_______",  "KC_CAPS",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT",  "_______",  "_______",  "_______",              "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
             "_______",  "_______",  "_______",  "_______",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "_______",  "_______",  "_______",  "KC_PGUP",
@@ -141,8 +151,8 @@
             "RGB_TOG",  "TO(3)",    "KC_BRID",  "KC_BRIU", "LGUI(KC_TAB)", "LGUI(KC_E)", "RGB_VAD", "RGB_VAI",          "KC_MPRV",  "KC_MPLY",  "KC_MNXT",  "KC_MUTE",  "KC_VOLD",  "KC_VOLU",  "_______",  "_______",
             "_______",  "_______",  "KC_P1",    "KC_P2",    "KC_P3",    "KC_P4",    "KC_P5",    "KC_P6",                "KC_P7",    "KC_P8",    "KC_P9",    "KC_P0",    "_______",  "_______",  "_______",  "KC_END",
             "_______",  "RGB_TOG",  "RGB_MOD",  "RGB_VAI",  "RGB_HUI",  "RGB_SAI",  "RGB_SPI",              "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "_______",
-            "_______",  "KC_CAPS",  "RGB_RMOD", "RGB_VAD",  "RGB_HUD",  "RGB_SAD",  "RGB_SPD",  "_______",              "_______",  "DM_RSTP",  "DM_REC1",  "DM_REC2",  "_______",  "_______",  "_______",  "_______",
-            "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "S(C(KC_V))", "_______", "_______", "NK_TOGG",  "_______",  "_______",  "DM_PLY1",  "DM_PLY2",  "_______",  "KC_VOLU",
+            "QK_VERS",  "KC_CAPS",  "RGB_RMOD", "RGB_VAD",  "RGB_HUD",  "RGB_SAD",  "RGB_SPD",  "_______",              "_______",  "DM_RSTP",  "DM_REC1",  "DM_REC2",  "_______",  "_______",  "_______",  "_______",
+            "QK_MAKE",  "_______",  "_______",  "_______",  "_______",  "_______",  "S(C(KC_V))", "_______", "_______", "NK_TOGG",  "_______",  "_______",  "DM_PLY1",  "DM_PLY2",  "_______",  "KC_VOLU",
             "_______",  "_______",  "GU_TOGG",              "_______",              "KC_SPC",   "_______",              "KC_SPC",               "KC_APP",                           "KC_HOME",  "KC_VOLD",  "KC_END"
         ],
         [

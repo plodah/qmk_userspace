@@ -18,13 +18,20 @@
             "layer_count": 6
         },
         "features": {
-            "autocorrect": true,
             "auto_shift": false,
+            "autocorrect": true,
             "backlight": false,
+            "bootmagic": true,
+            "caps_word": false,
             "combo": true,
             "dynamic_macro": true,
+            "dynamic_tapping_term": false,
+            "leader": false,
+            "os_detection": false,
             "rgblight": false,
             "rgb_matrix": true,
+            "space_cadet": false,
+            "tap_dance": false,
             "via": true
         },
         "rgb_matrix": {
@@ -94,6 +101,9 @@
             "toggle": 3
         }
     },
+    "keycodes": [
+        { "key": "QK_VERS" }
+    ],
     "encoders": [
         [
             {
@@ -135,7 +145,7 @@
         ],
         [
             "KC_GRV",  "KC_F1",   "KC_F2",   "KC_F3",   "KC_F4",   "KC_F5",   "KC_F6",   "KC_F7",   "KC_F8",   "KC_F9",   "KC_F10",  "KC_F11",  "KC_F12",                        "_______",
-            "MC_0",    "MC_1",    "MC_2",    "MC_3",    "MC_4",    "MC_5",    "MC_6",    "MC_7",    "MC_8",    "MC_9",    "MC_10",   "MC_11",   "MC_12",         "KC_BSPC",      "KC_PSCR",
+            "MC_0",    "MC_1",    "MC_2",    "MC_3",    "MC_4",    "MC_5",    "MC_6",    "MC_7",    "MC_8",    "MC_9",    "MC_10",   "QK_VERS", "QK_MAKE",       "KC_BSPC",      "KC_PSCR",
             "_______", "_______", "_______", "_______", "_______", "_______", "_______", "_______", "_______", "_______", "_______", "_______", "_______",            "_______",
             "_______", "_______", "_______",                               "KC_SPC",                                  "_______", "_______", "LCA(KC_DEL)", "_______", "_______", "_______"
 
