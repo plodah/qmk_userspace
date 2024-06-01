@@ -2,7 +2,6 @@ startdir=`pwd`
 qmkdir="/d/Repo/qmk_firmware"
 usrdir="/d/Repo/qmk_userspace"
 gdrdir="/d/Google Drive/Keebs/Firmware"
-#subdir=compiled-$(date +%Y%m%d)
 subdir=compiled-$(date +%Y-w%W)
 plodir="$usrdir/users/plodah"
 echo "$(date +%H:%M:%S) START"

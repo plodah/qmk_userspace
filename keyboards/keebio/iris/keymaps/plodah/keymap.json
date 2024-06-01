@@ -8,6 +8,8 @@
     "layout": "LAYOUT",
     "config": {
         "backlight": {
+            "breathing": true,
+            "breathing_period": 5,
             "default": {
                 "on": true,
                 "breathing": false,
@@ -17,6 +19,12 @@
         },
         "bootmagic": {
             "matrix": [0, 0]
+        },
+        "caps_word": {
+            "both_shifts_turns_on":false,
+            "double_tap_shift_turns_on":true,
+            "idle_timeout":1200,
+            "invert_on_shift":false
         },
         "combo": {
             "term": 35
@@ -30,13 +38,14 @@
             "autocorrect": true,
             "backlight": true,
             "bootmagic": true,
-            "caps_word": false,
+            "caps_word": true,
             "combo": true,
             "dynamic_macro": false,
             "dynamic_tapping_term": false,
             "leader": false,
+            "mousekey": true,
             "os_detection": false,
-            "rgblight": true,
+            "rgblight": false,
             "rgb_matrix": false,
             "space_cadet": false,
             "tap_dance": false,

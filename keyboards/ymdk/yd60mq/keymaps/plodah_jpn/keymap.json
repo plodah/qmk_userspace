@@ -10,6 +10,12 @@
         "bootmagic": {
             "matrix": [0, 0]
         },
+        "caps_word": {
+            "both_shifts_turns_on":false,
+            "double_tap_shift_turns_on":true,
+            "idle_timeout":1200,
+            "invert_on_shift":false
+        },
         "combo": {
             "term": 35
         },
@@ -22,11 +28,12 @@
             "autocorrect": true,
             "backlight": false,
             "bootmagic": true,
-            "caps_word": false,
+            "caps_word": true,
             "combo": true,
             "dynamic_macro": true,
             "dynamic_tapping_term": false,
             "leader": false,
+            "mousekey": true,
             "os_detection": false,
             "rgblight": false,
             "rgb_matrix": false,

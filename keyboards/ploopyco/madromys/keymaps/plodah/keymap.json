@@ -30,6 +30,7 @@
             "dynamic_macro": false,
             "dynamic_tapping_term": false,
             "leader": false,
+            "mousekey": true,
             "os_detection": false,
             "rgblight": false,
             "rgb_matrix": false,
