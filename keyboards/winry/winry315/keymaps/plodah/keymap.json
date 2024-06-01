@@ -32,6 +32,7 @@
             "combo": false,
             "dynamic_macro": false,
             "dynamic_tapping_term": false,
+            "extrakey": true,
             "leader": false,
             "mousekey": true,
             "os_detection": false,
@@ -275,7 +276,7 @@
     ],
     "layers": [
         [
-                       "C(KC_F4)", "KC_MUTE", "C(KC_T)",
+            "C(KC_F4)", "KC_MUTE", "C(KC_T)",
             "KC_ESC",  "KC_TAB",  "KC_LSFT", "KC_BSPC", "KC_DEL",
             "C(KC_A)", "C(KC_X)", "C(KC_Z)", "C(KC_Y)", "KC_ENT",
             "C(KC_C)", "C(KC_V)", "C(S(KC_V))", "G(KC_V)", "MO(9)"

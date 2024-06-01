@@ -32,6 +32,7 @@
             "combo": true,
             "dynamic_macro": true,
             "dynamic_tapping_term": false,
+            "extrakey": true,
             "leader": false,
             "mousekey": true,
             "os_detection": false,
