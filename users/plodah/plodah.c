@@ -1,6 +1,9 @@
 #include "plodah.h"
 #include QMK_KEYBOARD_H
 
+//===========================//
+//       CUSTOM KEYCODES     //
+//===========================//
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 
@@ -31,7 +34,7 @@ const uint16_t PROGMEM xcv_combo[] = {KC_X , KC_C , KC_V, COMBO_END};
 //===========================//
 // COMBOS FOR DYNAMIC MACROS //
 //===========================//
-#ifdef DYNAMIC_MACRO_ENABLE
+#if defined(DYNAMIC_MACRO_ENABLE)
 const uint16_t PROGMEM _12_combo[] = {KC_1 , KC_2, COMBO_END};
 const uint16_t PROGMEM _13_combo[] = {KC_1 , KC_3, COMBO_END};
 const uint16_t PROGMEM qw_combo[] = {KC_Q , KC_W, COMBO_END};
@@ -78,4 +81,3 @@ combo_t key_combos[] = {
     };
 #endif
 #endif
-
