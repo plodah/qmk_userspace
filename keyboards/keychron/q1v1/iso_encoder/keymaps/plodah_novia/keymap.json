@@ -58,7 +58,7 @@
                 "typing_heatmap": false,
                 "digital_rain": false,
                 "solid_reactive_simple": false,
-                "solid_reactive": true,
+                "solid_reactive": false,
                 "solid_reactive_wide": false,
                 "solid_reactive_multiwide": false,
                 "solid_reactive_cross": false,
@@ -71,8 +71,8 @@
                 "solid_multisplash": false,
                 "starlight": false,
                 "starlight_dual_hue": false,
-                "starlight_dual_sat": false,
-                "riverflow": false
+                "starlight_dual_sat": true,
+                "riverflow": true
             },
             "default": {
                 "animation": "gradient_left_right",
