@@ -57,7 +57,11 @@
                 "splash": false,
                 "multisplash": false,
                 "solid_splash": false,
-                "solid_multisplash": false
+                "solid_multisplash": false,
+                "starlight": false,
+                "starlight_dual_hue": false,
+                "starlight_dual_sat": false,
+                "riverflow": false
             },
             "default": {
                 "animation": "gradient_left_right",
