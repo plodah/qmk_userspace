@@ -10,12 +10,6 @@
         "bootmagic": {
             "matrix": [0, 0]
         },
-        "caps_word": {
-            "both_shifts_turns_on":false,
-            "double_tap_shift_turns_on":true,
-            "idle_timeout":1200,
-            "invert_on_shift":false
-        },
         "combo": {
             "term": 35
         },
@@ -132,6 +126,9 @@
             "speed_steps": 8,
             "timeout": 270000,
             "val_steps": 8
+        },
+        "qmk": {
+            "tap_keycode_delay": 5
         }
     },
     "keycodes": [

@@ -43,6 +43,9 @@
             "permissive_hold": true,
             "term": 420,
             "toggle": 3
+        },
+        "qmk": {
+            "tap_keycode_delay": 5
         }
     },
     "keycodes": [

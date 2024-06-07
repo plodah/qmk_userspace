@@ -38,6 +38,9 @@
             "space_cadet": false,
             "tap_dance": false,
             "via": true
+        },
+        "qmk": {
+            "tap_keycode_delay": 5
         }
     },
     "keycodes": [
