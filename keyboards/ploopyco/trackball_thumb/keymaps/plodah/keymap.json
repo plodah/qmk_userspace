@@ -29,6 +29,7 @@
             "combo": true,
             "dynamic_macro": false,
             "dynamic_tapping_term": false,
+            "encoder_map": false,
             "extrakey": true,
             "leader": false,
             "mousekey": true,
@@ -64,7 +65,7 @@
             "MO(2)"
         ],
         [
-            "_______", "DRAG_SCROLL", "_______", "G(KC_L)", "LCA(KC_DEL)",
+            "_______", "PL_ALTTAB_REV", "PL_VERS", "PL_ALTTAB", "LCA(KC_DEL)",
             "_______"
         ]
     ]
