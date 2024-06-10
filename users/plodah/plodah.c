@@ -323,10 +323,16 @@ combo_t key_combos[] = {
 #else
     const uint16_t PROGMEM ms1ms2_combo[] = {KC_BTN1 , KC_BTN2, COMBO_END};
     const uint16_t PROGMEM ms1ms4_combo[] = {KC_BTN1 , KC_BTN4, COMBO_END};
+    const uint16_t PROGMEM ms2ms4_combo[] = {KC_BTN2 , KC_BTN4, COMBO_END};
+    const uint16_t PROGMEM ms1ms5_combo[] = {KC_BTN1 , KC_BTN5, COMBO_END};
+    const uint16_t PROGMEM ms2ms5_combo[] = {KC_BTN2 , KC_BTN5, COMBO_END};
 
     combo_t key_combos[] = {
         COMBO(ms1ms2_combo, DRAG_SCROLL),
         COMBO(ms1ms4_combo, DRAG_SCROLL),
+        COMBO(ms2ms4_combo, DRAG_SCROLL),
+        COMBO(ms1ms5_combo, C(KC_C)),
+        COMBO(ms2ms5_combo, C(KC_V)),
     };
 #endif
 #endif
