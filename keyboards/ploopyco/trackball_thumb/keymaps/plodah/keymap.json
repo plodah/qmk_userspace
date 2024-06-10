@@ -49,7 +49,10 @@
         }
     },
     "keycodes": [
-        { "key": "QK_VERS" }
+        { "key": "PL_ALTTAB" },
+        { "key": "PL_ALTTAB_REV" },
+        { "key": "PL_TEST" },
+        { "key": "PL_VERS" }
     ],
     "layers": [
         [

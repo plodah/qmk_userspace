@@ -132,7 +132,10 @@
         }
     },
     "keycodes": [
-        { "key": "QK_VERS" }
+        { "key": "PL_ALTTAB" },
+        { "key": "PL_ALTTAB_REV" },
+        { "key": "PL_TEST" },
+        { "key": "PL_VERS" }
     ],
     "encoders": [
         [
@@ -145,8 +148,8 @@
                 "cw": "KC_VOLU"
             },
             {
-                "ccw": "KC_WH_U",
-                "cw": "KC_WH_D"
+                "ccw": "PL_ALTTAB_REV",
+                "cw": "PL_ALTTAB"
             }
         ],
         [
@@ -278,7 +281,7 @@
     ],
     "layers": [
         [
-                        "C(KC_F4)", "KC_MUTE",  "C(KC_T)",
+                        "C(KC_F4)", "KC_MUTE",  "A(KC_F4)",
             "KC_ESC",   "KC_TAB",   "KC_LSFT",  "KC_BSPC",  "KC_DEL",
             "C(KC_A)",  "C(KC_X)",  "C(KC_Z)",  "C(KC_Y)",  "KC_ENT",
             "C(KC_C)",  "C(KC_V)",  "C(S(KC_V))", "G(KC_V)", "MO(9)"
@@ -311,7 +314,7 @@
                         "MC_14",    "KC_NO",    "MC_15",
             "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",
             "MC_5",     "MC_6",     "MC_7",     "MC_8",     "MC_9",
-            "MC_10",    "QK_VERS",  "QK_MAKE",  "MC_13",    "MO(9)"
+            "PL_TEST",  "PL_VERS",  "QK_MAKE",  "MC_13",    "MO(9)"
         ],
 
         [
