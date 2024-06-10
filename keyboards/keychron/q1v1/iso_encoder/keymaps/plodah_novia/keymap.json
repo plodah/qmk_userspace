@@ -96,11 +96,15 @@
             {
                 "ccw": "ENC_CCW",
                 "cw": "ENC_CW"
-            },
+            }
+        ],
+        [
             {
                 "ccw": "PL_ALTTAB_REV",
                 "cw": "PL_ALTTAB"
-            },
+            }
+        ],
+        [
             {
                 "ccw": "PL_ALTTAB_REV",
                 "cw": "PL_ALTTAB"

@@ -133,18 +133,30 @@
             {
                 "ccw": "ENC_CCW",
                 "cw": "ENC_CW"
-            },
+            }
+        ],
+        [
             {
                 "ccw": "ENC_CCW",
                 "cw": "ENC_CW"
-            },
+            }
+        ],
+        [
             {
                 "ccw": "ENC_CCW",
                 "cw": "ENC_CW"
-            },
+            }
+        ],
+        [
             {
                 "ccw": "KC_VOLD",
                 "cw": "KC_VOLU"
+            }
+        ],
+        [
+            {
+                "ccw": "RGB_VAD",
+                "cw": "RGB_VAI"
             }
         ]
     ],    "layers": [
