@@ -13,7 +13,7 @@
         "caps_word": {
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": false,
-            "idle_timeout": 500,
+            "idle_timeout": 1200,
             "invert_on_shift": true
         },
         "combo": {
