@@ -11,10 +11,10 @@
             "matrix": [0, 1]
         },
         "caps_word": {
-            "both_shifts_turns_on":true,
-            "double_tap_shift_turns_on":true,
-            "idle_timeout":1600,
-            "invert_on_shift":true
+            "both_shifts_turns_on": true,
+            "double_tap_shift_turns_on": false,
+            "idle_timeout": 500,
+            "invert_on_shift": true
         },
         "combo": {
             "term": 35
@@ -168,7 +168,7 @@
             "_______",  "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",                 "MC_7",     "MC_8",     "MC_9",     "PL_TEST",    "PL_VERS",  "QK_MAKE",  "_______",  "KC_END",
             "_______",  "_______",  "KC_PGUP",  "KC_UP",    "KC_PGDN",  "_______",  "_______",              "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "_______",
             "_______",  "KC_CAPS",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT",  "_______",  "_______",  "_______",              "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
-            "_______",  "_______",  "_______",  "_______",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "_______",  "_______",  "_______",  "KC_PGUP",
+            "_______",  "_______",  "_______",  "_______",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "_______",  "_______",  "CW_TOGG",  "KC_PGUP",
             "_______",  "_______",  "GU_TOGG",              "_______",              "KC_SPC",   "_______",              "KC_SPC",               "KC_APP",                           "KC_HOME",  "KC_PGDN",  "KC_END"
         ],
         [
