@@ -15,7 +15,7 @@
 
 #define TAPPING_TERM 420
 #define TAPPING_TOGGLE 3
-#define PERMISSIVE_HOLD 3
+#define PERMISSIVE_HOLD
 
 #if defined (DIP_SWITCH_ENABLE) && defined (BORING_LAYER)
 #define dip_switch_update_kb plodah_dip_switch_update_kb
@@ -89,7 +89,7 @@
 // #  define ENABLE_RGB_MATRIX_STARLIGHT
 // #  define ENABLE_RGB_MATRIX_STARLIGHT_DUAL_HUE
 #  define ENABLE_RGB_MATRIX_STARLIGHT_DUAL_SAT
-#  define ENABLE_RGB_MATRIX_RIVERFLOW
+// #  define ENABLE_RGB_MATRIX_RIVERFLOW
 
 // #  define ENABLE_RGB_MATRIX_TYPING_HEATMAP
 // #  define ENABLE_RGB_MATRIX_DIGITAL_RAIN
@@ -137,4 +137,3 @@
 #  endif
 #  define RGB_MATRIX_TIMEOUT 270000
 #endif
-
