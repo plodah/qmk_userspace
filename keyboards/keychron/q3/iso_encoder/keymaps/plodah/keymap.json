@@ -125,8 +125,7 @@
         { "key": "PL_VERS" },
         { "key": "ENC_CCW" },
         { "key": "ENC_CW" },
-        { "key": "ENC_PRS" },
-        { "key": "TD_ESC_RAGEQUIT" }
+        { "key": "ENC_PRS" }
     ],
     "encoders": [
         [
