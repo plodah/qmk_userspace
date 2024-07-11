@@ -42,8 +42,9 @@ void rage_quit(tap_dance_state_t *state, void *user_data) {
     reset_tap_dance(state);
 };
 
+
 tap_dance_action_t tap_dance_actions[] = {
-    [TD_ESC_RAGEQUIT] = ACTION_TAP_DANCE_FN(rage_quit),
+    [TD_ESC_RAGEQUIT] = ACTION_TAP_DANCE_FN(rage_quit)
 };
 #endif
 
