@@ -3,7 +3,10 @@
     "build_targets": [
         ["keebio/iris/rev2", "plodah"],
         ["keychron/q1v1/iso_encoder", "plodah"],
+        ["keychron/q1v1/iso_encoder", "plodahc"],
         ["keychron/q3/iso_encoder", "plodah"],
+        ["keychron/q8/iso_encoder", "plodah"],
+        ["keychron/q8/iso_encoder", "plodahc"],
         ["keychron/q9/iso_encoder", "plodah"],
         ["keychron/q10/iso_encoder", "plodah"],
         ["keychron/v2/iso_encoder", "plodah"],

@@ -1,17 +1,25 @@
 startdir=`pwd`
-qmkdir="/d/Repo/qmk_firmware"
-usrdir="/d/Repo/qmk_userspace"
-gdrdir="/d/Google Drive/Keebs/Firmware"
+echo "$(date +%H:%M:%S) START"
+if [[ `grep WSL2 /proc/version` ]]; then
+  echo "$(date +%H:%M:%S) This is WSL"
+  wsl="true"
+  qmkdir="/home/michael/plodah_qmk_firmware"
+  usrdir="/home/michael/plodah_qmk_userspace"
+  gdrdir="/mnt/d/Google Drive/Keebs/Firmware"
+else
+  echo "$(date +%H:%M:%S) This is _NOT_ WSL"
+  qmkdir="/d/Repo/qmk_firmware"
+  usrdir="/d/Repo/qmk_userspace"
+  gdrdir="/d/Google Drive/Keebs/Firmware"
+fi
 subdir=compiled-$(date +%Y-w%W)
 plodir="$usrdir/users/plodah"
-echo "$(date +%H:%M:%S) START"
 
 cd $qmkdir
 qmk generate-autocorrect-data -o $plodir/autocorrect_data.h $plodir/dictionary.txt
 rm $plodir/*.bak
 
-
-if [ "$1" == "clean" ]
+if [ "$1" == "clean" ] || [ "$wsl" == "true" ]
   then
     echo "$(date +%H:%M:%S) CLEAN"
     rm $qmkdir/*.uf2 $qmkdir/*.bin $qmkdir/*.hex $usrdir/*.uf2 $usrdir/*.bin $usrdir/*.hex
