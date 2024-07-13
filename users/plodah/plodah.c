@@ -13,57 +13,7 @@ uint16_t alt_tab_timer = 0;     // we will be using them soon.
 #endif
 
 #if defined(TAP_DANCE_ENABLE) && BORING_LAYER != -1
-
-/*
-enum {
-    TD_ESC_RAGEQUIT
-};
-*/
-
-void rage_quit_fin(tap_dance_state_t *state, void *user_data) {
-    if (state->count >= 7) {
-        if(IS_LAYER_ON(BORING_LAYER)) {
-            SEND_STRING("Cool.");
-            layer_move(0);
-        }
-        else {
-            SEND_STRING("I'm sorry!");
-            layer_move(BORING_LAYER);
-        }
-    }
-    else{
-        if(state->count >= 3) {
-            SEND_STRING("Nearies");
-        }
-        else{
-            register_code(KC_ESC);
-        }
-    }
-    //reset_tap_dance(state);
-};
-void rage_quit_rst(tap_dance_state_t *state, void *user_data) {
-    if (state->count >= 7) {
-        if(IS_LAYER_ON(BORING_LAYER)) {
-            //SEND_STRING("Cool.");
-            //layer_move(0);
-        }
-        else {
-            //SEND_STRING("I'm sorry!");
-            //layer_move(BORING_LAYER);
-        }
-    }
-    else{
-        if(state->count >= 3) {
-            //SEND_STRING("Nearies");
-        }
-        else{
-            unregister_code(KC_ESC);
-        }
-    }
-    //reset_tap_dance(state);
-};
-
-
+#include "func/ragequit.c"
 tap_dance_action_t tap_dance_actions[] = {
     [TD_ESC_RAGEQUIT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rage_quit_fin, rage_quit_rst)
 };
@@ -279,6 +229,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifndef ALT_TAB_DELAY
 #  define ALT_TAB_DELAY 1000
 #endif
+
 void matrix_scan_user(void) { // The very important timer.
   if (is_alt_tab_active) {
     if (timer_elapsed(alt_tab_timer) > ALT_TAB_DELAY) {
@@ -287,8 +238,6 @@ void matrix_scan_user(void) { // The very important timer.
     }
   }
 }
-
-//userspace_config_t userspace_config;
 
 #if defined(COMBO_ENABLE)
 //===========================//
