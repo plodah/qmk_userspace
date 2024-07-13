@@ -13,7 +13,7 @@
 
 #define DEBOUNCE 20
 
-#define TAPPING_TERM 420
+#define TAPPING_TERM 125
 #define TAPPING_TOGGLE 3
 #define PERMISSIVE_HOLD 3
 

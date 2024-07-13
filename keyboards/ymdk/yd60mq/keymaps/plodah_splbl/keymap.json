@@ -58,7 +58,7 @@
         },
         "tapping": {
             "permissive_hold": true,
-            "term": 420,
+            "term": 125,
             "toggle": 3
         },
         "qmk": {

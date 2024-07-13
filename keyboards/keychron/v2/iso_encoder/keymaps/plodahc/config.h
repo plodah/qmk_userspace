@@ -2,7 +2,7 @@
 
 #define ENABLE_COMPILE_KEYCODE
 #define MODS_ON_KNOB
-#define BORING_LAYER 3
+#define BORING_LAYER 1
 
 #define ALT_TAB_DELAY 750
 
@@ -13,7 +13,7 @@
 
 #define DEBOUNCE 20
 
-#define TAPPING_TERM 420
+#define TAPPING_TERM 125
 #define TAPPING_TOGGLE 3
 #define PERMISSIVE_HOLD 3
 
