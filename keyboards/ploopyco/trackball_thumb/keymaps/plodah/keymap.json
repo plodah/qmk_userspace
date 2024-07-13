@@ -51,7 +51,7 @@
     },
     "keycodes": [
         { "key": "PL_ALTTAB" },
-        { "key": "PL_ALTTAB_REV" },
+        { "key": "PL_ALTSTAB" },
         { "key": "PL_TEST" },
         { "key": "PL_VERS" }
     ],
@@ -65,7 +65,7 @@
             "MO(2)"
         ],
         [
-            "_______", "PL_ALTTAB_REV", "PL_VERS", "PL_ALTTAB", "LCA(KC_DEL)",
+            "_______", "PL_ALTSTAB", "PL_VERS", "PL_ALTTAB", "LCA(KC_DEL)",
             "_______"
         ]
     ]
