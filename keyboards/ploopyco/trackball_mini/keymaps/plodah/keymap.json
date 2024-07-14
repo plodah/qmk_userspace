@@ -40,13 +40,13 @@
             "tap_dance": false,
             "via": true
         },
-        "tapping": {
-            "permissive_hold": true,
-            "term": 125,
-            "toggle": 3
-        },
         "qmk": {
             "tap_keycode_delay": 5
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 180,
+            "toggle": 3
         }
     },
     "keycodes": [

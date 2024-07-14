@@ -129,6 +129,11 @@
         },
         "qmk": {
             "tap_keycode_delay": 5
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 180,
+            "toggle": 3
         }
     },
     "keycodes": [
