@@ -1,4 +1,6 @@
-void enc_press_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
+#pragma once
+
+void enc_prs_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
     if (ctl_pressed && sft_pressed) {
         //CS
     }
