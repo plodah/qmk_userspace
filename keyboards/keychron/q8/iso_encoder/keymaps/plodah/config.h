@@ -3,5 +3,7 @@
 #define ENABLE_COMPILE_KEYCODE
 #define MODS_ON_KNOB
 #define BORING_LAYER 1
+#define LAYER_IND_GRVINDEX 0
+// #define LAYER_IND_ONZERO
 
 #define ALT_TAB_DELAY 750
