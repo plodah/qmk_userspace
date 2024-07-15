@@ -51,18 +51,13 @@ void alt_tab_bk(void) {
 //===========================//
 //       CUSTOM KEYCODES     //
 //===========================//
-#if defined ( MODS_ON_KNOB )
-    #include "func/kc_handler_alt.c"
+#if defined MODS_ON_KNOB
     #include "func/mods_on_knob.c"
-    bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-        return kc_handler_alt(keycode, record);
-    }
-#else // NO MODS_ON_KNOB
-    #include "func/kc_handler.c"
-    bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-        return kc_handler(keycode, record);
-    }
 #endif // MODS_ON_KNOB
+#include "func/kc_handler.c"
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    return kc_handler(keycode, record);
+}
 
 //===========================//
 //          ALT TAB          //
