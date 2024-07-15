@@ -3,8 +3,8 @@ echo "$(date +%H:%M:%S) START"
 if [[ `grep WSL2 /proc/version` ]]; then
   echo "$(date +%H:%M:%S) This is WSL"
   wsl="true"
-  qmkdir="$HOME/plodah_qmk_firmware"
-  usrdir="$HOME/plodah_qmk_userspace"
+  qmkdir="$HOME/repo/plodah_qmk_firmware"
+  usrdir="$HOME/repo/plodah_qmk_userspace"
   gdrdir="/mnt/d/Google Drive/Keebs/Firmware"
 else
   echo "$(date +%H:%M:%S) This is _NOT_ WSL"
