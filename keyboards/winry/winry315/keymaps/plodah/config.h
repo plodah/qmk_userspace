@@ -1,5 +1,9 @@
 #pragma once
 
+// #define LAYER_IND_GRVINDEX 6
+// #define LAYER_IND_ONZERO
+// #define LAYER_IND_BACKGROUND
+
 #define ENABLE_COMPILE_KEYCODE
 
 #define ALT_TAB_DELAY 750

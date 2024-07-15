@@ -5,5 +5,6 @@
 #define BORING_LAYER 1
 #define LAYER_IND_GRVINDEX 15
 // #define LAYER_IND_ONZERO
+// #define LAYER_IND_BACKGROUND
 
 #define ALT_TAB_DELAY 750
