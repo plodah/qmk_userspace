@@ -14,7 +14,10 @@ enum keymap_keycodes {
   ENC_CCW,
   ENC_CW,
   ENC_PRS,
-  TD_ESC_RAGEQUIT,
+};
+
+enum {
+    TD_ESC_RAGEQUIT
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
