@@ -8,10 +8,7 @@
     "layout": "LAYOUT",
     "config": {
         "bootmagic": {
-            "matrix": [
-                0,
-                0
-            ]
+            "matrix": [0, 0]
         },
         "build": {
             "lto": true
@@ -19,7 +16,8 @@
         "combo": {
             "term": 35
         },
-        "dynamic_keymap": {
+        "debounce": 20,
+        "dynamic_keymap":{
             "layer_count": 4
         },
         "features": {
@@ -42,9 +40,6 @@
             "tap_dance": false,
             "via": true
         },
-        "matrix": {
-            "debounce": 20
-        },
         "qmk": {
             "tap_keycode_delay": 5
         },
@@ -55,40 +50,20 @@
         }
     },
     "keycodes": [
-        {
-            "key": "PL_ALTTAB"
-        },
-        {
-            "key": "PL_ALTSTAB"
-        },
-        {
-            "key": "PL_TEST"
-        },
-        {
-            "key": "PL_VERS"
-        }
+        { "key": "PL_ALTTAB" },
+        { "key": "PL_ALTSTAB" },
+        { "key": "PL_TEST" },
+        { "key": "PL_VERS" }
     ],
     "layers": [
         [
-            "KC_BTN1",
-            "KC_BTN3",
-            "LT(1, KC_BTN4)",
-            "KC_BTN2",
-            "LT(1, KC_BTN5)"
+            "KC_BTN1", "KC_BTN3", "LT(1, KC_BTN4)", "KC_BTN2", "LT(1, KC_BTN5)"
         ],
         [
-            "G(KC_L)",
-            "DPI_CONFIG",
-            "MO(2)",
-            "DRAG_SCROLL",
-            "MO(2)"
+            "G(KC_L)", "DPI_CONFIG", "MO(2)", "DRAG_SCROLL", "MO(2)"
         ],
         [
-            "_______",
-            "_______",
-            "_______",
-            "_______",
-            "_______"
+            "_______", "_______","_______", "_______", "_______"
         ]
     ]
 }

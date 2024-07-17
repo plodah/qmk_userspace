@@ -13,6 +13,7 @@
         "combo": {
             "term": 35
         },
+        "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 10
         },
@@ -35,9 +36,6 @@
             "space_cadet": false,
             "tap_dance": false,
             "via": true
-        },
-        "matrix": {
-          "debounce": 20
         },
         "rgblight": {
             "animations": {

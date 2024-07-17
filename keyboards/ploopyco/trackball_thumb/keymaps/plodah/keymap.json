@@ -16,6 +16,7 @@
         "combo": {
             "term": 35
         },
+        "debounce": 20,
         "dynamic_keymap":{
             "layer_count": 4
         },
@@ -38,9 +39,6 @@
             "space_cadet": false,
             "tap_dance": false,
             "via": true
-        },
-        "matrix": {
-          "debounce": 20
         },
         "qmk": {
             "tap_keycode_delay": 5
