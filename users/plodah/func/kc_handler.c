@@ -1,8 +1,8 @@
 #pragma once
 
-#if defined MODS_ON_KNOB
+#if defined PLODAH_MODS_ON_KNOB
     #include "func/mods_on_knob.c"
-#endif // MODS_ON_KNOB
+#endif // PLODAH_MODS_ON_KNOB
 
 bool kc_handler( uint16_t keycode, keyrecord_t *record ) {
     switch (keycode) {
@@ -27,7 +27,7 @@ bool kc_handler( uint16_t keycode, keyrecord_t *record ) {
                 SEND_STRING ( "Butt with Knobs." );
             }
             break;
-#       ifdef MODS_ON_KNOB
+#       ifdef PLODAH_MODS_ON_KNOB
         // MOD callback
             case KC_LCTL:
             case KC_RCTL:
@@ -57,7 +57,7 @@ bool kc_handler( uint16_t keycode, keyrecord_t *record ) {
                     enc_cw_act( ctl_pressed, sft_pressed, alt_pressed );
                 }
                 break;
-#       endif  // MODS_ON_KNOB
+#       endif  // PLODAH_MODS_ON_KNOB
     }
     return true;
 }

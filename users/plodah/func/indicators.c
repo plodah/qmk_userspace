@@ -1,41 +1,47 @@
 #pragma once
 
-void plodah_indicator_handler( uint8_t led_min, uint8_t led_max ) {
+bool plodah_indicator_handler( void ) {
 #   ifdef CAPS_LOCK_LED_INDEX
-    if ( led_max >= CAPS_LOCK_LED_INDEX && CAPS_LOCK_LED_INDEX >= led_min ) {
-        if ( host_keyboard_led_state( ).caps_lock ) {
-            RGB_MATRIX_INDICATOR_SET_COLOR( CAPS_LOCK_LED_INDEX, 255, 0, 0 );
-        } else {
-            if ( !rgb_matrix_get_flags( ) ) {
-                RGB_MATRIX_INDICATOR_SET_COLOR( CAPS_LOCK_LED_INDEX, 0, 0, 0 );
-            }
+    if ( host_keyboard_led_state( ).caps_lock ) {
+#       ifdef PLODAH_CAPS_INDIC_RGB
+            rgb_matrix_set_color( CAPS_LOCK_LED_INDEX, PLODAH_CAPS_INDIC_RGB );
+#       else // PLODAH_CAPS_INDICATOR_R/G/B
+            rgb_matrix_set_color( CAPS_LOCK_LED_INDEX, RGB_RED );
+#       endif // PLODAH_CAPS_INDICATOR_R/G/B
+    } else {
+        if ( !rgb_matrix_get_flags( ) ) {
+            rgb_matrix_set_color( CAPS_LOCK_LED_INDEX, RGB_OFF );
         }
     }
 #   endif
-#   ifdef LAYER_IND_GRVINDEX
-    //if ( led_max >= ( LAYER_IND_GRVINDEX + DYNAMIC_KEYMAP_LAYER_COUNT ) && LAYER_IND_GRVINDEX >= led_min ) {
-    //if ( led_max >= ( LAYER_IND_GRVINDEX + DYNAMIC_KEYMAP_LAYER_COUNT ) ) {
-    //if ( LAYER_IND_GRVINDEX >= led_min ) {
-#       ifdef LAYER_IND_ONZERO
+#   ifdef PLODAH_LAYER_INDIC_GRVINDEX
+#       ifdef PLODAH_LAYER_INDIC_ONZERO
             bool onzero = true;
 #       else
             bool onzero = false;
 #       endif
-
         int highlayer = get_highest_layer( layer_state );
         for ( int lindex = 0; lindex < DYNAMIC_KEYMAP_LAYER_COUNT; lindex++ ) {
-            int thisindex = ( lindex + LAYER_IND_GRVINDEX );
+            int thisindex = ( lindex + PLODAH_LAYER_INDIC_GRVINDEX );
+            if ( !rgb_matrix_get_flags( ) ) {
+                rgb_matrix_set_color( thisindex, RGB_OFF );
+            }
             if ( highlayer == lindex && ( lindex != 0 || onzero ) ) {
-                RGB_MATRIX_INDICATOR_SET_COLOR( thisindex, 255, 0, 0 );
+#               ifdef PLODAH_LAYER_INDIC_RGB
+                    rgb_matrix_set_color( thisindex, PLODAH_LAYER_INDIC_RGB );
+#               else //PLODAH_LAYER_INDIC_RGB
+                    rgb_matrix_set_color( thisindex, RGB_RED );
+#               endif //PLODAH_LAYER_INDIC_RGB
             }
             else {
-#               ifdef LAYER_IND_BACKGROUND
+#               ifdef PLODAH_LAYER_INDIC_BG_RGB
                     if ( highlayer != lindex && ( lindex != 0 || onzero ) ) {
-                        RGB_MATRIX_INDICATOR_SET_COLOR( thisindex, 0, 255, 255 );
+                        rgb_matrix_set_color( thisindex, PLODAH_LAYER_INDIC_BG_RGB );
                     }
 #               endif
             }
         }
-    //}
-#   endif //LAYER_IND_GRVINDEX
+
+#   endif //PLODAH_LAYER_INDIC_GRVINDEX
+    return false;
 }

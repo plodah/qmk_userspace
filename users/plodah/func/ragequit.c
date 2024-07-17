@@ -2,13 +2,13 @@
 
 void rage_quit_fin_act(int count){
     if (count >= 5) {
-        if(IS_LAYER_ON(BORING_LAYER)) {
+        if(IS_LAYER_ON(PLODAH_BORING_LAYER)) {
             SEND_STRING("Cool.");
             layer_move(0);
         }
         else {
             SEND_STRING("I'm sorry!");
-            layer_move(BORING_LAYER);
+            layer_move(PLODAH_BORING_LAYER);
         }
     }
     else{

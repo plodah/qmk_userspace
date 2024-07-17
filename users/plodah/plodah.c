@@ -4,18 +4,20 @@
 
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
-bool ctl_pressed = false;
-bool sft_pressed = false;
-bool alt_pressed = false;
+#if defined PLODAH_MODS_ON_KNOB
+    bool ctl_pressed = false;
+    bool sft_pressed = false;
+    bool alt_pressed = false;
+#endif // PLODAH_MODS_ON_KNOB
 
 //===========================//
 //         TAPDANCE          //
 //===========================//
-#if ! defined(BORING_LAYER)
-#   define BORING_LAYER (-1)
+#if ! defined(PLODAH_BORING_LAYER)
+#   define PLODAH_BORING_LAYER (-1)
 #endif
 
-#if BORING_LAYER > 0 && defined(TAP_DANCE_ENABLE)
+#if PLODAH_BORING_LAYER > 0 && defined(TAP_DANCE_ENABLE)
 #include "func/ragequit.c"
 void rage_quit_fin(tap_dance_state_t *state, void *user_data) {
     rage_quit_fin_act(state->count);
@@ -51,9 +53,9 @@ void alt_tab_bk(void) {
 //===========================//
 //       CUSTOM KEYCODES     //
 //===========================//
-#if defined MODS_ON_KNOB
+#if defined PLODAH_MODS_ON_KNOB
     #include "func/mods_on_knob.c"
-#endif // MODS_ON_KNOB
+#endif // PLODAH_MODS_ON_KNOB
 #include "func/kc_handler.c"
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return kc_handler(keycode, record);
@@ -62,12 +64,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //===========================//
 //          ALT TAB          //
 //===========================//
-#ifndef ALT_TAB_DELAY
-#  define ALT_TAB_DELAY 1000
+#ifndef PLODAH_ALT_TAB_DELAY
+#  define PLODAH_ALT_TAB_DELAY 1000
 #endif
 void matrix_scan_user(void) { // The very important timer.
   if (is_alt_tab_active) {
-    if (timer_elapsed(alt_tab_timer) > ALT_TAB_DELAY) {
+    if (timer_elapsed(alt_tab_timer) > PLODAH_ALT_TAB_DELAY) {
       unregister_code(KC_LALT);
       is_alt_tab_active = false;
     }
@@ -84,11 +86,11 @@ void matrix_scan_user(void) { // The very important timer.
 //===========================//
 //    KEYCHRON DIPSWITCH     //
 //===========================//
-#if BORING_LAYER > 0 && defined(DIP_SWITCH_ENABLE)
+#if PLODAH_BORING_LAYER > 0 && defined(DIP_SWITCH_ENABLE)
 bool dip_switch_update_user(uint8_t index, bool active) {
     if (index == 0) {
-        //default_layer_set(active ? BORING_LAYER : 0);
-        layer_move(active ? BORING_LAYER : 0);
+        //default_layer_set(active ? PLODAH_BORING_LAYER : 0);
+        layer_move(active ? PLODAH_BORING_LAYER : 0);
     }
     return true;
 }
@@ -100,7 +102,13 @@ bool dip_switch_update_user(uint8_t index, bool active) {
 #if defined(RGB_MATRIX_ENABLE)
     #include "func/indicators.c"
     bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-        plodah_indicator_handler( led_min, led_max );
-        return false;
+        if (!rgb_matrix_indicators_user( )) {
+            return false;
+        }
+        return true;
     }
+    bool rgb_matrix_indicators_user( ) {
+        return plodah_indicator_handler( );
+    }
+
 #endif // RGB_MATRIX_ENABLE

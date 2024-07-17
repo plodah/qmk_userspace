@@ -21,14 +21,14 @@ void enc_prs_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
     }
     else if (
         (get_highest_layer(layer_state) % 2 ) == 1
-        && ( get_highest_layer(layer_state) != BORING_LAYER)
+        && ( get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
     ) {
         rgb_matrix_toggle_noeeprom();
     }
     else if (
         (get_highest_layer(layer_state) % 2 ) == 0
         && (get_highest_layer(layer_state) != 0)
-        && ( get_highest_layer(layer_state) != BORING_LAYER)
+        && ( get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
     ) {
         rgb_matrix_toggle_noeeprom();
     }
@@ -58,14 +58,14 @@ void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
     }
     else if (
         (get_highest_layer(layer_state) % 2 ) == 1
-        && ( get_highest_layer(layer_state) != BORING_LAYER)
+        && ( get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
     ) {
         rgb_matrix_decrease_sat_noeeprom();
     }
     else if (
         (get_highest_layer(layer_state) % 2 ) == 0
         && (get_highest_layer(layer_state) != 0)
-        && ( get_highest_layer(layer_state) != BORING_LAYER)
+        && ( get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
     ) {
         rgb_matrix_decrease_val_noeeprom();
     }
@@ -95,14 +95,14 @@ void enc_cw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
     }
     else if (
         (get_highest_layer(layer_state) % 2 ) == 1
-        && ( get_highest_layer(layer_state) != BORING_LAYER)
+        && ( get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
     ) {
         rgb_matrix_increase_sat_noeeprom();
     }
     else if (
         (get_highest_layer(layer_state) % 2 ) == 0
         && (get_highest_layer(layer_state) != 0)
-        && ( get_highest_layer(layer_state) != BORING_LAYER)
+        && ( get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
     ) {
         rgb_matrix_increase_val_noeeprom();
     }

@@ -1,6 +1,6 @@
 #pragma once
 
 #define ENABLE_COMPILE_KEYCODE
-#define BORING_LAYER 3
+#define PLODAH_BORING_LAYER 3
 
-#define ALT_TAB_DELAY 750
+#define PLODAH_ALT_TAB_DELAY 750
