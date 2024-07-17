@@ -13,6 +13,9 @@
 
 #define PLODAH_ALT_TAB_DELAY 750
 
+#define BOOTMAGIC_ROW 0
+#define BOOTMAGIC_COLUMN 1
+
 #ifdef DYNAMIC_KEYMAP_LAYER_COUNT
 #undef DYNAMIC_KEYMAP_LAYER_COUNT
 #endif
@@ -49,7 +52,7 @@
 #  ifdef CAPS_WORD_INVERT_ON_SHIFT
 #  undef CAPS_WORD_INVERT_ON_SHIFT
 #  endif
-#  define CAPS_WORD_INVERT_ON_SHIFT
+// #  define CAPS_WORD_INVERT_ON_SHIFT
 #endif
 
 /* ------- COMBO ------- */

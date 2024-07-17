@@ -18,6 +18,9 @@
 #endif
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 
+#define BOOTMAGIC_ROW 0
+#define BOOTMAGIC_COLUMN 0
+
 #define DEBOUNCE 20
 
 #define TAPPING_TERM 180
@@ -49,7 +52,7 @@
 #  ifdef CAPS_WORD_INVERT_ON_SHIFT
 #  undef CAPS_WORD_INVERT_ON_SHIFT
 #  endif
-#  define CAPS_WORD_INVERT_ON_SHIFT
+// #  define CAPS_WORD_INVERT_ON_SHIFT
 #endif
 
 /* ------- COMBO ------- */
