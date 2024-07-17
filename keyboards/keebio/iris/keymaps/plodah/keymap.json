@@ -24,12 +24,11 @@
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": false,
             "idle_timeout": 1200,
-            "invert_on_shift": true
+            "invert_on_shift": false
         },
         "combo": {
             "term": 35
         },
-        "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 4
         },
@@ -53,13 +52,16 @@
             "tap_dance": false,
             "via": true
         },
+        "matrix": {
+          "debounce": 20
+        },
+        "qmk": {
+            "tap_keycode_delay": 5
+        },
         "split": {
             "handedness": {
                 "pin": "C6"
             }
-        },
-        "qmk": {
-            "tap_keycode_delay": 5
         },
         "tapping": {
             "permissive_hold": true,
