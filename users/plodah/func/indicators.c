@@ -14,7 +14,7 @@ bool plodah_indicator_handler( void ) {
         }
     }
 #   endif
-#   ifdef PLODAH_LAYER_INDIC_GRVINDEX
+#   ifdef PLODAH_LAYER_INDIC_INDEX1
 #       ifdef PLODAH_LAYER_INDIC_ONZERO
             bool onzero = true;
 #       else
@@ -22,7 +22,7 @@ bool plodah_indicator_handler( void ) {
 #       endif
         int highlayer = get_highest_layer( layer_state );
         for ( int lindex = 0; lindex < DYNAMIC_KEYMAP_LAYER_COUNT; lindex++ ) {
-            int thisindex = ( lindex + PLODAH_LAYER_INDIC_GRVINDEX );
+            int thisindex = ( lindex + PLODAH_LAYER_INDIC_INDEX1 );
             if ( !rgb_matrix_get_flags( ) ) {
                 rgb_matrix_set_color( thisindex, RGB_OFF );
             }
@@ -41,7 +41,6 @@ bool plodah_indicator_handler( void ) {
 #               endif
             }
         }
-
-#   endif //PLODAH_LAYER_INDIC_GRVINDEX
+#   endif //PLODAH_LAYER_INDIC_INDEX1
     return false;
 }
