@@ -5,10 +5,13 @@
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
 #if defined PLODAH_MODS_ON_KNOB
+    bool alt_pressed = false;
     bool ctl_pressed = false;
     bool sft_pressed = false;
-    bool alt_pressed = false;
 #endif // PLODAH_MODS_ON_KNOB
+#if defined CAPS_WORD_ENABLE
+    bool sft_held = false;
+#endif
 
 //===========================//
 //         TAPDANCE          //
@@ -100,6 +103,9 @@ bool dip_switch_update_user(uint8_t index, bool active) {
 //  CAPS INDICATOR  //
 //==================//
 #if defined(RGB_MATRIX_ENABLE)
+    #ifndef PLODAH_MODS_INDIC_RGB
+        #define PLODAH_MODS_INDIC_RGB RGB_RED
+    #endif
     #include "func/indicators.c"
     bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         if (!rgb_matrix_indicators_user( )) {
@@ -112,3 +118,16 @@ bool dip_switch_update_user(uint8_t index, bool active) {
     }
 
 #endif // RGB_MATRIX_ENABLE
+
+//==================//
+//    CAPS_WORD     //
+//==================//
+#if defined( CAPS_WORD_ENABLE )
+    void caps_word_set_user(bool active) {
+        if (active) {
+            sft_held = true;
+        } else {
+            sft_held = false;
+        }
+    }
+#endif // CAPS_WORD_ENABLE
