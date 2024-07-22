@@ -23,17 +23,17 @@ if [ "$1" == "clean" ]
   then
     echo "$(date +%H:%M:%S) CLEAN"
     rm $qmkdir/*.uf2 $qmkdir/*.bin $qmkdir/*.hex $usrdir/*.uf2 $usrdir/*.bin $usrdir/*.hex
-    qmk clean
     qmk userspace-doctor
     qmk userspace-list
     echo "$(date +%H:%M:%S) COMPILE"
-    qmk userspace-compile
+    qmk userspace-compile -c
   else
     if [ "$1" == "nowt" ]
       then
         echo "nowt"
       else
         echo "$(date +%H:%M:%S) NO CLEAN"
+        qmk userspace-doctor
         qmk userspace-list
         echo "$(date +%H:%M:%S) COMPILE"
         qmk userspace-compile
