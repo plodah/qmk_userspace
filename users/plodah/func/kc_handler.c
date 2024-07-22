@@ -42,17 +42,17 @@ bool kc_handler( uint16_t keycode, keyrecord_t *record ) {
                 alt_pressed = record->event.pressed;
                 break;
             /* Encoder Actions */
-            case ENC_PRS:
+            case PL_ENC_PRS:
                 if ( record->event.pressed ) {
                     enc_prs_act( ctl_pressed, sft_pressed, alt_pressed );
                 }
                 break;
-            case ENC_CCW:
+            case PL_ENC_CCW:
                 if ( record->event.pressed ) {
                     enc_ccw_act( ctl_pressed, sft_pressed, alt_pressed );
                 }
                 break;
-            case ENC_CW:
+            case PL_ENC_CW:
                 if ( record->event.pressed ) {
                     enc_cw_act( ctl_pressed, sft_pressed, alt_pressed );
                 }
