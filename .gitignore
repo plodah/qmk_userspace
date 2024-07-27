@@ -4,6 +4,7 @@
 *~
 .DS_Store
 ._*
+.cache
 
 # Firmware files
 *.hex
