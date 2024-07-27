@@ -49,7 +49,7 @@
           "debounce": 20
         },
         "qmk": {
-            "tap_keycode_delay": 5
+            "tap_keycode_delay": 12
         },
         "tapping": {
             "permissive_hold": true,
