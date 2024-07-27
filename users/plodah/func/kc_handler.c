@@ -27,20 +27,25 @@ bool kc_handler( uint16_t keycode, keyrecord_t *record ) {
                 SEND_STRING ( "Butt with Knobs." );
             }
             break;
-#       ifdef PLODAH_MODS_ON_KNOB
-        // MOD callback
-            case KC_LCTL:
-            case KC_RCTL:
-                ctl_pressed = record->event.pressed;
-                break;
-            case KC_LSFT:
-            case KC_RSFT:
-                sft_pressed = record->event.pressed;
-                break;
+#       if defined(PLODAH_MODS_ON_KNOB) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
             case KC_LALT:
             case KC_RALT:
                 alt_pressed = record->event.pressed;
                 break;
+#       endif // PLODAH_MODS_ON_KNOB // ALT
+#       if defined(PLODAH_MODS_ON_KNOB) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX)
+            case KC_LCTL:
+            case KC_RCTL:
+                ctl_pressed = record->event.pressed;
+                break;
+#       endif // PLODAH_MODS_ON_KNOB // CTL
+#       if defined(PLODAH_MODS_ON_KNOB) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX)
+            case KC_LSFT:
+            case KC_RSFT:
+                sft_pressed = record->event.pressed;
+                break;
+#       endif // PLODAH_MODS_ON_KNOB // SFT
+#       if defined(PLODAH_MODS_ON_KNOB)
             /* Encoder Actions */
             case PL_ENC_PRS:
                 if ( record->event.pressed ) {

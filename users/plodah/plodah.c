@@ -4,9 +4,13 @@
 
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
-#if defined PLODAH_MODS_ON_KNOB
+#if defined(PLODAH_MODS_ON_KNOB) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
     bool alt_pressed = false;
+#endif // PLODAH_MODS_ON_KNOB
+#if defined(PLODAH_MODS_ON_KNOB) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX)
     bool ctl_pressed = false;
+#endif // PLODAH_MODS_ON_KNOB
+#if defined(PLODAH_MODS_ON_KNOB) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX)
     bool sft_pressed = false;
 #endif // PLODAH_MODS_ON_KNOB
 #if defined CAPS_WORD_ENABLE
