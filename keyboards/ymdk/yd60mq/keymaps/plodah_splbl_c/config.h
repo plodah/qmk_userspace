@@ -24,5 +24,6 @@
 
 #define TAPPING_TERM 180
 #define TAPPING_TOGGLE 3
+#define TAP_CODE_DELAY 12
 #define PERMISSIVE_HOLD 3
 
