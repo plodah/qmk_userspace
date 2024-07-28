@@ -10,6 +10,8 @@
     const uint16_t PROGMEM xc_combo[] = {KC_X , KC_C, COMBO_END};
     const uint16_t PROGMEM cv_combo[] = {KC_C , KC_V, COMBO_END};
     const uint16_t PROGMEM xcv_combo[] = {KC_X , KC_C , KC_V, COMBO_END};
+    const uint16_t PROGMEM tabq_combo[] = {KC_TAB , KC_Q , COMBO_END};
+    const uint16_t PROGMEM tabw_combo[] = {KC_TAB , KC_W , COMBO_END};
 
     //===========================//
     // COMBOS FOR DYNAMIC MACROS //
@@ -29,6 +31,8 @@
         COMBO(xc_combo, C(KC_C)),
         COMBO(cv_combo, C(KC_V)),
         COMBO(xcv_combo, C(S(KC_V))),
+        COMBO(tabq_combo, PL_ALTSTAB),
+        COMBO(tabw_combo, PL_ALTTAB),
 #       if defined(DYNAMIC_MACRO_ENABLE)
             COMBO(_12_combo, DM_PLY1),
             COMBO(_13_combo, DM_REC1),
