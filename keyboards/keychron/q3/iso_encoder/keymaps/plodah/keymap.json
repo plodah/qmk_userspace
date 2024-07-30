@@ -20,7 +20,7 @@
             "term": 35
         },
         "dynamic_keymap": {
-            "layer_count": 5
+            "layer_count": 4
         },
         "features": {
             "auto_shift": false,
@@ -138,26 +138,20 @@
         ],
         [
             {
-                "ccw": "PL_ENC_CCW",
-                "cw": "PL_ENC_CW"
-            }
-        ],
-        [
-            {
-                "ccw": "PL_ENC_CCW",
-                "cw": "PL_ENC_CW"
-            }
-        ],
-        [
-            {
                 "ccw": "KC_VOLD",
                 "cw": "KC_VOLU"
             }
         ],
         [
             {
-                "ccw": "RGB_VAD",
-                "cw": "RGB_VAI"
+                "ccw": "PL_ENC_CCW",
+                "cw": "PL_ENC_CW"
+            }
+        ],
+        [
+            {
+                "ccw": "PL_ENC_CCW",
+                "cw": "PL_ENC_CW"
             }
         ]
     ],

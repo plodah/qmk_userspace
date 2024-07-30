@@ -138,20 +138,20 @@
         ],
         [
             {
-                "ccw": "PL_ENC_CCW",
-                "cw": "PL_ENC_CW"
-            }
-        ],
-        [
-            {
-                "ccw": "PL_ENC_CCW",
-                "cw": "PL_ENC_CW"
-            }
-        ],
-        [
-            {
                 "ccw": "KC_VOLD",
                 "cw": "KC_VOLU"
+            }
+        ],
+        [
+            {
+                "ccw": "PL_ENC_CCW",
+                "cw": "PL_ENC_CW"
+            }
+        ],
+        [
+            {
+                "ccw": "PL_ENC_CCW",
+                "cw": "PL_ENC_CW"
             }
         ]
     ],
