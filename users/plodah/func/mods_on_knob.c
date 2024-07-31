@@ -48,7 +48,7 @@ void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         tap_code16(C(KC_RGHT));
     }
     else if (ctl_pressed) {
-        tap_code16(C(S(KC_TAB)));
+        tap_code16(C(KC_PGUP));
     }
     else if (alt_pressed) {
         alt_tab_bk();
@@ -85,7 +85,7 @@ void enc_cw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         tap_code16(C(KC_LEFT));
     }
     else if (ctl_pressed) {
-        tap_code16(C(KC_TAB));
+        tap_code16(C(KC_PGDN));
     }
     else if (alt_pressed) {
         alt_tab_fw();
