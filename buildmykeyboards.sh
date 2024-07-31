@@ -1,16 +1,23 @@
+#!/bin/bash
 startdir=`pwd`
 echo "$(date +%H:%M:%S) START"
-if [[ `grep WSL2 /proc/version` ]]; then
+if [[ `grep -e "WSL2" /proc/version` ]]; then
   echo "$(date +%H:%M:%S) This is WSL"
-  wsl="true"
+  qmkenv="wsl"
   qmkdir="$HOME/repo/plodah_qmk_firmware"
   usrdir="$HOME/repo/plodah_qmk_userspace"
-  gdrdir="/mnt/d/Google Drive/Keebs/Firmware"
+  fwsdir="/mnt/d/Google Drive/Keebs/Firmware"
+elif [[ `grep -e "Debian" /proc/version` ]]; then
+  echo "$(date +%H:%M:%S) This is Debian"
+  qmkenv="deb"
+  qmkdir="$HOME/Repo/plodah_qmk_firmware"
+  usrdir="$HOME/Repo/plodah_qmk_userspace"
+  fwsdir="$HOME/Documents/kbfirmware"
 else
-  echo "$(date +%H:%M:%S) This is _NOT_ WSL"
+  echo "$(date +%H:%M:%S) This is probably MSYS"
   qmkdir="/d/Repo/qmk_firmware"
   usrdir="/d/Repo/qmk_userspace"
-  gdrdir="/d/Google Drive/Keebs/Firmware"
+  fwsdir="/d/Google Drive/Keebs/Firmware"
 fi
 subdir=compiled-$(date +%Y-w%W)
 plodir="$usrdir/users/plodah"
@@ -53,11 +60,11 @@ if [ -d "$usrdir/$subdir" ]
 fi
 cp -r "$qmkdir/$subdir" "$usrdir/"
 
-if [ -d "$gdrdir/$subdir" ]
-  then rm "$gdrdir/$subdir/*" -rf
-  else mkdir "$gdrdir/$subdir"
+if [ -d "$fwsdir/$subdir" ]
+  then rm "$fwsdir/$subdir/*" -rf
+  else mkdir "$fwsdir/$subdir"
 fi
-cp -r "$qmkdir/$subdir" "$gdrdir/"
+cp -r "$qmkdir/$subdir" "$fwsdir/"
 
 cd $startdir
 echo "$(date +%H:%M:%S) FIN"

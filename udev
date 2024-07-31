@@ -1,0 +1,26 @@
+#KEYCHRON
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+
+#keebio/iris/rev2
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="CB10", ATTRS{idProduct}=="2256", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+
+#KP Republic
+#KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="XXXX", ATTRS{idProduct}=="XXXX", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+
+#ploopyco/madromys
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="5c47", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+#ploopyco/mouse
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="4d6f", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+#ploopyco/trackball_mini
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="1eab", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+#ploopyco/trackball_thumb
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="5c46", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+
+#winry/winry315
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="f1f1", ATTRS{idProduct}=="0315", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+
+#xiudi/xd60/rev3
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="7844", ATTRS{idProduct}=="6363", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+
+#ymdk/yd60mq
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="594d", ATTRS{idProduct}=="604d", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
