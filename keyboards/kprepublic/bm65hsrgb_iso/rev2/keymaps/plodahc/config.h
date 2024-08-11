@@ -1,5 +1,6 @@
 #pragma once
 
+#define ENABLE_COMPILE_KEYCODE
 #define PLODAH_BORING_LAYER 1
 
 #define PLODAH_CAPS_INDIC_RGB RGB_MAGENTA
