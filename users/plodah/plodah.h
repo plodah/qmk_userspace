@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef PLODAH_LAYEROFFSET
+#  define PLODAH_LAYEROFFSET 0
+#endif
 #include "version.h"
 
 /* ------- RGB MATRIX -------
