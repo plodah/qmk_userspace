@@ -4,9 +4,13 @@
 *~
 .DS_Store
 ._*
-.cache
 
 # Firmware files
 *.hex
 *.bin
 *.uf2
+
+# clangd
+compile_commands.json
+.clangd/
+.cache/
