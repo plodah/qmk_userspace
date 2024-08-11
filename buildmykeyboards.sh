@@ -29,7 +29,10 @@ rm $plodir/*.bak
 if [ "$1" == "clean" ]
   then
     echo "$(date +%H:%M:%S) CLEAN"
-    rm $qmkdir/*.uf2 $qmkdir/*.bin $qmkdir/*.hex $usrdir/*.uf2 $usrdir/*.bin $usrdir/*.hex
+    rm $qmkdir/*.uf2 $qmkdir/*.bin $qmkdir/*.hex $usrdir/*.uf2 $usrdir/*.bin $usrdir/*.hex $usrdir/compile_commands.json
+    qmk generate-compilation-database -km plodahc -kb keychron/v2/iso_encoder
+    qmk generate-compilation-database -km plodah -kb keychron/v2/iso_encoder
+    qmk generate-compilation-database -km plodah -kb ploopyco/trackball_thumb
     qmk userspace-doctor
     qmk userspace-list
     echo "$(date +%H:%M:%S) COMPILE"
