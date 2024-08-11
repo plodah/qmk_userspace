@@ -130,7 +130,7 @@ void enc_cw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
     }
     else if ( ctl_pressed && alt_pressed ) {
         unregister_mods(mod_state);
-        tap_code16(C(KC_PLUS));
+        tap_code16(C(KC_EQL));
         register_mods(mod_state);
     }
     else if ( alt_pressed && sft_pressed ) {
