@@ -25,7 +25,7 @@ uint16_t alt_tab_timer = 0;
 #endif
 
 #if PLODAH_BORING_LAYER > 0 && defined(TAP_DANCE_ENABLE)
-#include "func/ragequit.c"
+#include "functions/ragequit.c"
 void rage_quit_fin(tap_dance_state_t *state, void *user_data) {
     rage_quit_fin_act(state->count);
 };
@@ -61,9 +61,9 @@ void alt_tab_bk(void) {
 //       CUSTOM KEYCODES     //
 //===========================//
 #if defined PLODAH_MODS_ON_KNOB
-    #include "func/mods_on_knob.c"
+    #include "functions/mods_on_knob.c"
 #endif // PLODAH_MODS_ON_KNOB
-#include "func/kc_handler.c"
+#include "functions/kc_handler.c"
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return kc_handler(keycode, record);
 }
@@ -87,7 +87,7 @@ void matrix_scan_user(void) { // The very important timer.
 //          COMBOS           //
 //===========================//
 #if defined(COMBO_ENABLE)
-  #include "func/combos.c"
+  #include "functions/combos.c"
 #endif // COMBO_ENABLE
 
 //===========================//
@@ -110,7 +110,7 @@ bool dip_switch_update_user(uint8_t index, bool active) {
     #ifndef PLODAH_MODS_INDIC_RGB
         #define PLODAH_MODS_INDIC_RGB RGB_RED
     #endif
-    #include "func/indicators.c"
+    #include "functions/indicators.c"
     bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         if (!rgb_matrix_indicators_user( )) {
             return false;

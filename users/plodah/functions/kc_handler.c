@@ -1,7 +1,7 @@
 #pragma once
 
 #if defined PLODAH_MODS_ON_KNOB
-    #include "func/mods_on_knob.c"
+    #include "functions/mods_on_knob.c"
 #endif // PLODAH_MODS_ON_KNOB
 
 bool kc_handler( uint16_t keycode, keyrecord_t *record ) {
