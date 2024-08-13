@@ -6,54 +6,54 @@ void enc_prs_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
     current_layer = get_highest_layer(layer_state);
     mod_state = get_mods();
 
-    if ( ctl_pressed && alt_pressed && sft_pressed ) {
+    if (ctl_pressed && alt_pressed && sft_pressed) {
         unregister_mods(mod_state);
         //CAS
         register_mods(mod_state);
     }
-    else if ( ctl_pressed && alt_pressed ) {
+    else if (ctl_pressed && alt_pressed) {
         unregister_mods(mod_state);
         tap_code16(C(KC_0));
         tap_code16(C(KC_P0));
         register_mods(mod_state);
     }
-    else if ( alt_pressed && sft_pressed ) {
+    else if (alt_pressed && sft_pressed) {
         unregister_mods(mod_state);
         //AS
         register_mods(mod_state);
     }
-    else if ( sft_pressed && ctl_pressed ) {
+    else if (sft_pressed && ctl_pressed) {
         unregister_mods(mod_state);
         //CS
         register_mods(mod_state);
     }
-    else if ( ctl_pressed ) {
+    else if (ctl_pressed) {
         unregister_mods(mod_state);
         tap_code16(C(KC_F4));
         register_mods(mod_state);
     }
-    else if ( alt_pressed ) {
+    else if (alt_pressed) {
         unregister_mods(mod_state);
         tap_code16(A(KC_F4));
         register_mods(mod_state);
     }
-    else if ( sft_pressed ) {
+    else if (sft_pressed) {
         unregister_mods(mod_state);
         tap_code(KC_MPLY);
         register_mods(mod_state);
     }
     else if (
-        ( ( current_layer + PLODAH_LAYEROFFSET ) % 2  == 1 )
-        && ( current_layer != PLODAH_BORING_LAYER)
-    ) {
-        rgb_matrix_toggle_noeeprom();
+        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 1)
+        && (current_layer != PLODAH_BORING_LAYER)
+   ) {
+        rgb_matrix_toggle();
     }
     else if (
-        ( ( current_layer + PLODAH_LAYEROFFSET ) % 2  == 0 )
-        && ( current_layer != 0 )
-        && ( current_layer != PLODAH_BORING_LAYER )
-    ) {
-        rgb_matrix_toggle_noeeprom();
+        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 0)
+        && (current_layer != 0)
+        && (current_layer != PLODAH_BORING_LAYER)
+   ) {
+        rgb_matrix_toggle();
     }
     else {
         unregister_mods(mod_state);
@@ -66,22 +66,22 @@ void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
     current_layer = get_highest_layer(layer_state);
     mod_state = get_mods();
 
-    if ( ctl_pressed && alt_pressed && sft_pressed ) {
+    if (ctl_pressed && alt_pressed && sft_pressed) {
         unregister_mods(mod_state);
         tap_code16(C(KC_LEFT));
         register_mods(mod_state);
     }
-    else if ( ctl_pressed && alt_pressed ) {
+    else if (ctl_pressed && alt_pressed) {
         unregister_mods(mod_state);
         tap_code16(C(KC_MINS));
         register_mods(mod_state);
     }
-    else if ( alt_pressed && sft_pressed ) {
+    else if (alt_pressed && sft_pressed) {
         unregister_mods(mod_state);
         tap_code16(KC_LEFT);
         register_mods(mod_state);
     }
-    else if ( sft_pressed && ctl_pressed ) {
+    else if (sft_pressed && ctl_pressed) {
         unregister_mods(mod_state);
         tap_code(KC_PGUP);
         register_mods(mod_state);
@@ -91,7 +91,7 @@ void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         tap_code16(C(KC_PGUP));
         register_mods(mod_state);
     }
-    else if ( alt_pressed ) {
+    else if (alt_pressed) {
         alt_tab_bk();
     }
     else if (sft_pressed) {
@@ -100,17 +100,17 @@ void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         register_mods(mod_state);
     }
     else if (
-        ( ( current_layer + PLODAH_LAYEROFFSET ) % 2  == 1 )
-        && ( current_layer != PLODAH_BORING_LAYER)
-    ) {
-        rgb_matrix_decrease_sat_noeeprom();
+        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 1)
+        && (current_layer != PLODAH_BORING_LAYER)
+   ) {
+        rgb_matrix_decrease_sat();
     }
     else if (
-        ( ( current_layer + PLODAH_LAYEROFFSET ) % 2  == 0 )
-        && ( current_layer != 0 )
-        && ( current_layer != PLODAH_BORING_LAYER )
-    ) {
-        rgb_matrix_decrease_val_noeeprom();
+        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 0)
+        && (current_layer != 0)
+        && (current_layer != PLODAH_BORING_LAYER)
+   ) {
+        rgb_matrix_decrease_val();
     }
     else {
         unregister_mods(mod_state);
@@ -123,22 +123,22 @@ void enc_cw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
     current_layer = get_highest_layer(layer_state);
     mod_state = get_mods();
 
-    if ( ctl_pressed && alt_pressed && sft_pressed ) {
+    if (ctl_pressed && alt_pressed && sft_pressed) {
         unregister_mods(mod_state);
         tap_code16(C(KC_RGHT));
         register_mods(mod_state);
     }
-    else if ( ctl_pressed && alt_pressed ) {
+    else if (ctl_pressed && alt_pressed) {
         unregister_mods(mod_state);
         tap_code16(C(KC_EQL));
         register_mods(mod_state);
     }
-    else if ( alt_pressed && sft_pressed ) {
+    else if (alt_pressed && sft_pressed) {
         unregister_mods(mod_state);
         tap_code16(KC_RGHT);
         register_mods(mod_state);
     }
-    else if ( sft_pressed && ctl_pressed ) {
+    else if (sft_pressed && ctl_pressed) {
         unregister_mods(mod_state);
         tap_code(KC_PGDN);
         register_mods(mod_state);
@@ -148,7 +148,7 @@ void enc_cw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         tap_code16(C(KC_PGDN));
         register_mods(mod_state);
     }
-    else if ( alt_pressed ) {
+    else if (alt_pressed) {
         alt_tab_fw();
     }
     else if (sft_pressed) {
@@ -157,17 +157,17 @@ void enc_cw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         register_mods(mod_state);
     }
     else if (
-        ( ( current_layer + PLODAH_LAYEROFFSET ) % 2  == 1 )
-        && ( current_layer != PLODAH_BORING_LAYER)
-    ) {
-        rgb_matrix_increase_sat_noeeprom();
+        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 1)
+        && (current_layer != PLODAH_BORING_LAYER)
+   ) {
+        rgb_matrix_increase_sat();
     }
     else if (
-        ( ( current_layer + PLODAH_LAYEROFFSET ) % 2  == 0 )
-        && ( current_layer != 0 )
-        && ( current_layer != PLODAH_BORING_LAYER )
-    ) {
-        rgb_matrix_increase_val_noeeprom();
+        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 0)
+        && (current_layer != 0)
+        && (current_layer != PLODAH_BORING_LAYER)
+   ) {
+        rgb_matrix_increase_val();
     }
     else {
         unregister_mods(mod_state);

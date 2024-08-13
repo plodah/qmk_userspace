@@ -4,29 +4,29 @@
     #include "functions/mods_on_knob.c"
 #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 
-bool kc_handler( uint16_t keycode, keyrecord_t *record ) {
+bool kc_handler(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     // Static version keycode
 #       ifdef PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
             case PL_ALTTAB:
-                if ( record->event.pressed ) {
+                if (record->event.pressed) {
                     alt_tab_fw();
                 }
                 break;
             case PL_ALTSTAB:
-                if ( record->event.pressed ) {
+                if (record->event.pressed) {
                     alt_tab_bk();
                 }
                 break;
 #       endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
         case PL_VERS:
-            if ( record->event.pressed ) {
-                SEND_STRING ( QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION ", Built on: " QMK_BUILDDATE );
+            if (record->event.pressed) {
+                SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION ", Built on: " QMK_BUILDDATE);
             }
             break;
         case PL_TEST:
-            if ( record->event.pressed ) {
-                SEND_STRING ( "Butt with Knobs." );
+            if (record->event.pressed) {
+                SEND_STRING ("Butt with Knobs.");
             }
             break;
 #       if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
@@ -50,18 +50,18 @@ bool kc_handler( uint16_t keycode, keyrecord_t *record ) {
 #       if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
             /* Encoder Actions */
             case PL_ENC_PRS:
-                if ( record->event.pressed ) {
-                    enc_prs_act( ctl_pressed, sft_pressed, alt_pressed );
+                if (record->event.pressed) {
+                    enc_prs_act(ctl_pressed, sft_pressed, alt_pressed);
                 }
                 break;
             case PL_ENC_CCW:
-                if ( record->event.pressed ) {
-                    enc_ccw_act( ctl_pressed, sft_pressed, alt_pressed );
+                if (record->event.pressed) {
+                    enc_ccw_act(ctl_pressed, sft_pressed, alt_pressed);
                 }
                 break;
             case PL_ENC_CW:
-                if ( record->event.pressed ) {
-                    enc_cw_act( ctl_pressed, sft_pressed, alt_pressed );
+                if (record->event.pressed) {
+                    enc_cw_act(ctl_pressed, sft_pressed, alt_pressed);
                 }
                 break;
 #       endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
