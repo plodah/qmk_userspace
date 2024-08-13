@@ -1,5 +1,2 @@
 #pragma once
-
-#define ENABLE_COMPILE_KEYCODE
-
-#define PLODAH_ALT_TAB_DELAY 750
+#include "plodah.h"

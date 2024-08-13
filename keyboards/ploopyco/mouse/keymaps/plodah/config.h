@@ -17,11 +17,14 @@
  */
 
 #pragma once
+#include "plodah.h"
+
+/* ------- RGB LIGHTING ------- */
+#ifdef RGBLIGHT_ENABLE
+#  include "configs/rgblight-effects-none.h"
+#endif // RGBLIGHT_ENABLE
 
 #define IS_MOUSE
-#define ENABLE_COMPILE_KEYCODE
-#define PLODAH_ALT_TAB_DELAY 750
-
 #ifdef PLOOPY_IGNORE_SCROLL_CLICK
 #  undef PLOOPY_IGNORE_SCROLL_CLICK
 #endif
@@ -81,3 +84,8 @@
 #  undef PLOOPY_DRAGSCROLL_INVERT
 #endif
 #define PLOOPY_DRAGSCROLL_INVERT 1
+
+/* ------- RGB LIGHTING ------- */
+#ifdef RGBLIGHT_ENABLE
+#  include "configs/rgblight-effects-none.h"
+#endif // RGBLIGHT_ENABLE

@@ -1,6 +1,6 @@
 #pragma once
+#include "plodah.h"
 
-#define ENABLE_COMPILE_KEYCODE
 #define PLODAH_BORING_LAYER 1
 
 #define PLODAH_CAPS_INDIC_RGB 0xAB, 0xAB, 0xFF
@@ -18,6 +18,12 @@
 // #define PLODAH_LAYER_INDIC_ONZERO
 // #define PLODAH_LAYER_INDIC_BG_RGB RGB_ORANGE
 
-#define ENABLE_COMPILE_KEYCODE
+/* ------- RGB MATRIX ------- */
+#ifdef RGB_MATRIX_ENABLE
+#  include "configs/rgbmatrix-effects-none.h"
+#endif // RGB_MATRIX_ENABLE
 
-#define PLODAH_ALT_TAB_DELAY 750
+/* ------- RGB LIGHTING ------- */
+#ifdef RGBLIGHT_ENABLE
+#  include "configs/rgblight-effects-none.h"
+#endif // RGBLIGHT_ENABLE

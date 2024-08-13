@@ -1,6 +1,9 @@
 #pragma once
+#include "plodah.h"
 
-#define ENABLE_COMPILE_KEYCODE
 #define PLODAH_BORING_LAYER 1
 
-#define PLODAH_ALT_TAB_DELAY 750
+/* ------- RGB LIGHTING ------- */
+#ifdef RGBLIGHT_ENABLE
+#  include "configs/rgblight-effects-none.h"
+#endif // RGBLIGHT_ENABLE
