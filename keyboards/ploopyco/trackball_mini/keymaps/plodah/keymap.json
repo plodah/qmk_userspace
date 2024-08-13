@@ -77,11 +77,11 @@
             "LT(1, KC_BTN5)"
         ],
         [
-            "G(KC_L)",
+            "_______",
             "DPI_CONFIG",
-            "MO(2)",
-            "DRAG_SCROLL",
-            "MO(2)"
+            "_______",
+            "PL_ALTSTAB",
+            "PL_ALTTAB"
         ],
         [
             "_______",
