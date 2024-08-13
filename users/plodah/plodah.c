@@ -2,24 +2,24 @@
 #include "plodah.h"
 #include "quantum.h"
 
-#if defined(PLODAH_MODS_ON_KNOB) && (! defined(PLODAH_ALTTAB_ENABLE))
-#  define PLODAH_ALTTAB_ENABLE
-#endif // PLODAH_ALTTAB_ENABLE
+#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) && (! defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE))
+#  define PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+#endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 
-#if defined(PLODAH_ALTTAB_ENABLE)
+#if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
   bool is_alt_tab_active = false;
   uint16_t alt_tab_timer = 0;
-#endif  // PLODAH_ALTTAB_ENABLE
+#endif  // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 
-#if defined(PLODAH_MODS_ON_KNOB) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
+#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
     bool alt_pressed = false;
-#endif // PLODAH_MODS_ON_KNOB
-#if defined(PLODAH_MODS_ON_KNOB) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX)
+#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
+#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX)
     bool ctl_pressed = false;
-#endif // PLODAH_MODS_ON_KNOB
-#if defined(PLODAH_MODS_ON_KNOB) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX)
+#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
+#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX)
     bool sft_pressed = false;
-#endif // PLODAH_MODS_ON_KNOB
+#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #if defined CAPS_WORD_ENABLE
     bool sft_held = false;
 #endif
@@ -47,7 +47,7 @@ tap_dance_action_t tap_dance_actions[] = {
 //===========================//
 //          ALT TAB          //
 //===========================//
-#if defined(PLODAH_ALTTAB_ENABLE)
+#if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
     void alt_tab_fw(void) {
         if (!is_alt_tab_active) {
             is_alt_tab_active = true;
@@ -64,14 +64,14 @@ tap_dance_action_t tap_dance_actions[] = {
         alt_tab_timer = timer_read();
         tap_code16(S(KC_TAB));
     }
-#endif // PLODAH_ALTTAB_ENABLE
+#endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 
 //===========================//
 //       CUSTOM KEYCODES     //
 //===========================//
-#if defined PLODAH_MODS_ON_KNOB
+#if defined PLODAH_KNOB_ENHANCEMENTS_ENABLE
     #include "functions/mods_on_knob.c"
-#endif // PLODAH_MODS_ON_KNOB
+#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #include "functions/kc_handler.c"
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return kc_handler(keycode, record);
@@ -80,7 +80,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //===========================//
 //          ALT TAB          //
 //===========================//
-#if defined(PLODAH_ALTTAB_ENABLE)
+#if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
 #  ifndef PLODAH_ALT_TAB_DELAY
 #    define PLODAH_ALT_TAB_DELAY 1000
 #  endif
@@ -92,7 +92,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     }
   }
-#endif // PLODAH_ALTTAB_ENABLE
+#endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 
 //===========================//
 //          COMBOS           //

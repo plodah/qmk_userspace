@@ -1,7 +1,7 @@
 #pragma once
 #include "plodah.h"
 
-#define PLODAH_MODS_ON_KNOB
+#define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #define PLODAH_BORING_LAYER 1
 
 #define PLODAH_CAPS_INDIC_RGB 0xAB, 0xAB, 0xFF
