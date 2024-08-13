@@ -1,5 +1,5 @@
 {
-    "userspace_version": "1.0",
+    "userspace_version": "1.1",
     "build_targets": [
         ["keebio/iris/rev2", "plodah"],
         ["keychron/q1v1/iso_encoder", "plodah"],
@@ -16,6 +16,8 @@
         ["keychron/v2/iso_encoder", "plodahc"],
         ["keychron/v6/iso_encoder", "plodah"],
         ["keychron/v6/iso_encoder", "plodahc"],
+        ["kprepublic/bm65hsrgb/rev2", "plodah"],
+        ["kprepublic/bm65hsrgb_rgb/rev2", "plodah"],
         ["ploopyco/madromys", "plodah"],
         ["ploopyco/mouse", "plodah"],
         ["ploopyco/trackball_mini", "plodah"],
