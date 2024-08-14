@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef PLODAH_MODS_INDIC_RGB
+# define PLODAH_MODS_INDIC_RGB RGB_RED
+#endif
+
 bool plodah_indicator_handler(void) {
 #   ifdef CAPS_LOCK_LED_INDEX
     if (host_keyboard_led_state().caps_lock) {
