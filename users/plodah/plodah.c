@@ -17,6 +17,10 @@
 #if defined CAPS_WORD_ENABLE
   bool sft_held = false;
 #endif // CAPS_WORD_ENABLE
+#if defined(DYNAMIC_MACRO_ENABLE) && defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
+  bool is_dynamic_macro_recording = false;
+  //uint16_t dynamic_macro_loop_timer;
+#endif // DYNAMIC_MACRO_ENABLE && RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
 
 //===================//
 //      ALT TAB      //
@@ -130,3 +134,16 @@ void matrix_scan_user(void) {
     return false;
   }
 #endif // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
+
+//==========================//
+//      DYNAMIC MACROS      //
+//==========================//
+#if defined(DYNAMIC_MACRO_ENABLE) && defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
+  void dynamic_macro_record_start_user(int8_t direction) {
+    is_dynamic_macro_recording = true;
+    //dynamic_macro_loop_timer = timer_read();
+  }
+  void dynamic_macro_record_end_user(int8_t direction) {
+    is_dynamic_macro_recording = false;
+  }
+#endif // DYNAMIC_MACRO_ENABLE && RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
