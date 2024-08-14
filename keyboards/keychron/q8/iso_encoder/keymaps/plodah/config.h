@@ -19,6 +19,9 @@
 // #define PLODAH_LAYER_INDIC_ONZERO
 // #define PLODAH_LAYER_INDIC_BG_RGB RGB_ORANGE
 
+#define PLODAH_DMAC_INDIC_INDEX 28
+// #define PLODAH_DMAC_INDIC_RGB RGB_RED
+
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
 #  include "configs/rgbmatrix-effects-none.h"
