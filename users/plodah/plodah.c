@@ -31,9 +31,9 @@
 //=======================//
 //      AUTOCORRECT      //
 //=======================//
-#if defined(AUTOCORRECT_ENABLE)
+#if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE)
 # include "functions/autocorrect_indicator.c"
-#endif  // AUTOCORRECT_ENABLE
+#endif  // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
 
 //====================//
 //      TAPDANCE      //
@@ -82,10 +82,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_scan_user(void) {
 # if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
     plodah_alttab_check();
-# endif //PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
-# if defined(AUTOCORRECT_ENABLE)
+# endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+# if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE)
     plodah_autocorrect_indicator_check();
-# endif //AUTOCORRECT_ENABLE
+# endif // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
 }
 
 //==========================//
