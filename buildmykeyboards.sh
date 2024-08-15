@@ -23,16 +23,43 @@ subdir=compiled-$(date +%Y-w%W)
 plodir="$usrdir/users/plodah"
 
 cd $qmkdir
-qmk generate-autocorrect-data -o $plodir/autocorrect_data.h $plodir/dictionary.txt
-rm $plodir/*.bak
+#Small Dictionary
+declare -a usesmalldict=(
+    "keebio/iris/keymaps/plodah"
+    "ymdk/yd60mq/keymaps/plodah_jpn"
+    "ymdk/yd60mq/keymaps/plodah_spl"
+    "ymdk/yd60mq/keymaps/plodah_splbl"
+)
+qmk generate-autocorrect-data -o $plodir/autocorrect_data_s.h $plodir/dict-small.txt
+for i in "${usesmalldict[@]}"
+do
+  cp $plodir/autocorrect_data_s.h $usrdir/keyboards/$i/autocorrect_data.h
+done
+#Large Dictionary
+qmk generate-autocorrect-data -o $plodir/autocorrect_data.h $plodir/dict-large.txt
+rm $plodir/autocorrect_data_s.h $plodir/*.bak
+
+#compilationdb
+declare -a compilationdbs=(
+    "-km plodahc -kb keebio/iris/keymaps/plodah"
+    "-km plodahc -kb keychron/v2/iso_encoder"
+    "-km plodah -kb ymdk/yd60mq/keymaps/plodah_jpn"
+    "-km plodah -kb ploopyco/trackball_thumb"
+    "-km plodah -kb ploopyco/madromys"
+)
 
 if [ "$1" == "clean" ]
   then
     echo "$(date +%H:%M:%S) CLEAN"
     rm $qmkdir/*.uf2 $qmkdir/*.bin $qmkdir/*.hex $usrdir/*.uf2 $usrdir/*.bin $usrdir/*.hex $usrdir/compile_commands.json
-    qmk generate-compilation-database -km plodahc -kb keychron/v2/iso_encoder
-    qmk generate-compilation-database -km plodah -kb keychron/v2/iso_encoder
-    qmk generate-compilation-database -km plodah -kb ploopyco/trackball_thumb
+    #asd=`find keyboards -iname plodah* | sed 's,^[^/]*/,,'`
+    for j in "${compilationdbs[@]}"
+    do
+        qkm generate-compiation-database $j
+    done
+    #qmk generate-compilation-database -km plodahc -kb keychron/v2/iso_encoder
+    #qmk generate-compilation-database -km plodah -kb keychron/v2/iso_encoder
+    #qmk generate-compilation-database -km plodah -kb ploopyco/trackball_thumb
     qmk userspace-doctor
     qmk userspace-list
     echo "$(date +%H:%M:%S) COMPILE"

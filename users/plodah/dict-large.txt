@@ -1,12 +1,8 @@
-fitler -> filter
-somehting -> something
-profuct -> product
 :adn: -> and
 :aganist -> against
 :agian -> again
 :agin: -> again
 :agre: -> agree
-:alot: -> a lot
 :andteh -> and the
 :andthe -> and the
 :anual -> annual
@@ -18,7 +14,6 @@ profuct -> product
 :eratic -> erratic
 :ergard -> Regard
 :esle -> else
-:gt: -> git
 :guage -> gauge
 :haev -> have
 :halp -> help
@@ -118,7 +113,6 @@ profuct -> product
 :veyr: -> very
 :villian -> villain
 :villin: -> villain
-:viola: -> voila
 :vyer: -> very
 :vyre: -> very
 :waht: -> what
@@ -1186,7 +1180,6 @@ dyanmic -> dynamic
 dyas -> dryas
 eahc -> each
 ealier -> earlier
-earnt -> earned
 ecclectic -> eclectic
 eceonomy -> economy
 ecidious -> deciduous
@@ -1283,7 +1276,6 @@ equivelent -> equivalent
 equivilant -> equivalent
 equivilent -> equivalent
 equivlalent -> equivalent
-errupted -> erupted
 esential -> essential
 esitmated -> estimated
 especialy -> especially
@@ -1424,6 +1416,7 @@ financialy -> financially
 firend -> friend
 firts -> first
 fisionable -> fissionable
+fitler -> filter
 flamable -> flammable
 flase -> false
 flawess -> flawless
@@ -1535,7 +1528,6 @@ gutteral -> guttural
 habaeus -> habeas
 habeus -> habeas
 haemorrage -> haemorrhage
-haer -> hear
 halarious -> hilarious
 happend -> happened
 happenned -> happened
@@ -1593,8 +1585,6 @@ hinderence -> hindrance
 hindrence -> hindrance
 hipopotamus -> hippopotamus
 hismelf -> himself
-historicians -> historians
-hiygeine -> hygiene
 holf -> hold
 holliday -> holiday
 homestate -> home state
@@ -1646,9 +1636,7 @@ identifers -> identifiers
 ideosyncratic -> idiosyncratic
 idiosyncracy -> idiosyncrasy
 ignorence -> ignorance
-illess -> illness
 illution -> illusion
-ilness -> illness
 ilogical -> illogical
 imagenary -> imaginary
 imcomplete -> incomplete
@@ -1812,7 +1800,6 @@ invertibrates -> invertebrates
 investingate -> investigate
 invliad -> invalid
 involvment -> involvement
-ioin -> ion
 iresistably -> irresistibly
 iresistible -> irresistible
 iresistibly -> irresistibly
@@ -1872,13 +1859,11 @@ levle -> level
 liasion -> liaison
 liason -> liaison
 libary -> library
-libell -> libel
 libguistic -> linguistic
 lieing -> lying
 liek -> like
 liesure -> leisure
 lieuenant -> lieutenant
-lieved -> lived
 liftime -> lifetime
 lightyear -> light year
 likelyhood -> likelihood
@@ -1969,7 +1954,6 @@ meerkrat -> meerkat
 melieux -> milieux
 membranaphone -> membranophone
 memeber -> member
-menally -> mentally
 mercentile -> mercantile
 mereg -> merge
 mesage -> message
@@ -2133,7 +2117,6 @@ nuremburg -> Nuremberg
 nusance -> nuisance
 nutritent -> nutrient
 nuturing -> nurturing
-oaky -> okay
 obediance -> obedience
 obediant -> obedient
 obession -> obsession
@@ -2210,7 +2193,6 @@ overwelming -> overwhelming
 overwheliming -> overwhelming
 ovveride -> override
 owudl -> would
-oxigen -> oxygen
 oximoron -> oxymoron
 paide -> paid
 paitience -> patience
@@ -2321,7 +2303,6 @@ pinoneer -> pioneer
 plaesant -> pleasant
 plagarism -> plagiarism
 plagerize -> plagiarize
-planed -> planned
 plantiff -> plaintiff
 plateu -> plateau
 plausable -> plausible
@@ -2466,13 +2447,7 @@ proclaming -> proclaiming
 proclomation -> proclamation
 proeprty -> property
 profesor -> professor
-professer -> professor
-proffesed -> professed
-proffesion -> profession
-proffesor -> professor
-proffession -> profession
-proffessor -> professor
-profilic -> prolific
+profuct -> product
 progessed -> progressed
 progidy -> prodigy
 programable -> programmable
@@ -2702,7 +2677,6 @@ repubican -> republican
 repubics -> republics
 republi: -> republic
 republian: -> republican
-:republis -> republics
 repulic: -> republic
 repulican -> republican
 repulics -> republics
@@ -2749,7 +2723,6 @@ retalitated -> retaliated
 retalitation -> retaliation
 retreive -> retrieve
 retrun -> return
-retun -> return
 returnd -> returned
 reuslt -> result
 reutrn -> return
@@ -2844,7 +2817,6 @@ singel -> single
 sinse -> since
 skateing -> skating
 slighly -> slightly
-slippy -> slippery
 slowy -> slowly
 smealting -> smelting
 sofware -> software
@@ -2852,6 +2824,7 @@ solatary -> solitary
 soley -> solely
 solice -> solace
 soliders -> soldiers
+somehting -> something
 somehwat -> somewhat
 :somene -> someone
 somtimes -> sometimes
@@ -2914,6 +2887,7 @@ studing -> studying
 stuggling -> struggling
 sturcture -> structure
 subdivisio: -> subdivision
+subjudgation -> subjugation
 submachne -> submachine
 subsidary -> subsidiary
 subsquent -> subsequent
@@ -3048,6 +3022,7 @@ variey -> variety
 varing -> varying
 varities -> varieties
 varity: -> variety
+vegatarian -> vegetarian
 vegtable -> vegetable
 venemous -> venomous
 vengance -> vengeance

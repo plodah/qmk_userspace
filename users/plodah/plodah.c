@@ -35,9 +35,11 @@
 //=======================//
 //      AUTOCORRECT      //
 //=======================//
-#if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE)
-# include "functions/autocorrect_indicator.c"
-#endif  // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
+#if defined(AUTOCORRECT_ENABLE)
+# if defined(RGB_MATRIX_ENABLE)
+#   include "functions/autocorrect_indicator.c"
+# endif  // RGB_MATRIX_ENABLE
+#endif // AUTOCORRECT_ENABLE
 
 //====================//
 //      TAPDANCE      //

@@ -37,7 +37,7 @@
         },
         "features": {
             "auto_shift": false,
-            "autocorrect": false,
+            "autocorrect": true,
             "backlight": true,
             "bootmagic": true,
             "caps_word": true,
