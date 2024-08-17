@@ -36,9 +36,7 @@
 //      AUTOCORRECT      //
 //=======================//
 #if defined(AUTOCORRECT_ENABLE)
-# if defined(RGB_MATRIX_ENABLE)
-#   include "functions/autocorrect_indicator.c"
-# endif  // RGB_MATRIX_ENABLE
+# include "functions/autocorrect_indicator.c"
 #endif // AUTOCORRECT_ENABLE
 
 //====================//
@@ -132,20 +130,6 @@ void matrix_scan_user(void) {
     }
   }
 #endif // CAPS_WORD_ENABLE
-
-//=======================//
-//      AUTOCORRECT      //
-//=======================//
-#if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE)
-  bool apply_autocorrect(uint8_t backspaces, const char *str, char *typo, char *correct) {
-    for (uint8_t i = 0; i < backspaces; ++i) {
-      tap_code(KC_BSPC);
-    }
-    send_string_P(str);
-    plodah_autocorrect_indicator_start();
-    return false;
-  }
-#endif // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
 
 //==========================//
 //      DYNAMIC MACROS      //
