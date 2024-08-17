@@ -26,6 +26,7 @@ cd $qmkdir
 #Small Dictionary
 declare -a usesmalldict=(
     "keebio/iris/keymaps/plodah"
+    "xiudi/xd60/rev3/keymaps/plodah"
     "ymdk/yd60mq/keymaps/plodah_jpn"
     "ymdk/yd60mq/keymaps/plodah_spl"
     "ymdk/yd60mq/keymaps/plodah_splbl"
