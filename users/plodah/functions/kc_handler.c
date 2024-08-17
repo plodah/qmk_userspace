@@ -6,6 +6,10 @@
 
 bool kc_handler(uint16_t keycode, keyrecord_t *record) {
 
+# if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
+  plodah_typingindicator_start();
+# endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+
   switch (keycode) {
     // Static version keycode
     case PL_VERS:

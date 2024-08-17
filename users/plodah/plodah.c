@@ -51,6 +51,13 @@
   };
 #endif
 
+//============================//
+//      TYPING INDICATOR      //
+//============================//
+#if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
+# include "functions/typing_indicator.c"
+#endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+
 //===========================//
 //      CUSTOM KEYCODES      //
 //===========================//
@@ -92,6 +99,9 @@ void matrix_scan_user(void) {
 # if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE)
     plodah_autocorrect_indicator_check();
 # endif // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
+# if defined (PLODAH_TYPINGINDICATOR_RGBINDEX)
+    plodah_typingindicator_check();
+# endif // PLODAH_TYPINGINDICATOR_RGBINDEX
 }
 
 //==========================//

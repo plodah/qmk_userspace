@@ -70,6 +70,15 @@ bool plodah_indicator_handler(void) {
     }
 # endif // DYNAMIC_MACRO_ENABLE && PLODAH_DMAC_INDIC_INDEX
 
+# ifdef PLODAH_TYPINGINDICATOR_RGBINDEX
+    if(!rgb_matrix_get_flags()){
+      rgb_matrix_set_color(PLODAH_TYPINGINDICATOR_RGBINDEX, RGB_OFF);
+    }
+    if(plodah_typingindicator_active){
+      rgb_matrix_set_color(PLODAH_TYPINGINDICATOR_RGBINDEX, PLODAH_TYPINGINDICATOR_RGBCOLOR);
+    }
+# endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+
 # ifdef PLODAH_MODS_INDIC_LALT_INDEX
     if (!rgb_matrix_get_flags()) {
       rgb_matrix_set_color(PLODAH_MODS_INDIC_LALT_INDEX, RGB_OFF);
