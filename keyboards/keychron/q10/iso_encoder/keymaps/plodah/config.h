@@ -19,6 +19,15 @@
 // #define PLODAH_LAYER_INDIC_ONZERO
 // #define PLODAH_LAYER_INDIC_BG_RGB RGB_ORANGE
 
+#ifdef DYNAMIC_MACRO_ENABLE
+// #  define PLODAH_DMAC_INDIC_INDEX 28
+// #  define PLODAH_DMAC_INDIC_RGB RGB_RED
+#endif
+
+// #define PLODAH_TYPINGINDICATOR_RGBINDEX 43
+// #define PLODAH_TYPINGINDICATOR_RGBCOLOR 0xAB, 0xAB, 0xFF
+// #define PLODAH_TYPINGINDICATOR_DURATION 600
+
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
 #  include "configs/rgbmatrix-effects-none.h"
