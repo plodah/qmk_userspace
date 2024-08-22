@@ -60,3 +60,19 @@
             COMBO(pl_combo_ms25, C(KC_V)),
         };
 #endif // ! defined(IS_MOUSE)
+#ifdef PLODAH_BORING_LAYER
+void plodah_layerchange_comboactions(layer_state_t state){
+    switch (get_highest_layer(state)) {
+      case PLODAH_BORING_LAYER:
+        if(is_combo_enabled()){
+            combo_disable();
+        }
+        break;
+      default:
+        if(! is_combo_enabled()){
+            combo_enable();
+        }
+        break;
+    }
+}
+#endif // PLODAH_BORING_LAYER

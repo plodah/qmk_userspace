@@ -74,6 +74,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 # include "functions/combos.c"
 #endif // COMBO_ENABLE
 
+//========================//
+//      LAYER CHANGE      //
+//========================//
+#if defined(PLODAH_BORING_LAYER )
+layer_state_t layer_state_set_user(layer_state_t state) {
+    # if defined(PLODAH_BORING_LAYER )
+      plodah_layerchange_comboactions(state);
+    # endif // PLODAH_BORING_LAYER
+  return state;
+}
+#endif // PLODAH_BORING_LAYER
+
 //==============================//
 //      KEYCHRON DIPSWITCH      //
 //==============================//
@@ -90,6 +102,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //=======================//
 //      MATRIX SCAN      //
 //=======================//
+#if (defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)) || ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX))
 void matrix_scan_user(void) {
 # if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
     plodah_alttab_check();
@@ -101,6 +114,8 @@ void matrix_scan_user(void) {
     plodah_typingindicator_check();
 # endif // PLODAH_TYPINGINDICATOR_RGBINDEX
 }
+#endif // (defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)) || ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX))
+
 
 //==========================//
 //      CAPS INDICATOR      //
