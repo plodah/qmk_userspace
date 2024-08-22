@@ -19,7 +19,7 @@
 #endif // CAPS_WORD_ENABLE
 #if defined(DYNAMIC_MACRO_ENABLE) && defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
   bool is_dynamic_macro_recording = false;
-  //uint16_t dynamic_macro_loop_timer;
+  uint16_t dynamic_macro_loop_timer;
 #endif // DYNAMIC_MACRO_ENABLE && RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
 
 //===================//
@@ -113,9 +113,13 @@ void matrix_scan_user(void) {
 # if defined (PLODAH_TYPINGINDICATOR_RGBINDEX)
     plodah_typingindicator_check();
 # endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+# if defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
+    if (timer_elapsed(dynamic_macro_loop_timer) > PLODAH_DYNAMIC_MACRO_TIMEOUT){
+        dynamic_macro_stop_recording();
+    }
+# endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
 }
 #endif // (defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)) || ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX))
-
 
 //==========================//
 //      CAPS INDICATOR      //
@@ -149,12 +153,14 @@ void matrix_scan_user(void) {
 //==========================//
 //      DYNAMIC MACROS      //
 //==========================//
-#if defined(DYNAMIC_MACRO_ENABLE) && defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
+#if defined(DYNAMIC_MACRO_ENABLE)
   void dynamic_macro_record_start_user(int8_t direction) {
     is_dynamic_macro_recording = true;
-    //dynamic_macro_loop_timer = timer_read();
+    # if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
+        dynamic_macro_loop_timer = timer_read();
+    # endif // PLODAH_DYNAMIC_MACRO_TIMEOUT
   }
   void dynamic_macro_record_end_user(int8_t direction) {
     is_dynamic_macro_recording = false;
   }
-#endif // DYNAMIC_MACRO_ENABLE && RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
+#endif // DYNAMIC_MACRO_ENABLE

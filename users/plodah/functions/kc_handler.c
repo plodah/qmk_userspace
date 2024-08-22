@@ -10,6 +10,10 @@ bool kc_handler(uint16_t keycode, keyrecord_t *record) {
   plodah_typingindicator_start();
 # endif // PLODAH_TYPINGINDICATOR_RGBINDEX
 
+# if defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
+    dynamic_macro_loop_timer = timer_read();
+# endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
+
   switch (keycode) {
     // Static version keycode
     case PL_VERS:
