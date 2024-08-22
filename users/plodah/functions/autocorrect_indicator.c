@@ -1,4 +1,7 @@
+#pragma once
+
 #if defined(RGB_MATRIX_ENABLE)
+# include "functions/rgb.c"
 
   bool autocorrect_indicator_on = false;
   uint8_t autocorrect_indicator_count = 255;
@@ -19,21 +22,16 @@
   # define PLODAH_AUTOCORRECT_INDICATOR_COLOUR HSV_RED
   #endif //PLODAH_AUTOCORRECT_INDICATOR_COLOUR
 
-  #ifndef PLODAH_AUTOCORRECT_INDICATOR_MINVAL
-  # define PLODAH_AUTOCORRECT_INDICATOR_MINVAL 85
-  #endif // PLODAH_AUTOCORRECT_INDICATOR_MINVAL
+  #ifndef PLODAH_INDICATOR_MINVAL
+  # define PLODAH_INDICATOR_MINVAL 85
+  #endif // PLODAH_INDICATOR_MINVAL
 
   void plodah_autocorrect_indicator_on(void){
-    HSV indhsv = { PLODAH_AUTOCORRECT_INDICATOR_COLOUR };
-    if(PLODAH_AUTOCORRECT_INDICATOR_MINVAL > curhsv.v){
-      useval = PLODAH_AUTOCORRECT_INDICATOR_MINVAL;
-    }
-    else{
-      useval = curhsv.v;
-    }
     autocorrect_indicator_on = true;
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_sethsv_noeeprom(indhsv.s, indhsv.s, useval);
+    HSV indhsv = { PLODAH_AUTOCORRECT_INDICATOR_COLOUR };
+    indhsv = plodah_rgblimit(curhsv, indhsv, PLODAH_INDICATOR_MINVAL);
+    rgb_matrix_sethsv_noeeprom(indhsv.h, indhsv.s, indhsv.v);
     autocorrect_indicator_timer = timer_read();
   }
 
