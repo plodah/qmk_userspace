@@ -4,7 +4,7 @@
     #include "functions/mods_on_knob.c"
 #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 
-bool kc_handler(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 # if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
   plodah_typingindicator_start();

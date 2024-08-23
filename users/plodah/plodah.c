@@ -17,10 +17,14 @@
 #if defined CAPS_WORD_ENABLE
   bool sft_held = false;
 #endif // CAPS_WORD_ENABLE
-#if defined(DYNAMIC_MACRO_ENABLE) && defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
-  bool is_dynamic_macro_recording = false;
+
+#if defined(DYNAMIC_MACRO_ENABLE)
   uint16_t dynamic_macro_loop_timer;
-#endif // DYNAMIC_MACRO_ENABLE && RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
+# if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
+    bool is_dynamic_macro_recording = false;
+# endif // DYNAMIC_MACRO_ENABLE
+#endif //  RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
+
 #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
   bool rgb_vad_pressed = false;
   bool rgb_vai_pressed = false;
@@ -67,10 +71,7 @@
 #if defined PLODAH_KNOB_ENHANCEMENTS_ENABLE
 # include "functions/mods_on_knob.c"
 #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
-#include "functions/kc_handler.c"
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  return kc_handler(keycode, record);
-}
+#include "functions/process_record_user.c"
 
 //==================//
 //      COMBOS      //
@@ -171,12 +172,16 @@ void matrix_scan_user(void) {
 //==========================//
 #if defined(DYNAMIC_MACRO_ENABLE)
   void dynamic_macro_record_start_user(int8_t direction) {
-    is_dynamic_macro_recording = true;
+    #if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
+      is_dynamic_macro_recording = true;
+    #endif
     # if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
         dynamic_macro_loop_timer = timer_read();
     # endif // PLODAH_DYNAMIC_MACRO_TIMEOUT
   }
   void dynamic_macro_record_end_user(int8_t direction) {
-    is_dynamic_macro_recording = false;
+    #if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
+      is_dynamic_macro_recording = false;
+    #endif
   }
 #endif // DYNAMIC_MACRO_ENABLE
