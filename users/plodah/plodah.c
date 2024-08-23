@@ -26,9 +26,7 @@
 #endif //  RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
 
 #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
-  bool rgb_vad_pressed = false;
-  bool rgb_vai_pressed = false;
-  uint16_t bri_timer;
+# include "functions/repeathold_rgb.c"
 #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 
 //===================//
@@ -108,7 +106,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //=======================//
 //      MATRIX SCAN      //
 //=======================//
-#if (defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)) || ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX))
+#if (defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)) || ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX)) || (defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE))
 void matrix_scan_user(void) {
 # if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
     plodah_alttab_check();
@@ -125,15 +123,7 @@ void matrix_scan_user(void) {
     }
 # endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
 # if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
-    if(timer_elapsed(bri_timer) > PLODAH_REPEATHOLD_RATE){
-        if(rgb_vai_pressed){
-            rgb_matrix_increase_val();
-        }
-        if(rgb_vad_pressed){
-            rgb_matrix_decrease_val();
-        }
-        bri_timer = timer_read();
-    }
+    repeathold_rgb_check();
 # endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 }
 #endif // (defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)) || ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX))
