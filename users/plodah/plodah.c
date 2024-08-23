@@ -21,6 +21,11 @@
   bool is_dynamic_macro_recording = false;
   uint16_t dynamic_macro_loop_timer;
 #endif // DYNAMIC_MACRO_ENABLE && RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
+#if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
+  bool rgb_vad_pressed = false;
+  bool rgb_vai_pressed = false;
+  uint16_t bri_timer;
+#endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 
 //===================//
 //      ALT TAB      //
@@ -118,6 +123,17 @@ void matrix_scan_user(void) {
         dynamic_macro_stop_recording();
     }
 # endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
+# if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
+    if(timer_elapsed(bri_timer) > PLODAH_REPEATHOLD_RATE){
+        if(rgb_vai_pressed){
+            rgb_matrix_increase_val();
+        }
+        if(rgb_vad_pressed){
+            rgb_matrix_decrease_val();
+        }
+        bri_timer = timer_read();
+    }
+# endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 }
 #endif // (defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)) || ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX))
 

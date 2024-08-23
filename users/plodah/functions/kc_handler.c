@@ -74,6 +74,20 @@ bool kc_handler(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 #   endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
+#   if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
+      case RGB_VAD:
+        rgb_vad_pressed = record->event.pressed;
+        if (record->event.pressed) {
+          bri_timer = timer_read();
+        }
+        break;
+      case RGB_VAI:
+        rgb_vai_pressed = record->event.pressed;
+        if (record->event.pressed) {
+          bri_timer = timer_read();
+        }
+        break;
+#   endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
   }
   return true;
 }
