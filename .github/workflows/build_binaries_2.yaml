@@ -1,4 +1,4 @@
-name: Build QMK firmware
+name: Build QMK firmware - devbuilds
 
 on: [workflow_dispatch]
 
