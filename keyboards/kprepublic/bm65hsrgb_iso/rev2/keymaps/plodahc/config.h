@@ -16,10 +16,6 @@
 #endif
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
 
-#if defined (DIP_SWITCH_ENABLE) && defined (PLODAH_BORING_LAYER)
-#  define dip_switch_update_kb plodah_dip_switch_update_kb
-#endif //DIP_SWITCH_ENABLE
-
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
 #  include "configs/rgbmatrix-effects-few.h"

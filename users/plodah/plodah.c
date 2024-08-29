@@ -99,7 +99,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       //default_layer_set(active ? PLODAH_BORING_LAYER : 0);
       layer_move(active ? PLODAH_BORING_LAYER : 0);
     }
-    return true;
+    return false;
   }
 #endif // DIP_SWITCH_ENABLE
 
