@@ -43,7 +43,7 @@
 //      AUTOCORRECT      //
 //=======================//
 #if defined(AUTOCORRECT_ENABLE)
-# include "functions/autocorrect_indicator.c"
+# include "functions/autocorrect.c"
 #endif // AUTOCORRECT_ENABLE
 
 //====================//
