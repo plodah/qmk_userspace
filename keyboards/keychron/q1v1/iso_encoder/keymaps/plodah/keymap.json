@@ -27,7 +27,7 @@
         },
         "features": {
             "auto_shift": false,
-            "autocorrect": false,
+            "autocorrect": true,
             "backlight": false,
             "bootmagic": true,
             "caps_word": true,
@@ -82,7 +82,7 @@
                 "pixel_rain": false,
                 "starlight": false,
                 "starlight_dual_hue": false,
-                "starlight_dual_sat": true,
+                "starlight_dual_sat": false,
                 "riverflow": false,
                 "typing_heatmap": false,
                 "digital_rain": false,

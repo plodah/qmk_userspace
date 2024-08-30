@@ -26,15 +26,15 @@ cd $qmkdir
 #Small Dictionary
 declare -a usesmalldict=(
     "keebio/iris/keymaps/plodah"
-    "keychron/q1v1/iso_encoder"
-    "keychron/v2/iso_encoder"
+    "keychron/q1v1/iso_encoder/keymaps/plodah"
+    "keychron/v2/iso_encoder/keymaps/plodah"
     "kprepublic/bm65hsrgb_iso/keymaps/plodah"
     "xiudi/xd60/keymaps/plodah"
     "ymdk/yd60mq/keymaps/plodah_jpn"
     "ymdk/yd60mq/keymaps/plodah_spl"
     "ymdk/yd60mq/keymaps/plodah_splbl"
 )
-if [[ -e $plodir/dict-small.txt && -e $plodir/autocorrect_data_s.h && $plodir/dict-small.txt -nt $plodir/autocorrect_data_s.h ]]; then
+if [[ -e $plodir/dict-small.txt && (-e $plodir/autocorrect_data_s.h && $plodir/dict-small.txt -nt $plodir/autocorrect_data_s.h) || (! -e $plodir/autocorrect_data_s.h) ]]; then
   qmk generate-autocorrect-data -o $plodir/autocorrect_data_s.h $plodir/dict-small.txt
 fi
 
