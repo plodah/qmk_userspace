@@ -78,18 +78,6 @@
 # include "functions/combos.c"
 #endif // COMBO_ENABLE
 
-//========================//
-//      LAYER CHANGE      //
-//========================//
-#if defined(PLODAH_BORING_LAYER )
-layer_state_t layer_state_set_user(layer_state_t state) {
-    # if defined(PLODAH_BORING_LAYER )
-      plodah_layerchange_comboactions(state);
-    # endif // PLODAH_BORING_LAYER
-  return state;
-}
-#endif // PLODAH_BORING_LAYER
-
 //==============================//
 //      KEYCHRON DIPSWITCH      //
 //==============================//

@@ -8,7 +8,6 @@
   uint16_t autocorrect_indicator_timer = 0;
   HSV curhsv;
   HSV indhsv;
-  uint8_t useval;
 
   #ifndef PLODAH_AUTOCORRECT_INDICATOR_DURATION
   # define PLODAH_AUTOCORRECT_INDICATOR_DURATION 200
@@ -67,7 +66,7 @@
 bool process_autocorrect_user(uint16_t *keycode, keyrecord_t *record, uint8_t *typo_buffer_size, uint8_t *mods) {
 # if defined(PLODAH_BORING_LAYER)
     if( get_highest_layer(layer_state) == PLODAH_BORING_LAYER){
-        return false;
+      return false;
     }
 # endif // defined(PLODAH_BORING_LAYER)
   return true;

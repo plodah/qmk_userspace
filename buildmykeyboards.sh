@@ -26,19 +26,28 @@ cd $qmkdir
 #Small Dictionary
 declare -a usesmalldict=(
     "keebio/iris/keymaps/plodah"
-    "xiudi/xd60/rev3/keymaps/plodah"
+    "keychron/q1v1/iso_encoder"
+    "keychron/v2/iso_encoder"
+    "kprepublic/bm65hsrgb_iso/keymaps/plodah"
+    "xiudi/xd60/keymaps/plodah"
     "ymdk/yd60mq/keymaps/plodah_jpn"
     "ymdk/yd60mq/keymaps/plodah_spl"
     "ymdk/yd60mq/keymaps/plodah_splbl"
 )
-qmk generate-autocorrect-data -o $plodir/autocorrect_data_s.h $plodir/dict-small.txt
+if [[ -e $plodir/dict-small.txt && -e $plodir/autocorrect_data_s.h && $plodir/dict-small.txt -nt $plodir/autocorrect_data_s.h ]]; then
+  qmk generate-autocorrect-data -o $plodir/autocorrect_data_s.h $plodir/dict-small.txt
+fi
+
 for i in "${usesmalldict[@]}"
 do
   cp $plodir/autocorrect_data_s.h $usrdir/keyboards/$i/autocorrect_data.h
 done
+#rm $plodir/autocorrect_data_s.h $plodir/*.bak
+
 #Large Dictionary
-qmk generate-autocorrect-data -o $plodir/autocorrect_data.h $plodir/dict-large.txt
-rm $plodir/autocorrect_data_s.h $plodir/*.bak
+if [[ -e $plodir/dict-large.txt && -e $plodir/autocorrect_data.h && $plodir/dict-large.txt -nt $plodir/autocorrect_data.h ]]; then
+  qmk generate-autocorrect-data -o $plodir/autocorrect_data.h $plodir/dict-large.txt
+fi
 
 #compilationdb
 declare -a compilationdbs=(
