@@ -7,7 +7,7 @@
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 # if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
-  plodah_typingindicator_start();
+    plodah_typingindicator_start();
 # endif // PLODAH_TYPINGINDICATOR_RGBINDEX
 
 # if defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
@@ -20,23 +20,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         send_string_with_delay (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION ", Built on: " QMK_BUILDDATE, TAP_CODE_DELAY);
       }
-      break;
+      return false;
     case PL_TEST:
       if (record->event.pressed) {
         send_string_with_delay ("Butt with Knobs.", TAP_CODE_DELAY);
       }
-      break;
+      return false;
 #   ifdef PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
       case PL_ALTTAB:
         if (record->event.pressed) {
           alt_tab_fw();
         }
-        break;
+        return false;
       case PL_ALTSTAB:
         if (record->event.pressed) {
           alt_tab_bk();
         }
-        break;
+        return false;
 #   endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 #   if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
       case KC_LALT:
@@ -62,17 +62,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
           enc_prs_act(ctl_pressed, sft_pressed, alt_pressed);
         }
-        break;
+        return false;
       case PL_ENC_CCW:
         if (record->event.pressed) {
           enc_ccw_act(ctl_pressed, sft_pressed, alt_pressed);
         }
-        break;
+        return false;
       case PL_ENC_CW:
         if (record->event.pressed) {
           enc_cw_act(ctl_pressed, sft_pressed, alt_pressed);
         }
-        break;
+        return false;
 #   endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #   if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
       case RGB_VAD:
@@ -80,49 +80,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
           repeathold_rgb_timer = timer_read();
         }
-        break;
+        return false;
       case RGB_VAI:
         rgb_vai_pressed = record->event.pressed;
         if (record->event.pressed) {
           repeathold_rgb_timer = timer_read();
         }
-        break;
+        return false;
       case RGB_HUD:
         rgb_hud_pressed = record->event.pressed;
         if (record->event.pressed) {
           repeathold_rgb_timer = timer_read();
         }
-        break;
+        return false;
       case RGB_HUI:
         rgb_hui_pressed = record->event.pressed;
         if (record->event.pressed) {
           repeathold_rgb_timer = timer_read();
         }
-        break;
+        return false;
       case RGB_SAD:
         rgb_sad_pressed = record->event.pressed;
         if (record->event.pressed) {
           repeathold_rgb_timer = timer_read();
         }
-        break;
+        return false;
       case RGB_SAI:
         rgb_sai_pressed = record->event.pressed;
         if (record->event.pressed) {
           repeathold_rgb_timer = timer_read();
         }
-        break;
+        return false;
       case RGB_SPD:
         rgb_spd_pressed = record->event.pressed;
         if (record->event.pressed) {
           repeathold_rgb_timer = timer_read();
         }
-        break;
+        return false;
       case RGB_SPI:
         rgb_spi_pressed = record->event.pressed;
         if (record->event.pressed) {
           repeathold_rgb_timer = timer_read();
         }
-        break;
+        return false;
 #   endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
   }
   return true;
