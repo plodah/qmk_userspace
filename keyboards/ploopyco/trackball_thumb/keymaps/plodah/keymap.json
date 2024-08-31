@@ -55,7 +55,7 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
-        { "key": "PL_TEST" },
+        { "key": "PL_FEAT" },
         { "key": "PL_VERS" }
     ],
     "layers": [

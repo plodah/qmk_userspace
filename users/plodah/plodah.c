@@ -32,7 +32,7 @@
 //===================//
 //      ALT TAB      //
 //===================//
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) && (! defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE))
+#if (defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PL_ALTTAB) || defined(PL_ALTSTAB) ) && (! defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE))
 #  define PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)

@@ -124,7 +124,8 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
-        { "key": "PL_TEST" },
+        { "key": "PL_QRGB"},
+        { "key": "PL_FEAT" },
         { "key": "PL_VERS" },
         { "key": "PL_ENC_CCW" },
         { "key": "PL_ENC_CW" },
@@ -175,7 +176,7 @@
         ],
         [
             "PL_ENC_PRS", "_______", "KC_F13",  "KC_F14",   "KC_F15",   "KC_F16",   "KC_F17",   "KC_F18",               "KC_F19",   "KC_F20",   "KC_F21",   "KC_F22",   "KC_F23",   "KC_F24",   "_______",  "_______",
-            "_______",  "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",                 "MC_7",     "MC_8",     "MC_9",     "PL_TEST",    "PL_VERS",  "QK_MAKE",  "_______",  "KC_END",
+            "_______",  "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",                 "MC_7",     "MC_8",     "PL_FEAT",  "PL_QRGB",  "PL_VERS",  "QK_MAKE",  "_______",  "KC_END",
             "_______",  "KC_ENT",   "KC_PGUP",  "KC_UP",    "KC_PGDN",  "_______",  "_______",              "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "_______",
             "_______",  "KC_CAPS",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT",  "KC_ENT",   "_______",  "_______",              "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
             "_______",  "_______",  "_______",  "_______",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "_______",  "_______",  "CW_TOGG",  "KC_PGUP",
