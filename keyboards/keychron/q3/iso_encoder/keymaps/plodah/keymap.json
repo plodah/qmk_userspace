@@ -42,6 +42,7 @@
             "tap_dance": false,
             "via": true
         },
+        "keyboard_name": "Keychron Q3 ISO Enc | plodah",
         "matrix": {
           "debounce": 20
         },

@@ -1,6 +1,11 @@
 #pragma once
 #include "plodah.h"
 
+#ifdef PRODUCT
+# undef PRODUCT
+# define PRODUCT "KPRepublic BM65 ISO | plodahc"
+#endif // PRODUCT
+
 #define PLODAH_BORING_LAYER 1
 
 #define PLODAH_CAPS_INDIC_HSV HSV_MAGENTA

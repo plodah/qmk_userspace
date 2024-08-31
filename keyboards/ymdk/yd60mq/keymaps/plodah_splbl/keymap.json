@@ -55,6 +55,7 @@
             "tap_dance": false,
             "via": true
         },
+        "keyboard_name": "YMDK yd60mq | plodah_splbl",
         "matrix": {
           "debounce": 20
         },

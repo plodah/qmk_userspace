@@ -1,6 +1,11 @@
 #pragma once
 #include "plodah.h"
 
+#ifdef PRODUCT
+# undef PRODUCT
+# define PRODUCT "Keychron Q3 ISO Enc | plodahc"
+#endif // PRODUCT
+
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #define PLODAH_BORING_LAYER 1
 

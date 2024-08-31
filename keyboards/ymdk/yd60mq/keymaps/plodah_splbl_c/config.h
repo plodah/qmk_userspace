@@ -1,6 +1,11 @@
 #pragma once
 #include "plodah.h"
 
+#ifdef PRODUCT
+# undef PRODUCT
+# define PRODUCT "YMDK yd60mq | plodah_splbl"
+#endif // PRODUCT
+
 #define PLODAH_BORING_LAYER 1
 #define BOOTMAGIC_ROW 0
 #define BOOTMAGIC_COLUMN 0
