@@ -18,12 +18,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Static version keycode
     case PL_VERS:
       if (record->event.pressed) {
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION ", Built on: " QMK_BUILDDATE);
+        send_string_with_delay (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION ", Built on: " QMK_BUILDDATE, TAP_CODE_DELAY);
       }
       break;
     case PL_TEST:
       if (record->event.pressed) {
-        SEND_STRING ("Butt with Knobs.");
+        send_string_with_delay ("Butt with Knobs.", TAP_CODE_DELAY);
       }
       break;
 #   ifdef PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
