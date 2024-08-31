@@ -56,7 +56,7 @@
           "debounce": 20
         },
         "qmk": {
-            "tap_keycode_delay": 12
+            "tap_keycode_delay": 8
         },
         "split": {
             "handedness": {
