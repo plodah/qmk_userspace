@@ -80,10 +80,6 @@
                 "pixel_fractal": false,
                 "pixel_flow": false,
                 "pixel_rain": false,
-                "starlight": false,
-                "starlight_dual_hue": false,
-                "starlight_dual_sat": false,
-                "riverflow": false,
                 "typing_heatmap": false,
                 "digital_rain": false,
                 "solid_reactive_simple": false,
@@ -97,7 +93,11 @@
                 "splash": false,
                 "multisplash": false,
                 "solid_splash": false,
-                "solid_multisplash": false
+                "solid_multisplash": false,
+                "starlight": false,
+                "starlight_dual_hue": false,
+                "starlight_dual_sat": false,
+                "riverflow": false
             },
             "default": {
                 "animation": "gradient_left_right",
