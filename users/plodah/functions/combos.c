@@ -31,12 +31,10 @@
     COMBO(pl_combo_xc, C(KC_C)),
     COMBO(pl_combo_cv, C(KC_V)),
     COMBO(pl_combo_xcv, C(S(KC_V))),
-#   if defined(PL_ALTSTAB)
+#   if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
       COMBO(pl_combo_tabq, PL_ALTSTAB),
-#   endif // PL_ALTSTAB
-#   if defined(PL_ALTTAB)
-      COMBO(pl_combo_tabq, PL_ALTTAB),
-#   endif // PL_ALTTAB
+      COMBO(pl_combo_tabw, PL_ALTTAB),
+#   endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 #   if defined(DYNAMIC_MACRO_ENABLE)
         COMBO(pl_combo_12, DM_PLY1),
         COMBO(pl_combo_13, DM_REC1),

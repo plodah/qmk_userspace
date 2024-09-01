@@ -61,8 +61,8 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
-        { "key": "PL_QRGB"},
         { "key": "PL_FEAT" },
+        { "key": "PL_QRGB" },
         { "key": "PL_VERS" }
     ],
     "layers": [

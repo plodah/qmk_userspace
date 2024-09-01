@@ -124,12 +124,12 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
-        { "key": "PL_QRGB"},
-        { "key": "PL_FEAT" },
-        { "key": "PL_VERS" },
         { "key": "PL_ENC_CCW" },
         { "key": "PL_ENC_CW" },
-        { "key": "PL_ENC_PRS" }
+        { "key": "PL_ENC_PRS" },
+        { "key": "PL_FEAT" },
+        { "key": "PL_QRGB"},
+        { "key": "PL_VERS" }
     ],
     "encoders": [
         [

@@ -1,6 +1,9 @@
 #pragma once
 #include "plodah.h"
 
+#define PLODAH_FEAT_KC
+#define PLODAH_QRGB_KC
+
 // #define PLODAH_CAPS_INDIC_HSV HSV_MAGENTA
 // #define PLODAH_LAYER_INDIC_INDEX1 6
 // #define PLODAH_LAYER_INDIC_HSV HSV_MAGENTA

@@ -1,6 +1,9 @@
 #pragma once
 #include "plodah.h"
 
+#define PLODAH_FEAT_KC
+#define PLODAH_QRGB_KC
+
 #define PLODAH_BORING_LAYER 1
 
 #define PLODAH_CAPS_INDIC_HSV 240, 84, 255

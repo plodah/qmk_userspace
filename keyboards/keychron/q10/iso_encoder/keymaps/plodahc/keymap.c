@@ -8,12 +8,12 @@
 enum keymap_keycodes {
     PL_ALTTAB = QK_USER_0,
     PL_ALTSTAB,
-    PL_QRGB,
-    PL_FEAT,
-    PL_VERS,
     PL_ENC_CCW,
     PL_ENC_CW,
     PL_ENC_PRS,
+    PL_FEAT,
+    PL_QRGB,
+    PL_VERS,
 };
 
 enum {

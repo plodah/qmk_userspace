@@ -1,6 +1,9 @@
 #pragma once
 #include "plodah.h"
 
+#define PLODAH_FEAT_KC
+#define PLODAH_QRGB_KC
+
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 // #define PLODAH_BORING_LAYER 1
 

@@ -3,8 +3,8 @@
 enum keymap_keycodes {
     PL_ALTTAB = QK_USER_0,
     PL_ALTSTAB,
-    PL_QRGB,
     PL_FEAT,
+    PL_QRGB,
     PL_VERS,
 };
 
