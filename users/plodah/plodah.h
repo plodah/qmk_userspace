@@ -35,7 +35,7 @@
 #endif // TAPPING_TOGGLE
 
 #ifndef TAP_CODE_DELAY
-# define TAP_CODE_DELAY 12
+# define TAP_CODE_DELAY 8
 #endif // TAP_CODE_DELAY
 
 #ifndef PERMISSIVE_HOLD

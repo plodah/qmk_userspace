@@ -42,6 +42,7 @@
             "tap_dance": false,
             "via": true
         },
+        "keyboard_name": "Keychron V2 ISO Enc | plodah",
         "matrix": {
           "debounce": 20
         },
@@ -77,10 +78,6 @@
                 "pixel_fractal": false,
                 "pixel_flow": false,
                 "pixel_rain": false,
-                "starlight": false,
-                "starlight_dual_hue": false,
-                "starlight_dual_sat": true,
-                "riverflow": true,
                 "typing_heatmap": false,
                 "digital_rain": false,
                 "solid_reactive_simple": false,
@@ -94,7 +91,11 @@
                 "splash": false,
                 "multisplash": false,
                 "solid_splash": false,
-                "solid_multisplash": false
+                "solid_multisplash": false,
+                "starlight": false,
+                "starlight_dual_hue": false,
+                "starlight_dual_sat": true,
+                "riverflow": true
             },
             "default": {
                 "animation": "gradient_left_right",
@@ -112,7 +113,7 @@
             "val_steps": 8
         },
         "qmk": {
-            "tap_keycode_delay": 12
+            "tap_keycode_delay": 8
         },
         "tapping": {
             "permissive_hold": true,
@@ -123,11 +124,12 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
-        { "key": "PL_TEST" },
-        { "key": "PL_VERS" },
         { "key": "PL_ENC_CCW" },
         { "key": "PL_ENC_CW" },
-        { "key": "PL_ENC_PRS" }
+        { "key": "PL_ENC_PRS" },
+        { "key": "PL_FEAT" },
+        { "key": "PL_QRGB"},
+        { "key": "PL_VERS" }
     ],
     "encoders": [
         [
@@ -178,7 +180,7 @@
             "_______",  "GU_TOGG",  "_______",                                "KC_SPC",                                 "_______",  "_______",  "_______",  "KC_HOME",  "KC_PGDN",  "KC_END"
         ],
         [
-            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "MC_9",     "PL_TEST",  "PL_VERS",  "QK_MAKE",  "_______",  "PL_ENC_PRS",
+            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_FEAT",  "PL_QRGB",  "PL_VERS",  "QK_MAKE",  "_______",  "PL_ENC_PRS",
             "RGB_TOG",  "RGB_MOD",  "RGB_VAI",  "RGB_HUI",  "RGB_SAI",  "RGB_SPI",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "TO(3)",
             "_______",  "RGB_RMOD", "RGB_VAD",  "RGB_HUD",  "RGB_SAD",  "RGB_SPD",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
             "_______",  "_______",  "_______",  "_______",  "_______", "C(S(KC_V))","_______",  "NK_TOGG",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_VOLU",

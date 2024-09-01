@@ -32,7 +32,7 @@
 //===================//
 //      ALT TAB      //
 //===================//
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) && (! defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE))
+#if (defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PL_ALTTAB) || defined(PL_ALTSTAB) ) && (! defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE))
 #  define PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
@@ -43,7 +43,7 @@
 //      AUTOCORRECT      //
 //=======================//
 #if defined(AUTOCORRECT_ENABLE)
-# include "functions/autocorrect_indicator.c"
+# include "functions/autocorrect.c"
 #endif // AUTOCORRECT_ENABLE
 
 //====================//
@@ -78,18 +78,6 @@
 # include "functions/combos.c"
 #endif // COMBO_ENABLE
 
-//========================//
-//      LAYER CHANGE      //
-//========================//
-#if defined(PLODAH_BORING_LAYER )
-layer_state_t layer_state_set_user(layer_state_t state) {
-    # if defined(PLODAH_BORING_LAYER )
-      plodah_layerchange_comboactions(state);
-    # endif // PLODAH_BORING_LAYER
-  return state;
-}
-#endif // PLODAH_BORING_LAYER
-
 //==============================//
 //      KEYCHRON DIPSWITCH      //
 //==============================//
@@ -99,7 +87,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       //default_layer_set(active ? PLODAH_BORING_LAYER : 0);
       layer_move(active ? PLODAH_BORING_LAYER : 0);
     }
-    return true;
+    return false;
   }
 #endif // DIP_SWITCH_ENABLE
 
@@ -149,6 +137,11 @@ void matrix_scan_user(void) {
 //==================//
 #if defined(CAPS_WORD_ENABLE)
   void caps_word_set_user(bool active) {
+#   if defined(PLODAH_BORING_LAYER)
+      if( get_highest_layer(layer_state) == PLODAH_BORING_LAYER){
+        caps_word_off();
+      }
+#   endif // defined(PLODAH_BORING_LAYER)
     if (active) {
       sft_held = true;
     } else {
@@ -161,17 +154,19 @@ void matrix_scan_user(void) {
 //      DYNAMIC MACROS      //
 //==========================//
 #if defined(DYNAMIC_MACRO_ENABLE)
-  void dynamic_macro_record_start_user(int8_t direction) {
+  bool dynamic_macro_record_start_user(int8_t direction) {
     #if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
       is_dynamic_macro_recording = true;
     #endif
     # if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
-        dynamic_macro_loop_timer = timer_read();
+      dynamic_macro_loop_timer = timer_read();
     # endif // PLODAH_DYNAMIC_MACRO_TIMEOUT
+    return true;
   }
-  void dynamic_macro_record_end_user(int8_t direction) {
+  bool dynamic_macro_record_end_user(int8_t direction) {
     #if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
       is_dynamic_macro_recording = false;
     #endif
+    return true;
   }
 #endif // DYNAMIC_MACRO_ENABLE

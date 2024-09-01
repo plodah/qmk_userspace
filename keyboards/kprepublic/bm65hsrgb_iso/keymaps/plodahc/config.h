@@ -1,6 +1,14 @@
 #pragma once
 #include "plodah.h"
 
+#define PLODAH_FEAT_KC
+#define PLODAH_QRGB_KC
+
+#ifdef PRODUCT
+# undef PRODUCT
+# define PRODUCT "KPRepublic BM65 ISO | plodahc"
+#endif // PRODUCT
+
 #define PLODAH_BORING_LAYER 1
 
 #define PLODAH_CAPS_INDIC_HSV HSV_MAGENTA
@@ -15,10 +23,6 @@
 #  undef DYNAMIC_KEYMAP_LAYER_COUNT
 #endif
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
-
-#if defined (DIP_SWITCH_ENABLE) && defined (PLODAH_BORING_LAYER)
-#  define dip_switch_update_kb plodah_dip_switch_update_kb
-#endif //DIP_SWITCH_ENABLE
 
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE

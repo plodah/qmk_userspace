@@ -36,6 +36,7 @@
             "tap_dance": false,
             "via": true
         },
+        "keyboard_name": "Winry315 | plodah",
         "matrix": {
           "debounce": 20
         },
@@ -95,10 +96,6 @@
                 "pixel_fractal": false,
                 "pixel_flow": false,
                 "pixel_rain": false,
-                "starlight": false,
-                "starlight_dual_hue": false,
-                "starlight_dual_sat": true,
-                "riverflow": true,
                 "typing_heatmap": false,
                 "digital_rain": false,
                 "solid_reactive_simple": false,
@@ -112,7 +109,11 @@
                 "splash": false,
                 "multisplash": false,
                 "solid_splash": false,
-                "solid_multisplash": false
+                "solid_multisplash": false,
+                "starlight": false,
+                "starlight_dual_hue": false,
+                "starlight_dual_sat": true,
+                "riverflow": true
             },
             "default": {
                 "animation": "gradient_left_right",
@@ -130,7 +131,7 @@
             "val_steps": 8
         },
         "qmk": {
-            "tap_keycode_delay": 12
+            "tap_keycode_delay": 8
         },
         "tapping": {
             "permissive_hold": true,
@@ -141,7 +142,8 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
-        { "key": "PL_TEST" },
+        { "key": "PL_FEAT" },
+        { "key": "PL_QRGB" },
         { "key": "PL_VERS" }
     ],
     "encoders": [
@@ -320,8 +322,8 @@
         [
                         "MC_14",    "KC_NO",    "MC_15",
             "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",
-            "MC_5",     "MC_6",     "MC_7",     "MC_8",     "MC_9",
-            "PL_TEST",  "PL_VERS",  "QK_MAKE",  "MC_13",    "MO(9)"
+            "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_FEAT",
+            "PL_QRGB",  "PL_VERS",  "QK_MAKE",  "MC_13",    "MO(9)"
         ],
 
         [

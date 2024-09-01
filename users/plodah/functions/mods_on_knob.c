@@ -1,9 +1,7 @@
 #pragma once
-uint8_t current_layer;
 uint8_t mod_state;
 
 void enc_prs_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
-    current_layer = get_highest_layer(layer_state);
     mod_state = get_mods();
 
     if (ctl_pressed && alt_pressed && sft_pressed) {
@@ -43,18 +41,18 @@ void enc_prs_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         register_mods(mod_state);
     }
     else if (
-        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 1)
+        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 1)
 #       if defined(PLODAH_BORING_LAYER)
-        && (current_layer != PLODAH_BORING_LAYER)
+        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
 #       endif // PLODAH_BORING_LAYER
    ) {
         rgb_matrix_toggle();
     }
     else if (
-        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 0)
-        && (current_layer != 0)
+        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 0)
+        && (get_highest_layer(layer_state) != 0)
 #       if defined(PLODAH_BORING_LAYER)
-        && (current_layer != PLODAH_BORING_LAYER)
+        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
 #       endif // PLODAH_BORING_LAYER
    ) {
         rgb_matrix_toggle();
@@ -67,7 +65,6 @@ void enc_prs_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
 }
 
 void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
-    current_layer = get_highest_layer(layer_state);
     mod_state = get_mods();
 
     if (ctl_pressed && alt_pressed && sft_pressed) {
@@ -104,18 +101,18 @@ void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         register_mods(mod_state);
     }
     else if (
-        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 1)
+        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 1)
 #       if defined(PLODAH_BORING_LAYER)
-        && (current_layer != PLODAH_BORING_LAYER)
+        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
 #       endif // PLODAH_BORING_LAYER
    ) {
         rgb_matrix_decrease_sat();
     }
     else if (
-        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 0)
-        && (current_layer != 0)
+        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 0)
+        && (get_highest_layer(layer_state) != 0)
 #       if defined(PLODAH_BORING_LAYER)
-        && (current_layer != PLODAH_BORING_LAYER)
+        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
 #       endif // PLODAH_BORING_LAYER
    ) {
         rgb_matrix_decrease_val();
@@ -128,7 +125,6 @@ void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
 }
 
 void enc_cw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
-    current_layer = get_highest_layer(layer_state);
     mod_state = get_mods();
 
     if (ctl_pressed && alt_pressed && sft_pressed) {
@@ -165,18 +161,18 @@ void enc_cw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         register_mods(mod_state);
     }
     else if (
-        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 1)
+        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 1)
 #       if defined(PLODAH_BORING_LAYER)
-        && (current_layer != PLODAH_BORING_LAYER)
+        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
 #       endif // PLODAH_BORING_LAYER
    ) {
         rgb_matrix_increase_sat();
     }
     else if (
-        ((current_layer + PLODAH_LAYEROFFSET) % 2  == 0)
-        && (current_layer != 0)
+        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 0)
+        && (get_highest_layer(layer_state) != 0)
 #       if defined(PLODAH_BORING_LAYER)
-        && (current_layer != PLODAH_BORING_LAYER)
+        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
 #       endif // PLODAH_BORING_LAYER
    ) {
         rgb_matrix_increase_val();

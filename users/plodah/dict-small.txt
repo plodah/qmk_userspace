@@ -6,6 +6,7 @@ profuct -> product
 verisons -> versions
 lenght -> length
 ouput -> output
+thign -> thing
 widht -> width
 :esle -> else
 :adn: -> and
@@ -29,13 +30,10 @@ widht -> width
 :leran -> learn
 :loev -> love
 :lsat -> last
-:lveo -> love
 :lvoe -> love
 :nad: -> and
 :nto: -> not
 :onyl: -> only
-:ocuntry -> country
-:ot: -> to
 :ous: -> our
 :oru: -> our
 :owrk -> work

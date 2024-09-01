@@ -52,11 +52,12 @@
             "tap_dance": false,
             "via": true
         },
+        "keyboard_name": "Keebio Iris rev2 | plodah",
         "matrix": {
           "debounce": 20
         },
         "qmk": {
-            "tap_keycode_delay": 12
+            "tap_keycode_delay": 8
         },
         "split": {
             "handedness": {
@@ -70,9 +71,8 @@
         }
     },
     "keycodes": [
-        { "key": "PL_ALTTAB" },
-        { "key": "PL_ALTSTAB" },
-        { "key": "PL_TEST" },
+        { "key": "PL_FEAT" },
+        { "key": "PL_QRGB" },
         { "key": "PL_VERS" }
     ],
     "layers": [

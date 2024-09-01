@@ -27,7 +27,7 @@
         },
         "features": {
             "auto_shift": false,
-            "autocorrect": false,
+            "autocorrect": true,
             "backlight": false,
             "bootmagic": true,
             "caps_word": true,
@@ -45,6 +45,7 @@
             "tap_dance": false,
             "via": true
         },
+        "keyboard_name": "Keychron Q1v1 ISO Enc | plodah",
         "matrix": {
           "debounce": 20
         },
@@ -80,10 +81,6 @@
                 "pixel_fractal": false,
                 "pixel_flow": false,
                 "pixel_rain": false,
-                "starlight": false,
-                "starlight_dual_hue": false,
-                "starlight_dual_sat": true,
-                "riverflow": false,
                 "typing_heatmap": false,
                 "digital_rain": false,
                 "solid_reactive_simple": false,
@@ -97,7 +94,11 @@
                 "splash": false,
                 "multisplash": false,
                 "solid_splash": false,
-                "solid_multisplash": false
+                "solid_multisplash": false,
+                "starlight": false,
+                "starlight_dual_hue": false,
+                "starlight_dual_sat": false,
+                "riverflow": false
             },
             "default": {
                 "animation": "gradient_left_right",
@@ -115,7 +116,7 @@
             "val_steps": 8
         },
         "qmk": {
-            "tap_keycode_delay": 12
+            "tap_keycode_delay": 8
         },
         "tapping": {
             "permissive_hold": true,
@@ -126,11 +127,10 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
-        { "key": "PL_TEST" },
-        { "key": "PL_VERS" },
         { "key": "PL_ENC_CCW" },
         { "key": "PL_ENC_CW" },
-        { "key": "PL_ENC_PRS" }
+        { "key": "PL_ENC_PRS" },
+        { "key": "PL_VERS" }
     ],
     "encoders": [
         [
@@ -185,7 +185,7 @@
         ],
         [
             "_______",              "KC_F13",   "KC_F14",   "KC_F15",   "KC_F16",   "KC_F17",   "KC_F18",   "KC_F19",   "KC_F20",   "KC_F21",   "KC_F22",     "KC_F23",   "KC_F24",   "_______",  "PL_ENC_PRS",
-            "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "MC_9",     "PL_TEST",  "PL_VERS",    "QK_MAKE",  "_______",              "_______",
+            "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "MC_9",     "MC_10",    "PL_VERS",    "QK_MAKE",  "_______",              "_______",
             "RGB_TOG",  "RGB_MOD",  "RGB_VAI",  "RGB_HUI",  "RGB_SAI",  "RGB_SPI",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",    "_______",                          "_______",
             "KC_CAPS",  "RGB_RMOD", "RGB_VAD",  "RGB_HUD",  "RGB_SAD",  "RGB_SPD",  "_______",  "_______",  "DM_RSTP",  "DM_REC1",  "DM_REC2",  "_______",    "_______",  "_______",              "KC_END",
             "_______",  "_______",  "_______",  "_______",  "_______",  "C(S(KC_V))", "_______", "NK_TOGG", "_______",  "_______",  "DM_PLY1",  "DM_PLY2",                "_______",  "KC_VOLU",
