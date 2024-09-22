@@ -65,7 +65,7 @@ if [ "$1" == "clean" ]
     #asd=`find keyboards -iname plodah* | sed 's,^[^/]*/,,'`
     for j in "${compilationdbs[@]}"
     do
-        qkm generate-compiation-database $j
+        qmk generate-compiation-database $j
     done
     #qmk generate-compilation-database -km plodahc -kb keychron/v2/iso_encoder
     #qmk generate-compilation-database -km plodah -kb keychron/v2/iso_encoder
