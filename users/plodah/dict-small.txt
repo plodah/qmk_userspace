@@ -3,7 +3,7 @@ somehting -> something
 :thier -> their
 abotu -> about
 profuct -> product
-verisons -> versions
+verison -> version
 lenght -> length
 ouput -> output
 thign -> thing
@@ -16,7 +16,6 @@ widht -> width
 :aslo: -> also
 :asthe: -> as the
 :atthe -> at the
-:ergard -> regard
 :gt: -> git
 :haev -> have
 :hten: -> then
@@ -28,9 +27,7 @@ widht -> width
 :iwth -> with
 :lastr: -> last
 :leran -> learn
-:loev -> love
 :lsat -> last
-:lvoe -> love
 :nad: -> and
 :nto: -> not
 :onyl: -> only
@@ -39,10 +36,8 @@ widht -> width
 :owrk -> work
 :smae: -> same
 :smoe: -> some
-:socre -> score
 :soem: -> some
 :sohw: -> show
-:sourth: -> south
 :stpo: -> stop
 :syas: -> says
 :szie -> size
@@ -54,12 +49,9 @@ widht -> width
 :thne: -> then
 :thsi: -> this
 :thta: -> that
-:tiem: -> time
 :tihs: -> this
 :tje: -> the
 :tjhe: -> the
 :tkae: -> take
 :tothe -> to the
 :ture -> true
-:turth -> truth
-:tust: -> trust
