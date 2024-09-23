@@ -2,10 +2,11 @@
 uint8_t mod_state;
 
 void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, bool sft_pressed) {
-    //mod_state = get_mods();
-        unregister_mods(mod_state);
-    //}
+    mod_state = get_mods();
 
+    if( keycode != (PL_ENC_PRS & 0xff) && !(mod_state == MOD_MASK_ALT || mod_state == MOD_BIT(KC_LALT) || mod_state == MOD_BIT(KC_RALT))){
+        unregister_mods(mod_state);
+    }
 
     if (ctl_pressed && gui_pressed && alt_pressed && sft_pressed) {
         //CGAS
@@ -267,6 +268,6 @@ void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, 
         }
     }
     //if( keycode != (PL_ENC_PRS & 0xff) && !(mod_state == MOD_MASK_ALT || mod_state == MOD_BIT(KC_LALT) || mod_state == MOD_BIT(KC_RALT))){
-        unregister_mods(mod_state);
+        register_mods(mod_state);
     //}
 }
