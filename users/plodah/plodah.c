@@ -70,7 +70,7 @@
 //      CUSTOM KEYCODES      //
 //===========================//
 #if defined PLODAH_KNOB_ENHANCEMENTS_ENABLE
-# include "functions/mods_on_knob.c"
+# include "functions/encoder_actions.c"
 #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #include "functions/process_record_user.c"
 
