@@ -6,9 +6,15 @@ uint16_t alt_tab_timer = 0;
 #endif //PLODAH_ALT_TAB_DELAY
 
 void plodah_alt_tab(bool back) {
-  if (!is_alt_tab_active && !alt_pressed) {
-    is_alt_tab_active = true;
-    register_code(KC_LALT);
+  if (!is_alt_tab_active) {
+#   if ! defined(IS_MOUSE)
+      if (!alt_pressed){
+#   endif // ! defined(IS_MOUSE)
+        is_alt_tab_active = true;
+        register_code(KC_LALT);
+#   if ! defined(IS_MOUSE)
+      }
+#   endif // ! defined(IS_MOUSE)
   }
   alt_tab_timer = timer_read();
   if(back){
