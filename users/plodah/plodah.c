@@ -5,15 +5,18 @@
 //====================//
 //      MOD VARS      //
 //====================//
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
-  bool alt_pressed = false;
-#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX)
   bool ctl_pressed = false;
-#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
+#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // CTL
+#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LGUI_INDEX) || defined(PLODAH_MODS_INDIC_RGUI_INDEX)
+  bool gui_pressed = false;
+#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // GUI
+#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
+  bool alt_pressed = false;
+#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // ALT
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX)
   bool sft_pressed = false;
-#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
+#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // SFT
 #if defined CAPS_WORD_ENABLE
   bool sft_held = false;
 #endif // CAPS_WORD_ENABLE

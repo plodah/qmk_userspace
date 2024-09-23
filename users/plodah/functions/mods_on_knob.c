@@ -1,104 +1,214 @@
 #pragma once
 uint8_t mod_state;
 
-void enc_prs_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
-    mod_state = get_mods();
-
-    if (ctl_pressed && alt_pressed && sft_pressed) {
+void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, bool sft_pressed) {
+    //mod_state = get_mods();
         unregister_mods(mod_state);
+    //}
+
+
+    if (ctl_pressed && gui_pressed && alt_pressed && sft_pressed) {
+        //CGAS
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                break;
+            case PL_ENC_CW & 0xff:
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
+    }
+    else if (gui_pressed && alt_pressed && sft_pressed) {
+        //GAS
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                break;
+            case PL_ENC_CW & 0xff:
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
+    }
+    else if (ctl_pressed && alt_pressed && sft_pressed) {
         //CAS
-        register_mods(mod_state);
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                tap_code16(C(KC_LEFT));
+                break;
+            case PL_ENC_CW & 0xff:
+                tap_code16(C(KC_RGHT));
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
+    }
+    else if (ctl_pressed && gui_pressed && alt_pressed) {
+        //CGA
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                break;
+            case PL_ENC_CW & 0xff:
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
+    }
+    else if (ctl_pressed && gui_pressed && sft_pressed) {
+        //CGS
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                break;
+            case PL_ENC_CW & 0xff:
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                tap_code16(C(KC_0));
+                tap_code16(C(KC_P0));
+                break;
+        }
+    }
+
+    else if (ctl_pressed && gui_pressed) {
+        //CG
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                break;
+            case PL_ENC_CW & 0xff:
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
     }
     else if (ctl_pressed && alt_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(C(KC_0));
-        tap_code16(C(KC_P0));
-        register_mods(mod_state);
+        //CA
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                tap_code16(C(KC_MINS));
+                break;
+            case PL_ENC_CW & 0xff:
+                tap_code16(C(KC_EQL));
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                tap_code16(C(KC_0));
+                tap_code16(C(KC_P0));
+                break;
+        }
     }
-    else if (alt_pressed && sft_pressed) {
-        unregister_mods(mod_state);
-        //AS
-        register_mods(mod_state);
-    }
-    else if (sft_pressed && ctl_pressed) {
-        unregister_mods(mod_state);
+    else if (ctl_pressed && sft_pressed) {
         //CS
-        register_mods(mod_state);
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                tap_code(KC_PGUP);
+                break;
+            case PL_ENC_CW & 0xff:
+                tap_code(KC_PGDN);
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
     }
-    else if (ctl_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(C(KC_F4));
-        register_mods(mod_state);
+    else if (gui_pressed && alt_pressed) {
+        //GA
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                break;
+            case PL_ENC_CW & 0xff:
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
     }
-    else if (alt_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(A(KC_F4));
-        register_mods(mod_state);
-    }
-    else if (sft_pressed) {
-        unregister_mods(mod_state);
-        tap_code(KC_MPLY);
-        register_mods(mod_state);
-    }
-    else if (
-        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 1)
-#       if defined(PLODAH_BORING_LAYER)
-        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
-#       endif // PLODAH_BORING_LAYER
-   ) {
-        rgb_matrix_toggle();
-    }
-    else if (
-        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 0)
-        && (get_highest_layer(layer_state) != 0)
-#       if defined(PLODAH_BORING_LAYER)
-        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
-#       endif // PLODAH_BORING_LAYER
-   ) {
-        rgb_matrix_toggle();
-    }
-    else {
-        unregister_mods(mod_state);
-        tap_code(KC_MUTE);
-        register_mods(mod_state);
-    }
-}
-
-void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
-    mod_state = get_mods();
-
-    if (ctl_pressed && alt_pressed && sft_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(C(KC_LEFT));
-        register_mods(mod_state);
-    }
-    else if (ctl_pressed && alt_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(C(KC_MINS));
-        register_mods(mod_state);
+    else if (gui_pressed && sft_pressed) {
+        //GS
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                break;
+            case PL_ENC_CW & 0xff:
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
     }
     else if (alt_pressed && sft_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(KC_LEFT);
-        register_mods(mod_state);
+        //AS
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                tap_code16(KC_LEFT);
+                break;
+            case PL_ENC_CW & 0xff:
+                tap_code16(KC_RGHT);
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
     }
-    else if (sft_pressed && ctl_pressed) {
-        unregister_mods(mod_state);
-        tap_code(KC_PGUP);
-        register_mods(mod_state);
-    }
+
     else if (ctl_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(C(KC_PGUP));
-        register_mods(mod_state);
+        //C
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                tap_code16(C(KC_PGUP));
+                break;
+            case PL_ENC_CW & 0xff:
+                tap_code16(C(KC_PGDN));
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                tap_code16(C(KC_F4));
+                break;
+        }
+    }
+    else if (gui_pressed) {
+        //G
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                break;
+            case PL_ENC_CW & 0xff:
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                break;
+        }
     }
     else if (alt_pressed) {
-        alt_tab_bk();
+        //A
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                plodah_alt_tab(true);
+                break;
+            case PL_ENC_CW & 0xff:
+                plodah_alt_tab(false);
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                tap_code16(A(KC_F4));
+                break;
+        }
     }
     else if (sft_pressed) {
-        unregister_mods(mod_state);
-        tap_code(KC_MPRV);
-        register_mods(mod_state);
+        //S
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                tap_code(KC_MPRV);
+                break;
+            case PL_ENC_CW & 0xff:
+                tap_code(KC_MNXT);
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                tap_code(KC_MPLY);
+                break;
+        }
     }
     else if (
         ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 1)
@@ -106,7 +216,19 @@ void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
 #       endif // PLODAH_BORING_LAYER
    ) {
-        rgb_matrix_decrease_sat();
+        // ODD & NOT BORING
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                rgb_matrix_decrease_sat();
+                break;
+            case PL_ENC_CW & 0xff:
+                rgb_matrix_increase_sat();
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                rgb_matrix_toggle();
+                break;
+        }
     }
     else if (
         ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 0)
@@ -115,71 +237,36 @@ void enc_ccw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
         && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
 #       endif // PLODAH_BORING_LAYER
    ) {
-        rgb_matrix_decrease_val();
+        // EVEN, NONZERO & NOT BORING
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                rgb_matrix_decrease_val();
+                break;
+            case PL_ENC_CW & 0xff:
+                rgb_matrix_increase_val();
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                rgb_matrix_toggle();
+                break;
+        }
     }
     else {
+        // ELSE
+        switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+                tap_code16_delay(KC_VOLD, 2);
+                break;
+            case PL_ENC_CW & 0xff:
+                tap_code16_delay(KC_VOLU, 2);
+                break;
+            case PL_ENC_PRS & 0xff:
+            default:
+                tap_code(KC_MUTE);
+                break;
+        }
+    }
+    //if( keycode != (PL_ENC_PRS & 0xff) && !(mod_state == MOD_MASK_ALT || mod_state == MOD_BIT(KC_LALT) || mod_state == MOD_BIT(KC_RALT))){
         unregister_mods(mod_state);
-        tap_code16_delay(KC_VOLD, 2);
-        register_mods(mod_state);
-    }
-}
-
-void enc_cw_act(bool ctl_pressed, bool sft_pressed, bool alt_pressed) {
-    mod_state = get_mods();
-
-    if (ctl_pressed && alt_pressed && sft_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(C(KC_RGHT));
-        register_mods(mod_state);
-    }
-    else if (ctl_pressed && alt_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(C(KC_EQL));
-        register_mods(mod_state);
-    }
-    else if (alt_pressed && sft_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(KC_RGHT);
-        register_mods(mod_state);
-    }
-    else if (sft_pressed && ctl_pressed) {
-        unregister_mods(mod_state);
-        tap_code(KC_PGDN);
-        register_mods(mod_state);
-    }
-    else if (ctl_pressed) {
-        unregister_mods(mod_state);
-        tap_code16(C(KC_PGDN));
-        register_mods(mod_state);
-    }
-    else if (alt_pressed) {
-        alt_tab_fw();
-    }
-    else if (sft_pressed) {
-        unregister_mods(mod_state);
-        tap_code(KC_MNXT);
-        register_mods(mod_state);
-    }
-    else if (
-        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 1)
-#       if defined(PLODAH_BORING_LAYER)
-        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
-#       endif // PLODAH_BORING_LAYER
-   ) {
-        rgb_matrix_increase_sat();
-    }
-    else if (
-        ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2  == 0)
-        && (get_highest_layer(layer_state) != 0)
-#       if defined(PLODAH_BORING_LAYER)
-        && (get_highest_layer(layer_state) != PLODAH_BORING_LAYER)
-#       endif // PLODAH_BORING_LAYER
-   ) {
-        rgb_matrix_increase_val();
-    }
-    else {
-        unregister_mods(mod_state);
-        tap_code16_delay(KC_VOLU, 2);
-        register_mods(mod_state);
-    }
+    //}
 }

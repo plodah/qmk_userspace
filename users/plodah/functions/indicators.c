@@ -1,21 +1,26 @@
 #pragma once
 #include "functions/rgb.c"
 HSV curhsv;
-#if ( defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) ) && (!defined(PLODAH_MODS_INDIC_HSV))
+
+#if ( defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LGUI_INDEX) || defined(PLODAH_MODS_INDIC_RGUI_INDEX) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) ) && (!defined(PLODAH_MODS_INDIC_HSV))
 # define PLODAH_MODS_INDIC_HSV HSV_WHITE
-#endif
+#endif // PLODAH_MODS_INDIC_HSV
+
+#if ( (defined(PLODAH_MODS_INDIC_LGUI_INDEX) || defined(PLODAH_MODS_INDIC_RGUI_INDEX)) && defined(PLODAH_GULOCK_INDIC_ENABLE) && (!defined(PLODAH_GULOCK_INDIC_HSV)) )
+# define PLODAH_GULOCK_INDIC_HSV HSV_RED
+#endif // PLODAH_GULOCK_INDIC_HSV
 
 #if (defined(PLODAH_DMAC_INDIC_INDEX)) && (!defined(PLODAH_DMAC_INDIC_HSV))
 # define PLODAH_DMAC_INDIC_HSV HSV_RED
-#endif
+#endif // PLODAH_DMAC_INDIC_HSV
 
 #if (defined(CAPS_LOCK_LED_INDEX)) && (! defined(PLODAH_CAPS_INDIC_HSV))
 # define PLODAH_CAPS_INDIC_HSV HSV_RED
-#endif
+#endif // PLODAH_CAPS_INDIC_HSV
 
 #if (defined(PLODAH_LAYER_INDIC_INDEX1)) && (!defined(PLODAH_LAYER_INDIC_HSV))
 # define PLODAH_LAYER_INDIC_HSV HSV_YELLOW
-#endif
+#endif // PLODAH_LAYER_INDIC_HSV
 
 #ifndef PLODAH_INDICATOR_MINVAL
 # define PLODAH_INDICATOR_MINVAL 85
@@ -35,7 +40,7 @@ bool plodah_indicator_handler(void) {
         rgb_matrix_set_color(CAPS_LOCK_LED_INDEX, RGB_OFF);
       }
     }
-# endif //CAPS_LOCK_LED_INDEX
+# endif // CAPS_LOCK_LED_INDEX
 
 # ifdef PLODAH_LAYER_INDIC_INDEX1
     bool onzero = false;
@@ -69,7 +74,7 @@ bool plodah_indicator_handler(void) {
 #     endif
     }
   }
-# endif //PLODAH_LAYER_INDIC_INDEX1
+# endif // PLODAH_LAYER_INDIC_INDEX1
 
 # if defined(DYNAMIC_MACRO_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
     HSV dmachsv = { PLODAH_DMAC_INDIC_HSV };
@@ -101,60 +106,101 @@ bool plodah_indicator_handler(void) {
     HSV modshsv = { PLODAH_MODS_INDIC_HSV };
     modshsv = plodah_rgblimit(curhsv, modshsv, PLODAH_INDICATOR_MINVAL);
     RGB modsrgb = hsv_to_rgb(modshsv);
-#endif
+#endif // plodah_rgblimit
 
-# ifdef PLODAH_MODS_INDIC_LALT_INDEX
-    if (!rgb_matrix_get_flags()) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_LALT_INDEX, RGB_OFF);
-    }
-    if (alt_pressed) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_LALT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
-    }
-# endif // PLODAH_MODS_INDIC_LALT_INDEX
+#if defined(PLODAH_GULOCK_INDIC_ENABLE)
+    HSV guilockhsv = { PLODAH_GULOCK_INDIC_HSV };
+    guilockhsv = plodah_rgblimit(curhsv, guilockhsv, PLODAH_INDICATOR_MINVAL);
+    RGB guilockrgb = hsv_to_rgb(guilockhsv);
+#endif // plodah_rgblimit
 
-# ifdef PLODAH_MODS_INDIC_RALT_INDEX
+# if defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX)
     if (!rgb_matrix_get_flags()) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_RALT_INDEX, RGB_OFF);
-    }
-    if (alt_pressed) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_RALT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
-    }
-# endif // PLODAH_MODS_INDIC_RALT_INDEX
-
-# ifdef PLODAH_MODS_INDIC_LCTL_INDEX
-    if (!rgb_matrix_get_flags()) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_LCTL_INDEX, RGB_OFF);
+#     if defined(PLODAH_MODS_INDIC_LCTL_INDEX)
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_LCTL_INDEX, RGB_OFF);
+#     endif // defined(PLODAH_MODS_INDIC_LCTL_INDEX)
+#     if defined(PLODAH_MODS_INDIC_RCTL_INDEX)
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_RCTL_INDEX, RGB_OFF);
+#     endif // defined(PLODAH_MODS_INDIC_RCTL_INDEX)
     }
     if (ctl_pressed) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_LCTL_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+#     if defined(PLODAH_MODS_INDIC_LCTL_INDEX)
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_LCTL_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+#     endif // defined(PLODAH_MODS_INDIC_LCTL_INDEX)
+#     if defined(PLODAH_MODS_INDIC_RCTL_INDEX)
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_RCTL_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+#     endif // defined(PLODAH_MODS_INDIC_RCTL_INDEX)
     }
 # endif // PLODAH_MODS_INDIC_LCTL_INDEX
 
-# ifdef PLODAH_MODS_INDIC_RCTL_INDEX
+# if defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
     if (!rgb_matrix_get_flags()) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_RCTL_INDEX, RGB_OFF);
+#     ifdef PLODAH_MODS_INDIC_LALT_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_LALT_INDEX, RGB_OFF);
+#     endif  // PLODAH_MODS_INDIC_LALT_INDEX
+#     ifdef PLODAH_MODS_INDIC_RALT_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_RALT_INDEX, RGB_OFF);
+#     endif  // PLODAH_MODS_INDIC_RALT_INDEX
     }
-    if (ctl_pressed) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_RCTL_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+    if (alt_pressed) {
+#     ifdef PLODAH_MODS_INDIC_LALT_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_LALT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+#     endif  // PLODAH_MODS_INDIC_LALT_INDEX
+#     ifdef PLODAH_MODS_INDIC_RALT_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_RALT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+#     endif  // PLODAH_MODS_INDIC_RALT_INDEX
     }
-# endif // PLODAH_MODS_INDIC_RCTL_INDEX
+# endif // PLODAH_MODS_INDIC_LALT_INDEX
 
-# ifdef PLODAH_MODS_INDIC_LSHIFT_INDEX
+# if defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX)
     if (!rgb_matrix_get_flags()) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_LSHIFT_INDEX, RGB_OFF);
+#     ifdef PLODAH_MODS_INDIC_LSHIFT_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_LSHIFT_INDEX, RGB_OFF);
+#     endif  // PLODAH_MODS_INDIC_LSHIFT_INDEX
+#     ifdef PLODAH_MODS_INDIC_RSHIFT_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_RSHIFT_INDEX, RGB_OFF);
+#     endif  // PLODAH_MODS_INDIC_RSHIFT_INDEX
     }
-    if (sft_pressed || sft_held) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_LSHIFT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+    if (sft_pressed) {
+#     ifdef PLODAH_MODS_INDIC_LSHIFT_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_LSHIFT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+#     endif  // PLODAH_MODS_INDIC_LSHIFT_INDEX
+#     ifdef PLODAH_MODS_INDIC_RSHIFT_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_RSHIFT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+#     endif  // PLODAH_MODS_INDIC_RSHIFT_INDEX
     }
 # endif // PLODAH_MODS_INDIC_LSHIFT_INDEX
 
-# ifdef PLODAH_MODS_INDIC_RSHIFT_INDEX
+# if (defined(PLODAH_MODS_INDIC_LGUI_INDEX) || defined(PLODAH_MODS_INDIC_RGUI_INDEX)) && (defined(PLODAH_GULOCK_INDIC_ENABLE) || !defined(PLODAH_MODS_INDIC_GUI_DISABLE) )
     if (!rgb_matrix_get_flags()) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_RSHIFT_INDEX, RGB_OFF);
+      # ifdef PLODAH_MODS_INDIC_LGUI_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_LGUI_INDEX, RGB_OFF);
+      # endif  // PLODAH_MODS_INDIC_LGUI_INDEX
+      # ifdef PLODAH_MODS_INDIC_RGUI_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_RGUI_INDEX, RGB_OFF);
+      # endif  // PLODAH_MODS_INDIC_RGUI_INDEX
     }
-    if (sft_pressed || sft_held) {
-      rgb_matrix_set_color(PLODAH_MODS_INDIC_RSHIFT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
-    }
-# endif // PLODAH_MODS_INDIC_RSHIFT_INDEX
+    # if defined(PLODAH_GULOCK_INDIC_ENABLE)
+      if ( keymap_config.no_gui ) {
+        # ifdef PLODAH_MODS_INDIC_LGUI_INDEX
+          rgb_matrix_set_color(PLODAH_MODS_INDIC_LGUI_INDEX, guilockrgb.r, guilockrgb.g, guilockrgb.b);
+        # endif  // PLODAH_MODS_INDIC_LGUI_INDEX
+        # ifdef PLODAH_MODS_INDIC_RGUI_INDEX
+          rgb_matrix_set_color(PLODAH_MODS_INDIC_RGUI_INDEX, guilockrgb.r, guilockrgb.g, guilockrgb.b);
+        # endif  // PLODAH_MODS_INDIC_RGUI_INDEX
+      }
+    # endif // defined(PLODAH_GULOCK_INDIC_ENABLE)
+#   if !defined(PLODAH_MODS_INDIC_GUI_DISABLE)
+      if ( gui_pressed ) {
+      # ifdef PLODAH_MODS_INDIC_LGUI_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_LGUI_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+      # endif  // PLODAH_MODS_INDIC_LGUI_INDEX
+      # ifdef PLODAH_MODS_INDIC_RGUI_INDEX
+        rgb_matrix_set_color(PLODAH_MODS_INDIC_RGUI_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
+      # endif  // PLODAH_MODS_INDIC_RGUI_INDEX
+      }
+#   endif
+# endif // PLODAH_MODS_INDIC_LGUI_INDEX
+
   return false;
 }
