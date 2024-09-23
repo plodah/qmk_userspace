@@ -49,9 +49,11 @@ widht -> width
 :thne: -> then
 :thsi: -> this
 :thta: -> that
+:tiem: -> time
 :tihs: -> this
 :tje: -> the
 :tjhe: -> the
 :tkae: -> take
 :tothe -> to the
 :ture -> true
+:tust: -> trust
