@@ -27,6 +27,7 @@ cd $qmkdir
 declare -a usesmalldict=(
     "keebio/iris/keymaps/plodah"
     "keychron/q1v1/iso_encoder/keymaps/plodah"
+    "keychron/q8/iso_encoder/keymaps/plodah"
     "keychron/v2/iso_encoder/keymaps/plodah"
     "kprepublic/bm65hsrgb_iso/keymaps/plodah"
     "xiudi/xd60/keymaps/plodah"
