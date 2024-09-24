@@ -2,37 +2,13 @@
 uint8_t mod_state;
 
 void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, bool sft_pressed) {
-    mod_state = get_mods();
+    mod_state = get_mods() & (~MOD_MASK_GUI);
 
     if( keycode != (PL_ENC_PRS & 0xff) && !(mod_state == MOD_MASK_ALT || mod_state == MOD_BIT(KC_LALT) || mod_state == MOD_BIT(KC_RALT))){
         unregister_mods(mod_state);
     }
 
-    if (ctl_pressed && gui_pressed && alt_pressed && sft_pressed) {
-        //CGAS
-        switch (keycode) {
-            case PL_ENC_CCW & 0xff:
-                break;
-            case PL_ENC_CW & 0xff:
-                break;
-            case PL_ENC_PRS & 0xff:
-            default:
-                break;
-        }
-    }
-    else if (gui_pressed && alt_pressed && sft_pressed) {
-        //GAS
-        switch (keycode) {
-            case PL_ENC_CCW & 0xff:
-                break;
-            case PL_ENC_CW & 0xff:
-                break;
-            case PL_ENC_PRS & 0xff:
-            default:
-                break;
-        }
-    }
-    else if (ctl_pressed && alt_pressed && sft_pressed) {
+    if (ctl_pressed && alt_pressed && sft_pressed) {
         //CAS
         switch (keycode) {
             case PL_ENC_CCW & 0xff:
@@ -46,45 +22,7 @@ void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, 
                 break;
         }
     }
-    else if (ctl_pressed && gui_pressed && alt_pressed) {
-        //CGA
-        switch (keycode) {
-            case PL_ENC_CCW & 0xff:
-                break;
-            case PL_ENC_CW & 0xff:
-                break;
-            case PL_ENC_PRS & 0xff:
-            default:
-                break;
-        }
-    }
-    else if (ctl_pressed && gui_pressed && sft_pressed) {
-        //CGS
-        switch (keycode) {
-            case PL_ENC_CCW & 0xff:
-                break;
-            case PL_ENC_CW & 0xff:
-                break;
-            case PL_ENC_PRS & 0xff:
-            default:
-                tap_code16(C(KC_0));
-                tap_code16(C(KC_P0));
-                break;
-        }
-    }
 
-    else if (ctl_pressed && gui_pressed) {
-        //CG
-        switch (keycode) {
-            case PL_ENC_CCW & 0xff:
-                break;
-            case PL_ENC_CW & 0xff:
-                break;
-            case PL_ENC_PRS & 0xff:
-            default:
-                break;
-        }
-    }
     else if (ctl_pressed && alt_pressed) {
         //CA
         switch (keycode) {
@@ -115,41 +53,18 @@ void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, 
                 break;
         }
     }
-    else if (gui_pressed && alt_pressed) {
-        //GA
-        switch (keycode) {
-            case PL_ENC_CCW & 0xff:
-                break;
-            case PL_ENC_CW & 0xff:
-                break;
-            case PL_ENC_PRS & 0xff:
-            default:
-                break;
-        }
-    }
-    else if (gui_pressed && sft_pressed) {
-        //GS
-        switch (keycode) {
-            case PL_ENC_CCW & 0xff:
-                break;
-            case PL_ENC_CW & 0xff:
-                break;
-            case PL_ENC_PRS & 0xff:
-            default:
-                break;
-        }
-    }
     else if (alt_pressed && sft_pressed) {
         //AS
         switch (keycode) {
             case PL_ENC_CCW & 0xff:
-                tap_code16(KC_LEFT);
+                tap_code(KC_LEFT);
                 break;
             case PL_ENC_CW & 0xff:
-                tap_code16(KC_RGHT);
+                tap_code(KC_RGHT);
                 break;
             case PL_ENC_PRS & 0xff:
             default:
+                tap_code(KC_ENT);
                 break;
         }
     }
@@ -173,8 +88,10 @@ void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, 
         //G
         switch (keycode) {
             case PL_ENC_CCW & 0xff:
+                tap_code16(S(KC_SPC));
                 break;
             case PL_ENC_CW & 0xff:
+                tap_code(KC_SPC);
                 break;
             case PL_ENC_PRS & 0xff:
             default:
