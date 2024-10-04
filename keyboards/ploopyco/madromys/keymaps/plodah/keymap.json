@@ -61,16 +61,16 @@
     ],
     "layers": [
         [
-            "LT(1, KC_BTN4)",  "LT(1, KC_BTN5)", "KC_BTN3", "KC_BTN2",
-            "KC_BTN1",                            "DRAG_SCROLL"
+            "LT(1, KC_BTN4)", "LT(2, KC_BTN5)", "KC_BTN3", "KC_BTN2",
+            "KC_BTN1",                       "DRAG_SCROLL"
         ],
         [
-            "MO(2)",  "MO(2)", "PL_ALTSTAB", "PL_ALTTAB",
-            "DPI_CONFIG",                            "_______"
+            "_______",  "PL_ALTSTAB", "PL_ALTTAB", "A(KC_F4)",
+            "DPI_CONFIG",                       "_______"
         ],
         [
-            "_______",  "_______", "_______", "_______",
-            "_______",                            "_______"
+            "C(KC_F4)", "_______", "S(C(KC_TAB))", "C(KC_TAB)",
+            "DPI_CONFIG",                       "_______"
         ]
     ]
 }
