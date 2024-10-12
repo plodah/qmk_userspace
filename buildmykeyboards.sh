@@ -23,31 +23,23 @@ subdir=compiled-$(date +%Y-w%W)
 plodir="$usrdir/users/plodah"
 
 cd $qmkdir
-#Small Dictionary
-declare -a usesmalldict=(
-    "keebio/iris/keymaps/plodah"
-    "keychron/q1v1/iso_encoder/keymaps/plodah"
-    "keychron/q8/iso_encoder/keymaps/plodah"
-    "keychron/v2/iso_encoder/keymaps/plodah"
-    "kprepublic/bm65hsrgb_iso/keymaps/plodah"
-    "xiudi/xd60/keymaps/plodah"
-    "ymdk/yd60mq/keymaps/plodah_jpn"
-    "ymdk/yd60mq/keymaps/plodah_spl"
-    "ymdk/yd60mq/keymaps/plodah_splbl"
+#Large Dictionary
+declare -a uselargedict=(
+    "keychron/v6/iso_encoder/keymaps/plodah"
 )
-if [[ -e $plodir/dict-small.txt && (-e $plodir/autocorrect_data_s.h && $plodir/dict-small.txt -nt $plodir/autocorrect_data_s.h) || (! -e $plodir/autocorrect_data_s.h) ]]; then
-  qmk generate-autocorrect-data -o $plodir/autocorrect_data_s.h $plodir/dict-small.txt
+if [[ -e $plodir/dict-large.txt && (-e $plodir/autocorrect_data_l.h && $plodir/dict-large.txt -nt $plodir/autocorrect_data_l.h) || (! -e $plodir/autocorrect_data_l.h) ]]; then
+  qmk generate-autocorrect-data -o $plodir/autocorrect_data_l.h $plodir/dict-large.txt
 fi
 
-for i in "${usesmalldict[@]}"
+for i in "${uselargedict[@]}"
 do
-  cp $plodir/autocorrect_data_s.h $usrdir/keyboards/$i/autocorrect_data.h
+  cp $plodir/autocorrect_data_l.h $usrdir/keyboards/$i/autocorrect_data.h
 done
-#rm $plodir/autocorrect_data_s.h $plodir/*.bak
+#rm $plodir/autocorrect_data_l.h $plodir/*.bak
 
-#Large Dictionary
-if [[ -e $plodir/dict-large.txt && -e $plodir/autocorrect_data.h && $plodir/dict-large.txt -nt $plodir/autocorrect_data.h ]]; then
-  qmk generate-autocorrect-data -o $plodir/autocorrect_data.h $plodir/dict-large.txt
+#Small Dictionary
+if [[ -e $plodir/dict-small.txt && (-e $plodir/autocorrect_data.h && $plodir/dict-small.txt -nt $plodir/autocorrect_data.h) || (! -e $plodir/autocorrect_data.h) ]]; then
+  qmk generate-autocorrect-data -o $plodir/autocorrect_data.h $plodir/dict-small.txt
 fi
 
 #compilationdb
