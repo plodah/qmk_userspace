@@ -5,9 +5,9 @@
 #define PLODAH_QRGB_KC
 
 #ifdef PRODUCT
-# undef PRODUCT
-# define PRODUCT "KPRepublic BM65 ISO | plodahc"
+  #undef PRODUCT
 #endif // PRODUCT
+#define PRODUCT "KPRepublic BM65 ISO | plodahc"
 
 #define PLODAH_BORING_LAYER 1
 
@@ -20,17 +20,17 @@
 #define BOOTMAGIC_COLUMN 0
 
 #ifdef DYNAMIC_KEYMAP_LAYER_COUNT
-#  undef DYNAMIC_KEYMAP_LAYER_COUNT
+  #undef DYNAMIC_KEYMAP_LAYER_COUNT
 #endif
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
 
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
-#  include "configs/rgbmatrix-effects-few.h"
-#  include "configs/rgbmatrix-config.h"
+  #include "configs/rgbmatrix-effects-few.h"
+  #include "configs/rgbmatrix-config.h"
 #endif // RGB_MATRIX_ENABLE
 
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
-#  include "configs/rgblight-effects-few.h"
+  #include "configs/rgblight-effects-few.h"
 #endif // RGBLIGHT_ENABLE

@@ -8,5 +8,5 @@
 
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
-#  include "configs/rgblight-effects-none.h"
+  #include "configs/rgblight-effects-none.h"
 #endif // RGBLIGHT_ENABLE

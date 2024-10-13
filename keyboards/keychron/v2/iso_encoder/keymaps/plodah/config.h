@@ -27,8 +27,8 @@
 // #define PLODAH_LAYER_INDIC_BG_HSV HSV_ORANGE
 
 #ifdef DYNAMIC_MACRO_ENABLE
-#  define PLODAH_DMAC_INDIC_INDEX 28
-// #  define PLODAH_DMAC_INDIC_HSV HSV_RED
+  #define PLODAH_DMAC_INDIC_INDEX 28
+  // #define PLODAH_DMAC_INDIC_HSV HSV_RED
 #endif
 
 #define PLODAH_TYPINGINDICATOR_RGBINDEX 43
@@ -37,6 +37,6 @@
 
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
-// #  include "configs/rgbmatrix-effects-none.h"
-#  include "configs/rgbmatrix-effects-all.h"
+  // #include "configs/rgbmatrix-effects-none.h"
+  #include "configs/rgbmatrix-effects-all.h"
 #endif // RGB_MATRIX_ENABLE

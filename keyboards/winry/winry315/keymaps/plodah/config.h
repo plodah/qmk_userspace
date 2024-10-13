@@ -12,10 +12,10 @@
 
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
-#  include "configs/rgbmatrix-effects-none.h"
+  #include "configs/rgbmatrix-effects-none.h"
 #endif // RGB_MATRIX_ENABLE
 
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
-#  include "configs/rgblight-effects-none.h"
+  #include "configs/rgblight-effects-none.h"
 #endif // RGBLIGHT_ENABLE
