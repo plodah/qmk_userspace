@@ -1,3 +1,4 @@
+#pragma once
 RGB_MATRIX_EFFECT(GRADIENT_SAT_LEFT_RIGHT)
 #ifdef RGB_MATRIX_CUSTOM_EFFECT_IMPLS
   bool GRADIENT_SAT_LEFT_RIGHT(effect_params_t* params){

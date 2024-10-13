@@ -23,37 +23,37 @@
 
 #if defined(DYNAMIC_MACRO_ENABLE)
   uint16_t dynamic_macro_loop_timer;
-# if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
+  #if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
     bool is_dynamic_macro_recording = false;
-# endif // DYNAMIC_MACRO_ENABLE
+  #endif // DYNAMIC_MACRO_ENABLE
 #endif //  RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
 
 #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
-# include "functions/repeathold_rgb.c"
+  #include "functions/repeathold_rgb.c"
 #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 
 //===================//
 //      ALT TAB      //
 //===================//
 #if (defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PL_ALTTAB) || defined(PL_ALTSTAB) ) && (! defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE))
-#  define PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+  #define PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
-# include "functions/alttab_enhancements.c"
+  #include "functions/alttab_enhancements.c"
 #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 
 //=======================//
 //      AUTOCORRECT      //
 //=======================//
 #if defined(AUTOCORRECT_ENABLE)
-# include "functions/autocorrect.c"
+  #include "functions/autocorrect.c"
 #endif // AUTOCORRECT_ENABLE
 
 //====================//
 //      TAPDANCE      //
 //====================//
 #if defined(PLODAH_BORING_LAYER) && defined(TAP_DANCE_ENABLE)
-# include "functions/ragequit.c"
+  #include "functions/ragequit.c"
   tap_dance_action_t tap_dance_actions[] = {
     [TD_ESC_RAGEQUIT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rage_quit_fin, rage_quit_rst)
   };
@@ -63,14 +63,14 @@
 //      TYPING INDICATOR      //
 //============================//
 #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
-# include "functions/typing_indicator.c"
+  #include "functions/typing_indicator.c"
 #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
 
 //===========================//
 //      CUSTOM KEYCODES      //
 //===========================//
 #if defined PLODAH_KNOB_ENHANCEMENTS_ENABLE
-# include "functions/encoder_actions.c"
+  #include "functions/encoder_actions.c"
 #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #include "functions/process_record_user.c"
 
@@ -78,7 +78,7 @@
 //      COMBOS      //
 //==================//
 #if defined(COMBO_ENABLE)
-# include "functions/combos.c"
+  #include "functions/combos.c"
 #endif // COMBO_ENABLE
 
 //==============================//
@@ -99,23 +99,23 @@
 //=======================//
 #if (defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)) || ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX)) || (defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE))
 void matrix_scan_user(void) {
-# if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
+  #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
     plodah_alttab_check();
-# endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
-# if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE)
+  #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+  #if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE)
     plodah_autocorrect_indicator_check();
-# endif // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
-# if defined (PLODAH_TYPINGINDICATOR_RGBINDEX)
+  #endif // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
+  #if defined (PLODAH_TYPINGINDICATOR_RGBINDEX)
     plodah_typingindicator_check();
-# endif // PLODAH_TYPINGINDICATOR_RGBINDEX
-# if defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
+  #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+  #if defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
     if (timer_elapsed(dynamic_macro_loop_timer) > PLODAH_DYNAMIC_MACRO_TIMEOUT){
         dynamic_macro_stop_recording();
     }
-# endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
-# if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
+  #endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
+  #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
     repeathold_rgb_check();
-# endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
+  #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 }
 #endif // (defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)) || ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX))
 
@@ -123,7 +123,7 @@ void matrix_scan_user(void) {
 //      CAPS INDICATOR      //
 //==========================//
 #if defined(RGB_MATRIX_ENABLE)
-# include "functions/indicators.c"
+  #include "functions/indicators.c"
   bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if (!rgb_matrix_indicators_user()) {
       return false;
@@ -140,11 +140,11 @@ void matrix_scan_user(void) {
 //==================//
 #if defined(CAPS_WORD_ENABLE)
   void caps_word_set_user(bool active) {
-#   if defined(PLODAH_BORING_LAYER)
+    #if defined(PLODAH_BORING_LAYER)
       if( get_highest_layer(layer_state) == PLODAH_BORING_LAYER){
         caps_word_off();
       }
-#   endif // defined(PLODAH_BORING_LAYER)
+    #endif // defined(PLODAH_BORING_LAYER)
     if (active) {
       sft_held = true;
     } else {
@@ -161,9 +161,9 @@ void matrix_scan_user(void) {
     #if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
       is_dynamic_macro_recording = true;
     #endif
-    # if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
+    #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
       dynamic_macro_loop_timer = timer_read();
-    # endif // PLODAH_DYNAMIC_MACRO_TIMEOUT
+    #endif // PLODAH_DYNAMIC_MACRO_TIMEOUT
     return true;
   }
   bool dynamic_macro_record_end_user(int8_t direction) {

@@ -16,13 +16,13 @@
   //===========================//
   // COMBOS FOR DYNAMIC MACROS //
   //===========================//
-# if defined(DYNAMIC_MACRO_ENABLE)
+  #if defined(DYNAMIC_MACRO_ENABLE)
     const uint16_t PROGMEM pl_combo_12[] = {KC_1 , KC_2, COMBO_END};
     const uint16_t PROGMEM pl_combo_13[] = {KC_1 , KC_3, COMBO_END};
     const uint16_t PROGMEM pl_combo_qw[] = {KC_Q , KC_W, COMBO_END};
     const uint16_t PROGMEM pl_combo_qe[] = {KC_Q , KC_E, COMBO_END};
     const uint16_t PROGMEM pl_combo_3e[] = {KC_3 , KC_E, COMBO_END};
-# endif //DYNAMIC_MACRO_ENABLE
+  #endif //DYNAMIC_MACRO_ENABLE
 
   combo_t key_combos[] = {
     COMBO(pl_combo_qa, C(KC_A)),
@@ -31,17 +31,17 @@
     COMBO(pl_combo_xc, C(KC_C)),
     COMBO(pl_combo_cv, C(KC_V)),
     COMBO(pl_combo_xcv, C(S(KC_V))),
-#   if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
-      COMBO(pl_combo_tabq, PL_ALTSTAB),
-      COMBO(pl_combo_tabw, PL_ALTTAB),
-#   endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
-#   if defined(DYNAMIC_MACRO_ENABLE)
-        COMBO(pl_combo_12, DM_PLY1),
-        COMBO(pl_combo_13, DM_REC1),
-        COMBO(pl_combo_qw, DM_PLY2),
-        COMBO(pl_combo_qe, DM_REC2),
-        COMBO(pl_combo_3e, DM_RSTP),
-#   endif //DYNAMIC_MACRO_ENABLE
+    #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
+    COMBO(pl_combo_tabq, PL_ALTSTAB),
+    COMBO(pl_combo_tabw, PL_ALTTAB),
+    #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+    #if defined(DYNAMIC_MACRO_ENABLE)
+      COMBO(pl_combo_12, DM_PLY1),
+      COMBO(pl_combo_13, DM_REC1),
+      COMBO(pl_combo_qw, DM_PLY2),
+      COMBO(pl_combo_qe, DM_REC2),
+      COMBO(pl_combo_3e, DM_RSTP),
+    #endif //DYNAMIC_MACRO_ENABLE
   };
 
   //===========================//
@@ -64,10 +64,10 @@
 #endif // ! defined(IS_MOUSE)
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-  # if defined(PLODAH_BORING_LAYER )
+  #if defined(PLODAH_BORING_LAYER )
     if(layer_state_is(PLODAH_BORING_LAYER)){
       return false;
     }
-  # endif // PLODAH_BORING_LAYER
+  #endif // PLODAH_BORING_LAYER
   return true;
 }

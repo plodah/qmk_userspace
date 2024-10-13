@@ -1,7 +1,7 @@
 #pragma once
 
 #if defined(RGB_MATRIX_ENABLE)
-# include "functions/rgb.c"
+  #include "functions/rgb.c"
 
   bool autocorrect_indicator_on = false;
   uint8_t autocorrect_indicator_count = 255;
@@ -10,19 +10,19 @@
   HSV indhsv;
 
   #ifndef PLODAH_AUTOCORRECT_INDICATOR_DURATION
-  # define PLODAH_AUTOCORRECT_INDICATOR_DURATION 200
+    #define PLODAH_AUTOCORRECT_INDICATOR_DURATION 200
   #endif //PLODAH_AUTOCORRECT_INDICATOR_DURATION
 
   #ifndef PLODAH_AUTOCORRECT_INDICATOR_BLINKCOUNT
-  # define PLODAH_AUTOCORRECT_INDICATOR_BLINKCOUNT 3
+    #define PLODAH_AUTOCORRECT_INDICATOR_BLINKCOUNT 3
   #endif // PLODAH_AUTOCORRECT_INDICATOR_BLINKCOUNT
 
   #ifndef PLODAH_AUTOCORRECT_INDICATOR_COLOUR
-  # define PLODAH_AUTOCORRECT_INDICATOR_COLOUR HSV_RED
+    #define PLODAH_AUTOCORRECT_INDICATOR_COLOUR HSV_RED
   #endif //PLODAH_AUTOCORRECT_INDICATOR_COLOUR
 
   #ifndef PLODAH_INDICATOR_MINVAL
-  # define PLODAH_INDICATOR_MINVAL 85
+    #define PLODAH_INDICATOR_MINVAL 85
   #endif // PLODAH_INDICATOR_MINVAL
 
   void plodah_autocorrect_indicator_on(void){
@@ -64,17 +64,17 @@
 #endif // RGB_MATRIX_ENABLE
 
 bool process_autocorrect_user(uint16_t *keycode, keyrecord_t *record, uint8_t *typo_buffer_size, uint8_t *mods) {
-# if defined(PLODAH_BORING_LAYER)
+  #if defined(PLODAH_BORING_LAYER)
     if( get_highest_layer(layer_state) == PLODAH_BORING_LAYER){
       return false;
     }
-# endif // defined(PLODAH_BORING_LAYER)
+  #endif // defined(PLODAH_BORING_LAYER)
   return true;
 }
 
 bool apply_autocorrect(uint8_t backspaces, const char *str, char *typo, char *correct) {
-# if defined(RGB_MATRIX_ENABLE)
+  #if defined(RGB_MATRIX_ENABLE)
     plodah_autocorrect_indicator_start();
-# endif // RGB_MATRIX_ENABLE
+  #endif // RGB_MATRIX_ENABLE
   return true;
 }

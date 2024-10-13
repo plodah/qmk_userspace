@@ -1,12 +1,14 @@
+#pragma once
+
 bool plodah_typingindicator_active = false;
 uint16_t plodah_typingindicator_timer = 0;
 
 #ifndef PLODAH_TYPINGINDICATOR_HSV
-# define PLODAH_TYPINGINDICATOR_HSV HSV_RED
+  #define PLODAH_TYPINGINDICATOR_HSV HSV_RED
 #endif //PLODAH_TYPINGINDICATOR_HSV
 
 #ifndef PLODAH_TYPINGINDICATOR_DURATION
-# define PLODAH_TYPINGINDICATOR_DURATION 1000
+  #define PLODAH_TYPINGINDICATOR_DURATION 1000
 #endif //PLODAH_TYPINGINDICATOR_DURATION
 
 void plodah_typingindicator_start(void){
