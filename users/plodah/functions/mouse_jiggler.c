@@ -1,5 +1,5 @@
 #pragma once
-
+// cannibalised https://getreuer.info/posts/keyboards/macros3/index.html#a-mouse-jiggler to make this.
 static deferred_token token = INVALID_DEFERRED_TOKEN;
 static report_mouse_t report = {0};
 
@@ -7,28 +7,29 @@ static report_mouse_t report = {0};
   #define PLODAH_MSJIGGLER_INDICATOR_HSV HSV_RED
 #endif // PLODAH_MSJIGGLER_INDICATOR_HSV default
 
+uint32_t jiggler_callback_base(uint32_t trigger_time, void* cb_arg, int8_t deltas[], int8_t numdeltas, bool randomdelay, int16_t basedelay ) {
+  static uint8_t phase = 0;
+  report.x = deltas[phase];
+  report.y = deltas[(phase + (numdeltas / 4)) & (numdeltas - 1)];
+  host_mouse_send(&report);
+  phase = (phase + 1) & (numdeltas-1);
+  if(randomdelay){
+    return basedelay + deltas[phase]*basedelay/4 + phase*basedelay/10;
+  }
+  return basedelay;
+}
+
+// Deltas only work if the length of the array is a power of 2.
 uint32_t jiggler_callback_circle(uint32_t trigger_time, void* cb_arg) {
   // Deltas to move in a circle of radius 20 pixels over 32 frames.
-  static const int8_t deltas[32] = {
-      0, -1, -2, -2, -3, -3, -4, -4, -4, -4, -3, -3, -2, -2, -1, 0,
-      0, 1, 2, 2, 3, 3, 4, 4, 4, 4, 3, 3, 2, 2, 1, 0};
-  static uint8_t phase = 0;
-  // Get x delta from table and y delta by rotating a quarter cycle.
-  report.x = deltas[phase];
-  report.y = deltas[(phase + 8) & 31];
-  phase = (phase + 1) & 31;
-  host_mouse_send(&report);
-  return 16;  // Call the callback every 16 ms.
+  static int8_t circledeltas[32] = {0,-1,-2,-2,-3,-3,-4,-4,-4,-4,-3,-3,-2,-2,-1,0,0,1,2,2,3,3,4,4,4,4,3,3,2,2,1,0};
+  return jiggler_callback_base(trigger_time, cb_arg, circledeltas, 32, 0, 40 );
 }
 
 uint32_t jiggler_callback_subtle(uint32_t trigger_time, void* cb_arg) {
-  static const int8_t deltas[16] = { 1, -1, 1, 1, -2, 2, -2, -2, 2, -2, 2, 2, -1, 1, -1, -1 }; // paradiddle
-  static uint8_t phase = 0;
-  report.x = deltas[phase];
-  report.y = deltas[(phase + 8) & 15];
-  phase = (phase + 1) & 15;
-  host_mouse_send(&report);
-  return 15000 + deltas[phase]*4000 + phase*100;
+  // Deltas to move only 1 or 2 pixels at a time. Sum is 0, so no prevailing movement..
+  static int8_t subtledeltas[16] = {1,-1,1,1,-2,2,-2,-2,2,-2,2,2,-1,1,-1,-1};
+  return jiggler_callback_base(trigger_time, cb_arg, subtledeltas, 16, 1, 10000 );
 }
 
 void jiggler_onclick( uint16_t keycode ) {
@@ -38,7 +39,6 @@ void jiggler_onclick( uint16_t keycode ) {
     #endif // PLODAH_MSJIGGLER_AUTOSTOP
     token
   ) {
-    // If jiggler is currently running, stop when any key is pressed.
     cancel_deferred_exec(token);
     token = INVALID_DEFERRED_TOKEN;
     report = (report_mouse_t){};  // Clear the mouse.
@@ -46,9 +46,9 @@ void jiggler_onclick( uint16_t keycode ) {
   }
   else if (keycode == PL_MSJIG) {
     #ifdef PLODAH_MSJIGGLER_UNSUBTLE
-      token = defer_exec(1, jiggler_callback_circle, NULL);  // Schedule callback.
-    #else
-      token = defer_exec(1, jiggler_callback_subtle, NULL);  // Schedule callback.
-    #endif // jiggle patterns
+      token = defer_exec(1, jiggler_callback_circle, NULL);
+    #else // PLODAH_MSJIGGLER_UNSUBTLE
+      token = defer_exec(1, jiggler_callback_subtle, NULL);
+    #endif // PLODAH_MSJIGGLER_UNSUBTLE
   }
 }
