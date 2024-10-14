@@ -6,11 +6,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     dynamic_macro_loop_timer = timer_read();
   #endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
 
-  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
-    if (record->event.pressed) {
-      plodah_typingindicator_start(keycode);
-    }
-  #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_MSJIGGLER_ENABLED)
+    #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
+      if (record->event.pressed) {
+        plodah_typingindicator_start(keycode);
+      }
+    #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+    #if defined(PLODAH_MSJIGGLER_ENABLED)
+      if (record->event.pressed) {
+        jiggler_onclick(keycode);
+      }
+    #endif // PLODAH_MSJIGGLER_ENABLED
+  #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_MSJIGGLER_ENABLED)
 
   switch (keycode) {
     case PL_VERS:

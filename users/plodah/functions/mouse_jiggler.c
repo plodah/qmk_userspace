@@ -21,7 +21,7 @@ uint32_t jiggler_callback_circle(uint32_t trigger_time, void* cb_arg) {
   return 16;  // Call the callback every 16 ms.
 }
 
-uint32_t jiggler_callback(uint32_t trigger_time, void* cb_arg) {
+uint32_t jiggler_callback_subtle(uint32_t trigger_time, void* cb_arg) {
   static const int8_t deltas[16] = { 1, -1, 1, 1, -2, 2, -2, -2, 2, -2, 2, 2, -1, 1, -1, -1 }; // paradiddle
   static uint8_t phase = 0;
   report.x = deltas[phase];
@@ -45,6 +45,10 @@ void jiggler_onclick( uint16_t keycode ) {
     host_mouse_send(&report);
   }
   else if (keycode == PL_MSJIG) {
-    token = defer_exec(1, jiggler_callback, NULL);  // Schedule callback.
+    #ifdef PLODAH_MSJIGGLER_UNSUBTLE
+      token = defer_exec(1, jiggler_callback_circle, NULL);  // Schedule callback.
+    #else
+      token = defer_exec(1, jiggler_callback_subtle, NULL);  // Schedule callback.
+    #endif // jiggle patterns
   }
 }
