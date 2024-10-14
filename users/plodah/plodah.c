@@ -32,6 +32,10 @@
   #include "functions/repeathold_rgb.c"
 #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 
+#if defined(PLODAH_MSJIGGLER_ENABLED)
+  #include "functions/mouse_jiggler.c"
+#endif // PLODAH_MSJIGGLER_ENABLED
+
 //===================//
 //      ALT TAB      //
 //===================//

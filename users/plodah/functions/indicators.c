@@ -105,6 +105,17 @@ bool plodah_indicator_handler(void) {
       rgb_matrix_set_color(PLODAH_TYPINGINDICATOR_RGBINDEX, typnrgb.r, typnrgb.g, typnrgb.b);
     }
   #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+  #if defined(PLODAH_MSJIGGLER_ENABLED) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
+    HSV msjighsv = { PLODAH_MSJIGGLER_INDICATOR_HSV };
+    msjighsv = plodah_rgblimit(rgb_matrix_get_hsv(), msjighsv, PLODAH_INDICATOR_MINVAL);
+    RGB msjigrgb = hsv_to_rgb(msjighsv);
+    if(!rgb_matrix_get_flags()){
+      rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
+    }
+    if(token != INVALID_DEFERRED_TOKEN){
+      rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
+    }
+  #endif // PLODAH_MSJIGGLER_ENABLED && PLODAH_MSJIGGLER_INDICATOR_RGBINDEX
   #if ( defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) )
     HSV modshsv = { PLODAH_MODS_INDIC_HSV };
     modshsv = plodah_rgblimit(rgb_matrix_get_hsv(), modshsv, PLODAH_INDICATOR_MINVAL);
