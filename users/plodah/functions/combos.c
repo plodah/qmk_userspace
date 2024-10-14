@@ -50,16 +50,18 @@
 #else // ! defined(IS_MOUSE)
   const uint16_t PROGMEM pl_combo_ms12[] = {KC_BTN1 , KC_BTN2, COMBO_END};
   const uint16_t PROGMEM pl_combo_ms14[] = {KC_BTN1 , KC_BTN4, COMBO_END};
-  const uint16_t PROGMEM pl_combo_ms24[] = {KC_BTN2 , KC_BTN4, COMBO_END};
   const uint16_t PROGMEM pl_combo_ms15[] = {KC_BTN1 , KC_BTN5, COMBO_END};
+  const uint16_t PROGMEM pl_combo_ms24[] = {KC_BTN2 , KC_BTN4, COMBO_END};
   const uint16_t PROGMEM pl_combo_ms25[] = {KC_BTN2 , KC_BTN5, COMBO_END};
+  const uint16_t PROGMEM pl_combo_ms45[] = {KC_BTN4 , KC_BTN5, COMBO_END};
 
   combo_t key_combos[] = {
     COMBO(pl_combo_ms12, DRAG_SCROLL),
-    COMBO(pl_combo_ms14, DRAG_SCROLL),
-    COMBO(pl_combo_ms24, DRAG_SCROLL),
+    COMBO(pl_combo_ms14, PL_MSJIG),
     COMBO(pl_combo_ms15, C(KC_C)),
+    COMBO(pl_combo_ms24, DRAG_SCROLL),
     COMBO(pl_combo_ms25, C(KC_V)),
+    COMBO(pl_combo_ms45, PL_MSJIG),
   };
 #endif // ! defined(IS_MOUSE)
 

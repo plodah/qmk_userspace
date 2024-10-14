@@ -26,6 +26,7 @@
             "bootmagic": true,
             "caps_word": false,
             "combo": true,
+            "deferred_exec": true,
             "dynamic_macro": false,
             "dynamic_tapping_term": false,
             "encoder_map": false,
@@ -56,20 +57,17 @@
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
         { "key": "PL_FEAT" },
+        { "key": "PL_MSJIG" },
         { "key": "PL_QRGB" },
         { "key": "PL_VERS" }
     ],
     "layers": [
         [
             "LT(1, KC_BTN5)", "KC_BTN1", "KC_BTN3", "KC_BTN2", "KC_BTN5",
-            "LT(1, KC_BTN4)"
+            "KC_BTN4"
         ],
         [
-            "MO(2)", "DRAG_SCROLL", "_______", "C(S(KC_T))", "DPI_CONFIG",
-            "MO(2)"
-        ],
-        [
-            "_______", "PL_ALTSTAB", "PL_VERS", "PL_ALTTAB", "LCA(KC_DEL)",
+            "_______", "PL_ALTSTAB", "PL_VERS", "PL_ALTTAB", "DPI_CONFIG",
             "_______"
         ]
     ]

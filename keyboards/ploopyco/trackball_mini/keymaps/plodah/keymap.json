@@ -29,6 +29,7 @@
             "bootmagic": true,
             "caps_word": false,
             "combo": true,
+            "deferred_exec": true,
             "dynamic_macro": false,
             "dynamic_tapping_term": false,
             "encoder_map": false,
@@ -59,6 +60,7 @@
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
         { "key": "PL_FEAT" },
+        { "key": "PL_MSJIG" },
         { "key": "PL_QRGB" },
         { "key": "PL_VERS" }
     ],
