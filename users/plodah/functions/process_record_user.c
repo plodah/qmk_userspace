@@ -1,9 +1,5 @@
 #pragma once
 
-#if defined PLODAH_KNOB_ENHANCEMENTS_ENABLE
-  #include "functions/encoder_actions.c"
-#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
     plodah_typingindicator_start();

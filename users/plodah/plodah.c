@@ -41,6 +41,9 @@
 #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
   #include "functions/alttab_enhancements.c"
 #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+#if defined PLODAH_KNOB_ENHANCEMENTS_ENABLE
+  #include "functions/encoder_actions.c"
+#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 
 //=======================//
 //      AUTOCORRECT      //
