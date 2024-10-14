@@ -11,9 +11,11 @@ uint16_t plodah_typingindicator_timer = 0;
   #define PLODAH_TYPINGINDICATOR_DURATION 1000
 #endif //PLODAH_TYPINGINDICATOR_DURATION
 
-void plodah_typingindicator_start(void){
-  plodah_typingindicator_timer = timer_read();
-  plodah_typingindicator_active = true;
+void plodah_typingindicator_start(uint16_t keycode){
+  if( keycode >= KC_A && keycode <= KC_SLASH ){
+    plodah_typingindicator_timer = timer_read();
+    plodah_typingindicator_active = true;
+  }
 }
 
 void plodah_typingindicator_check(void){
