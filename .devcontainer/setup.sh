@@ -14,7 +14,7 @@ userspacePath="$1"
 git config --global --add safe.directory "$userspacePath"
 git submodule update --init --recursive
 
-[ -d /workspaces/qmk_firmware ] || git clone https://github.com/qmk/qmk_firmware.git /workspaces/qmk_firmware
+[ -d /workspaces/qmk_firmware ] || git clone https://github.com/plodah/qmk_firmware.git -b mybuilds-2024-09 /workspaces/qmk_firmware
 git config --global --add safe.directory /workspaces/qmk_firmware
 
 qmk config user.qmk_home=/workspaces/qmk_firmware
