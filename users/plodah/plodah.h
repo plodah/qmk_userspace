@@ -61,7 +61,3 @@
     #define CAPS_WORD_INVERT_ON_SHIFT
   #endif // CAPS_WORD_INVERT_ON_SHIFT
 #endif // CAPS_WORD_ENABLE
-
-#if defined(PLODAH_MSJIGGLER_ENABLED) && !defined(DEFERRED_EXEC_ENABLE)
-  #undef PLODAH_MSJIGGLER_ENABLED
-#endif // disable MSJIGGLER if required DEFERRED_EXEC is not enabled

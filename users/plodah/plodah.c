@@ -32,6 +32,9 @@
   #include "functions/repeathold_rgb.c"
 #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 
+#if defined(PLODAH_MSJIGGLER_ENABLED) && !defined(DEFERRED_EXEC_ENABLE)
+  #undef PLODAH_MSJIGGLER_ENABLED
+#endif // disable MSJIGGLER if required DEFERRED_EXEC is not enabled
 #if defined(PLODAH_MSJIGGLER_ENABLED)
   #include "functions/mouse_jiggler.c"
 #endif // PLODAH_MSJIGGLER_ENABLED
