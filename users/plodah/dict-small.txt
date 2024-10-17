@@ -1,59 +1,10 @@
 fitler -> filter
 somehting -> something
-:thier -> their
 abotu -> about
-profuct -> product
 verison -> version
 lenght -> length
-ouput -> output
 thign -> thing
-widht -> width
-:esle -> else
-:adn: -> and
-:agian -> again
-:andteh -> and the
-:andthe -> and the
 :aslo: -> also
 :asthe: -> as the
 :atthe -> at the
-:gt: -> git
-:haev -> have
-:hten: -> then
-:hte: -> the
-:htere -> there
 :hting -> thing
-:inot: -> into
-:iwll -> will
-:iwth -> with
-:lastr: -> last
-:leran -> learn
-:lsat -> last
-:nad: -> and
-:nto: -> not
-:onyl: -> only
-:ous: -> our
-:oru: -> our
-:owrk -> work
-:smae: -> same
-:smoe: -> some
-:soem: -> some
-:sohw: -> show
-:stpo: -> stop
-:syas: -> says
-:szie -> size
-:tath: -> that
-:teh: -> the
-:tehy: -> they
-:thn: -> then
-:thna: -> than
-:thne: -> then
-:thsi: -> this
-:thta: -> that
-:tiem: -> time
-:tihs: -> this
-:tje: -> the
-:tjhe: -> the
-:tkae: -> take
-:tothe -> to the
-:ture -> true
-:tust: -> trust

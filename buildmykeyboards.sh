@@ -23,24 +23,33 @@ subdir=compiled-$(date +%Y-w%W)
 plodir="$usrdir/users/plodah"
 
 cd $qmkdir
-#Large Dictionary
+#Dictionaries
+declare -a usesmalldict=(
+    "keychron/q1v1/iso_encoder/keymaps/plodah"
+)
 declare -a uselargedict=(
     "keychron/v6/iso_encoder/keymaps/plodah"
 )
-if [[ -e $plodir/dict-large.txt && (-e $plodir/autocorrect_data_l.h && $plodir/dict-large.txt -nt $plodir/autocorrect_data_l.h) || (! -e $plodir/autocorrect_data_l.h) ]]; then
+#        dictionary.txt exists   &&   (  dictionary.h does not exist      ||  (dictionary.h exists && dictionary.txt is newer than dictionary.h)  )
+if [[ -e $plodir/dict-large.txt  && ( ! -e $plodir/autocorrect_data_l.h || (-e $plodir/autocorrect_data_l.h && $plodir/dict-large.txt -nt $plodir/autocorrect_data_l.h ) ) ]]; then
   qmk generate-autocorrect-data -o $plodir/autocorrect_data_l.h $plodir/dict-large.txt
 fi
+if [[ -e $plodir/dict-medium.txt && ( ! -e $plodir/autocorrect_data.h   || (-e $plodir/autocorrect_data.h   && $plodir/dict-medium.txt -nt $plodir/autocorrect_data.h  ) ) ]]; then
+  qmk generate-autocorrect-data -o $plodir/autocorrect_data.h $plodir/dict-medium.txt
+fi
+if [[ -e $plodir/dict-small.txt  && ( ! -e $plodir/autocorrect_data_s.h || (-e $plodir/autocorrect_data_s.h && $plodir/dict-small.txt -nt $plodir/autocorrect_data_s.h ) ) ]]; then
+  qmk generate-autocorrect-data -o $plodir/autocorrect_data_s.h $plodir/dict-small.txt
+fi
 
+for i in "${usesmalldict[@]}"
+do
+  cp $plodir/autocorrect_data_s.h $usrdir/keyboards/$i/autocorrect_data.h
+done
 for i in "${uselargedict[@]}"
 do
   cp $plodir/autocorrect_data_l.h $usrdir/keyboards/$i/autocorrect_data.h
 done
 #rm $plodir/autocorrect_data_l.h $plodir/*.bak
-
-#Small Dictionary
-if [[ -e $plodir/dict-small.txt && (-e $plodir/autocorrect_data.h && $plodir/dict-small.txt -nt $plodir/autocorrect_data.h) || (! -e $plodir/autocorrect_data.h) ]]; then
-  qmk generate-autocorrect-data -o $plodir/autocorrect_data.h $plodir/dict-small.txt
-fi
 
 #compilationdb
 declare -a compilationdbs=(
