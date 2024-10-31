@@ -1,4 +1,5 @@
 #pragma once
+#include "functions/rgb.c"
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
@@ -86,36 +87,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #if defined(PLODAH_QRGB_KC)
       case PL_QRGB:
         if (record->event.pressed) {
-          #ifdef RGB_MATRIX_ENABLE
-            send_string_with_delay ( "\\ RGB_MATRIX:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgb_matrix_get_mode(),'0'), TAP_CODE_DELAY );
-            send_string_with_delay ( " H:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgb_matrix_get_hue(),'0'), TAP_CODE_DELAY );
-            send_string_with_delay ( " S:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgb_matrix_get_sat(),'0'), TAP_CODE_DELAY );
-            send_string_with_delay ( " V:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgb_matrix_get_val(),'0'), TAP_CODE_DELAY );
-            send_string_with_delay ( " SP:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgb_matrix_get_speed(),'0'), TAP_CODE_DELAY );
-            tap_code (KC_ENT);
-          #endif // RGB_MATRIX_ENABLE
-          #ifdef RGBLIGHT_ENABLE
-            send_string_with_delay ( "\\ RGBLIGHT:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgblight_get_mode(),'0'), TAP_CODE_DELAY );
-            send_string_with_delay ( " H:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgblight_get_hue(),'0'), TAP_CODE_DELAY );
-            send_string_with_delay ( " S:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgblight_get_sat(),'0'), TAP_CODE_DELAY );
-            send_string_with_delay ( " V:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgblight_get_val(),'0'), TAP_CODE_DELAY );
-            send_string_with_delay ( " SP:", TAP_CODE_DELAY );
-            send_string_with_delay ( get_u8_str(rgblight_get_speed(),'0'), TAP_CODE_DELAY );
-            tap_code (KC_ENT);
-          #endif // RGBLIGHT_ENABLE
-          #if ( ! defined RGB_MATRIX_ENABLE ) && ( ! defined RGBLIGHT_ENABLE )
-            send_string_with_delay ( "\\ No RGB", TAP_CODE_DELAY );
-            tap_code (KC_ENT);
-          #endif // NO RGB_MATRIX_ENABLE OR RGBLIGHT_ENABLE
+            // send_string_with_delay(rgbQuery(), TAP_CODE_DELAY);
+            // send_string_with_delay(rgbQuerySmert(), TAP_CODE_DELAY);
+            rgbQuerySs();
         }
         return false;
     #endif // defined(PLODAH_QRGB_KC)
