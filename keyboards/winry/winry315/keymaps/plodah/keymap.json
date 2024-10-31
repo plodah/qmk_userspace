@@ -23,6 +23,8 @@
             "bootmagic": true,
             "caps_word": false,
             "combo": false,
+            "console": false,
+            "deferred_exec": true,
             "dynamic_macro": false,
             "dynamic_tapping_term": false,
             "encoder_map": true,
@@ -39,30 +41,6 @@
         "keyboard_name": "Winry315 | plodah",
         "matrix": {
           "debounce": 20
-        },
-        "rgblight": {
-            "animations": {
-                "static_light": true,
-                "breathing": false,
-                "rainbow_mood": false,
-                "rainbow_swirl": false,
-                "snake": false,
-                "knight": false,
-                "christmas": false,
-                "static_gradient": false,
-                "rgb_test": false,
-                "alternating": false,
-                "twinkle": false
-            },
-            "brightness_steps": 8,
-            "default":{
-                "animation": "static_light",
-                "hue": 95,
-                "sat": 239,
-                "val": 167
-            },
-            "hue_steps": 5,
-            "saturation_steps": 8
         },
         "rgb_matrix": {
             "animations": {
@@ -112,14 +90,14 @@
                 "solid_multisplash": false,
                 "starlight": false,
                 "starlight_dual_hue": false,
-                "starlight_dual_sat": true,
-                "riverflow": true
+                "starlight_dual_sat": false,
+                "riverflow": false
             },
             "default": {
                 "animation": "gradient_left_right",
                 "hue": 79,
                 "sat": 239,
-                "val": 167,
+                "val": 127,
                 "speed": 48
             },
             "hue_steps": 5,
@@ -144,7 +122,8 @@
         { "key": "PL_ALTSTAB" },
         { "key": "PL_FEAT" },
         { "key": "PL_QRGB" },
-        { "key": "PL_VERS" }
+        { "key": "PL_VERS" },
+        { "key": "PL_MSJIG" }
     ],
     "encoders": [
         [
@@ -323,7 +302,7 @@
                         "MC_14",    "KC_NO",    "MC_15",
             "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",
             "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_FEAT",
-            "PL_QRGB",  "PL_VERS",  "QK_MAKE",  "MC_13",    "MO(9)"
+            "PL_QRGB",  "PL_VERS",  "QK_MAKE",  "PL_MSJIG", "MO(9)"
         ],
 
         [
@@ -348,7 +327,7 @@
                         "_______",  "_______",  "_______",
             "TO(0)",    "TO(1)",    "TO(2)",    "TO(3)",    "TO(4)",
             "TO(5)",    "TO(6)",    "TO(7)",    "TO(8)",    "TO(9)",
-            "KC_NUM",   "KC_NO",    "KC_NO",    "KC_NO",    "MO(9)"
+            "PL_MSJIG", "KC_NUM",    "KC_NO",    "KC_NO",    "MO(9)"
         ]
     ]
 }
