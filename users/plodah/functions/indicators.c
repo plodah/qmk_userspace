@@ -40,7 +40,12 @@ bool plodah_indicator_handler(void) {
     }
   #endif // CAPS_LOCK_LED_INDEX
 
-  #ifdef PLODAH_LAYER_INDIC_INDEX1
+  #if defined(PLODAH_LAYER_INDIC_INDEX1) || defined(PLODAH_LAYER_INDIC_INDEXES)
+
+      #if defined(PLODAH_LAYER_INDIC_INDEXES)
+        uint8_t layer_ind[] = PLODAH_LAYER_INDIC_INDEXES;
+      #endif // PLODAH_LAYER_INDIC_INDEXES
+
       HSV layrhsv = { PLODAH_LAYER_INDIC_HSV };
       layrhsv = plodah_rgblimit(rgb_matrix_get_hsv(), layrhsv, PLODAH_INDICATOR_MINVAL);
       RGB layrrgb = hsv_to_rgb(layrhsv);
@@ -52,7 +57,11 @@ bool plodah_indicator_handler(void) {
 
     int highlayer = get_highest_layer(layer_state);
     for (int lindex = 0; lindex < DYNAMIC_KEYMAP_LAYER_COUNT; lindex++) {
-      int thisindex = (lindex + PLODAH_LAYER_INDIC_INDEX1);
+      #if defined(PLODAH_LAYER_INDIC_INDEXES)
+        int thisindex = layer_ind[lindex];
+      #else
+        int thisindex = (lindex + PLODAH_LAYER_INDIC_INDEX1);
+      #endif // PLODAH_LAYER_INDIC_INDEXES
       if (!rgb_matrix_get_flags()) {
         rgb_matrix_set_color(thisindex, RGB_OFF);
       }
