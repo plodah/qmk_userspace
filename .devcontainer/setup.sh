@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -eEuo pipefail
+mkdir /workspaces/qmk_firmware /workspaces/via_userspace /workspaces/via_keyboards /workspaces/qmk_firmware_upstream
 
 wget https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py
