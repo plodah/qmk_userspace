@@ -5,6 +5,15 @@
 		},
 		{
 			"path": "../../qmk_firmware"
+		},
+		{
+			"path": "../../via_userspace"
+		},
+		{
+			"path": "../../via_keyboards"
+		},
+		{
+			"path": "../../qmk_firmware_upstream"
 		}
 	],
 	"settings": {
