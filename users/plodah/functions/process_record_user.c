@@ -1,5 +1,6 @@
 #pragma once
 #include "functions/rgb.c"
+#include "functions/textfns.c"
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
@@ -28,67 +29,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #if defined(PLODAH_FEAT_KC)
       case PL_FEAT:
         if (record->event.pressed) {
-          send_string_with_delay ( "\\ FEATURES", TAP_CODE_DELAY );
-          #ifdef AUTO_SHIFT_ENABLE
-            send_string_with_delay (" AUTO_SHIFT", TAP_CODE_DELAY );
-          #endif // AUTO_SHIFT_ENABLE
-          #ifdef AUTOCORRECT_ENABLE
-            send_string_with_delay (" AUTOCORRECT", TAP_CODE_DELAY );
-          #endif // AUTOCORRECT_ENABLE
-          #ifdef BACKLIGHT_ENABLE
-            send_string_with_delay (" BACKLIGHT", TAP_CODE_DELAY );
-          #endif // BACKLIGHT_ENABLE
-          #ifdef BOOTMAGIC_ENABLE
-            send_string_with_delay (" BOOTMAGIC", TAP_CODE_DELAY );
-          #endif // BOOTMAGIC_ENABLE
-          #ifdef CAPS_WORD_ENABLE
-            send_string_with_delay (" CAPS_WORD", TAP_CODE_DELAY );
-          #endif // CAPS_WORD_ENABLE
-          #ifdef COMBO_ENABLE
-            send_string_with_delay (" COMBO", TAP_CODE_DELAY );
-          #endif // COMBO_ENABLE
-          #ifdef CONSOLE_ENABLE
-            send_string_with_delay (" CONSOLE", TAP_CODE_DELAY );
-          #endif // CONSOLE_ENABLE
-          #ifdef DEFERRED_EXEC_ENABLE
-            send_string_with_delay (" DEFERRED_EXEC", TAP_CODE_DELAY );
-          #endif // DEFERRED_EXEC_ENABLE
-          #ifdef DYNAMIC_MACRO_ENABLE
-            send_string_with_delay (" DYNAMIC_MACRO", TAP_CODE_DELAY );
-          #endif // DYNAMIC_MACRO_ENABLE
-          #ifdef DYNAMIC_TAPPING_TERM_ENABLE
-            send_string_with_delay (" DYNAMIC_TAPPING_TERM", TAP_CODE_DELAY );
-          #endif // DYNAMIC_TAPPING_TERM_ENABLE
-          #ifdef ENCODER_MAP_ENABLE
-            send_string_with_delay (" ENCODER_MAP", TAP_CODE_DELAY );
-          #endif // ENCODER_MAP_ENABLE
-          #ifdef EXTRAKEY_ENABLE
-            send_string_with_delay (" EXTRAKEY", TAP_CODE_DELAY );
-          #endif // EXTRAKEY_ENABLE
-          #ifdef LEADER_ENABLE
-            send_string_with_delay (" LEADER", TAP_CODE_DELAY );
-          #endif // LEADER_ENABLE
-          #ifdef MOUSEKEY_ENABLE
-            send_string_with_delay (" MOUSEKEY", TAP_CODE_DELAY );
-          #endif // MOUSEKEY_ENABLE
-          #ifdef OS_DETECTION_ENABLE
-            send_string_with_delay (" OS_DETECTION", TAP_CODE_DELAY );
-          #endif // OS_DETECTION_ENABLE
-          #ifdef RGBLIGHT_ENABLE
-            send_string_with_delay (" RGBLIGHT", TAP_CODE_DELAY );
-          #endif // RGBLIGHT_ENABLE
-          #ifdef RGB_MATRIX_ENABLE
-            send_string_with_delay (" RGB_MATRIX", TAP_CODE_DELAY );
-          #endif // RGB_MATRIX_ENABLE
-          #ifdef SPACE_CADET_ENABLE
-            send_string_with_delay (" SPACE_CADET", TAP_CODE_DELAY );
-          #endif // SPACE_CADET_ENABLE
-          #ifdef TAP_DANCE_ENABLE
-            send_string_with_delay (" TAP_DANCE", TAP_CODE_DELAY );
-          #endif // TAP_DANCE_ENABLE
-          #ifdef VIA_ENABLE
-            send_string_with_delay (" VIA", TAP_CODE_DELAY );
-          #endif // VIA_ENABLE
+            featureQuerySs();
         }
         return false;
     #endif // defined(PLODAH_FEAT_KC)
