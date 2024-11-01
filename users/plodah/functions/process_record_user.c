@@ -47,9 +47,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           #ifdef COMBO_ENABLE
             send_string_with_delay (" COMBO", TAP_CODE_DELAY );
           #endif // COMBO_ENABLE
+          #ifdef CONSOLE_ENABLE
+            send_string_with_delay (" CONSOLE", TAP_CODE_DELAY );
+          #endif // CONSOLE_ENABLE
+          #ifdef DEFERRED_EXEC_ENABLE
+            send_string_with_delay (" DEFERRED_EXEC", TAP_CODE_DELAY );
+          #endif // DEFERRED_EXEC_ENABLE
           #ifdef DYNAMIC_MACRO_ENABLE
             send_string_with_delay (" DYNAMIC_MACRO", TAP_CODE_DELAY );
           #endif // DYNAMIC_MACRO_ENABLE
+          #ifdef DYNAMIC_TAPPING_TERM_ENABLE
+            send_string_with_delay (" DYNAMIC_TAPPING_TERM", TAP_CODE_DELAY );
+          #endif // DYNAMIC_TAPPING_TERM_ENABLE
           #ifdef ENCODER_MAP_ENABLE
             send_string_with_delay (" ENCODER_MAP", TAP_CODE_DELAY );
           #endif // ENCODER_MAP_ENABLE
