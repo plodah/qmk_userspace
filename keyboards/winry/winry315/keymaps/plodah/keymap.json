@@ -97,12 +97,12 @@
                 "animation": "gradient_left_right",
                 "hue": 79,
                 "sat": 239,
-                "val": 127,
-                "speed": 48
+                "val": 79,
+                "speed": 159
             },
             "hue_steps": 5,
             "react_on_keyup": false,
-            "sat_steps": 8,
+            "sat_steps": 16,
             "sleep": true,
             "speed_steps": 8,
             "timeout": 270000,
@@ -296,7 +296,7 @@
                         "RGB_RMOD",  "RGB_TOG", "RGB_MOD",
             "RGB_MOD",  "RGB_VAI",  "RGB_HUI",  "RGB_SAI",  "RGB_SPI",
             "RGB_RMOD", "RGB_VAD",  "RGB_HUD",  "RGB_SAD",  "RGB_SPD",
-            "_______",  "_______",  "_______",  "_______",    "MO(9)"
+            "PL_QRGB",  "_______",  "_______",  "_______",    "MO(9)"
         ],
         [
                         "MC_14",    "KC_NO",    "MC_15",
