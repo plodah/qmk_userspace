@@ -1,5 +1,4 @@
 #pragma once
-#include "plodah.h"
 
 #define PLODAH_FEAT_KC
 #define PLODAH_QRGB_KC
@@ -29,4 +28,8 @@
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
   #include "configs/rgblight-effects-none.h"
+  #define PLODAH_REPEATHOLD_RGB
+  // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGBLIGHT_ENABLE
+
+#include "plodah.h"

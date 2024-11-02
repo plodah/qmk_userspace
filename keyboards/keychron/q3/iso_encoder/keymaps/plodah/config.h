@@ -1,5 +1,4 @@
 #pragma once
-#include "plodah.h"
 
 #define PLODAH_FEAT_KC
 #define PLODAH_QRGB_KC
@@ -36,4 +35,8 @@
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
   #include "configs/rgbmatrix-effects-none.h"
+  #define PLODAH_REPEATHOLD_RGB
+  // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGB_MATRIX_ENABLE
+
+#include "plodah.h"
