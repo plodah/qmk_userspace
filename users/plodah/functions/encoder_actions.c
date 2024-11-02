@@ -4,14 +4,14 @@ uint8_t enc_layer;
 
 void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, bool sft_pressed) {
   mod_state = get_mods() & (~MOD_MASK_GUI);
-  if( get_highest_layer(layer_state) > 0 ){
-    enc_layer = 2 - ((get_highest_layer(layer_state) + PLODAH_LAYEROFFSET) % 2);
+  if( get_highest_layer(layer_state | default_layer_state) > 0 ){
+    enc_layer = 2 - ((get_highest_layer(layer_state | default_layer_state) + PLODAH_LAYEROFFSET) % 2);
   }
   else {
     enc_layer = 0;
   }
   #if defined(PLODAH_BORING_LAYER)
-    if( (get_highest_layer(layer_state) == PLODAH_BORING_LAYER) ){ enc_layer = 0; }
+    if( (get_highest_layer(layer_state | default_layer_state) == PLODAH_BORING_LAYER) ){ enc_layer = 0; }
   #endif // PLODAH_BORING_LAYER
 
   if( keycode != (PL_ENC_PRS & 0xff) && !(mod_state == MOD_MASK_ALT || mod_state == MOD_BIT(KC_LALT) || mod_state == MOD_BIT(KC_RALT))){

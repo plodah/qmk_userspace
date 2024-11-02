@@ -55,7 +55,7 @@ bool plodah_indicator_handler(void) {
         RGB laybrgb = hsv_to_rgb(laybhsv);
       #endif // PLODAH_LAYER_INDIC_BG_HSV
 
-    int highlayer = get_highest_layer(layer_state);
+    int highlayer = get_highest_layer(layer_state | default_layer_state);
     for (int lindex = 0; lindex < DYNAMIC_KEYMAP_LAYER_COUNT; lindex++) {
       #if defined(PLODAH_LAYER_INDIC_INDEXES)
         int thisindex = layer_ind[lindex];
