@@ -96,53 +96,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 
     #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
-      case RGB_VAD:
-        rgb_vad_pressed = record->event.pressed;
-        if (record->event.pressed) {
-          repeathold_rgb_timer = timer_read();
-        }
-        return true;
-      case RGB_VAI:
-        rgb_vai_pressed = record->event.pressed;
-        if (record->event.pressed) {
-          repeathold_rgb_timer = timer_read();
-        }
-        return true;
       case RGB_HUD:
-        rgb_hud_pressed = record->event.pressed;
-        if (record->event.pressed) {
-          repeathold_rgb_timer = timer_read();
-        }
-        return true;
       case RGB_HUI:
-        rgb_hui_pressed = record->event.pressed;
-        if (record->event.pressed) {
-          repeathold_rgb_timer = timer_read();
-        }
-        return true;
       case RGB_SAD:
-        rgb_sad_pressed = record->event.pressed;
-        if (record->event.pressed) {
-          repeathold_rgb_timer = timer_read();
-        }
-        return true;
       case RGB_SAI:
-        rgb_sai_pressed = record->event.pressed;
-        if (record->event.pressed) {
-          repeathold_rgb_timer = timer_read();
-        }
-        return true;
+      case RGB_VAD:
+      case RGB_VAI:
       case RGB_SPD:
-        rgb_spd_pressed = record->event.pressed;
-        if (record->event.pressed) {
-          repeathold_rgb_timer = timer_read();
-        }
-        return true;
       case RGB_SPI:
-        rgb_spi_pressed = record->event.pressed;
-        if (record->event.pressed) {
-          repeathold_rgb_timer = timer_read();
-        }
+        repeathold_rgb_start(keycode & 0xff, record->event.pressed);
         return true;
     #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
   }
