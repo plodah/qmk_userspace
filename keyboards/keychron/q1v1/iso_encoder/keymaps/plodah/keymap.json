@@ -111,7 +111,7 @@
             },
             "hue_steps": 5,
             "react_on_keyup": false,
-            "sat_steps": 8,
+            "sat_steps": 16,
             "sleep": true,
             "speed_steps": 8,
             "timeout": 270000,
