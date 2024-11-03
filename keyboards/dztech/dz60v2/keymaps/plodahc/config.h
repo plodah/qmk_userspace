@@ -6,7 +6,7 @@
 #ifdef PRODUCT
   #undef PRODUCT
 #endif // PRODUCT
-#define PRODUCT "Keychron Q1v1 ISO Enc | plodahc"
+#define PRODUCT "dztech/dz60v2 | plodahc"
 
 #define PLODAH_BORING_LAYER 1
 
