@@ -1,6 +1,8 @@
 {
     "userspace_version": "1.1",
     "build_targets": [
+        ["dztech/dz60v2", "plodah"],
+        ["dztech/dz60v2", "plodahc"],
         ["keebio/iris/rev2", "plodah"],
         ["keychron/q1v1/iso_encoder", "plodah"],
         ["keychron/q1v1/iso_encoder", "plodahc"],
