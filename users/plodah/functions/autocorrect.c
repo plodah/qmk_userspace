@@ -65,10 +65,24 @@
 
 bool process_autocorrect_user(uint16_t *keycode, keyrecord_t *record, uint8_t *typo_buffer_size, uint8_t *mods) {
   #if defined(PLODAH_BORING_LAYER)
-    if( get_highest_layer(layer_state | default_layer_state) == PLODAH_BORING_LAYER){
+    if( get_highest_layer(layer_state) == PLODAH_BORING_LAYER){
       return false;
     }
   #endif // defined(PLODAH_BORING_LAYER)
+  if ((*mods & ~MOD_MASK_SHIFT) != 0) {
+    *typo_buffer_size = 0;
+    return false;
+  }
+  switch (*keycode) {
+    case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+    case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+      if (!record->tap.count) {
+        return false;
+      }
+      *keycode &= 0xFF;
+      break;
+
+  }
   return true;
 }
 
