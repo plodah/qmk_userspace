@@ -120,7 +120,7 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
-        { "key": "PL_MSJIG" },
+        { "key": "PL_MSJG" },
         { "key": "PL_QFTR" },
         { "key": "PL_QRGB" },
         { "key": "PL_QVER" }
@@ -302,7 +302,7 @@
                         "MC_14",    "KC_NO",    "MC_15",
             "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",
             "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_QFTR",
-            "PL_QRGB",  "PL_QVER",  "QK_MAKE",  "PL_MSJIG", "MO(9)"
+            "PL_QRGB",  "PL_QVER",  "QK_MAKE",  "PL_MSJG", "MO(9)"
         ],
 
         [
@@ -327,7 +327,7 @@
                         "_______",  "_______",  "_______",
             "DF(0)",    "DF(1)",    "DF(2)",    "DF(3)",    "DF(4)",
             "DF(5)",    "DF(6)",    "DF(7)",    "DF(8)",    "DF(9)",
-            "PL_MSJIG", "KC_NUM",   "_______",  "PL_QFTR",  "MO(9)"
+            "PL_MSJG", "KC_NUM",   "_______",  "PL_QFTR",  "MO(9)"
         ]
     ]
 }

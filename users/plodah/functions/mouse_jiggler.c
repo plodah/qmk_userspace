@@ -40,7 +40,7 @@ uint32_t jiggler_callback_subtle(uint32_t trigger_time, void* cb_arg) {
 void jiggler_onclick( uint16_t keycode ) {
   if (
     #ifndef PLODAH_MSJIGGLER_AUTOSTOP
-      keycode == PL_MSJIG &&
+      keycode == PL_MSJG &&
     #endif // PLODAH_MSJIGGLER_AUTOSTOP
     token
   ) {
@@ -49,7 +49,7 @@ void jiggler_onclick( uint16_t keycode ) {
     report = (report_mouse_t){};  // Clear the mouse.
     host_mouse_send(&report);
   }
-  else if (keycode == PL_MSJIG) {
+  else if (keycode == PL_MSJG) {
     #ifdef PLODAH_MSJIGGLER_PATTERN
       #if PLODAH_MSJIGGLER_PATTERN == 1
         token = defer_exec(1, jiggler_callback_figure, NULL);

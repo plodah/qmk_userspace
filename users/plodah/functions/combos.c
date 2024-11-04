@@ -57,11 +57,11 @@
 
   combo_t key_combos[] = {
     COMBO(pl_combo_ms12, DRAG_SCROLL),
-    COMBO(pl_combo_ms14, PL_MSJIG),
+    COMBO(pl_combo_ms14, PL_MSJG),
     COMBO(pl_combo_ms15, C(KC_C)),
     COMBO(pl_combo_ms24, DRAG_SCROLL),
     COMBO(pl_combo_ms25, C(KC_V)),
-    COMBO(pl_combo_ms45, PL_MSJIG),
+    COMBO(pl_combo_ms45, PL_MSJG),
   };
 #endif // ! defined(IS_MOUSE)
 
