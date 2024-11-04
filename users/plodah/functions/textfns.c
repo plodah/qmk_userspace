@@ -176,3 +176,28 @@
         send_string_with_delay (" \n", TAP_CODE_DELAY );
     }
 #endif // KC_PL_QFTR
+
+#if defined(KC_PL_QLYR)
+    char* layerQuery(void) {
+        char * str;
+        str = malloc(sizeof(char)*20);
+        strcpy (str, "\\ LYR:");
+        strcat (str, get_u8_str(get_highest_layer(layer_state), '0'));
+        strcat (str, " DEF");
+        strcat (str, get_u8_str(get_highest_layer(default_layer_state), '0'));
+        strcat (str, " L|D");
+        strcat (str, get_u8_str(get_highest_layer(layer_state | default_layer_state), '0'));
+        strcat (str, " \n");
+        return str;
+    }
+
+    void layerQuerySs(void) {
+        send_string_with_delay ( "\\ LYR:", TAP_CODE_DELAY );
+        send_string_with_delay ( get_u8_str(get_highest_layer(layer_state), '0'), TAP_CODE_DELAY );
+        send_string_with_delay ( " DEF:", TAP_CODE_DELAY );
+        send_string_with_delay ( get_u8_str(get_highest_layer(default_layer_state), '0'), TAP_CODE_DELAY );
+        send_string_with_delay ( " L|D:", TAP_CODE_DELAY );
+        send_string_with_delay ( get_u8_str(get_highest_layer(layer_state | default_layer_state), '0'), TAP_CODE_DELAY );
+        send_string_with_delay ( "\n", TAP_CODE_DELAY );
+    }
+#endif // defined(KC_PL_QLYR)

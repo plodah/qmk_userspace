@@ -28,6 +28,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     #endif // defined(KC_PL_QFTR)
 
+    #if defined(KC_PL_QLYR)
+      case PL_QLYR:
+        if (record->event.pressed) {
+            // send_string_with_delay(layerQuery(), TAP_CODE_DELAY);
+            layerQuerySs();
+        }
+        return false;
+    #endif // defined(KC_PL_QLYR)
+
     #if defined(KC_PL_QRGB)
       case PL_QRGB:
         if (record->event.pressed) {
