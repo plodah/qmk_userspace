@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(PLODAH_FEAT_KC)
+#if defined(KC_PL_QFTR)
     char* featureQuery(void) {
         //may take 80 bytes more than sending string directly
         char * str;
@@ -175,4 +175,4 @@
         #endif // VIA_ENABLE
         send_string_with_delay (" \n", TAP_CODE_DELAY );
     }
-#endif // PLODAH_FEAT_KC
+#endif // KC_PL_QFTR

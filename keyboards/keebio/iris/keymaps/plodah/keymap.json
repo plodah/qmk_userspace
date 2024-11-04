@@ -73,9 +73,9 @@
         }
     },
     "keycodes": [
-        { "key": "PL_FEAT" },
+        { "key": "PL_QFTR" },
         { "key": "PL_QRGB" },
-        { "key": "PL_VERS" }
+        { "key": "PL_QVER" }
     ],
     "layers": [
         [

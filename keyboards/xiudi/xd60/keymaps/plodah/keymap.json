@@ -60,9 +60,9 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
-        { "key": "PL_FEAT" },
+        { "key": "PL_QFTR" },
         { "key": "PL_QRGB" },
-        { "key": "PL_VERS" }
+        { "key": "PL_QVER" }
     ],
     "layers": [
         [
@@ -87,7 +87,7 @@
             "_______",  "GU_TOGG",  "_______",                                      "KC_SPC ",                                      "_______",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT"
         ],
         [
-            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_FEAT",  "PL_QRGB",  "PL_VERS",  "QK_MAKE",  "KC_MUTE",   "XXXXXXX",
+            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_QFTR",  "PL_QRGB",  "PL_QVER",  "QK_MAKE",  "KC_MUTE",   "XXXXXXX",
             "_______",  "_______",  "KC_VOLU",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",
             "KC_CAPS",  "KC_HOME",  "KC_VOLD",  "KC_END",   "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
             "_______",  "_______",  "_______",  "_______",  "_______",  "C(S(KC_V))", "_______", "NK_TOGG", "_______",  "_______",  "_______",  "KC_HOME",  "CW_TOGG",  "KC_END",

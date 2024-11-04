@@ -129,10 +129,10 @@
         { "key": "PL_ENC_CCW" },
         { "key": "PL_ENC_CW" },
         { "key": "PL_ENC_PRS" },
-        { "key": "PL_FEAT" },
         { "key": "PL_MSJIG" },
+        { "key": "PL_QFTR" },
         { "key": "PL_QRGB"},
-        { "key": "PL_VERS" }
+        { "key": "PL_QVER" }
     ],
     "encoders": [
         [
@@ -183,7 +183,7 @@
             "_______",  "GU_TOGG",              "_______",  "KC_SPC",   "_______",                          "_______",  "KC_SPC",   "_______",                          "KC_HOME",  "KC_PGDN",  "KC_END"
         ],
         [
-            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",                 "MC_7",     "MC_8",     "PL_FEAT",  "PL_QRGB",  "PL_VERS",  "QK_MAKE",  "_______",  "PL_ENC_PRS",
+            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",                 "MC_7",     "MC_8",     "PL_QFTR",  "PL_QRGB",  "PL_QVER",  "QK_MAKE",  "_______",  "PL_ENC_PRS",
             "RGB_TOG",  "RGB_MOD",  "RGB_VAI",  "RGB_HUI",  "RGB_SAI",  "RGB_SPI",  "_______",              "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "PL_MSJIG",
             "_______",  "RGB_RMOD", "RGB_VAD",  "RGB_HUD",  "RGB_SAD",  "RGB_SPD",  "_______",              "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
             "_______",  "_______",  "_______",  "_______",  "_______", "C(S(KC_V))","_______",  "_______",  "NK_TOGG",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_VOLU",

@@ -20,21 +20,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_MSJIGGLER_ENABLED)
 
   switch (keycode) {
-    case PL_VERS:
-      if (record->event.pressed) {
-        send_string_with_delay ( "\\ " QMK_KEYBOARD "/" QMK_KEYMAP " \" " QMK_VERSION ", Built on: " QMK_BUILDDATE "\n", TAP_CODE_DELAY);
-      }
-      return false;
-
-    #if defined(PLODAH_FEAT_KC)
-      case PL_FEAT:
+    #if defined(KC_PL_QFTR)
+      case PL_QFTR:
         if (record->event.pressed) {
             featureQuerySs();
         }
         return false;
-    #endif // defined(PLODAH_FEAT_KC)
+    #endif // defined(KC_PL_QFTR)
 
-    #if defined(PLODAH_QRGB_KC)
+    #if defined(KC_PL_QRGB)
       case PL_QRGB:
         if (record->event.pressed) {
             // send_string_with_delay(rgbQuery(), TAP_CODE_DELAY);
@@ -42,7 +36,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             rgbQuerySs();
         }
         return false;
-    #endif // defined(PLODAH_QRGB_KC)
+    #endif // defined(KC_PL_QRGB)
+
+    #if defined(KC_PL_QVER)
+      case PL_QVER:
+        if (record->event.pressed) {
+          send_string_with_delay ( "\\ " QMK_KEYBOARD "/" QMK_KEYMAP " \" " QMK_VERSION ", Built on: " QMK_BUILDDATE "\n", TAP_CODE_DELAY);
+        }
+        return false;
+    #endif // defined(KC_PL_QVER)
 
     #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
       case PL_ALTTAB:
