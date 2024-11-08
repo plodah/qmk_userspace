@@ -121,7 +121,7 @@ bool plodah_indicator_handler(void) {
     if(!rgb_matrix_get_flags()){
       rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
     }
-    if(token != INVALID_DEFERRED_TOKEN){
+    if(msJigToken != INVALID_DEFERRED_TOKEN){
       rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
     }
   #endif // PLODAH_MSJIGGLER_ENABLED && PLODAH_MSJIGGLER_INDICATOR_RGBINDEX

@@ -1,6 +1,6 @@
 #pragma once
 // cannibalised https://getreuer.info/posts/keyboards/macros3/index.html#a-mouse-jiggler to make this.
-static deferred_token token = INVALID_DEFERRED_TOKEN;
+static deferred_token msJigToken = INVALID_DEFERRED_TOKEN;
 static report_mouse_t report = {0};
 
 #if defined(RGB_MATRIX_ENABLE) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX) && !defined(PLODAH_MSJIGGLER_INDICATOR_HSV)
@@ -42,22 +42,22 @@ void jiggler_onclick( uint16_t keycode ) {
     #ifndef PLODAH_MSJIGGLER_AUTOSTOP
       keycode == PL_MSJG &&
     #endif // PLODAH_MSJIGGLER_AUTOSTOP
-    token
+    msJigToken
   ) {
-    cancel_deferred_exec(token);
-    token = INVALID_DEFERRED_TOKEN;
+    cancel_deferred_exec(msJigToken);
+    msJigToken = INVALID_DEFERRED_TOKEN;
     report = (report_mouse_t){};  // Clear the mouse.
     host_mouse_send(&report);
   }
   else if (keycode == PL_MSJG) {
     #ifdef PLODAH_MSJIGGLER_PATTERN
       #if PLODAH_MSJIGGLER_PATTERN == 1
-        token = defer_exec(1, jiggler_callback_figure, NULL);
+        msJigToken = defer_exec(1, jiggler_callback_figure, NULL);
       #else // PLODAH_MSJIGGLER_PATTERN == 1
-        token = defer_exec(1, jiggler_callback_circle, NULL);
+        msJigToken = defer_exec(1, jiggler_callback_circle, NULL);
       #endif // PLODAH_MSJIGGLER_PATTERN == 1
     #else // PLODAH_MSJIGGLER_PATTERN
-      token = defer_exec(1, jiggler_callback_subtle, NULL);
+      msJigToken = defer_exec(1, jiggler_callback_subtle, NULL);
     #endif // PLODAH_MSJIGGLER_PATTERN
   }
 }
