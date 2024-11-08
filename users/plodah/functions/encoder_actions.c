@@ -148,10 +148,10 @@ void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, 
       //A
       switch (keycode) {
         case PL_ENC_CCW & 0xff:
-          plodah_alt_tab(true);
+          plodah_alttab_start(true);
           break;
         case PL_ENC_CW & 0xff:
-          plodah_alt_tab(false);
+          plodah_alttab_start(false);
           break;
         case PL_ENC_PRS & 0xff:
         default:

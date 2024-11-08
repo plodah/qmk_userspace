@@ -5,7 +5,7 @@ uint16_t alt_tab_timer = 0;
   #define PLODAH_ALT_TAB_DELAY 1000
 #endif //PLODAH_ALT_TAB_DELAY
 
-void plodah_alt_tab(bool back) {
+void plodah_alttab_start(bool back) {
   if (!is_alt_tab_active) {
     #if ! defined(IS_MOUSE)
       if (!alt_pressed){

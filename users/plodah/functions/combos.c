@@ -31,7 +31,7 @@
     COMBO(pl_combo_xc, C(KC_C)),
     COMBO(pl_combo_cv, C(KC_V)),
     COMBO(pl_combo_xcv, C(S(KC_V))),
-    #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
+    #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE) || defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
     COMBO(pl_combo_tabq, PL_ALTSTAB),
     COMBO(pl_combo_tabw, PL_ALTTAB),
     #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE

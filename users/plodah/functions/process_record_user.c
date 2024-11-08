@@ -55,15 +55,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     #endif // defined(KC_PL_QVER)
 
-    #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
+    #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE) || defined(PLODAH_ALTTAB_ENHANCEMENTS_D_ENABLE)
       case PL_ALTTAB:
         if (record->event.pressed) {
-          plodah_alt_tab(false);
+          plodah_alttab_start(false);
         }
         return false;
       case PL_ALTSTAB:
         if (record->event.pressed) {
-          plodah_alt_tab(true);
+          plodah_alttab_start(true);
         }
         return false;
     #endif  // defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
