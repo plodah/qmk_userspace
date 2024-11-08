@@ -26,3 +26,7 @@ void rage_quit_rst(tap_dance_state_t *state, void *user_data){
     unregister_code(KC_ESC);
   }
 };
+
+tap_dance_action_t tap_dance_actions[] = {
+  [TD_ESC_RAGEQUIT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rage_quit_fin, rage_quit_rst),
+};

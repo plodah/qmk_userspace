@@ -63,10 +63,7 @@
 //      TAPDANCE      //
 //====================//
 #if defined(PLODAH_BORING_LAYER) && defined(TAP_DANCE_ENABLE)
-  #include "functions/ragequit.c"
-  tap_dance_action_t tap_dance_actions[] = {
-    [TD_ESC_RAGEQUIT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rage_quit_fin, rage_quit_rst)
-  };
+  #include "functions/tapdance.c"
 #endif
 
 //============================//
