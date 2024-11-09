@@ -1,35 +1,48 @@
 {
-	"folders": [
-		{
-			"path": ".."
-		},
-		{
-			"path": "../../qmk_firmware"
-		},
-		{
-			"path": "../../via_userspace"
-		},
-		{
-			"path": "../../via_keyboards"
-		},
-		{
-			"path": "../../qmk_firmware_upstream"
-		}
-	],
-	"settings": {
-		"files.associations": {
-			"*.h": "c",
-			"*.c": "c",
-			"*.inc": "c",
-			"*.cpp": "cpp",
-			"*.hpp": "cpp",
-			"xstddef": "c",
-			"type_traits": "c",
-			"utility": "c",
-			"ranges": "c"
-		},
-		"clangd.arguments": [
-			"--header-insertion=never"
-		]
-	}
+    "folders": [
+        {
+            "name": "Plodah Userspace",
+            "path": ".."
+        },
+        {
+            "name": "Plodah Firmware",
+            "path": "../../qmk_firmware"
+        },
+        {
+            "name": "QMK Firmware",
+            "path": "../../qmk_qmk_firmware"
+        },
+        {
+            "name": "Vial Firmware",
+            "path": "../../vial_qmk_firmware"
+        },
+        {
+            "name": "Keychron Firmware",
+            "path": "../../keychron_qmk_firmware"
+        },
+        {
+            "name": "Via Userspace",
+            "path": "../../via_userspace"
+        },
+        {
+            "name": "Via Keyboards",
+            "path": "../../via_keyboards"
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "*.h": "c",
+            "*.c": "c",
+            "*.inc": "c",
+            "*.cpp": "cpp",
+            "*.hpp": "cpp",
+            "xstddef": "c",
+            "type_traits": "c",
+            "utility": "c",
+            "ranges": "c"
+        },
+        "clangd.arguments": [
+            "--header-insertion=never"
+        ]
+    }
 }

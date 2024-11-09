@@ -15,21 +15,35 @@ userspacePath="$1"
 git config --global --add safe.directory "$userspacePath"
 git submodule update --init --recursive
 
-[ -d /workspaces/qmk_firmware ] || git clone https://github.com/plodah/qmk_firmware.git -b mybuilds-2024-09 /workspaces/qmk_firmware
-git config --global --add safe.directory /workspaces/qmk_firmware
+### Clone Firmware Repos
+[ -d /workspaces/qmk_qmk_firmware ] || git clone https://github.com/qmk/qmk_firmware.git -b master /workspaces/qmk_qmk_firmware
+git config --global --add safe.directory /workspaces/qmk_qmk_firmware
+cd /workspaces/qmk_qmk_firmware
+git submodule update --init --recursive
 
-qmk config user.qmk_home=/workspaces/qmk_firmware
-qmk config user.overlay_dir="$userspacePath"
+[ -d /workspaces/plodah_qmk_firmware ] || git clone https://github.com/plodah/qmk_firmware.git -b mybuilds-2024-09 /workspaces/plodah_qmk_firmware
+git config --global --add safe.directory /workspaces/plodah_qmk_firmware
+cd /workspaces/plodah_qmk_firmware
+git submodule update --init --recursive
 
-qmk git-submodule
+[ -d /workspaces/vial_qmk_firmware ] || git clone https://github.com/vial-kb/vial-qmk.git -b vial /workspaces/vial_qmk_firmware
+git config --global --add safe.directory /workspaces/vial_qmk_firmware
+cd /workspaces/vial_qmk_firmware
+git submodule update --init --recursive
 
+[ -d /workspaces/keychron_qmk_firmware ] || git clone https://github.com/vial-kb/vial-qmk.git -b wireless_playground /workspaces/keychron_qmk_firmware
+git config --global --add safe.directory /workspaces/keychron_qmk_firmware
+cd /workspaces/keychron_qmk_firmware
+git submodule update --init --recursive
+
+### Via Stuff
 [ -d /workspaces/via_userspace ] || git clone https://github.com/the-via/qmk_userspace_via.git -b main /workspaces/via_userspace
 git config --global --add safe.directory /workspaces/via_userspace
 
 [ -d /workspaces/via_keyboards ] || git clone https://github.com/the-via/keyboards.git -b master /workspaces/via_keyboards
 git config --global --add safe.directory /workspaces/via_keyboards
 
-[ -d /workspaces/qmk_firmware_upstream ] || git clone https://github.com/plodah/qmk_firmware.git -b master /workspaces/qmk_firmware_upstream
-git config --global --add safe.directory /workspaces/qmk_firmware_upstream
-cd /workspaces/qmk_firmware_upstream
-git submodule update --init --recursive
+### qmk configs
+qmk config user.qmk_home=/workspaces/plodah_qmk_firmware
+qmk config user.overlay_dir="$userspacePath"
+qmk git-submodule
