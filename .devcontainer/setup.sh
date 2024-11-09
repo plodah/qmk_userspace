@@ -44,6 +44,7 @@ git config --global --add safe.directory /workspaces/via_userspace
 git config --global --add safe.directory /workspaces/via_keyboards
 
 ### qmk configs
+cd $userspacePath
 qmk config user.qmk_home=/workspaces/plodah_qmk_firmware
 qmk config user.overlay_dir="$userspacePath"
-qmk git-submodule
+qmk git-submodule -f
