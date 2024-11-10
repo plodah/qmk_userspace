@@ -6,7 +6,7 @@
         },
         {
             "name": "Plodah Firmware",
-            "path": "../../qmk_firmware"
+            "path": "../../plodah_qmk_firmware"
         },
         {
             "name": "QMK Firmware",
