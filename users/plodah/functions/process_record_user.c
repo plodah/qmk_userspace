@@ -1,6 +1,4 @@
 #pragma once
-#include "functions/rgb.c"
-#include "functions/textfns.c"
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
@@ -55,7 +53,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     #endif // defined(KC_PL_QVER)
 
-    #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE) || defined(PLODAH_ALTTAB_ENHANCEMENTS_D_ENABLE)
+    #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
       case PL_ALTTAB:
         if (record->event.pressed) {
           plodah_alttab_start(false);
