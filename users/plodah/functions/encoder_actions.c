@@ -5,6 +5,8 @@
   uint8_t enc_layer;
 
   void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, bool sft_pressed) {
+    // Exclude GUI from MOD state. unregister_mods() & register_mods() calls later
+    // including them will opens/closes Windows start menu
     mod_state = get_mods() & (~MOD_MASK_GUI);
     if( get_highest_layer(layer_state | default_layer_state) > 0 ){
       enc_layer = 2 - ((get_highest_layer(layer_state | default_layer_state) + PLODAH_LAYEROFFSET) % 2);
