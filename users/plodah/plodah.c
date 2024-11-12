@@ -41,7 +41,6 @@
   #define PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 #endif
 
-#include "functions/alttab_enhancements_d.c"
 #include "functions/alttab_enhancements.c"
 #include "functions/encoder_actions.c"
 
