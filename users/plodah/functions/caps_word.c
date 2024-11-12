@@ -1,5 +1,6 @@
 #if defined(CAPS_WORD_ENABLE)
   #pragma once
+  bool sft_held = false;
   void caps_word_set_user(bool active) {
     #if defined(PLODAH_BORING_LAYER)
       if( get_highest_layer(layer_state | default_layer_state) == PLODAH_BORING_LAYER){

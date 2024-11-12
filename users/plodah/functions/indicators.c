@@ -190,7 +190,11 @@
           rgb_matrix_set_color(PLODAH_MODS_INDIC_RSHIFT_INDEX, RGB_OFF);
         #endif  // PLODAH_MODS_INDIC_RSHIFT_INDEX
       }
-      if (sft_pressed) {
+      #ifdef CAPS_WORD_ENABLE
+       if (sft_held || sft_pressed) {
+      #else // CAPS_WORD_ENABLE
+       if (sft_pressed) {
+      #endif // CAPS_WORD_ENABLE
         #ifdef PLODAH_MODS_INDIC_LSHIFT_INDEX
           rgb_matrix_set_color(PLODAH_MODS_INDIC_LSHIFT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
         #endif  // PLODAH_MODS_INDIC_LSHIFT_INDEX

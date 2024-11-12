@@ -14,12 +14,9 @@
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
   bool alt_pressed = false;
 #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // ALT
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX)
+#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) || defined(CAPS_WORD_ENABLE)
   bool sft_pressed = false;
 #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // SFT
-#if defined CAPS_WORD_ENABLE
-  bool sft_held = false;
-#endif // CAPS_WORD_ENABLE
 
 #if defined(DYNAMIC_MACRO_ENABLE)
   uint16_t dynamic_macro_loop_timer;
@@ -30,7 +27,9 @@
 
 #include "functions/rgb.c" // required by autocorrect, process_record
 #include "functions/autocorrect.c"
+#include "functions/caps_word.c"
 #include "functions/dipswitch.c"
+#include "functions/dynamic_macros.c"
 #include "functions/mouse_jiggler.c"
 #include "functions/repeathold_rgb.c"
 #include "functions/tapdance.c"
@@ -48,6 +47,4 @@
 #include "functions/combos.c"
 
 #include "functions/matrix_scan.c"
-#include "functions/caps_word.c"
-#include "functions/dynamic_macros.c"
-#include "functions/indicators.c"
+#include "functions/indicators.c" // last pls
