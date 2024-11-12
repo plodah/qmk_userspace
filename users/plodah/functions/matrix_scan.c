@@ -10,9 +10,7 @@ void matrix_scan_user(void) {
     plodah_typingindicator_check();
   #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
   #if defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
-    if (timer_elapsed(dynamic_macro_loop_timer) > PLODAH_DYNAMIC_MACRO_TIMEOUT){
-        dynamic_macro_stop_recording();
-    }
+    plodah_dynamic_macro_check();
   #endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
   #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
     repeathold_rgb_check();

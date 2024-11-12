@@ -15,4 +15,9 @@
     #endif
     return true;
   }
+  void plodah_dynamic_macro_check(void){
+    if (timer_elapsed(dynamic_macro_loop_timer) > PLODAH_DYNAMIC_MACRO_TIMEOUT){
+      dynamic_macro_stop_recording();
+    }
+  }
 #endif // DYNAMIC_MACRO_ENABLE
