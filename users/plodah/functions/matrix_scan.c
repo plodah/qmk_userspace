@@ -3,7 +3,7 @@ void matrix_scan_user(void) {
   #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE) && (!defined(DEFERRED_EXEC_ENABLE))
     plodah_alttab_check();
   #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
-  #if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE)
+  #if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) && (!defined(AUTOCORRECT_MODE_DE))
     plodah_autocorrect_indicator_check();
   #endif // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
   #if defined (PLODAH_TYPINGINDICATOR_RGBINDEX)
