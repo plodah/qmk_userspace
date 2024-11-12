@@ -5,7 +5,6 @@
     bool autocorrect_indicator_on = false;
     uint8_t autocorrect_indicator_count = 255;
     uint16_t autocorrect_indicator_timer = 0;
-    HSV curhsv;
     HSV indhsv;
 
     #ifndef PLODAH_AUTOCORRECT_INDICATOR_DURATION
@@ -28,7 +27,7 @@
       autocorrect_indicator_on = true;
       rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
       HSV indhsv = { PLODAH_AUTOCORRECT_INDICATOR_COLOUR };
-      indhsv = plodah_rgblimit(curhsv, indhsv, PLODAH_INDICATOR_MINVAL);
+      indhsv = plodah_rgblimit(rgb_matrix_get_hsv(), indhsv, PLODAH_INDICATOR_MINVAL);
       rgb_matrix_sethsv_noeeprom(indhsv.h, indhsv.s, indhsv.v);
       autocorrect_indicator_timer = timer_read();
     }
@@ -42,9 +41,6 @@
 
     void plodah_autocorrect_indicator_start(void){
       autocorrect_indicator_count = 0;
-      if (autocorrect_indicator_count == 0){
-        curhsv = rgb_matrix_get_hsv();
-      }
     }
 
     void plodah_autocorrect_indicator_check(void){
