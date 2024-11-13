@@ -128,12 +128,12 @@
         rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
       }
       #if defined(PLODAH_MSJIGGLER_INTRO)
-      if(msJigTokenB != INVALID_DEFERRED_TOKEN){
+      if(msJigIntroToken != INVALID_DEFERRED_TOKEN){
         rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, RGB_RED);
       }
       else
       #endif //PLODAH_MSJIGGLER_INTRO
-      if(msJigTokenA != INVALID_DEFERRED_TOKEN){
+      if(msJigMainToken != INVALID_DEFERRED_TOKEN){
         rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
       }
     #endif // PLODAH_MSJIGGLER_ENABLED && PLODAH_MSJIGGLER_INDICATOR_RGBINDEX

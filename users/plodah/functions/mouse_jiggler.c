@@ -1,9 +1,12 @@
 // cannibalised https://getreuer.info/posts/keyboards/macros3/index.html#a-mouse-jiggler to make this.
 #if defined(PLODAH_MSJIGGLER_ENABLED) && defined(DEFERRED_EXEC_ENABLE)
   #pragma once
-  static deferred_token msJigTokenA = INVALID_DEFERRED_TOKEN;
+  static deferred_token msJigMainToken = INVALID_DEFERRED_TOKEN;
   #if defined(PLODAH_MSJIGGLER_INTRO)
-    static deferred_token msJigTokenB = INVALID_DEFERRED_TOKEN;
+    static deferred_token msJigIntroToken = INVALID_DEFERRED_TOKEN;
+    #if defined(PLODAH_MSJIGGLER_INTRO_TIMEOUT)
+      static deferred_token msJigIntroTimerToken = INVALID_DEFERRED_TOKEN;
+    #endif // PLODAH_MSJIGGLER_INTRO_TIMEOUT
   #endif // PLODAH_MSJIGGLER_INTRO
   static report_mouse_t msJigReport = {0};
 
@@ -23,6 +26,19 @@
     return basedelay;
   }
 
+  void jiggler_intro_end(void){
+    if (msJigIntroToken != INVALID_DEFERRED_TOKEN){
+      cancel_deferred_exec(msJigIntroToken);
+      msJigIntroToken = INVALID_DEFERRED_TOKEN;
+    }
+    #if defined(PLODAH_MSJIGGLER_INTRO_TIMEOUT)
+      if (msJigIntroTimerToken != INVALID_DEFERRED_TOKEN){
+        cancel_deferred_exec(msJigIntroTimerToken);
+        msJigIntroTimerToken = INVALID_DEFERRED_TOKEN;
+      }
+    #endif // PLODAH_MSJIGGLER_INTRO_TIMEOUT
+  }
+
   // Deltas only work if the length of the array is a power of 2.
   static int8_t circledeltas[32] = {0,-1,-2,-2,-3,-3,-4,-4,-4,-4,-3,-3,-2,-2,-1,0,0,1,2,2,3,3,4,4,4,4,3,3,2,2,1,0};
   static int8_t subtledeltas[16] = {1,-1,1,1,-2,2,-2,-2,2,-2,2,2,-1,1,-1,-1};
@@ -34,7 +50,7 @@
 
   uint32_t jiggler_callback_intro(uint32_t trigger_time, void* cb_arg) {
     // Deltas to move in a circle of radius 20 pixels over 32 frames.
-    return jiggler_callback_base(trigger_time, cb_arg, circledeltas, 32, 4, 1, 0, 50 );
+    return jiggler_callback_base(trigger_time, cb_arg, circledeltas, 32, 4, 1, 0, 16 );
   }
 
   uint32_t jiggler_callback_figure(uint32_t trigger_time, void* cb_arg) {
@@ -47,41 +63,43 @@
     return jiggler_callback_base(trigger_time, cb_arg, subtledeltas, 16, 4, 1, 1, 16384 );
   }
 
+  uint32_t jiggler_callback_introtimer(uint32_t trigger_time, void* cb_arg) {
+    jiggler_intro_end();
+    return 0;
+  }
+
   void jiggler_onclick( uint16_t keycode ) {
-    #ifdef PLODAH_MSJIGGLER_INTRO
-      if (msJigTokenB != INVALID_DEFERRED_TOKEN){
-        cancel_deferred_exec(msJigTokenB);
-        msJigTokenB = INVALID_DEFERRED_TOKEN;
-      }
+    #if defined(PLODAH_MSJIGGLER_INTRO)
+      jiggler_intro_end();
     #endif // PLODAH_MSJIGGLER_INTRO
     if (
-      #ifndef PLODAH_MSJIGGLER_AUTOSTOP
+      #if !defined(PLODAH_MSJIGGLER_AUTOSTOP)
         keycode == PL_MSJG &&
       #endif // PLODAH_MSJIGGLER_AUTOSTOP
-      msJigTokenA != INVALID_DEFERRED_TOKEN
+      msJigMainToken != INVALID_DEFERRED_TOKEN
     ) {
-      cancel_deferred_exec(msJigTokenA);
-      msJigTokenA = INVALID_DEFERRED_TOKEN;
-      #if defined(PLODAH_MSJIGGLER_INTRO)
-        cancel_deferred_exec(msJigTokenB);
-        msJigTokenB = INVALID_DEFERRED_TOKEN;
-      #endif // PLODAH_MSJIGGLER_INTRO
+      cancel_deferred_exec(msJigMainToken);
+      msJigMainToken = INVALID_DEFERRED_TOKEN;
       msJigReport = (report_mouse_t){};  // Clear the mouse.
       host_mouse_send(&msJigReport);
     }
     else if (keycode == PL_MSJG) {
-      #ifdef PLODAH_MSJIGGLER_PATTERN
+      #if defined(PLODAH_MSJIGGLER_PATTERN)
         #if PLODAH_MSJIGGLER_PATTERN == 1
-          msJigTokenA = defer_exec(1, jiggler_callback_figure, NULL);
+          msJigMainToken = defer_exec(1, jiggler_callback_figure, NULL);
         #else // PLODAH_MSJIGGLER_PATTERN == 1
-          msJigTokenA = defer_exec(1, jiggler_callback_circle, NULL);
+          msJigMainToken = defer_exec(1, jiggler_callback_circle, NULL);
         #endif // PLODAH_MSJIGGLER_PATTERN == 1
       #else // PLODAH_MSJIGGLER_PATTERN
-        msJigTokenA = defer_exec(1, jiggler_callback_subtle, NULL);
-        #ifdef PLODAH_MSJIGGLER_INTRO
-          msJigTokenB = defer_exec(1, jiggler_callback_intro, NULL);
-        #endif // PLODAH_MSJIGGLER_INTRO
+        msJigMainToken = defer_exec(1, jiggler_callback_subtle, NULL);
       #endif // PLODAH_MSJIGGLER_PATTERN
+
+      #if defined(PLODAH_MSJIGGLER_INTRO)
+        msJigIntroToken = defer_exec(1, jiggler_callback_intro, NULL);
+        #if defined(PLODAH_MSJIGGLER_INTRO_TIMEOUT)
+          msJigIntroTimerToken = defer_exec(PLODAH_MSJIGGLER_INTRO_TIMEOUT, jiggler_callback_introtimer, NULL);
+        #endif // PLODAH_MSJIGGLER_INTRO_TIMEOUT
+      #endif // PLODAH_MSJIGGLER_INTRO
     }
   }
 #endif // PLODAH_MSJIGGLER_ENABLED
