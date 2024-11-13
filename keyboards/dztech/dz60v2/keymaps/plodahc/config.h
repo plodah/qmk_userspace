@@ -5,7 +5,7 @@
 #define KC_PL_QRGB
 #define KC_PL_QVER
 
-#ifdef PRODUCT
+#if defined(PRODUCT)
   #undef PRODUCT
 #endif // PRODUCT
 #define PRODUCT "dztech/dz60v2 | plodahc"
@@ -15,12 +15,13 @@
 #if defined(DEFERRED_EXEC_ENABLE)
   #define PLODAH_MSJIGGLER_ENABLED
   #define PLODAH_MSJIGGLER_INTRO
+  // #define PLODAH_MSJIGGLER_INTRO_TIMEOUT 1200
 #endif // DEFERRED_EXEC_ENABLE
 
 #define BOOTMAGIC_ROW 0
 #define BOOTMAGIC_COLUMN 0
 
-#ifdef DYNAMIC_KEYMAP_LAYER_COUNT
+#if defined(DYNAMIC_KEYMAP_LAYER_COUNT)
   #undef DYNAMIC_KEYMAP_LAYER_COUNT
 #endif
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
