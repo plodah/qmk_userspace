@@ -11,10 +11,10 @@
   #endif // DEFERRED_EXEC_ENABLE
 
   #if defined(PLODAH_ALTTAB_ENHANCEMENTS_MODE_DE)
-    #pragma message("Deferred Exec AltTab")
+    // #pragma message("Deferred Exec AltTab")
     static deferred_token altTabToken = INVALID_DEFERRED_TOKEN;
   #else // PLODAH_ALTTAB_ENHANCEMENTS_MODE_DE
-    #pragma message("Non-Deferred Exec AltTab")
+    // #pragma message("Non-Deferred Exec AltTab")
     bool is_alt_tab_active = false;
     uint16_t alt_tab_timer = 0;
   #endif // PLODAH_ALTTAB_ENHANCEMENTS_MODE_DE

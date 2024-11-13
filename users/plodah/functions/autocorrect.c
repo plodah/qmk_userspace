@@ -7,7 +7,7 @@
     #endif // DEFERRED_EXEC_ENABLE
 
     #if defined(PLODAH_AUTOCORRECT_IND_MODE_DE)
-      #pragma message("Deferred Exec Autocorrect")
+      // #pragma message("Deferred Exec Autocorrect")
       static deferred_token autoCorrectIndToken = INVALID_DEFERRED_TOKEN;
     #else // PLODAH_AUTOCORRECT_IND_MODE_DE
       bool autocorrect_indicator_on = false;

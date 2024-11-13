@@ -12,10 +12,10 @@
   #endif // DEFERRED_EXEC_ENABLE
 
   #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)
-    #pragma message("Deferred Exec Dynamic Macro Timeout")
+    // #pragma message("Deferred Exec Dynamic Macro Timeout")
     deferred_token dynamicMacroToken = INVALID_DEFERRED_TOKEN;
   #else
-    #pragma message("Non-DE Dynamic Macro Timeout")
+    // #pragma message("Non-DE Dynamic Macro Timeout")
     uint16_t dynamic_macro_timer;
   #endif // PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE
 
