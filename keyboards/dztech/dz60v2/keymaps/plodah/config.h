@@ -7,6 +7,9 @@
 
 #define PLODAH_BORING_LAYER 1
 
-#define PLODAH_MSJIGGLER_ENABLED
+#if defined(DEFERRED_EXEC_ENABLE)
+  #define PLODAH_MSJIGGLER_ENABLED
+  #define PLODAH_MSJIGGLER_INTRO
+#endif // DEFERRED_EXEC_ENABLE
 
 #include "plodah.h"
