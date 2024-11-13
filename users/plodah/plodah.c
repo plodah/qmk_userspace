@@ -18,13 +18,6 @@
   bool sft_pressed = false;
 #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // SFT
 
-#if defined(DYNAMIC_MACRO_ENABLE)
-  uint16_t dynamic_macro_loop_timer;
-  #if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
-    bool is_dynamic_macro_recording = false;
-  #endif // DYNAMIC_MACRO_ENABLE
-#endif //  RGB_MATRIX_ENABLE && PLODAH_DMAC_INDIC_INDEX
-
 #include "functions/rgb.c" // required by autocorrect, process_record
 #include "functions/autocorrect.c"
 #include "functions/caps_word.c"
