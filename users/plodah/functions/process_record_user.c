@@ -8,7 +8,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         plodah_typingindicator_start(keycode);
       #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
       #if defined(PLODAH_MSJIGGLER_ENABLED)
-        jiggler_onclick(keycode);
+        if (record->event.pressed) {
+          jiggler_onclick(keycode);
+        }
       #endif // PLODAH_MSJIGGLER_ENABLED
     }
   #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_MSJIGGLER_ENABLED)
