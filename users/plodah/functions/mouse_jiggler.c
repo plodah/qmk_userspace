@@ -26,18 +26,20 @@
     return basedelay;
   }
 
-  void jiggler_intro_end(void){
-    if (msJigIntroToken != INVALID_DEFERRED_TOKEN){
-      cancel_deferred_exec(msJigIntroToken);
-      msJigIntroToken = INVALID_DEFERRED_TOKEN;
-    }
-    #if defined(PLODAH_MSJIGGLER_INTRO_TIMEOUT)
-      if (msJigIntroTimerToken != INVALID_DEFERRED_TOKEN){
-        cancel_deferred_exec(msJigIntroTimerToken);
-        msJigIntroTimerToken = INVALID_DEFERRED_TOKEN;
+  #if defined(PLODAH_MSJIGGLER_INTRO)
+    void jiggler_intro_end(void){
+      if (msJigIntroToken != INVALID_DEFERRED_TOKEN){
+        cancel_deferred_exec(msJigIntroToken);
+        msJigIntroToken = INVALID_DEFERRED_TOKEN;
       }
-    #endif // PLODAH_MSJIGGLER_INTRO_TIMEOUT
-  }
+      #if defined(PLODAH_MSJIGGLER_INTRO_TIMEOUT)
+        if (msJigIntroTimerToken != INVALID_DEFERRED_TOKEN){
+          cancel_deferred_exec(msJigIntroTimerToken);
+          msJigIntroTimerToken = INVALID_DEFERRED_TOKEN;
+        }
+      #endif // PLODAH_MSJIGGLER_INTRO_TIMEOUT
+    }
+  #endif // PLODAH_MSJIGGLER_INTRO
 
   // Deltas only work if the length of the array is a power of 2.
   static int8_t circledeltas[32] = {0,-1,-2,-2,-3,-3,-4,-4,-4,-4,-3,-3,-2,-2,-1,0,0,1,2,2,3,3,4,4,4,4,3,3,2,2,1,0};
@@ -62,11 +64,12 @@
     // Deltas to move only 1 or 2 pixels at a time. Sum is 0, so no prevailing movement..
     return jiggler_callback_base(trigger_time, cb_arg, subtledeltas, 16, 4, 1, 1, 16384 );
   }
-
-  uint32_t jiggler_callback_introtimer(uint32_t trigger_time, void* cb_arg) {
-    jiggler_intro_end();
-    return 0;
-  }
+  #if defined(PLODAH_MSJIGGLER_INTRO)
+    uint32_t jiggler_callback_introtimer(uint32_t trigger_time, void* cb_arg) {
+      jiggler_intro_end();
+      return 0;
+    }
+  #endif // PLODAH_MSJIGGLER_INTRO
 
   void jiggler_onclick( uint16_t keycode ) {
     #if defined(PLODAH_MSJIGGLER_INTRO)
