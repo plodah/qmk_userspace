@@ -5,3 +5,5 @@
 #define PLOOPY_DRAGSCROLL_DIVISOR_V 8
 
 #include "configs/ploopy-common.h"
+
+#define PLODAH_DRAGSCROLL_STRAIGHTEN_RATIO 2
