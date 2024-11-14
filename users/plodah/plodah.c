@@ -22,6 +22,7 @@
 #include "functions/autocorrect.c"
 #include "functions/caps_word.c"
 #include "functions/dipswitch.c"
+#include "functions/dragscroll_straighten.c"
 #include "functions/dynamic_macros.c"
 #include "functions/mouse_jiggler.c"
 #include "functions/repeathold_rgb.c"
