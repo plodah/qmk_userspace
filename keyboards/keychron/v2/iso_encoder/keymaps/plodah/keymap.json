@@ -30,7 +30,7 @@
             "caps_word": true,
             "combo": true,
             "console": false,
-            "deferred_exec": false,
+            "deferred_exec": true,
             "dynamic_macro": true,
             "dynamic_tapping_term": false,
             "encoder_map": true,
@@ -129,6 +129,7 @@
         { "key": "PL_ENC_CCW" },
         { "key": "PL_ENC_CW" },
         { "key": "PL_ENC_PRS" },
+        { "key": "PL_MSJG" },
         { "key": "PL_QFTR" },
         { "key": "PL_QRGB"},
         { "key": "PL_QVER" }
@@ -183,8 +184,8 @@
         ],
         [
             "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_QFTR",  "PL_QRGB",  "PL_QVER",  "QK_MAKE",  "_______",  "PL_ENC_PRS",
-            "RGB_TOG",  "RGB_MOD",  "RGB_VAI",  "RGB_HUI",  "RGB_SAI",  "RGB_SPI",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "TO(3)",
-            "_______",  "RGB_RMOD", "RGB_VAD",  "RGB_HUD",  "RGB_SAD",  "RGB_SPD",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
+            "RGB_TOG",  "RGB_MOD",  "RGB_VAI",  "RGB_HUI",  "RGB_SAI",  "RGB_SPI",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "PL_MSJG",
+            "_______",  "RGB_RMOD", "RGB_VAD",  "RGB_HUD",  "RGB_SAD",  "RGB_SPD",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "TO(3)",
             "_______",  "_______",  "_______",  "_______",  "_______", "C(S(KC_V))","_______",  "NK_TOGG",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_VOLU",
             "_______",  "GU_TOGG",  "_______",                                "KC_SPC",                                 "_______",  "_______",  "_______",  "KC_HOME",  "KC_VOLD",  "KC_END"
         ]
