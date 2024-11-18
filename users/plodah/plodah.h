@@ -42,9 +42,9 @@
   #define TAP_CODE_DELAY 8
 #endif // TAP_CODE_DELAY
 
-#ifndef PERMISSIVE_HOLD
-  #define PERMISSIVE_HOLD
-#endif // PERMISSIVE_HOLD
+// #ifndef PERMISSIVE_HOLD
+//   #define PERMISSIVE_HOLD
+// #endif // PERMISSIVE_HOLD
 
 #define ENABLE_COMPILE_KEYCODE
 
