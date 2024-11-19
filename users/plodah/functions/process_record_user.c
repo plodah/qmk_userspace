@@ -51,6 +51,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     #endif // defined(KC_PL_QVER)
 
+    #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
+      case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
+        return tap_dance_process_record_user( keycode, record );
+
+    #endif // PLODAH_TAPDANCE_TAPHOLD_ENABLE
+
     #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
       case PL_ALTTAB:
         if (record->event.pressed) {
