@@ -68,6 +68,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case KC_LCTL:
       case KC_RCTL:
         ctl_pressed = record->event.pressed;
+        // ctl_pressed = get_mods() & (MOD_MASK_CTRL); // doesn't work. Executed BEFORE mod registered
         break;
     #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // CTL
 
@@ -75,6 +76,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case KC_LGUI:
       case KC_RGUI:
         gui_pressed = record->event.pressed;
+        // gui_pressed = get_mods() & (MOD_MASK_GUI); // doesn't work. Executed BEFORE mod registered
         break;
     #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // GUI
 
@@ -82,6 +84,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case KC_LALT:
       case KC_RALT:
         alt_pressed = record->event.pressed;
+        // alt_pressed = get_mods() & (MOD_MASK_ALT); // doesn't work. Executed BEFORE mod registered
         break;
     #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // ALT
 
@@ -89,6 +92,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case KC_LSFT:
       case KC_RSFT:
         sft_pressed = record->event.pressed;
+        // sft_pressed = get_mods() & (MOD_MASK_SHIFT); // doesn't work. Executed BEFORE mod registered
         break;
     #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // SFT
 
