@@ -7,7 +7,8 @@
 //====================//
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || \
     defined(PLODAH_MODS_INDIC_LCTL_INDEX) || \
-    defined(PLODAH_MODS_INDIC_RCTL_INDEX)
+    defined(PLODAH_MODS_INDIC_RCTL_INDEX) || \
+    defined(PLODAH_DYNAMIC_MACRO_KCS_ENABLE)
   #define CTLPRESSED_REQUIRED
   bool ctl_pressed = false;
 #endif // CTL
@@ -22,7 +23,8 @@
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || \
     defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE) || \
     defined(PLODAH_MODS_INDIC_LALT_INDEX) || \
-    defined(PLODAH_MODS_INDIC_RALT_INDEX)
+    defined(PLODAH_MODS_INDIC_RALT_INDEX) || \
+    defined(PLODAH_DYNAMIC_MACRO_KCS_ENABLE)
   #define ALTPRESSED_REQUIRED
   bool alt_pressed = false;
 #endif // ALT

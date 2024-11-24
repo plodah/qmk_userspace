@@ -1,7 +1,6 @@
 #if defined(DYNAMIC_MACRO_ENABLE)
   #pragma once
 
-
   #if (defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)) || (defined(PLODAH_DYNAMIC_MACRO_TIMEOUT))
     bool is_dynamic_macro_recording = false;
   #endif // DYNAMIC_MACRO_ENABLE
@@ -62,6 +61,33 @@
   }
 
 
+  #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
+    bool dynamic_macros_process_record_user( uint16_t keycode, keyrecord_t *record ) {
+      /*
+        QK_DYNAMIC_MACRO_RECORD_START_1 = 0x7C53,
+        QK_DYNAMIC_MACRO_RECORD_START_2 = 0x7C54,
+        QK_DYNAMIC_MACRO_RECORD_STOP = 0x7C55,
+        QK_DYNAMIC_MACRO_PLAY_1 = 0x7C56,
+        QK_DYNAMIC_MACRO_PLAY_2 = 0x7C57,
+      */
+      if(!record->event.pressed){
+        uint16_t fwkeycode = QK_DYNAMIC_MACRO_PLAY_1;
+        if( keycode == PL_DMAC2 ) {
+          fwkeycode ++;
+        }
+        if( ctl_pressed || alt_pressed ) {
+          fwkeycode -=3;
+          ctl_pressed = 0;
+          alt_pressed = 0;
+        }
+        #ifdef CONSOLE_ENABLE
+          uprintf("DM:%u\n", fwkeycode);
+        #endif
+        return process_dynamic_macro( fwkeycode, record );
+        }
+      return true;
+    }
+  #endif // PLODAH_DYNAMIC_MACRO_KCS_ENABLE
 
   #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT) && !defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)
   void plodah_dynamic_macro_check(void){
