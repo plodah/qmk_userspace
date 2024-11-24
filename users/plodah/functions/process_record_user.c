@@ -16,6 +16,50 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_MSJIGGLER_ENABLED)
 
   switch (keycode) {
+
+    #if defined(CTLPRESSED_REQUIRED)
+      case KC_LCTL:
+      case KC_RCTL:
+        #ifdef CONSOLE_ENABLE
+          uprintf("CTL_PRESSED %u \n", record->event.pressed);
+        #endif
+        ctl_pressed = record->event.pressed;
+        // ctl_pressed = get_mods() & (MOD_MASK_CTRL); // doesn't work. Executed BEFORE mod registered
+        break;
+    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // CTL
+
+    #if defined(GUIPRESSED_REQUIRED)
+      case KC_LGUI:
+      case KC_RGUI:
+        #ifdef CONSOLE_ENABLE
+          uprintf("GUI_PRESSED %u \n", record->event.pressed);
+        #endif
+        gui_pressed = record->event.pressed;
+        // gui_pressed = get_mods() & (MOD_MASK_GUI); // doesn't work. Executed BEFORE mod registered
+        break;
+    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // GUI
+
+    #if defined(ALTPRESSED_REQUIRED)
+      case KC_LALT:
+      case KC_RALT:
+        #ifdef CONSOLE_ENABLE
+          uprintf("ALT_PRESSED %u \n", record->event.pressed);
+        #endif
+        alt_pressed = record->event.pressed;
+        // alt_pressed = get_mods() & (MOD_MASK_ALT); // doesn't work. Executed BEFORE mod registered
+        break;
+    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // ALT
+
+    #if defined(SFTPRESSED_REQUIRED)
+      case KC_LSFT:
+      case KC_RSFT:
+        #ifdef CONSOLE_ENABLE
+          uprintf("SFT_PRESSED %u \n", record->event.pressed);
+        #endif
+        sft_pressed = record->event.pressed;
+        // sft_pressed = get_mods() & (MOD_MASK_SHIFT); // doesn't work. Executed BEFORE mod registered
+        break;
+    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // SFT
     #if defined(KC_PL_QFTR)
       case PL_QFTR:
         if (record->event.pressed) {
@@ -69,38 +113,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
     #endif  // defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
-
-    #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX)
-      case KC_LCTL:
-      case KC_RCTL:
-        ctl_pressed = record->event.pressed;
-        // ctl_pressed = get_mods() & (MOD_MASK_CTRL); // doesn't work. Executed BEFORE mod registered
-        break;
-    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // CTL
-
-    #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LGUI_INDEX) || defined(PLODAH_MODS_INDIC_RGUI_INDEX)
-      case KC_LGUI:
-      case KC_RGUI:
-        gui_pressed = record->event.pressed;
-        // gui_pressed = get_mods() & (MOD_MASK_GUI); // doesn't work. Executed BEFORE mod registered
-        break;
-    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // GUI
-
-    #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX)
-      case KC_LALT:
-      case KC_RALT:
-        alt_pressed = record->event.pressed;
-        // alt_pressed = get_mods() & (MOD_MASK_ALT); // doesn't work. Executed BEFORE mod registered
-        break;
-    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // ALT
-
-    #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX)
-      case KC_LSFT:
-      case KC_RSFT:
-        sft_pressed = record->event.pressed;
-        // sft_pressed = get_mods() & (MOD_MASK_SHIFT); // doesn't work. Executed BEFORE mod registered
-        break;
-    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // SFT
 
     #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
       case PL_ENC_CCW:
