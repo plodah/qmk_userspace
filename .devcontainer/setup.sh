@@ -21,7 +21,7 @@ git config --global --add safe.directory /workspaces/qmk_qmk_firmware
 cd /workspaces/qmk_qmk_firmware
 git submodule update --init --recursive
 
-[ -d /workspaces/plodah_qmk_firmware ] || git clone https://github.com/plodah/qmk_firmware.git -b mybuilds-2024-10 /workspaces/plodah_qmk_firmware
+[ -d /workspaces/plodah_qmk_firmware ] || git clone https://github.com/plodah/qmk_firmware.git -b mybuilds-2024-11 /workspaces/plodah_qmk_firmware
 git config --global --add safe.directory /workspaces/plodah_qmk_firmware
 cd /workspaces/plodah_qmk_firmware
 git submodule update --init --recursive
