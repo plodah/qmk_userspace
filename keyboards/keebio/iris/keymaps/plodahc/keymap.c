@@ -3,6 +3,7 @@
 enum keymap_keycodes {
     PL_ALTTAB = QK_USER_0,
     PL_ALTSTAB,
+    PL_MSJG,
     PL_QFTR,
     PL_QRGB,
     PL_QVER,
@@ -42,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             P_ENTAL, P_ENTM3, P_SPCM2, P_SPCM2, P_ENTM3, P_ENALG
     ),
     [2] = LAYOUT(
-        KC_GRV,  _______, _______, PL_QFTR, PL_QRGB, QK_MAKE,                   QK_MAKE, PL_QVER, _______, KC_MINS,  KC_EQL,  KC_DEL,
+        KC_GRV,  _______, _______, PL_QFTR, PL_QRGB, QK_MAKE,                   QK_MAKE, PL_QVER, PL_MSJG, KC_MINS,  KC_EQL,  KC_DEL,
         _______, _______,   KC_UP, _______, _______, _______,                   _______, _______, _______,   KC_UP, _______, KC_RBRC,
         _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_LBRC,                   KC_RBRC, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_NUHS,
         _______, KC_NUBS, _______, _______, _______, KC_RCBR, XXXXXXX, XXXXXXX, KC_RCBR, _______, _______, _______, _______, _______,
