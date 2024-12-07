@@ -4,9 +4,20 @@
 
 enum sofle_layers {
     _QWERTY,
+    _COLEMAK,
     _LOWER,
     _RAISE,
     _ADJUST,
+};
+
+enum keymap_keycodes {
+    PL_ALTTAB = QK_USER_0,
+    PL_ALTSTAB,
+    PL_ENC_CCW,
+    PL_ENC_CW,
+    PL_ENC_PRS,
+    PL_MSJG,
+    PL_QVER,
 };
 
 #define KC_QWERTY PDF(_QWERTY)
@@ -96,9 +107,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = LAYOUT(
   _______, _______ , _______ , _______ , _______ , _______,                           _______,  _______  , _______,  _______ ,  _______ ,_______,
-  _______,  KC_INS,  KC_PSCR,   KC_APP,  XXXXXXX,  XXXXXXX,                        KC_PGUP, KC_PRVWD,   KC_UP, KC_NXTWD,C(KC_BSPC), KC_BSPC,
+  _______,  KC_INS,  KC_PSCR,   KC_APP,  XXXXXXX,  XXXXXXX,                        KC_PGUP, XXXXXXX,   KC_UP, XXXXXXX,C(KC_BSPC), KC_BSPC,
   _______, KC_LALT,  KC_LCTL,  KC_LSFT,  XXXXXXX, KC_CAPS,                       KC_PGDN,  KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL, KC_BSPC,
-  _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), XXXXXXX,  _______,       _______,  XXXXXXX, KC_LSTRT, XXXXXXX, KC_LEND,   XXXXXXX, _______,
+  _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), XXXXXXX,  _______,       _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX, _______,
                          _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
 ),
 /* ADJUST
@@ -123,3 +134,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                    _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
   )
 };
+
+#if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [_QWERTY] = {ENCODER_CCW_CW(PL_ENC_CCW, PL_ENC_CW), ENCODER_CCW_CW(PL_ENC_CCW, PL_ENC_CW)},
+    [_COLEMAK] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [_LOWER] = {ENCODER_CCW_CW(PL_ENC_CCW, PL_ENC_CW), ENCODER_CCW_CW(PL_ENC_CCW, PL_ENC_CW)},
+    [_RAISE] = {ENCODER_CCW_CW(PL_ENC_CCW, PL_ENC_CW), ENCODER_CCW_CW(PL_ENC_CCW, PL_ENC_CW)},
+    [_ADJUST] = {ENCODER_CCW_CW(PL_ENC_CCW, PL_ENC_CW), ENCODER_CCW_CW(PL_ENC_CCW, PL_ENC_CW)}
+};
+#endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
