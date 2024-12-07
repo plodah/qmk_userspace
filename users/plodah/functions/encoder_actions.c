@@ -39,34 +39,38 @@
 
     else if (ctl_pressed && gui_pressed && sft_pressed) {
       //CGS
-      switch (keycode) {
-        case PL_ENC_CCW & 0xff:
-          rgb_matrix_decrease_speed();
-          break;
-        case PL_ENC_CW & 0xff:
-          rgb_matrix_increase_speed();
-          break;
-        case PL_ENC_PRS & 0xff:
-        default:
-          rgb_matrix_toggle();
-          break;
-        }
-      }
-
-      else if (ctl_pressed && gui_pressed && alt_pressed) {
-        //CGA
+      #ifdef RGB_MATRIX_ENABLE
         switch (keycode) {
           case PL_ENC_CCW & 0xff:
-            rgb_matrix_decrease_hue();
+            rgb_matrix_decrease_speed();
             break;
           case PL_ENC_CW & 0xff:
-            rgb_matrix_increase_hue();
+            rgb_matrix_increase_speed();
             break;
           case PL_ENC_PRS & 0xff:
           default:
             rgb_matrix_toggle();
             break;
         }
+      #endif // RGB_MATRIX_ENABLE
+    }
+
+      else if (ctl_pressed && gui_pressed && alt_pressed) {
+        //CGA
+        #ifdef RGB_MATRIX_ENABLE
+          switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+              rgb_matrix_decrease_hue();
+              break;
+            case PL_ENC_CW & 0xff:
+              rgb_matrix_increase_hue();
+              break;
+            case PL_ENC_PRS & 0xff:
+            default:
+              rgb_matrix_toggle();
+              break;
+          }
+        #endif // RGB_MATRIX_ENABLE
       }
 
       else if (ctl_pressed && alt_pressed) {
@@ -182,34 +186,38 @@
 
       else if ( enc_layer == 1 ) {
         // ODD & NOT BORING
-        switch (keycode) {
-          case PL_ENC_CCW & 0xff:
-            rgb_matrix_decrease_sat();
-            break;
-          case PL_ENC_CW & 0xff:
-            rgb_matrix_increase_sat();
-            break;
-          case PL_ENC_PRS & 0xff:
-          default:
-            rgb_matrix_toggle();
-            break;
-        }
+        #ifdef RGB_MATRIX_ENABLE
+          switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+              rgb_matrix_decrease_sat();
+              break;
+            case PL_ENC_CW & 0xff:
+              rgb_matrix_increase_sat();
+              break;
+            case PL_ENC_PRS & 0xff:
+            default:
+              rgb_matrix_toggle();
+              break;
+          }
+        #endif // RGB_MATRIX_ENABLE
       }
 
       else if ( enc_layer == 2 ) {
         // EVEN, NONZERO & NOT BORING
-        switch (keycode) {
-          case PL_ENC_CCW & 0xff:
-            rgb_matrix_decrease_val();
-            break;
-          case PL_ENC_CW & 0xff:
-            rgb_matrix_increase_val();
-            break;
-          case PL_ENC_PRS & 0xff:
-          default:
-            rgb_matrix_toggle();
-            break;
-        }
+        #ifdef RGB_MATRIX_ENABLE
+          switch (keycode) {
+            case PL_ENC_CCW & 0xff:
+              rgb_matrix_decrease_val();
+              break;
+            case PL_ENC_CW & 0xff:
+              rgb_matrix_increase_val();
+              break;
+            case PL_ENC_PRS & 0xff:
+            default:
+              rgb_matrix_toggle();
+              break;
+          }
+        #endif // RGB_MATRIX_ENABLE
       }
 
       else {
