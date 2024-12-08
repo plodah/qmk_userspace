@@ -29,6 +29,7 @@ declare -a usesmalldict=(
 )
 declare -a uselargedict=(
     "keychron/v6/iso_encoder/keymaps/plodah"
+    "sofle/keymaps/plodah"
 )
 #        dictionary.txt exists   &&   (  dictionary.h does not exist      ||  (dictionary.h exists && dictionary.txt is newer than dictionary.h)  )
 if [[ -e $plodir/dict-large.txt  && ( ! -e $plodir/autocorrect_data_l.h || (-e $plodir/autocorrect_data_l.h && $plodir/dict-large.txt -nt $plodir/autocorrect_data_l.h ) ) ]]; then
