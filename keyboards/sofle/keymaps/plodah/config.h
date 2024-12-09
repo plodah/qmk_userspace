@@ -1,33 +1,11 @@
-// Copyright 2024 Santosh Kumar (@santosh)
-// SPDX-License-Identifier: GPL-2.0-or-later
-
 #pragma once
 
-// encoder pins are reversed somewhere along the way
-#ifdef ENCODER_A_PINS
-  #undef ENCODER_A_PINS
-#endif //ENCODER_A_PINS
-#define ENCODER_A_PINS { F4 }
-
-#ifdef ENCODER_B_PINS
-  #undef ENCODER_B_PINS
-#endif //ENCODER_B_PINS
-#define ENCODER_B_PINS { F5 }
+#define ENCODER_DIRECTION_FLIP
 
 #ifdef ENCODER_RESOLUTION
   #undef ENCODER_RESOLUTION
 #endif //ENCODER_RESOLUTION
 #define ENCODER_RESOLUTION 4
-
-#ifdef ENCODER_A_PINS_RIGHT
-  #undef ENCODER_A_PINS_RIGHT
-#endif //ENCODER_A_PINS_RIGHT
-#define ENCODER_A_PINS_RIGHT { F5 }
-
-#ifdef ENCODER_B_PINS_RIGHT
-  #undef ENCODER_B_PINS_RIGHT
-#endif //ENCODER_B_PINS_RIGHT
-#define ENCODER_B_PINS_RIGHT { F4 }
 
 #ifdef ENCODER_RESOLUTION_RIGHT
   #undef ENCODER_RESOLUTION_RIGHT
