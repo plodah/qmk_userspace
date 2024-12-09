@@ -120,9 +120,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #endif  // defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
 
     #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
-      case PL_ENC_CCW:
-      case PL_ENC_CW:
-      case PL_ENC_PRS:
+      case PL_EC_CCW:
+      case PL_EC_CW:
+      case PL_EC_PR:
         if (record->event.pressed) {
           enc_act(keycode & 0xff, ctl_pressed, gui_pressed, alt_pressed, sft_pressed);
         }
