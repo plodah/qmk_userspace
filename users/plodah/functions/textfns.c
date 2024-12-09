@@ -64,6 +64,10 @@
             strcat (str, " MOUSEKEY");
         #endif // MOUSEKEY_ENABLE
 
+        #ifdef OLED_ENABLE
+            strcat (str, " OLED");
+        #endif // OLED_ENABLE
+
         #ifdef OS_DETECTION_ENABLE
             strcat (str, " OS_DETECTION");
         #endif // OS_DETECTION_ENABLE
@@ -83,6 +87,10 @@
         #ifdef TAP_DANCE_ENABLE
             strcat (str, " TAP_DANCE");
         #endif // TAP_DANCE_ENABLE
+
+        #ifdef TRI_LAYER_ENABLE
+            strcat (str, " TRI_LAYER");
+        #endif // TRI_LAYER_ENABLE
 
         #ifdef VIA_ENABLE
             strcat (str, " VIA");
@@ -150,6 +158,10 @@
             send_string_with_delay (" MOUSEKEY", TAP_CODE_DELAY );
         #endif // MOUSEKEY_ENABLE
 
+        #ifdef OLED_ENABLE
+            send_string_with_delay (" OLED", TAP_CODE_DELAY );
+        #endif // OLED_ENABLE
+
         #ifdef OS_DETECTION_ENABLE
             send_string_with_delay (" OS_DETECTION", TAP_CODE_DELAY );
         #endif // OS_DETECTION_ENABLE
@@ -169,6 +181,10 @@
         #ifdef TAP_DANCE_ENABLE
             send_string_with_delay (" TAP_DANCE", TAP_CODE_DELAY );
         #endif // TAP_DANCE_ENABLE
+
+        #ifdef TRI_LAYER_ENABLE
+            send_string_with_delay (" TRI_LAYER", TAP_CODE_DELAY );
+        #endif // TRI_LAYER_ENABLE
 
         #ifdef VIA_ENABLE
             send_string_with_delay (" VIA", TAP_CODE_DELAY );
