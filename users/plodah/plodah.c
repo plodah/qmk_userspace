@@ -44,6 +44,7 @@
 #include "functions/dipswitch.c"
 #include "functions/dynamic_macros.c"
 #include "functions/mouse_jiggler.c"
+#include "functions/oled.c"
 #include "functions/repeathold_rgb.c"
 #include "functions/tapdance.c"
 #include "functions/textfns.c"
