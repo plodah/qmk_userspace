@@ -217,3 +217,30 @@
         send_string_with_delay ( "\n", TAP_CODE_DELAY );
     }
 #endif // defined(KC_PL_QLYR)
+
+#if defined(KC_PL_QTAP)
+    void tapQuerySs(void) {
+        #ifdef TAPPING_TERM
+            send_string_with_delay ("TAPPING_TERM:", TAP_CODE_DELAY );
+        send_string_with_delay ( get_u16_str(TAPPING_TERM, '0'), TAP_CODE_DELAY );
+        #endif // AUTO_SHIFT_ENABLE
+
+        #ifdef QUICK_TAP_TERM
+            send_string_with_delay (" QUICK_TAP_TERM:", TAP_CODE_DELAY );
+        send_string_with_delay ( get_u16_str(QUICK_TAP_TERM, '0'), TAP_CODE_DELAY );
+        #endif // QUICK_TAP_TERM
+
+        #ifdef PERMISSIVE_HOLD
+            send_string_with_delay (" PERMISSIVE_HOLD:", TAP_CODE_DELAY );
+        #endif // PERMISSIVE_HOLD
+
+        #ifdef HOLD_ON_OTHER_KEY_PRESS
+            send_string_with_delay (" HOLD_ON_OTHER_KEY_PRESS", TAP_CODE_DELAY );
+        #endif // HOLD_ON_OTHER_KEY_PRESS
+
+        #ifdef RETRO_TAPPING
+            send_string_with_delay (" RETRO_TAPPING", TAP_CODE_DELAY );
+        #endif // RETRO_TAPPING
+        send_string_with_delay ( "\n", TAP_CODE_DELAY );
+    }
+#endif // defined(KC_PL_QTAP)

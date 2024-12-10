@@ -87,10 +87,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     #endif // defined(KC_PL_QRGB)
 
-    #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
-      case PL_DMAC1 ... PL_DMAC2:
-        return dynamic_macros_process_record_user( keycode, record );
-    #endif // PLODAH_DYNAMIC_MACRO_KCS_ENABLE
+    #if defined(KC_PL_QTAP)
+      case PL_QTAP:
+        if (record->event.pressed) {
+            tapQuerySs();
+        }
+        return false;
+    #endif // defined(KC_PL_QTAP)
 
     #if defined(KC_PL_QVER)
       case PL_QVER:
@@ -99,6 +102,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
     #endif // defined(KC_PL_QVER)
+
+    #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
+      case PL_DMAC1 ... PL_DMAC2:
+        return dynamic_macros_process_record_user( keycode, record );
+    #endif // PLODAH_DYNAMIC_MACRO_KCS_ENABLE
 
     #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
       case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
