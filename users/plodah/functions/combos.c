@@ -20,6 +20,7 @@
 
   #else // IS_MOUSE
 
+    const uint16_t PROGMEM pl_combo_qwop[] = {KC_Q , KC_W, KC_O , KC_P, COMBO_END};
     const uint16_t PROGMEM pl_combo_qa[] = {KC_Q , KC_A, COMBO_END};
     const uint16_t PROGMEM pl_combo_as[] = {KC_A , KC_S, COMBO_END};
     const uint16_t PROGMEM pl_combo_bsz[] = {KC_NUBS, KC_Z, COMBO_END};
@@ -49,6 +50,7 @@
 
 
     combo_t key_combos[] = {
+      COMBO(pl_combo_qwop, QK_BOOT),
       COMBO(pl_combo_qa, C(KC_A)),
       COMBO(pl_combo_as, C(KC_S)),
       COMBO(pl_combo_bsz, C(KC_Z)),
