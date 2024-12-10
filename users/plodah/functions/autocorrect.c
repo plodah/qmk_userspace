@@ -120,6 +120,11 @@
         autoCorrectIndToken = defer_exec(PLODAH_AUTOCORRECT_INDICATOR_DURATION, plodah_autocorrect_indicator_on_DE, NULL);
       #endif // defined(PLODAH_AUTOCORRECT_IND_MODE_DE)
     #endif // RGB_MATRIX_ENABLE
+    #if defined(OLED_ENABLE)
+      strcpy(recAcC, recAcB);
+      strcpy(recAcB, recAcA);
+      strcpy(recAcA, typo);
+    #endif // OLED_ENABLE
     return true;
   }
 #endif // AUTOCORRECT_ENABLE
