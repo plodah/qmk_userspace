@@ -13,8 +13,9 @@
 #define ENCODER_RESOLUTION_RIGHT 4
 
 #define KC_PL_QFTR
-// #define KC_PL_QLYR
+#define KC_PL_QLYR
 #define KC_PL_QRGB
+#define KC_PL_QTAP
 #define KC_PL_QVER
 
 #ifdef PRODUCT
@@ -50,6 +51,16 @@
   #endif
   #define COMBO_TERM 50
 #endif
+
+#ifdef TAPPING_TERM
+  #undef TAPPING_TERM
+#endif
+#define TAPPING_TERM 240
+
+#ifdef QUICK_TAP_TERM
+  #undef QUICK_TAP_TERM
+#endif
+#define QUICK_TAP_TERM 60
 
 #ifdef DYNAMIC_KEYMAP_LAYER_COUNT
   #pragma message("DYNAMIC_KEYMAP_LAYER_COUNT")
