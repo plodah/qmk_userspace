@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_FN_A] = LAYOUT(
   KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                       KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-  KC_CAPS, _______, _______, KC_UP,   _______, KC_F6,                       KC_F7,   _______, KC_UP,   _______, _______, _______,
+  KC_CAPS, _______, _______, KC_UP,   _______, KC_F6,                       KC_F7,   _______, KC_UP,   KC_MINS, KC_EQL,  _______,
   _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,                     _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,
   _______, _______, _______, _______, KC_LBRC, KC_LCBR, PL_EC_PR, PL_EC_PR, KC_RCBR, KC_RBRC, _______, _______, _______, _______,
                     _______, _______, _______, _______, _______,  _______,  _______, _______, _______, KC_APP
@@ -132,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  PL_QVER, PL_QRGB, _______, _______, PL_MSJG,                     PL_MSJG, PL_QLYR, PL_QTAP, QK_MAKE, PL_QFTR, KC_DEL,
   _______, _______, _______, KC_PGUP, _______, _______,                     _______, _______, KC_PGUP, _______, KC_PSCR, _______,
   DT_PRNT, DT_UP,   KC_HOME, KC_PGDN, KC_END,  _______,                     _______, KC_HOME, KC_PGDN, KC_END,  _______, _______,
-  EH_LEFT, DT_DOWN, _______, _______, _______, _______, PL_EC_PR, PL_EC_PR, _______, _______, _______, _______, _______, EH_RGHT,
+  _______, DT_DOWN, _______, _______, _______, _______, PL_EC_PR, PL_EC_PR, _______, _______, _______, _______, _______, _______,
                     GU_TOGG, _______, _______, _______, _______,  _______,  _______, _______, _______, GU_ON
 ),
 
