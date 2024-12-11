@@ -1,0 +1,286 @@
+diff --git a/keyboards/ploopyco/pavonis/config.h b/keyboards/ploopyco/pavonis/config.h
+new file mode 100644
+index 000000000000..dacdd396859b
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/config.h
+@@ -0,0 +1,46 @@
++// Copyright 2024 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#pragma once
++
++#define I2C_DRIVER I2CD0
++#define I2C1_SDA_PIN GP8
++#define I2C1_SCL_PIN GP9
++#define I2C1_CLOCK_SPEED 1000000
++
++#define DIGITIZER_MOTION_PIN GP11
++#define DIGITIZER_MOTION_PIN_ACTIVE_LOW yes
++
++// If enabled, the stylus will automatically be detected if the touch is small and round.
++// #define DIGITIZER_HAS_STYLUS yes
++
++#define MXT_SENSOR_WIDTH_MM 156
++#define MXT_SENSOR_HEIGHT_MM 99
++
++// TODO: Tweak these if the sensor tracks poorly
++#define MXT_TOUCH_THRESHOLD 24
++#define MXT_GAIN 11
++#define MXT_TOUCH_HYST 6
++#define MXT_INTERNAL_TOUCH_HYST 3
++#define MXT_INTERNAL_TOUCH_THRESHOLD 8
++
++#define MXT_IDLE_SYNCS_PER_X 40
++#define MXT_ACTIVE_SYNCS_PER_X 40
++#define MXT_IDLE_ACQUISITION_INTERVAL 255
++#define MXT_ACTIVE_ACQUISITION_INTERVAL 255
++#define MXT_T56_SHIELDLESS_ENABLE
++#define MXT_T65_LENS_BENDING_ENABLE
++#define MXT_LOW_PASS_FILTER_COEFFICIENT 10
++
++#define MXT_INVERT_X
++#define MXT_INVERT_Y
++#define MXT_RESET_PIN GP12
++#define MXT_I2CMODE_PIN GP6
++
++#define UNUSABLE_PINS \
++    { GP3, GP7, GP10, GP13, GP14, GP16, GP17, GP18, GP19, GP20, GP21, GP22, GP23, GP25, GP26, GP27, GP28, GP29 }
++
++#define HAPTICS_PIN GP15
++#define DEBUG_LED_PIN GP24
++
++#define PAVONIS
+\ No newline at end of file
+diff --git a/keyboards/ploopyco/pavonis/keyboard.json b/keyboards/ploopyco/pavonis/keyboard.json
+new file mode 100644
+index 000000000000..ca951adb0ed8
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/keyboard.json
+@@ -0,0 +1,37 @@
++{
++    "keyboard_name": "Ploopy Pavonis Trackpad",
++    "url": "www.ploopy.co",
++    "maintainer": "ploopyco",
++    "manufacturer": "Ploopy Corporation",
++    "processor": "RP2040",
++    "bootloader": "rp2040",
++    "features": {
++        "bootmagic": false,
++        "command": false,
++        "console": true,
++        "extrakey": true,
++        "mousekey": true,
++        "nkro": false,
++        "rgb_matrix": false,
++        "digitizer": true,
++        "pointing_device": true
++    },
++    "usb": {
++        "device_version": "1.0.0",
++        "pid": "0x0000",
++        "vid": "0xFEED"
++    },
++    "matrix_pins": {
++        "direct": [
++            [null]
++        ]
++    },
++    "debounce": 0,
++    "layouts": {
++        "LAYOUT": {
++            "layout": [
++                {"x": 0, "y": 0, "matrix": [0, 0]}
++            ]
++        }
++    }
++}
+diff --git a/keyboards/ploopyco/pavonis/keymaps/debug/config.h b/keyboards/ploopyco/pavonis/keymaps/debug/config.h
+new file mode 100644
+index 000000000000..6a0ca549e3c6
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/keymaps/debug/config.h
+@@ -0,0 +1,4 @@
++// Copyright 2024 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#define MAXTOUCH_BOOTLOADER_GESTURE
+\ No newline at end of file
+diff --git a/keyboards/ploopyco/pavonis/keymaps/debug/keymap.c b/keyboards/ploopyco/pavonis/keymaps/debug/keymap.c
+new file mode 100644
+index 000000000000..bff546a2c4ca
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/keymaps/debug/keymap.c
+@@ -0,0 +1,11 @@
++// Copyright 2024 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#include QMK_KEYBOARD_H
++const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {{{ KC_NO }}};
++
++void keyboard_post_init_user(void) {
++    // Customise these values to desired behaviour
++    debug_enable=true;
++    debug_mouse=true;
++}
+diff --git a/keyboards/ploopyco/pavonis/keymaps/debug/rules.mk b/keyboards/ploopyco/pavonis/keymaps/debug/rules.mk
+new file mode 100644
+index 000000000000..8fbb8f491dcc
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/keymaps/debug/rules.mk
+@@ -0,0 +1 @@
++MAXTOUCH_DEBUG = yes
+\ No newline at end of file
+diff --git a/keyboards/ploopyco/pavonis/keymaps/default/config.h b/keyboards/ploopyco/pavonis/keymaps/default/config.h
+new file mode 100644
+index 000000000000..6a0ca549e3c6
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/keymaps/default/config.h
+@@ -0,0 +1,4 @@
++// Copyright 2024 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#define MAXTOUCH_BOOTLOADER_GESTURE
+\ No newline at end of file
+diff --git a/keyboards/ploopyco/pavonis/keymaps/default/keymap.c b/keyboards/ploopyco/pavonis/keymaps/default/keymap.c
+new file mode 100644
+index 000000000000..af3e7fc52527
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/keymaps/default/keymap.c
+@@ -0,0 +1,5 @@
++// Copyright 2024 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#include QMK_KEYBOARD_H
++const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {{{ KC_NO }}};
+diff --git a/keyboards/ploopyco/pavonis/keymaps/default/rules.mk b/keyboards/ploopyco/pavonis/keymaps/default/rules.mk
+new file mode 100644
+index 000000000000..e69de29bb2d1
+diff --git a/keyboards/ploopyco/pavonis/mcuconf.h b/keyboards/ploopyco/pavonis/mcuconf.h
+new file mode 100644
+index 000000000000..a76640781e4f
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/mcuconf.h
+@@ -0,0 +1,12 @@
++// Copyright 2024 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#pragma once
++
++#include_next <mcuconf.h>
++
++#undef RP_I2C_USE_I2C0
++#define RP_I2C_USE_I2C0 TRUE
++
++#undef RP_I2C_USE_I2C1
++#define RP_I2C_USE_I2C1 FALSE
+\ No newline at end of file
+diff --git a/keyboards/ploopyco/pavonis/pavonis.c b/keyboards/ploopyco/pavonis/pavonis.c
+new file mode 100644
+index 000000000000..c75396fc3264
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/pavonis.c
+@@ -0,0 +1,20 @@
++// Copyright 2024 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#include QMK_KEYBOARD_H
++
++bool shutdown_kb(bool jump_to_bootloader) {
++    if (!shutdown_user(jump_to_bootloader)) {
++        return false;
++    }
++
++    if (jump_to_bootloader) {
++        // Buzz to indicate the reboot to bootloader gesture was detected
++        gpio_set_pin_output_push_pull(HAPTICS_PIN);
++        gpio_write_pin_high(HAPTICS_PIN);
++        wait_ms(50);
++        gpio_write_pin_low(HAPTICS_PIN);
++    }
++
++    return true;
++}
+diff --git a/keyboards/ploopyco/pavonis/readme.md b/keyboards/ploopyco/pavonis/readme.md
+new file mode 100644
+index 000000000000..3069e5d845fe
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/readme.md
+@@ -0,0 +1,26 @@
++# Ploopyco Pavonis Trackpad
++
++It's a DIY, QMK-powered trackpad!
++
++* Keyboard Maintainer: [PloopyCo](https://github.com/ploopyco)
++* Hardware Supported: RP2040
++* Hardware Availability: [Store](https://ploopy.co), [GitHub](https://github.com/ploopyco)
++
++Make example for this keyboard (after setting up your build environment):
++
++    make ploopyco/pavonis:default
++    qmk compile -kb ploopyco/pavonis -km default
++
++Flashing example for this keyboard:
++
++    Put the board into bootloader mode by holding the boot button while connecting the USB cable, bolding boot and shorting the reset jumper or holding SW1 and plugging in the USB cable, then drag and drop the uf2 file onto the drive that mounts.
++
++See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
++
++## Bootloader
++
++Enter the bootloader in 3 ways:
++
++* **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
++* **Physical boot button**: Hold the boot button while plugging in the USB cable, or short the reset pins while holding the boot button.
++* **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
+diff --git a/keyboards/ploopyco/pavonis/rules.mk b/keyboards/ploopyco/pavonis/rules.mk
+new file mode 100644
+index 000000000000..ab90a10db603
+--- /dev/null
++++ b/keyboards/ploopyco/pavonis/rules.mk
+@@ -0,0 +1,3 @@
++I2C_DRIVER_REQUIRED = yes
++DIGITIZER_DRIVER = maxtouch
++POINTING_DEVICE_DRIVER = digitizer
+\ No newline at end of file
+diff --git a/keyboards/ploopyco/ploopyco.c b/keyboards/ploopyco/ploopyco.c
+index 57f2a26b8c3f..b4499c3470eb 100644
+--- a/keyboards/ploopyco/ploopyco.c
++++ b/keyboards/ploopyco/ploopyco.c
+@@ -15,7 +15,6 @@
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+-
+ #include "ploopyco.h"
+ #include "analog.h"
+ #include "opt_encoder.h"
+@@ -128,6 +127,7 @@ void encoder_driver_task(void) {
+ }
+ #endif
+
++#ifndef PAVONIS
+ void toggle_drag_scroll(void) {
+     is_drag_scroll ^= 1;
+ }
+@@ -199,6 +199,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
+
+     return true;
+ }
++#endif
+
+ // Hardware Setup
+ void keyboard_pre_init_kb(void) {
+@@ -229,6 +230,7 @@ void keyboard_pre_init_kb(void) {
+     keyboard_pre_init_user();
+ }
+
++#ifndef PAVONIS
+ void pointing_device_init_kb(void) {
+     keyboard_config.raw = eeconfig_read_kb();
+     if (keyboard_config.dpi_config > DPI_OPTION_SIZE) {
+@@ -242,3 +244,4 @@ void eeconfig_init_kb(void) {
+     eeconfig_update_kb(keyboard_config.raw);
+     eeconfig_init_user();
+ }
++#endif
+\ No newline at end of file

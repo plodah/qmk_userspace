@@ -72,7 +72,7 @@ update-branch() {
         git checkout -b $dst $src
         git push --set-upstream origin $dst
 
-        for d in $diff/*.txt; do
+        for d in $diff/*.diff; do
             diffname=`echo "$d" | awk -F/ '{print $NF}' | awk -F. '{print $1}'`
             msg="apply diff '$diffname'"
             echo "--- $msg ---"
