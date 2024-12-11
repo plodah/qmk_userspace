@@ -48,7 +48,6 @@
       const uint16_t PROGMEM pl_combo_db[] = {KC_D , KC_B, COMBO_END};
     #endif // CONSOLE_ENABLE
 
-
     combo_t key_combos[] = {
       COMBO(pl_combo_qwop, QK_BOOT),
       COMBO(pl_combo_qa, C(KC_A)),

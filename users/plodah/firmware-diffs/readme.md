@@ -19,7 +19,7 @@ git commit -am "Commit Message"
 ## Working with Diffs
 ```sh
 #create a diff
-git diff master sourcebranch > /path/to/diff.txt
+git diff master sourcebranch --output /path/to/diff.txt
 
 ## apply a Diff
 git apply /path/to/diff.txt
@@ -42,9 +42,7 @@ git branch -D naffbranch # Local
 git push -d origin naffbranch # Remote
 ```
 
-
 ## Update Everything
-
 ```sh
 #!/bin/bash
 update-branch() {
