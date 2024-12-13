@@ -1,0 +1,35 @@
+#pragma once
+#include "plodah.h"
+// #include "configs/ploopy-common.h"
+
+#ifdef PRODUCT
+  #undef PRODUCT
+#endif // PRODUCT
+#define PRODUCT "Ploopy Trackball Nano | plodah"
+
+#define PLOOPY_DRAGSCROLL_ON_SCROLLLOCK_ENABLED
+
+#ifdef PLOOPY_DPI_OPTIONS
+  #undef PLOOPY_DPI_OPTIONS
+#endif
+#define PLOOPY_DPI_OPTIONS { 300, 433, 567, 700 }
+
+#ifdef PLOOPY_DPI_DEFAULT
+  #undef PLOOPY_DPI_DEFAULT
+#endif
+#define PLOOPY_DPI_DEFAULT 2
+
+#ifdef PLOOPY_DRAGSCROLL_INVERT
+  #undef PLOOPY_DRAGSCROLL_INVERT
+#endif
+#define PLOOPY_DRAGSCROLL_INVERT 1
+
+#ifdef PLOOPY_DRAGSCROLL_DIVISOR_V
+  #undef PLOOPY_DRAGSCROLL_DIVISOR_V
+#endif
+#define PLOOPY_DRAGSCROLL_DIVISOR_V 6
+
+#ifdef PLOOPY_DRAGSCROLL_DIVISOR_H
+  #undef PLOOPY_DRAGSCROLL_DIVISOR_H
+#endif
+#define PLOOPY_DRAGSCROLL_DIVISOR_H 6

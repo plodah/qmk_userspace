@@ -21,6 +21,10 @@
 // Dummy
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {{{ KC_NO }}};
 
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+  return mouse_report;
+}
+
 void suspend_power_down_user(void) {
     // Switch off sensor + LED making trackball unable to wake host
     adns5050_power_down();
