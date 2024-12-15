@@ -1,5 +1,6 @@
 #pragma once
 
+#define MASTER_RIGHT
 #define ENCODER_DIRECTION_FLIP
 
 #ifdef ENCODER_RESOLUTION
@@ -18,6 +19,8 @@
 #define KC_PL_QTAP
 #define KC_PL_QVER
 
+#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "oQwer", "oCole", "oFn A", "oFn B", "Mouse", "Tenth" }
+
 #ifdef PRODUCT
   #undef PRODUCT
 #endif // PRODUCT
@@ -25,8 +28,7 @@
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #define PLODAH_ALTTAB_ENHANCEMENTS_FORCE_NDE
-// #define PLODAH_BORING_LAYER 1
-
+#define PLODAH_BORING_LAYER _O_QWER
 
 #if defined(DEFERRED_EXEC_ENABLE)
   #define PLODAH_MSJIGGLER_ENABLED
@@ -42,7 +44,7 @@
   #define PLODAH_TAPDANCE_TAPHOLD_ENABLE
 #endif // TAP_DANCE_ENABLE
 
-#define BOOTMAGIC_ROW 0
+#define BOOTMAGIC_ROW 5
 #define BOOTMAGIC_COLUMN 0
 
 #ifdef COMBO_ENABLE
@@ -66,6 +68,6 @@
   #pragma message("DYNAMIC_KEYMAP_LAYER_COUNT")
   #undef DYNAMIC_KEYMAP_LAYER_COUNT
 #endif
-#define DYNAMIC_KEYMAP_LAYER_COUNT 6
+#define DYNAMIC_KEYMAP_LAYER_COUNT 12
 
 #include "plodah.h"
