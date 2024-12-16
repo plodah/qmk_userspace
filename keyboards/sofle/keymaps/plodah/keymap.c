@@ -48,6 +48,9 @@ enum {
 #define HRM_KA RSFT_T(KC_K)
 #define HRM_LC RALT_T(KC_L)
 
+#define HRM_ZG LGUI_T(KC_Z)
+#define HRM_SLG RGUI_T(KC_SLSH)
+
 #define KC_QWERTY PDF(_QWERTY)
 #define KC_COLEMAK PDF(_COLEMAK)
 
@@ -68,10 +71,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'           '------''---------------------------'
  */
 [_QWER] = LAYOUT(
-  PL_RAGE,  KC_1,   KC_2,    KC_3,    KC_4,    PL_5F5,                   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+  PL_RAGE,  KC_1,   KC_2,    KC_3,    KC_4,    PL_5F5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NUHS,
   KC_NUBS,  KC_A,   HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,                      HRM_HG,  HRM_JS,  HRM_KA,  HRM_LC,  KC_SCLN, KC_QUOT,
-  KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,    PL_EC_PR, PL_EC_PR, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+  KC_LSFT,  HRM_ZG, KC_X,    KC_C,    KC_V,    KC_B,    PL_EC_PR, PL_EC_PR, KC_N,    KC_M,    KC_COMM, KC_DOT,  HRM_SLG, KC_RSFT,
                     KC_LGUI, KC_LALT, KC_LCTL, P_ENTFB, P_SPCFA,  P_SPCFA,  P_ENTFB, KC_RCTL, KC_RALT, KC_RGUI
 ),
 

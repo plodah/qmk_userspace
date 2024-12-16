@@ -1,5 +1,7 @@
 #pragma once
 
+#define MASTER_RIGHT
+
 #define KC_PL_QFTR
 // #define KC_PL_QLYR
 #define KC_PL_QRGB
@@ -22,7 +24,7 @@
   #define PLODAH_TAPDANCE_TAPHOLD_ENABLE
 #endif // TAP_DANCE_ENABLE
 
-#define BOOTMAGIC_ROW 0
+#define BOOTMAGIC_ROW 5
 #define BOOTMAGIC_COLUMN 0
 
 #include "configs/backlight-common.h"
@@ -34,6 +36,16 @@
   #endif
   #define COMBO_TERM 50
 #endif
+
+#ifdef TAPPING_TERM
+  #undef TAPPING_TERM
+#endif
+#define TAPPING_TERM 240
+
+#ifdef QUICK_TAP_TERM
+  #undef QUICK_TAP_TERM
+#endif
+#define QUICK_TAP_TERM 60
 
 #ifdef DYNAMIC_KEYMAP_LAYER_COUNT
   #undef DYNAMIC_KEYMAP_LAYER_COUNT
