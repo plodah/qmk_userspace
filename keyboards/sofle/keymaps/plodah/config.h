@@ -52,6 +52,7 @@
     #undef COMBO_TERM
   #endif
   #define COMBO_TERM 50
+  #define PLODAH_HRM_COMBOS
 #endif
 
 #ifdef TAPPING_TERM

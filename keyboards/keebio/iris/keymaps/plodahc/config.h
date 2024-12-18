@@ -29,12 +29,14 @@
 
 #include "configs/backlight-common.h"
 #define SPLIT_LED_STATE_ENABLE
+#define PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
 
 #ifdef COMBO_ENABLE
   #ifdef COMBO_TERM
     #undef COMBO_TERM
   #endif
   #define COMBO_TERM 50
+  #define PLODAH_HRM_COMBOS
 #endif
 
 #ifdef TAPPING_TERM

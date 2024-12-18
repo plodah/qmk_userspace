@@ -31,6 +31,12 @@
     const uint16_t PROGMEM pl_combo_89[] = {KC_8 , KC_9, COMBO_END};
     const uint16_t PROGMEM pl_combo_90[] = {KC_9 , KC_0, COMBO_END};
 
+    #if defined(PLODAH_HRM_COMBOS)
+      const uint16_t PROGMEM pl_combo_as_hrm[] = {KC_A , LALT_T(KC_S), COMBO_END};
+      const uint16_t PROGMEM pl_combo_bsz_hrm[] = {KC_NUBS, LGUI_T(KC_Z), COMBO_END};
+      const uint16_t PROGMEM pl_combo_zx_hrm[] = {LGUI_T(KC_Z) , KC_X, COMBO_END};
+    #endif // PLODAH_HRM_COMBOS
+
     #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
       const uint16_t PROGMEM pl_combo_tabq[] = {KC_TAB , KC_Q , COMBO_END};
       const uint16_t PROGMEM pl_combo_tabw[] = {KC_TAB , KC_W , COMBO_END};
@@ -59,6 +65,12 @@
       COMBO(pl_combo_xcv, C(S(KC_V))),
       COMBO(pl_combo_89, KC_MINS),
       COMBO(pl_combo_90, KC_EQL),
+
+    #if defined(PLODAH_HRM_COMBOS)
+      COMBO(pl_combo_as_hrm, C(KC_S)),
+      COMBO(pl_combo_bsz_hrm, C(KC_Z)),
+      COMBO(pl_combo_zx_hrm, C(KC_X)),
+    #endif // PLODAH_HRM_COMBOS
 
       #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
         COMBO(pl_combo_tabq, PL_ALTSTAB),
