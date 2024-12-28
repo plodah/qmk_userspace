@@ -44,9 +44,18 @@ enum {
 #define HRM_FC LCTL_T(KC_F)
 #define HRM_GG LGUI_T(KC_G)
 #define HRM_HG RGUI_T(KC_H)
-#define HRM_JS RCTL_T(KC_J)
-#define HRM_KA RSFT_T(KC_K)
-#define HRM_LC RALT_T(KC_L)
+#define HRM_JC RCTL_T(KC_J)
+#define HRM_KS RSFT_T(KC_K)
+#define HRM_LA RALT_T(KC_L)
+
+#define HRM_RA LALT_T(KC_R)
+#define HRM_SS LSFT_T(KC_S)
+#define HRM_TC LCTL_T(KC_T)
+#define HRM_DG LGUI_T(KC_D)
+// #define HRM_HG RGUI_T(KC_H)
+#define HRM_NC RCTL_T(KC_N)
+#define HRM_ES RSFT_T(KC_E)
+#define HRM_IA RALT_T(KC_I)
 
 #define HRM_ZG LGUI_T(KC_Z)
 #define HRM_SLG RGUI_T(KC_SLSH)
@@ -73,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWER] = LAYOUT(
   PL_RAGE,  KC_1,   KC_2,    KC_3,    KC_4,    PL_5F5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NUHS,
-  KC_NUBS,  KC_A,   HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,                      HRM_HG,  HRM_JS,  HRM_KA,  HRM_LC,  KC_SCLN, KC_QUOT,
+  KC_NUBS,  KC_A,   HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,                      HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  KC_SCLN, KC_QUOT,
   KC_LSFT,  HRM_ZG, KC_X,    KC_C,    KC_V,    KC_B,    PL_EC_PR, PL_EC_PR, KC_N,    KC_M,    KC_COMM, KC_DOT,  HRM_SLG, KC_RSFT,
                     KC_LGUI, KC_LALT, KC_LCTL, P_ENTFB, P_SPCFA,  P_SPCFA,  P_ENTFB, KC_RCTL, KC_RALT, KC_RGUI
 ),
@@ -93,15 +102,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
 */
-/*
 [_COLE] = LAYOUT(
-  PL_RAGE,  KC_1,   KC_2,    KC_3,    KC_4,    TD(TD_F5),                   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+  PL_RAGE,  KC_1,   KC_2,    KC_3,    KC_4,    PL_5F5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   KC_TAB,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_G,                        KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_NUHS,
-  KC_NUBS,  KC_A,   KC_R,    KC_S,    KC_T,    KC_D,                        KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
-  KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,    PL_EC_PR, PL_EC_PR, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+  KC_NUBS,  KC_A,   HRM_RA,  HRM_SS,  HRM_TC,  HRM_DG,                      HRM_HG,  HRM_NC,  HRM_ES,  HRM_IA,  KC_O,    KC_QUOT,
+  KC_LSFT,  HRM_ZG, KC_X,    KC_C,    KC_V,    KC_B,    PL_EC_PR, PL_EC_PR, KC_K,    KC_M,    KC_COMM, KC_DOT,  HRM_SLG, KC_RSFT,
                     KC_LGUI, KC_LALT, KC_LCTL, P_ENTFB, P_SPCFA,  P_SPCFA,  P_ENTFB, KC_RCTL, KC_RALT, KC_RGUI
 ),
-*/
+
 /* RAISE
  * ,----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
