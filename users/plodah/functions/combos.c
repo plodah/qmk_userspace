@@ -9,6 +9,18 @@
     const uint16_t PROGMEM pl_combo_ms25[] = {KC_BTN2 , KC_BTN5, COMBO_END};
     const uint16_t PROGMEM pl_combo_ms45[] = {KC_BTN4 , KC_BTN5, COMBO_END};
 
+    const uint16_t PROGMEM pl_combo_ms14_lt1[] = {KC_BTN1 , LT(1, KC_BTN4), COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms15_lt1[] = {KC_BTN1 , LT(1, KC_BTN5), COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms15_lt2[] = {KC_BTN1 , LT(2, KC_BTN5), COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms24_lt1[] = {KC_BTN2 , LT(1, KC_BTN4), COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms25_lt1[] = {KC_BTN2 , LT(1, KC_BTN5), COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms25_lt2[] = {KC_BTN2 , LT(2, KC_BTN5), COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms45_lt01[] = {KC_BTN4 , LT(1, KC_BTN5), COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms45_lt02[] = {KC_BTN4 , LT(2, KC_BTN5), COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms45_lt10[] = {LT(1, KC_BTN4) , KC_BTN5, COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms45_lt11[] = {LT(1, KC_BTN4) , LT(1, KC_BTN5), COMBO_END};
+    const uint16_t PROGMEM pl_combo_ms45_lt12[] = {LT(1, KC_BTN4) , LT(2, KC_BTN5), COMBO_END};
+
     combo_t key_combos[] = {
       COMBO(pl_combo_ms12,  DRAG_SCROLL),
       COMBO(pl_combo_ms14,  PL_MSJG),
@@ -16,6 +28,18 @@
       COMBO(pl_combo_ms24,  DRAG_SCROLL),
       COMBO(pl_combo_ms25,  C(KC_V)),
       COMBO(pl_combo_ms45,  PL_MSJG),
+
+      COMBO(pl_combo_ms14_lt1,  PL_MSJG),
+      COMBO(pl_combo_ms15_lt1,  C(KC_C)),
+      COMBO(pl_combo_ms15_lt2,  C(KC_C)),
+      COMBO(pl_combo_ms24_lt1,  DRAG_SCROLL),
+      COMBO(pl_combo_ms25_lt1,  C(KC_V)),
+      COMBO(pl_combo_ms25_lt2,  C(KC_V)),
+      COMBO(pl_combo_ms45_lt01,  PL_MSJG),
+      COMBO(pl_combo_ms45_lt02,  PL_MSJG),
+      COMBO(pl_combo_ms45_lt10,  PL_MSJG),
+      COMBO(pl_combo_ms45_lt11,  PL_MSJG),
+      COMBO(pl_combo_ms45_lt12,  PL_MSJG),
     };
 
   #else // not IS_MOUSE
