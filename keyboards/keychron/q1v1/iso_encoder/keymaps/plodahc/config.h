@@ -1,5 +1,4 @@
 #pragma once
-#include "plodah.h"
 
 // #define KC_PL_QFTR
 // #define KC_PL_QRGB
@@ -63,3 +62,5 @@
   // #define PLODAH_REPEATHOLD_RGB
   // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGB_MATRIX_ENABLE
+
+#include "plodah.h"

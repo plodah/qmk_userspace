@@ -5,6 +5,6 @@
 #define KC_PL_QRGB
 #define KC_PL_QVER
 
-#include "plodah.h"
-
 #define PLODAH_BORING_LAYER 1
+
+#include "plodah.h"
