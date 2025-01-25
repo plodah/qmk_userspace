@@ -1,5 +1,5 @@
 #pragma once
-#include "plodah.h"
+
 #include "configs/ploopy-common.h"
 
 #ifdef PLOOPY_DPI_OPTIONS
@@ -16,3 +16,5 @@
   #undef PLOOPY_DRAGSCROLL_DIVISOR_V
 #endif
 #define PLOOPY_DRAGSCROLL_DIVISOR_V 8
+
+#include "plodah.h"

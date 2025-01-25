@@ -1,4 +1,8 @@
-// Copyright 2024 George Norton (@george-norton)
-// SPDX-License-Identifier: GPL-2.0-or-later
+// #include "configs/ploopy-common.h"
+
+#ifdef PRODUCT
+  #undef PRODUCT
+#endif // PRODUCT
+#define PRODUCT "Ploopy Trackpad | plodah"
 
 // #define MAXTOUCH_BOOTLOADER_GESTURE

@@ -1,11 +1,11 @@
 #pragma once
-#include "plodah.h"
-// #include "configs/ploopy-common.h"
+
+#include "configs/ploopy-common.h"
 
 #ifdef PRODUCT
   #undef PRODUCT
 #endif // PRODUCT
-#define PRODUCT "Ploopy Trackball Nano | plodah"
+#define PRODUCT "Ploopy Nano | plodah"
 
 #define PLOOPY_DRAGSCROLL_ON_SCROLLLOCK_ENABLED
 
@@ -33,3 +33,5 @@
   #undef PLOOPY_DRAGSCROLL_DIVISOR_H
 #endif
 #define PLOOPY_DRAGSCROLL_DIVISOR_H 6
+
+#include "plodah.h"
