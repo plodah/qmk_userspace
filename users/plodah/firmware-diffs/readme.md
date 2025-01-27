@@ -15,7 +15,43 @@ git commit m "Commit Message"
 git commit -am "Commit Message"
 
 ```
+## Manage Remotes
+```sh
+# list remotes. Ideal result listed.
+> git remote -v
+origin      https://github.com/plodah/qmk_firmware.git (fetch)
+origin      https://github.com/plodah/qmk_firmware.git (push)
+upstream    https://github.com/qmk/qmk_firmware.git (fetch)
+upstream    https://github.com/qmk/qmk_firmware.git (push)
 
+# To add upstream
+git remote add upstream https://github.com/qmk/qmk_firmware.git
+
+# Other things to work with remotes remotes
+git remote remove badremote
+git remote rename usptream upstream
+```
+
+## Basic reset master
+```sh
+checkout origin/master
+git pull upstream master 
+git push
+```
+## Hard reset master branch
+```sh
+# Reset master to upstream
+git checkout origin/master
+git pull --rebase upstream master
+git reset --hard upstream/master
+git push origin master --force
+```
+## Update working branch
+```sh
+git checkout workingbranch
+git pull --rebase origin master
+git push
+```
 ## Working with Diffs
 ```sh
 #create a diff
@@ -23,15 +59,6 @@ git diff master sourcebranch --output /path/to/diff.txt
 
 ## apply a Diff
 git apply /path/to/diff.txt
-```
-
-## Hard reset master branch
-```sh
-# Reset master to upstream
-git checkout master
-git pull --rebase upstream master
-git reset --hard upstream/master
-git push origin master --force
 ```
 
 ## Delete a branch
