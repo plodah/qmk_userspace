@@ -57,6 +57,8 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
+        { "key": "PL_DRAG_SCROLL_MOMENTARY" },
+        { "key": "PL_DRAG_SCROLL_TOGGLE" },
         { "key": "PL_MSJG" },
         { "key": "PL_QFTR" },
         { "key": "PL_QRGB" },
@@ -65,15 +67,15 @@
     "layers": [
         [
             "LT(1, KC_BTN4)", "LT(2, KC_BTN5)", "KC_BTN3", "KC_BTN2",
-            "KC_BTN1",                       "DRAG_SCROLL"
+            "KC_BTN1",                       "PL_DRAG_SCROLL_MOMENTARY"
         ],
         [
             "_______",  "PL_ALTSTAB", "PL_ALTTAB", "A(KC_F4)",
-            "DPI_CONFIG",                       "_______"
+            "DPI_CONFIG",                       "PL_DRAG_SCROLL_TOGGLE"
         ],
         [
             "C(KC_F4)", "_______", "S(C(KC_TAB))", "C(KC_TAB)",
-            "DPI_CONFIG",                       "_______"
+            "DPI_CONFIG",                       "PL_DRAG_SCROLL_TOGGLE"
         ]
     ]
 }

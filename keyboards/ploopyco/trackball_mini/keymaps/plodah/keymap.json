@@ -60,6 +60,8 @@
     "keycodes": [
         { "key": "PL_ALTTAB" },
         { "key": "PL_ALTSTAB" },
+        { "key": "PL_DRAG_SCROLL_MOMENTARY" },
+        { "key": "PL_DRAG_SCROLL_TOGGLE" },
         { "key": "PL_MSJG" },
         { "key": "PL_QFTR" },
         { "key": "PL_QRGB" },

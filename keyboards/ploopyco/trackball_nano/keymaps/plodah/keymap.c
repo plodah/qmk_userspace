@@ -21,6 +21,8 @@
 enum keymap_keycodes {
     PL_ALTTAB = QK_USER_0,
     PL_ALTSTAB,
+    PL_DRAG_SCROLL_MOMENTARY,
+    PL_DRAG_SCROLL_TOGGLE,
     PL_MSJG,
     PL_QFTR,
     PL_QLYR,
@@ -31,10 +33,6 @@ enum keymap_keycodes {
 
 // Dummy
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {{{ KC_NO }}};
-
-report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-  return mouse_report;
-}
 
 void suspend_power_down_user(void) {
     // Switch off sensor + LED making trackball unable to wake host
