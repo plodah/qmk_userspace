@@ -44,6 +44,7 @@
 #include "functions/caps_word.c"
 #include "functions/debug.c"
 #include "functions/dipswitch.c"
+#include "functions/dragscroll.c"
 #include "functions/dynamic_macros.c"
 #include "functions/mouse_jiggler.c"
 #include "functions/repeathold_rgb.c"
@@ -58,6 +59,7 @@
 #include "functions/alttab_enhancements.c"
 #include "functions/encoder_actions.c"
 
+#include "functions/pointing_device.c"
 #include "functions/process_record_user.c"
 #include "functions/combos.c"
 

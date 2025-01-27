@@ -12,6 +12,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           jiggler_onclick(keycode);
         }
       #endif // PLODAH_MSJIGGLER_ENABLED
+      #if defined(PLODAH_DRAGSCROLL)
+        pl_dragscroll_everypress(keycode & 0xff);
+      #endif // PLODAH_DRAGSCROLL
     }
   #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_MSJIGGLER_ENABLED)
 
@@ -111,7 +114,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
       case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
         return tap_dance_process_record_user( keycode, record );
-
     #endif // PLODAH_TAPDANCE_TAPHOLD_ENABLE
 
     #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
@@ -149,6 +151,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         repeathold_rgb_start(keycode & 0xff, record->event.pressed);
         return true;
     #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
+
+
+    #if defined(PLODAH_DRAGSCROLL)
+      case PL_DRAG_SCROLL_MOMENTARY:
+      case PL_DRAG_SCROLL_TOGGLE:
+      pl_dragscroll_keyhandler(keycode & 0xff, record->event.pressed);
+    #endif // PLODAH_DRAGSCROLL
   }
   return true;
 }
