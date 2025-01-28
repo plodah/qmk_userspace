@@ -34,8 +34,9 @@ git remote rename usptream upstream
 
 ## Basic reset master
 ```sh
-checkout origin/master
-git pull upstream master 
+git fetch upstream
+git checkout origin/master
+git merge upstream/main 
 git push
 ```
 ## Hard reset master branch
@@ -50,6 +51,7 @@ git push origin master --force
 ```sh
 git checkout workingbranch
 git pull --rebase origin master
+git pull #(if there are changes. Probably will be.)
 git push
 ```
 ## Working with Diffs
@@ -65,7 +67,12 @@ git apply /path/to/diff.txt
 ```sh
 # Delete a branch locally and remotely
 git checkout master #checkout anything other than the branch to be deleted.
-git branch -D naffbranch # Local
+# List and delete local branch
+git branch --list 
+git branch -D naffbranch 
+
+# List and delete a remote branch
+git branch --remote --list origin/*
 git push -d origin naffbranch # Remote
 ```
 
@@ -104,8 +111,10 @@ update-branch() {
             msg="apply diff '$diffname'"
             echo "--- $msg ---"
             git apply $d
+            sleep 3
             git add .
             git commit --all --message "$msg"
+            
         done
 
         # git diff $src --stat
