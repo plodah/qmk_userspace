@@ -5,21 +5,23 @@
   float plodah_dragscroll_acc_h = 0;
   float plodah_dragscroll_acc_v = 0;
 
-  void pl_dragscroll_keyhandler(int8_t keycode, bool pressed) {
-    switch(keycode){
-      case PL_DRAG_SCROLL_MOMENTARY & 0xff:
-        plodah_dragscroll_enabled = pressed;
-        break;
-      case PL_DRAG_SCROLL_TOGGLE & 0xff:
-        if(pressed){
-          plodah_dragscroll_enabled ^= 1;
-        }
-        break;
+  void pl_dragscroll_toggle(bool pressed){
+    if(pressed){
+      plodah_dragscroll_enabled ^= 1;
     }
   }
-  void pl_dragscroll_everypress(int8_t keycode) {
-    if( plodah_dragscroll_enabled && keycode != (PL_DRAG_SCROLL_TOGGLE & 0xff) ) {
-      plodah_dragscroll_enabled ^= 1;
+
+  void pl_dragscroll_momentary(bool pressed){
+    plodah_dragscroll_enabled = pressed;
+  }
+
+  void pl_dragscroll_off(void){
+    plodah_dragscroll_enabled = 0;
+  }
+
+  void pl_dragscroll_everypress(int16_t keycode) {
+    if( keycode != (PL_DRAG_SCROLL_TOGGLE) ) {
+      pl_dragscroll_off();
     }
   }
 

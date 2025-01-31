@@ -13,7 +13,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif // PLODAH_MSJIGGLER_ENABLED
       #if defined(PLODAH_DRAGSCROLL)
-        pl_dragscroll_everypress(keycode & 0xff);
+        pl_dragscroll_everypress(keycode);
       #endif // PLODAH_DRAGSCROLL
     }
   #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_MSJIGGLER_ENABLED)
@@ -152,12 +152,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 
-
     #if defined(PLODAH_DRAGSCROLL)
       case PL_DRAG_SCROLL_MOMENTARY:
+        pl_dragscroll_momentary(record->event.pressed);
+        return true;
       case PL_DRAG_SCROLL_TOGGLE:
-      pl_dragscroll_keyhandler(keycode & 0xff, record->event.pressed);
+        pl_dragscroll_toggle(record->event.pressed);
+        return true;
     #endif // PLODAH_DRAGSCROLL
+
   }
   return true;
 }
