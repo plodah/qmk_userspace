@@ -25,7 +25,11 @@
     const uint16_t PROGMEM pl_combo_ms2d[] = {KC_BTN2, PL_DRAG_SCROLL_MOMENTARY, COMBO_END};
 
     combo_t key_combos[] = {
-      COMBO(pl_combo_ms12,  PL_DRAG_SCROLL_MOMENTARY),
+      #if defined(TAP_DANCE_ENABLE) && defined(PLODAH_DRAGSCROLL_TAPDANCE)
+        COMBO(pl_combo_ms12,  TD(TD_DRAGSCROLL)),
+      #else // PLODAH_DRAGSCROLL_TAPDANCE
+        COMBO(pl_combo_ms12,  PL_DRAG_SCROLL_MOMENTARY),
+      #endif // PLODAH_DRAGSCROLL_TAPDANCE
       COMBO(pl_combo_ms14,  PL_MSJG),
       COMBO(pl_combo_ms15,  C(KC_C)),
       COMBO(pl_combo_ms24,  PL_DRAG_SCROLL_MOMENTARY),
