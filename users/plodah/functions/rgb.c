@@ -1,16 +1,30 @@
 #pragma once
 
 #ifdef RGB_MATRIX_ENABLE
-    HSV plodah_rgblimit(HSV currenthsv, HSV targethsv, uint8_t minval){
-    HSV output = targethsv;
+  HSV plodah_rgblimit(HSV currenthsv, HSV target_hsv, uint8_t minval){
+    HSV output = target_hsv;
     if(minval > currenthsv.v){
         output.v = minval;
     }
-    else if(targethsv.v > currenthsv.v ){
+    else if(target_hsv.v > currenthsv.v ){
         output.v = currenthsv.v;
     }
     return output;
+  }
+  HSV plodah_rgblimit_ind(HSV currenthsv, uint8_t target_h, uint8_t target_s, uint8_t target_v, uint8_t minval){
+    HSV output = {target_h, target_s, target_v};
+    if(minval > currenthsv.v){
+        output.v = minval;
     }
+    else if(target_v > currenthsv.v ){
+        output.v = currenthsv.v;
+    }
+    return output;
+  }
+  HSV plodah_rgblimit_i(HSV currenthsv, uint8_t target_h, uint8_t target_s, uint8_t target_v, uint8_t minval){
+    HSV target_hsv = {target_h, target_s, target_v};
+    return plodah_rgblimit(currenthsv, target_hsv, minval);
+  }
 #endif // RGB_MATRIX_ENABLE
 
 char* rgbQuery(void){
