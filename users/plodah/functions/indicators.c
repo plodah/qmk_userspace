@@ -30,13 +30,51 @@
     }
     return true;
   }
+  //  declare a bunch of variables once rather than every time their function is called
+  #if defined(CAPS_LOCK_LED_INDEX)
+    HSV capshsv = { PLODAH_CAPS_INDIC_HSV };
+    RGB capsrgb;
+  #endif // CAPS_LOCK_LED_INDEX
+
+  #if defined(PLODAH_LAYER_INDIC_INDEX1) || defined(PLODAH_LAYER_INDIC_INDEXES)
+    HSV layrhsv = { PLODAH_LAYER_INDIC_HSV };
+    RGB layrrgb;
+    #if defined(PLODAH_LAYER_INDIC_BG_HSV)
+      HSV laybhsv = { PLODAH_LAYER_INDIC_BG_HSV };
+      RGB laybrgb;
+    #endif //  PLODAH_LAYER_INDIC_BG_HSV
+  #endif // defined(PLODAH_LAYER_INDIC_INDEX1) || defined(PLODAH_LAYER_INDIC_INDEXES)
+
+  #if defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DMAC_INDIC_INDEX)
+    HSV dmachsv = { PLODAH_DMAC_INDIC_HSV };
+    RGB dmacrgb;
+  #endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DMAC_INDIC_INDEX)
+
+  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
+    HSV typnhsv = { PLODAH_TYPINGINDICATOR_HSV };
+    RGB typnrgb;
+  #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
+
+  #if defined(PLODAH_MSJIGGLER_ENABLED) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
+    HSV msjighsv = { PLODAH_MSJIGGLER_INDICATOR_HSV };
+    RGB msjigrgb;
+  #endif // defined(PLODAH_MSJIGGLER_ENABLED) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
+
+  #if ( defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) )
+    HSV modshsv = { PLODAH_MODS_INDIC_HSV };
+    RGB modsrgb;
+  #endif // ( defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) )
+
+  #if (defined(PLODAH_MODS_INDIC_LGUI_INDEX) || defined(PLODAH_MODS_INDIC_RGUI_INDEX)) && defined(PLODAH_GULOCK_INDIC_ENABLE)
+    HSV guilockhsv = { PLODAH_GULOCK_INDIC_HSV };
+    RGB guilockrgb;
+  #endif // defined(PLODAH_GULOCK_INDIC_ENABLE)
+
 
   bool rgb_matrix_indicators_user(void) {
     #if defined(CAPS_LOCK_LED_INDEX)
-      HSV capshsv = { PLODAH_CAPS_INDIC_HSV };
       if (host_keyboard_led_state().caps_lock){
-        capshsv = plodah_rgblimit(rgb_matrix_get_hsv(), capshsv, PLODAH_INDICATOR_MINVAL);
-        RGB capsrgb = hsv_to_rgb(capshsv);
+        capsrgb = hsv_to_rgb(plodah_rgblimit(rgb_matrix_get_hsv(), capshsv, PLODAH_INDICATOR_MINVAL));
         rgb_matrix_set_color(CAPS_LOCK_LED_INDEX, capsrgb.r, capsrgb.g, capsrgb.b);
       }
       else {
@@ -52,13 +90,9 @@
           uint8_t layer_ind[] = PLODAH_LAYER_INDIC_INDEXES;
         #endif // PLODAH_LAYER_INDIC_INDEXES
 
-        HSV layrhsv = { PLODAH_LAYER_INDIC_HSV };
-        layrhsv = plodah_rgblimit(rgb_matrix_get_hsv(), layrhsv, PLODAH_INDICATOR_MINVAL);
-        RGB layrrgb = hsv_to_rgb(layrhsv);
+        layrrgb = hsv_to_rgb(plodah_rgblimit(rgb_matrix_get_hsv(), layrhsv, PLODAH_INDICATOR_MINVAL));
         #if defined(PLODAH_LAYER_INDIC_BG_HSV)
-          HSV laybhsv = { PLODAH_LAYER_INDIC_BG_HSV };
-          laybhsv = plodah_rgblimit(rgb_matrix_get_hsv(), laybhsv, PLODAH_INDICATOR_MINVAL);
-          RGB laybrgb = hsv_to_rgb(laybhsv);
+          laybrgb = hsv_to_rgb(plodah_rgblimit(rgb_matrix_get_hsv(), laybhsv, PLODAH_INDICATOR_MINVAL));
         #endif // PLODAH_LAYER_INDIC_BG_HSV
 
       int highlayer = get_highest_layer(layer_state | default_layer_state);
@@ -97,10 +131,8 @@
       }
     #endif // PLODAH_LAYER_INDIC_INDEX1
 
-    #if defined(DYNAMIC_MACRO_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
-      HSV dmachsv = { PLODAH_DMAC_INDIC_HSV };
-      dmachsv = plodah_rgblimit(rgb_matrix_get_hsv(), dmachsv, PLODAH_INDICATOR_MINVAL);
-      RGB dmacrgb = hsv_to_rgb(dmachsv);
+    #if defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DMAC_INDIC_INDEX)
+      dmacrgb = hsv_to_rgb(plodah_rgblimit(rgb_matrix_get_hsv(), dmachsv, PLODAH_INDICATOR_MINVAL));
       if (!rgb_matrix_get_flags()) {
         rgb_matrix_set_color(PLODAH_DMAC_INDIC_INDEX, RGB_OFF);
       }
@@ -110,9 +142,7 @@
     #endif // DYNAMIC_MACRO_ENABLE && PLODAH_DMAC_INDIC_INDEX
 
     #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
-      HSV typnhsv = { PLODAH_TYPINGINDICATOR_HSV };
-      typnhsv = plodah_rgblimit(rgb_matrix_get_hsv(), typnhsv, PLODAH_INDICATOR_MINVAL);
-      RGB typnrgb = hsv_to_rgb(typnhsv);
+      typnrgb = hsv_to_rgb(plodah_rgblimit(rgb_matrix_get_hsv(), typnhsv, PLODAH_INDICATOR_MINVAL));
       if(!rgb_matrix_get_flags()){
         rgb_matrix_set_color(PLODAH_TYPINGINDICATOR_RGBINDEX, RGB_OFF);
       }
@@ -121,9 +151,7 @@
       }
     #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
     #if defined(PLODAH_MSJIGGLER_ENABLED) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
-      HSV msjighsv = { PLODAH_MSJIGGLER_INDICATOR_HSV };
-      msjighsv = plodah_rgblimit(rgb_matrix_get_hsv(), msjighsv, PLODAH_INDICATOR_MINVAL);
-      RGB msjigrgb = hsv_to_rgb(msjighsv);
+      msjigrgb = hsv_to_rgb(plodah_rgblimit(rgb_matrix_get_hsv(), msjighsv, PLODAH_INDICATOR_MINVAL));
       if(!rgb_matrix_get_flags()){
         rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
       }
@@ -138,15 +166,11 @@
       }
     #endif // PLODAH_MSJIGGLER_ENABLED && PLODAH_MSJIGGLER_INDICATOR_RGBINDEX
     #if ( defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) )
-      HSV modshsv = { PLODAH_MODS_INDIC_HSV };
-      modshsv = plodah_rgblimit(rgb_matrix_get_hsv(), modshsv, PLODAH_INDICATOR_MINVAL);
-      RGB modsrgb = hsv_to_rgb(modshsv);
+      modsrgb = hsv_to_rgb(plodah_rgblimit(rgb_matrix_get_hsv(), modshsv, PLODAH_INDICATOR_MINVAL));
     #endif // plodah_rgblimit
 
     #if defined(PLODAH_GULOCK_INDIC_ENABLE)
-      HSV guilockhsv = { PLODAH_GULOCK_INDIC_HSV };
-      guilockhsv = plodah_rgblimit(rgb_matrix_get_hsv(), guilockhsv, PLODAH_INDICATOR_MINVAL);
-      RGB guilockrgb = hsv_to_rgb(guilockhsv);
+      guilockrgb = hsv_to_rgb(plodah_rgblimit(rgb_matrix_get_hsv(), guilockhsv, PLODAH_INDICATOR_MINVAL));
     #endif // plodah_rgblimit
 
     #if defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX)
