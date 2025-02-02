@@ -26,6 +26,7 @@ cd $qmkdir
 #Dictionaries
 declare -a usesmalldict=(
     "keychron/q1v1/iso_encoder/keymaps/plodah"
+    "keychron/q1v1/iso_encoder/keymaps/plodahc"
 )
 declare -a uselargedict=(
     "keychron/v6/iso_encoder/keymaps/plodah"

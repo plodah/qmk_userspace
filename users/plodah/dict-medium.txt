@@ -25,7 +25,6 @@ widht -> width
 :iwll -> will
 :iwth -> with
 :lastr: -> last
-:leran -> learn
 :lsat -> last
 :nad: -> and
 :nto: -> not
@@ -37,7 +36,6 @@ widht -> width
 :smoe: -> some
 :soem: -> some
 :sohw: -> show
-:stpo: -> stop
 :syas: -> says
 :szie -> size
 :tath: -> that
@@ -55,4 +53,3 @@ widht -> width
 :tkae: -> take
 :tothe -> to the
 :ture -> true
-:tust: -> trust
