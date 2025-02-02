@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                    KC_RALT, P_FNB,   KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_FNA] = LAYOUT_iso_83(
-        _______, KC_BRID, KC_BRIU, P_GTAB,  G(KC_E), RGB_VAD, RGB_VAI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, _______, PL_EC_PR,
+        _______, KC_BRID, KC_BRIU, P_GTAB,  G(KC_E), RM_VALD, RM_VALU, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, _______, PL_EC_PR,
         _______, KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,   KC_P7,   KC_P8,   KC_P9,   KC_P0,   _______, _______, _______, KC_END,
         KC_ENT,  KC_PGUP, KC_UP,   KC_PGDN, _______, _______, _______, _______, _______, _______, KC_PSCR, _______, _______,          C(KC_F4),
         KC_CAPS, KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,  _______, _______, _______, _______, _______, _______, _______, _______, _______, S(C(KC_T)),
@@ -59,8 +59,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FNB] = LAYOUT_iso_83(
         _______, KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,  KC_F19,  KC_F20,  KC_F21,  KC_F22,  KC_F23,  KC_F24,  _______, PL_EC_PR,
         MC_0,    MC_1,    MC_2,    MC_3,    MC_4,    MC_5,    MC_6,    MC_7,    MC_8,    MC_9,    MC_10,   PL_QVER,   QK_MAKE, _______, PL_MSJG,
-        RGB_TOG, RGB_MOD, RGB_VAI, RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, _______, _______, KC_PSCR, _______, _______,          _______,
-        KC_CAPS, RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, DM_RSTP, DM_REC1, DM_REC2, _______, _______, _______, KC_END,
+        RM_TOGG, RM_NEXT, RM_VALU, RM_HUEU, RM_SATU, RM_SPDU, _______, _______, _______, _______, KC_PSCR, _______, _______,          _______,
+        KC_CAPS, RM_PREV, RM_VALD, RM_HUED, RM_SATD, RM_SPDD, _______, _______, DM_RSTP, DM_REC1, DM_REC2, _______, _______, _______, KC_END,
         _______, _______, _______, _______, _______, P_PASTE, _______, NK_TOGG, _______, _______, DM_PLY1, DM_PLY2, _______, KC_VOLU,
         _______, GU_TOGG, _______,                            KC_SPC,                    _______, _______, _______, KC_HOME, KC_VOLD, KC_END
     )

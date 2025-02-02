@@ -186,12 +186,12 @@
             "_______",  "_______",  "GU_TOGG",              "_______",              "KC_SPC",   "_______",              "KC_SPC",               "KC_APP",                           "KC_HOME",  "KC_PGDN",  "KC_END"
         ],
         [
-            "PL_EC_PR", "_______",  "KC_BRID",  "KC_BRIU",  "G(KC_TAB)", "G(KC_E)", "RGB_VAD",  "RGB_VAI",              "KC_MPRV",  "KC_MPLY",  "KC_MNXT",  "KC_MUTE",  "KC_VOLD",  "KC_VOLU",  "_______",  "_______",
-            "_______",  "_______",  "KC_P1",    "KC_P2",    "KC_P3",    "KC_P4",    "KC_P5",    "KC_P6",                "KC_P7",    "KC_P8",    "KC_P9",    "KC_P0",    "_______",  "_______",  "_______",  "KC_END",
-            "_______",  "RGB_TOG",  "RGB_MOD",  "RGB_VAI",  "RGB_HUI",  "RGB_SAI",  "RGB_SPI",              "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "_______",
-            "PL_QVER",  "KC_CAPS",  "RGB_RMOD", "RGB_VAD",  "RGB_HUD",  "RGB_SAD",  "RGB_SPD",  "_______",              "_______",  "DM_RSTP",  "DM_REC1",  "DM_REC2",  "_______",  "_______",  "_______",  "_______",
-            "QK_MAKE",  "_______",  "_______",  "_______",  "_______",  "_______",  "S(C(KC_V))", "_______", "_______", "NK_TOGG",  "_______",  "_______",  "DM_PLY1",  "DM_PLY2",  "_______",  "KC_VOLU",
-            "_______",  "_______",  "GU_TOGG",              "_______",              "KC_SPC",   "_______",              "KC_SPC",               "KC_APP",                           "KC_HOME",  "KC_VOLD",  "KC_END"
+            "PL_EC_PR", "_______",  "KC_BRID", "KC_BRIU",  "G(KC_TAB)", "G(KC_E)", "RM_VALD",  "RM_VALU",              "KC_MPRV",  "KC_MPLY",  "KC_MNXT",  "KC_MUTE",  "KC_VOLD",  "KC_VOLU",  "_______",  "_______",
+            "_______",  "_______",  "KC_P1",   "KC_P2",    "KC_P3",     "KC_P4",   "KC_P5",    "KC_P6",                "KC_P7",    "KC_P8",    "KC_P9",    "KC_P0",    "_______",  "_______",  "_______",  "KC_END",
+            "_______",  "RM_TOGG",  "RM_NEXT", "RM_VALU",  "RM_HUEU",   "RM_SATU", "RM_SPDU",              "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "_______",
+            "PL_QVER",  "KC_CAPS",  "RM_PREV", "RM_VALD",  "RM_HUED",   "RM_SATD", "RM_SPDD",  "_______",              "_______",  "DM_RSTP",  "DM_REC1",  "DM_REC2",  "_______",  "_______",  "_______",  "_______",
+            "QK_MAKE",  "_______",  "_______",  "_______",  "_______",  "_______", "S(C(KC_V))", "_______", "_______", "NK_TOGG",  "_______",  "_______",  "DM_PLY1",  "DM_PLY2",  "_______",  "KC_VOLU",
+            "_______",  "_______",  "GU_TOGG",              "_______",             "KC_SPC",   "_______",              "KC_SPC",               "KC_APP",                           "KC_HOME",  "KC_VOLD",  "KC_END"
         ]
     ]
 }
