@@ -60,8 +60,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [3] = LAYOUT_60_b_iso(
         KC_GRV, PL_DMAC1, PL_DMAC2, MC_3,   MC_4,    MC_5,    MC_6,    PL_QFTR, PL_QLYR, PL_QRGB, PL_QVER, PL_MSJG, QK_MAKE, XXXXXXX, KC_DEL,
-        BL_TOGG, BL_BRTG, BL_UP,   _______, _______, RGB_SPI, _______, _______, _______, _______, KC_PSCR, _______, _______,
-        KC_CAPS, BL_BRTG, BL_DOWN, _______, _______, RGB_SPD, _______, _______, _______, _______, _______, _______, _______, _______,
+        BL_TOGG, BL_BRTG, BL_UP,   _______, _______, _______, _______, _______, _______, _______, KC_PSCR, _______, _______,
+        KC_CAPS, BL_BRTG, BL_DOWN, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, P_PASTE, _______, NK_TOGG, _______, _______, _______, _______,          KC_VOLU, _______,
         _______, GU_TOGG, _______,          KC_SPC,           KC_SPC,           KC_SPC,           KC_APP,  _______, KC_HOME, KC_VOLD, KC_END
     ),
