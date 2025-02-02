@@ -140,14 +140,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 
     #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
-      case RGB_HUD:
-      case RGB_HUI:
-      case RGB_SAD:
-      case RGB_SAI:
-      case RGB_VAD:
-      case RGB_VAI:
-      case RGB_SPD:
-      case RGB_SPI:
+      case RM_HUED:
+      case RM_HUEU:
+      case RM_SATD:
+      case RM_SATU:
+      case RM_VALD:
+      case RM_VALU:
+      case RM_SPDD:
+      case RM_SPDU:
         repeathold_rgb_start(keycode & 0xff, record->event.pressed);
         return true;
     #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)

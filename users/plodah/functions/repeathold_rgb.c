@@ -7,39 +7,28 @@
   int8_t rgb_sp_state = -1;
   uint16_t repeathold_rgb_timer;
 
-  /*
-      "0x7823": {"group": "rgb", "key": "RGB_HUI"},
-      "0x7824": {"group": "rgb", "key": "RGB_HUD"},
-      "0x7825": {"group": "rgb", "key": "RGB_SAI"},
-      "0x7826": {"group": "rgb", "key": "RGB_SAD"},
-      "0x7827": {"group": "rgb", "key": "RGB_VAI"},
-      "0x7828": {"group": "rgb", "key": "RGB_VAD"},
-      "0x7829": {"group": "rgb", "key": "RGB_SPI"},
-      "0x782A": {"group": "rgb", "key": "RGB_SPD"},
-  */
-
   void repeathold_rgb_start(int8_t keycode, bool pressed) {
     switch(keycode){
-      case RGB_HUI & 0xff:
-      case RGB_HUD & 0xff:
+      case RM_HUEU & 0xff:
+      case RM_HUED & 0xff:
         if(pressed){rgb_hu_state = keycode & 0x1;}
         else{rgb_hu_state = -1;}
         break;
 
-      case RGB_SAI & 0xff:
-      case RGB_SAD & 0xff:
+      case RM_SATU & 0xff:
+      case RM_SATD & 0xff:
         if(pressed){rgb_sa_state = keycode & 0x1;}
         else{rgb_sa_state = -1;}
         break;
 
-      case RGB_VAI & 0xff:
-      case RGB_VAD & 0xff:
+      case RM_VALU & 0xff:
+      case RM_VALD & 0xff:
         if(pressed){rgb_va_state = keycode & 0x1;}
         else{rgb_va_state = -1;}
         break;
 
-      case RGB_SPI & 0xff:
-      case RGB_SPD & 0xff:
+      case RM_SPDU & 0xff:
+      case RM_SPDD & 0xff:
         if(pressed){rgb_sp_state = keycode & 0x1;}
         else{rgb_sp_state = -1;}
         break;
