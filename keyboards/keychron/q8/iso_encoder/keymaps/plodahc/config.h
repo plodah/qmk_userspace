@@ -10,6 +10,7 @@
 #endif // PRODUCT
 #define PRODUCT "Keychron Q8 ISO Enc | plodahc"
 
+#define PLODAH_HRM_COMBOS
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #define PLODAH_BORING_LAYER 1
 
