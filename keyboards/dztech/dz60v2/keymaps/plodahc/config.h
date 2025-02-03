@@ -5,6 +5,9 @@
 #define KC_PL_QRGB
 #define KC_PL_QVER
 
+#define PLODAH_TASKSWITCH_FORCE_NDE
+#define PLODAH_DYNAMIC_MACRO_FORCE_NDE
+
 #if defined(PRODUCT)
   #undef PRODUCT
 #endif // PRODUCT
