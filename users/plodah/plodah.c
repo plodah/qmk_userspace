@@ -56,7 +56,7 @@
   #define PLODAH_TASKSWITCH_ENABLE
 #endif
 
-#include "functions/taskswitch.c
+#include "functions/taskswitch.c"
 #include "functions/encoder_actions.c"
 
 #include "functions/pointing_device.c"
