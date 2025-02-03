@@ -11,15 +11,16 @@ enum keymap_keycodes {
     PL_TSKB,
     // PL_DMAC1,
     // PL_DMAC2,
+    PL_DRAG_SCROLL_MOMENTARY,
+    PL_DRAG_SCROLL_TOGGLE,
     // PL_ECCC,
     // PL_ECCW,
     // PL_ECPR,
-    PL_DRAG_SCROLL_MOMENTARY,
-    PL_DRAG_SCROLL_TOGGLE,
     PL_MSJG,
     PL_QFTR,
     PL_QLYR,
     PL_QRGB,
+    // PL_QTAP,
     PL_QVER,
 };
 
@@ -27,8 +28,8 @@ enum {
     TD_DRAGSCROLL,
 };
 
-#define P_MS4F1 LT(1, KC_BTN4)
-#define P_MS5F2 LT(2, KC_BTN5)
+#define P_MS4FA LT(_FNA, KC_BTN4)
+#define P_MS5FB LT(_FNB, KC_BTN5)
 #define P_DRGTD TD(TD_DRAGSCROLL)
 #define P_DRGMO TD(TD_DRAGSCROLL)
 #define P_DRGTG PL_DRAG_SCROLL_TOGGLE
@@ -39,7 +40,7 @@ enum {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-        P_MS4F1, P_MS5F2, KC_BTN3, KC_BTN2,
+        P_MS4FA, P_MS5FB, KC_BTN3, KC_BTN2,
         KC_BTN1,                   P_DRGTD
     ),
     [_FNA] = LAYOUT(

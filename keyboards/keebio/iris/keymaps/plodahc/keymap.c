@@ -12,6 +12,8 @@ enum keymap_keycodes {
     PL_TSKB,
     // PL_DMAC1,
     // PL_DMAC2,
+    // PL_DRAG_SCROLL_MOMENTARY,
+    // PL_DRAG_SCROLL_TOGGLE,
     // PL_ECCC,
     // PL_ECCW,
     // PL_ECPR,
@@ -19,6 +21,7 @@ enum keymap_keycodes {
     PL_QFTR,
     PL_QLYR,
     PL_QRGB,
+    // PL_QTAP,
     PL_QVER,
 };
 
