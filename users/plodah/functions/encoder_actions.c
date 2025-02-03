@@ -156,10 +156,10 @@
         //A
         switch (keycode) {
           case PL_ECCC & 0xff:
-            plodah_alttab_start(true);
+            plodah_taskswitch_start(true);
             break;
           case PL_ECCW & 0xff:
-            plodah_alttab_start(false);
+            plodah_taskswitch_start(false);
             break;
           case PL_ECPR & 0xff:
           default:

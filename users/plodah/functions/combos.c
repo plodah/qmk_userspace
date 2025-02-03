@@ -71,10 +71,10 @@
       const uint16_t PROGMEM pl_combo_90[]    = {KC_9,    KC_0,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_bsz[]   = {KC_NUBS, KC_Z,                   COMBO_END};
 
-      #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
+      #if defined(PLODAH_TASKSWITCH_ENABLE)
         const uint16_t PROGMEM pl_combo_tabq[] = {KC_TAB , KC_Q , COMBO_END};
         const uint16_t PROGMEM pl_combo_tabw[] = {KC_TAB , KC_W , COMBO_END};
-      #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+      #endif // PLODAH_TASKSWITCH_ENABLE
     #endif
 
     #if defined(PLODAH_HRM_COMBOS)
@@ -114,10 +114,10 @@
         COMBO(pl_combo_89,    KC_MINS    ),
         COMBO(pl_combo_90,    KC_EQL     ),
         COMBO(pl_combo_bsz,   C(KC_Z)    ),
-        #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
+        #if defined(PLODAH_TASKSWITCH_ENABLE)
           COMBO(pl_combo_tabq,    PL_TSKB),
           COMBO(pl_combo_tabw,    PL_TSKA),
-        #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+        #endif // PLODAH_TASKSWITCH_ENABLE
       #endif
 
       #if defined(PLODAH_HRM_COMBOS)

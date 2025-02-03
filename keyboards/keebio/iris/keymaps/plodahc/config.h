@@ -29,7 +29,7 @@
 
 #include "configs/backlight-common.h"
 #define SPLIT_LED_STATE_ENABLE
-#define PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+#define PLODAH_TASKSWITCH_ENABLE
 
 #ifdef COMBO_ENABLE
   #ifdef COMBO_TERM

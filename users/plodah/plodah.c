@@ -21,7 +21,7 @@
 #endif // GUI
 
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || \
-    defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE) || \
+    defined(PLODAH_TASKSWITCH_ENABLE) || \
     defined(PLODAH_MODS_INDIC_LALT_INDEX) || \
     defined(PLODAH_MODS_INDIC_RALT_INDEX) || \
     defined(PLODAH_DYNAMIC_MACRO_KCS_ENABLE)
@@ -52,11 +52,11 @@
 #include "functions/textfns.c"
 #include "functions/typing_indicator.c"
 
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) && (!defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE))
-  #define PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
+#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) && (!defined(PLODAH_TASKSWITCH_ENABLE))
+  #define PLODAH_TASKSWITCH_ENABLE
 #endif
 
-#include "functions/alttab_enhancements.c"
+#include "functions/taskswitch.c
 #include "functions/encoder_actions.c"
 
 #include "functions/pointing_device.c"
