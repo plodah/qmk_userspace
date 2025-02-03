@@ -117,12 +117,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #endif // PLODAH_TAPDANCE_TAPHOLD_ENABLE
 
     #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
-      case PL_ALTTAB:
+      case PL_TSKA:
         if (record->event.pressed) {
           plodah_alttab_start(false);
         }
         return false;
-      case PL_ALTSTAB:
+      case PL_TSKB:
         if (record->event.pressed) {
           plodah_alttab_start(true);
         }
@@ -130,9 +130,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #endif  // defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
 
     #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
-      case PL_EC_CCW:
-      case PL_EC_CW:
-      case PL_EC_PR:
+      case PL_ECCC:
+      case PL_ECCW:
+      case PL_ECPR:
         if (record->event.pressed) {
           enc_act(keycode & 0xff, ctl_pressed, gui_pressed, alt_pressed, sft_pressed);
         }

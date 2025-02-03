@@ -118,8 +118,8 @@
         }
     },
     "keycodes": [
-        { "key": "PL_ALTTAB" },
-        { "key": "PL_ALTSTAB" },
+        { "key": "PL_TSKA" },
+        { "key": "PL_TSKB" },
         { "key": "PL_MSJG" },
         { "key": "PL_QFTR" },
         { "key": "PL_QRGB" },
@@ -136,8 +136,8 @@
                 "cw": "KC_VOLU"
             },
             {
-                "ccw": "PL_ALTSTAB",
-                "cw": "PL_ALTTAB"
+                "ccw": "PL_TSKB",
+                "cw": "PL_TSKA"
             }
         ],
         [

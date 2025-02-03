@@ -10,7 +10,7 @@
 #endif // PRODUCT
 #define PRODUCT "dztech/dz60v2 | plodahc"
 
-#define PLODAH_BORING_LAYER 1
+#define PLODAH_BORING_LAYER _QWEB
 
 #if defined(DEFERRED_EXEC_ENABLE)
   #define PLODAH_MSJIGGLER_ENABLED

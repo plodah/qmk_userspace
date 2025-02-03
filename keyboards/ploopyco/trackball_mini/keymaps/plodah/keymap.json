@@ -58,8 +58,8 @@
         }
     },
     "keycodes": [
-        { "key": "PL_ALTTAB" },
-        { "key": "PL_ALTSTAB" },
+        { "key": "PL_TSKA" },
+        { "key": "PL_TSKB" },
         { "key": "PL_DRAG_SCROLL_MOMENTARY" },
         { "key": "PL_DRAG_SCROLL_TOGGLE" },
         { "key": "PL_MSJG" },
@@ -79,8 +79,8 @@
             "_______",
             "DPI_CONFIG",
             "_______",
-            "PL_ALTSTAB",
-            "PL_ALTTAB"
+            "PL_TSKB",
+            "PL_TSKA"
         ],
         [
             "_______",

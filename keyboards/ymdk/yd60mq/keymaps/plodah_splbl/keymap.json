@@ -71,8 +71,8 @@
         }
     },
     "keycodes": [
-        { "key": "PL_ALTTAB" },
-        { "key": "PL_ALTSTAB" },
+        { "key": "PL_TSKA" },
+        { "key": "PL_TSKB" },
         { "key": "PL_QFTR" },
         { "key": "PL_QRGB" },
         { "key": "PL_QVER" }

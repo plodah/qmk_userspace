@@ -55,8 +55,8 @@
         }
     },
     "keycodes": [
-        { "key": "PL_ALTTAB" },
-        { "key": "PL_ALTSTAB" },
+        { "key": "PL_TSKA" },
+        { "key": "PL_TSKB" },
         { "key": "PL_DRAG_SCROLL_MOMENTARY" },
         { "key": "PL_DRAG_SCROLL_TOGGLE" },
         { "key": "PL_MSJG" },
@@ -70,7 +70,7 @@
             "KC_BTN1",                       "PL_DRAG_SCROLL_MOMENTARY"
         ],
         [
-            "_______",  "PL_ALTSTAB", "PL_ALTTAB", "A(KC_F4)",
+            "_______",  "PL_TSKB", "PL_TSKA", "A(KC_F4)",
             "DPI_CONFIG",                       "PL_DRAG_SCROLL_TOGGLE"
         ],
         [

@@ -19,8 +19,8 @@
 #include QMK_KEYBOARD_H
 
 enum keymap_keycodes {
-    PL_ALTTAB = QK_USER_0,
-    PL_ALTSTAB,
+    PL_TSKA = QK_USER_0,
+    PL_TSKB,
     PL_DRAG_SCROLL_MOMENTARY,
     PL_DRAG_SCROLL_TOGGLE,
     PL_MSJG,

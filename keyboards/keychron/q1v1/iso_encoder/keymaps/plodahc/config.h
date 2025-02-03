@@ -5,6 +5,7 @@
 #define KC_PL_QVER
 
 // #define PLODAH_COMBOS_LIMITED
+#define TAP_CODE_DELAY 24
 
 #ifdef PRODUCT
   #undef PRODUCT

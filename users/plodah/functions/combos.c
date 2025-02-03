@@ -115,8 +115,8 @@
         COMBO(pl_combo_90,    KC_EQL     ),
         COMBO(pl_combo_bsz,   C(KC_Z)    ),
         #if defined(PLODAH_ALTTAB_ENHANCEMENTS_ENABLE)
-          COMBO(pl_combo_tabq,    PL_ALTSTAB),
-          COMBO(pl_combo_tabw,    PL_ALTTAB),
+          COMBO(pl_combo_tabq,    PL_TSKB),
+          COMBO(pl_combo_tabw,    PL_TSKA),
         #endif // PLODAH_ALTTAB_ENHANCEMENTS_ENABLE
       #endif
 
