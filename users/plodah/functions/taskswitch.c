@@ -47,6 +47,7 @@
       }
       else{
     #else
+      taskswitch_timer = timer_read();
       if (!is_taskswitch_active) {
     #endif // PLODAH_TASKSWITCH_MODE_DE
         #if ! defined(IS_MOUSE)
