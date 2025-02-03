@@ -97,6 +97,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_QWEA] = {ENCODER_CCW_CW(PL_ECCC, PL_ECCW)},
     [_QWEB] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_FNA]  = {ENCODER_CCW_CW(PL_ECCC, PL_ECCW)},
-    [_FNB]  = {ENCODER_CCW_CW(PL_ECCC, PL_ECCW)}
+    [_FNB]  = {ENCODER_CCW_CW(PL_ECCC, PL_ECCW)},
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
