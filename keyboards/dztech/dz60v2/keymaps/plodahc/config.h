@@ -37,4 +37,11 @@
 #endif
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 
+/* ------- RGB LIGHTING ------- */
+#ifdef RGBLIGHT_ENABLE
+  #include "configs/rgblight-effects-few.h"
+  #define PLODAH_REPEATHOLD_RGB
+  // #define PLODAH_REPEATHOLD_RATE 100
+#endif // RGBLIGHT_ENABLE
+
 #include "plodah.h"
