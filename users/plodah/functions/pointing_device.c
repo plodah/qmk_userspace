@@ -7,6 +7,11 @@
       }
     #endif
     #if defined(PLODAH_DRAGSCROLL)
+      #if defined(PLODAH_MSWIGGLE_ENABLE)
+        if(plodah_wigglecheck(mouse_report)){
+          pl_dragscroll_toggle(true);
+        }
+      #endif // PLODAH_MSWIGGLE_ENABLE
       mouse_report = plodah_dragscroll_pointingtask(mouse_report);
     #endif
     return mouse_report;
