@@ -16,7 +16,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     #if defined(PLODAH_MSJIGGLER_ENABLED) && defined(DEFERRED_EXEC_ENABLE)
-      jiggle_delay();
+      jiggle_delay(90);
     #endif // PLODAH_MSJIGGLER_ENABLED
 
   #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || (defined(PLODAH_MSJIGGLER_ENABLED) && defined(DEFERRED_EXEC_ENABLE))

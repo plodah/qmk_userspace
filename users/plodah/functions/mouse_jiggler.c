@@ -33,9 +33,9 @@
     }
   }
 
-  void jiggle_delay(void){
+  void jiggle_delay(uint16_t delay_sec){
     if( msJigMainToken != INVALID_DEFERRED_TOKEN ){
-        extend_deferred_exec(msJigMainToken, 15000 );
+        extend_deferred_exec(msJigMainToken, delay_sec*1000 );
     }
   }
 
