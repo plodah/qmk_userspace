@@ -155,6 +155,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
 
+    #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGBLIGHT_ENABLE)
+      case UG_HUEU:
+      case UG_HUED:
+      case UG_SATU:
+      case UG_SATD:
+      case UG_VALU:
+      case UG_VALD:
+      case UG_SPDU:
+      case UG_SPDD:
+        repeathold_rgb_start(keycode & 0xff, record->event.pressed);
+        return true;
+    #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGBLIGHT_ENABLE)
+
     #if defined(PLODAH_DRAGSCROLL)
       case PL_DRAG_SCROLL_MOMENTARY:
         pl_dragscroll_momentary(record->event.pressed);
