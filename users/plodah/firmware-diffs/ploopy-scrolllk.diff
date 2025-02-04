@@ -5,11 +5,11 @@ index b4499c3470..6b788fbc52 100644
 @@ -239,9 +239,16 @@ void pointing_device_init_kb(void) {
      pointing_device_set_cpi(dpi_array[keyboard_config.dpi_config]);
  }
- 
+
 +bool led_update_kb(led_t led_state) {
-+#if defined(PLOOPY_DRAGSCROLL_ON_SCROLLLOCK_ENABLED)
++#if defined(PLOOPY_DRAGSCROLL_ON_SCROLLLOCK_ENABLE)
 +    is_drag_scroll = led_state.scroll_lock;
-+#endif // PLOOPY_DRAGSCROLL_ON_SCROLLLOCK_ENABLED
++#endif // PLOOPY_DRAGSCROLL_ON_SCROLLLOCK_ENABLE
 +    return true;
 +}
 +

@@ -50,9 +50,9 @@
     RGB typnrgb;
   #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
 
-  #if defined(PLODAH_MSJIGGLER_ENABLED) && defined(DEFERRED_EXEC_ENABLE) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
+  #if defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
     RGB msjigrgb;
-  #endif // defined(PLODAH_MSJIGGLER_ENABLED) && defined(DEFERRED_EXEC_ENABLE) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
+  #endif // defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
 
   #if ( defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) )
     RGB modsrgb;
@@ -142,7 +142,7 @@
         rgb_matrix_set_color(PLODAH_TYPINGINDICATOR_RGBINDEX, typnrgb.r, typnrgb.g, typnrgb.b);
       }
     #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
-    #if defined(PLODAH_MSJIGGLER_ENABLED) && defined(DEFERRED_EXEC_ENABLE) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
+    #if defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
       msjigrgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), PLODAH_MSJIGGLER_INDICATOR_HSV, PLODAH_INDICATOR_MINVAL ) );
       if(!rgb_matrix_get_flags()){
         rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
@@ -156,7 +156,7 @@
       if(msJigMainToken != INVALID_DEFERRED_TOKEN){
         rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
       }
-    #endif // defined(PLODAH_MSJIGGLER_ENABLED) && defined(DEFERRED_EXEC_ENABLE) && PLODAH_MSJIGGLER_INDICATOR_RGBINDEX
+    #endif // defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE) && PLODAH_MSJIGGLER_INDICATOR_RGBINDEX
     #if ( defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) )
       modsrgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), PLODAH_MODS_INDIC_HSV, PLODAH_INDICATOR_MINVAL ) );
     #endif // PLODAH_MODS_INDIC_LALT_INDEX

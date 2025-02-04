@@ -1,5 +1,5 @@
 // cannibalised https://getreuer.info/posts/keyboards/macros3/index.html#a-mouse-jiggler to make this.
-#if defined(PLODAH_MSJIGGLER_ENABLED) && defined(DEFERRED_EXEC_ENABLE)
+#if defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
   #pragma once
   static deferred_token msJigMainToken = INVALID_DEFERRED_TOKEN;
   static deferred_token msJigIntroToken = INVALID_DEFERRED_TOKEN;
@@ -113,4 +113,4 @@
       #endif // PLODAH_MSJIGGLER_INTRO
     }
   }
-#endif // PLODAH_MSJIGGLER_ENABLED
+#endif // PLODAH_MSJIGGLER_ENABLE
