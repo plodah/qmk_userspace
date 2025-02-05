@@ -61,6 +61,7 @@
 #include "functions/encoder_actions.c"
 
 #include "functions/pointing_device.c"
+#include "functions/led_update_user.c"
 #include "functions/process_record_user.c"
 #include "functions/combos.c"
 
