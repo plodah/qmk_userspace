@@ -7,11 +7,16 @@
       }
     #endif
     #if defined(PLODAH_DRAGSCROLL)
-      #if defined(PLODAH_MSWIGGLE_ENABLE)
-        if(plodah_wigglecheck(mouse_report)){
-          pl_dragscroll_toggle(true);
+      #if defined(PLODAH_MSWIGGLE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
+        switch(plodah_wigglecheck(mouse_report)){
+          case 1:
+            pl_dragscroll_toggle(true);
+            break;
+          case -1:
+            jiggler_onclick(PL_MSJG);
+            break;
         }
-      #endif // PLODAH_MSWIGGLE_ENABLE
+      #endif // defined(PLODAH_MSWIGGLE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
       mouse_report = plodah_dragscroll_pointingtask(mouse_report);
     #endif
     return mouse_report;
