@@ -75,10 +75,9 @@
         if( keycode == PL_DMAC2 ) {
           fwkeycode ++;
         }
-        if( ctl_pressed || alt_pressed ) {
+        if( get_mods() & MOD_MASK_CA ) {
           fwkeycode -=3;
-          ctl_pressed = 0;
-          alt_pressed = 0;
+          del_mods(MOD_MASK_CA);
         }
         dprintf("DM:%u\n", fwkeycode);
         return process_dynamic_macro( fwkeycode, record );

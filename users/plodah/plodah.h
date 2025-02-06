@@ -1,10 +1,6 @@
 #pragma once
 #include "version.h"
 
-#ifndef PLODAH_LAYEROFFSET
-  #define PLODAH_LAYEROFFSET 0
-#endif // PLODAH_LAYEROFFSET
-
 #if defined(PLODAH_TASKSWITCH_ENABLE)  && (! defined(PLODAH_TASKSWITCH_DELAY))
   #define PLODAH_TASKSWITCH_DELAY 750
 #endif // PLODAH_TASKSWITCH_ENABLE

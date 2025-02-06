@@ -2,41 +2,6 @@
 #include "plodah.h"
 #include "quantum.h"
 
-//====================//
-//      MOD VARS      //
-//====================//
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || \
-    defined(PLODAH_MODS_INDIC_LCTL_INDEX) || \
-    defined(PLODAH_MODS_INDIC_RCTL_INDEX) || \
-    defined(PLODAH_DYNAMIC_MACRO_KCS_ENABLE)
-  #define CTLPRESSED_REQUIRED
-  bool ctl_pressed = false;
-#endif // CTL
-
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || \
-    defined(PLODAH_MODS_INDIC_LGUI_INDEX) || \
-    defined(PLODAH_MODS_INDIC_RGUI_INDEX)
-  #define GUIPRESSED_REQUIRED
-  bool gui_pressed = false;
-#endif // GUI
-
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || \
-    defined(PLODAH_TASKSWITCH_ENABLE) || \
-    defined(PLODAH_MODS_INDIC_LALT_INDEX) || \
-    defined(PLODAH_MODS_INDIC_RALT_INDEX) || \
-    defined(PLODAH_DYNAMIC_MACRO_KCS_ENABLE)
-  #define ALTPRESSED_REQUIRED
-  bool alt_pressed = false;
-#endif // ALT
-
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) || \
-    defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || \
-    defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) || \
-    defined(CAPS_WORD_ENABLE)
-  #define SFTPRESSED_REQUIRED
-  bool sft_pressed = false;
-#endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // SFT
-
 #include "functions/oled.c" // required by autocorrect
 #include "functions/rgb.c" // required by autocorrect, process_record
 

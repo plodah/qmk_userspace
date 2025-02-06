@@ -26,41 +26,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
 
-    #if defined(CTLPRESSED_REQUIRED)
-      case KC_LCTL:
-      case KC_RCTL:
-        dprintf("CTL_PRESSED %u \n", record->event.pressed);
-        ctl_pressed = record->event.pressed;
-        // ctl_pressed = get_mods() & (MOD_MASK_CTRL); // doesn't work. Executed BEFORE mod registered
-        break;
-    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // CTL
-
-    #if defined(GUIPRESSED_REQUIRED)
-      case KC_LGUI:
-      case KC_RGUI:
-        dprintf("GUI_PRESSED %u \n", record->event.pressed);
-        gui_pressed = record->event.pressed;
-        // gui_pressed = get_mods() & (MOD_MASK_GUI); // doesn't work. Executed BEFORE mod registered
-        break;
-    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // GUI
-
-    #if defined(ALTPRESSED_REQUIRED)
-      case KC_LALT:
-      case KC_RALT:
-        dprintf("ALT_PRESSED %u \n", record->event.pressed);
-        alt_pressed = record->event.pressed;
-        // alt_pressed = get_mods() & (MOD_MASK_ALT); // doesn't work. Executed BEFORE mod registered
-        break;
-    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // ALT
-
-    #if defined(SFTPRESSED_REQUIRED)
-      case KC_LSFT:
-      case KC_RSFT:
-        dprintf("SFT_PRESSED %u \n", record->event.pressed);
-        sft_pressed = record->event.pressed;
-        // sft_pressed = get_mods() & (MOD_MASK_SHIFT); // doesn't work. Executed BEFORE mod registered
-        break;
-    #endif // PLODAH_KNOB_ENHANCEMENTS_ENABLE // SFT
     #if defined(KC_PL_QFTR)
       case PL_QFTR:
         if (record->event.pressed) {
@@ -132,7 +97,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case PL_ECCW:
       case PL_ECPR:
         if (record->event.pressed) {
-          enc_act(keycode & 0xff, ctl_pressed, gui_pressed, alt_pressed, sft_pressed);
+          enc_act(keycode & 0xff/*, ctl_pressed, gui_pressed, alt_pressed, sft_pressed*/);
+          return true;
         }
         return false;
     #endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE

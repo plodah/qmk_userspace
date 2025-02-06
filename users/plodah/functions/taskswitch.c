@@ -38,8 +38,7 @@
     }
   #endif // PLODAH_TASKSWITCH_MODE_DE
 
-    void plodah_taskswitch_start(bool back) {
-
+  void plodah_taskswitch_start(bool back) {
     #if defined(PLODAH_TASKSWITCH_MODE_DE)
       if (taskSwitchToken != INVALID_DEFERRED_TOKEN) {
         extend_deferred_exec(taskSwitchToken, PLODAH_TASKSWITCH_DELAY);
@@ -51,7 +50,8 @@
       if (!is_taskswitch_active) {
     #endif // PLODAH_TASKSWITCH_MODE_DE
         #if ! defined(IS_MOUSE)
-          if (!alt_pressed){
+          if (!(get_mods() & MOD_MASK_ALT)){
+            dprintf("Not a mouse, no alt");
         #endif // ! defined(IS_MOUSE)
         #if defined(PLODAH_TASKSWITCH_MODE_DE)
           taskSwitchToken = defer_exec(PLODAH_TASKSWITCH_DELAY, plodah_taskswitch_reset, NULL);

@@ -27,10 +27,10 @@
 
   static void mods_display ( void ) {
 
-    oled_write_P(PSTR("C"), ctl_pressed);
-    oled_write_P(PSTR("A"), alt_pressed);
-    oled_write_P(PSTR("G"), gui_pressed);
-    oled_write_P(PSTR("S"), sft_pressed);
+    oled_write_P(PSTR("C"), (get_mods() & MOD_MASK_CTRL));
+    oled_write_P(PSTR("A"), (get_mods() & MOD_MASK_ALT));
+    oled_write_P(PSTR("G"), (get_mods() & MOD_MASK_GUI));
+    oled_write_P(PSTR("S"), (get_mods() & MOD_MASK_SHIFT));
     oled_write_P(PSTR(" "), false);
 
   }

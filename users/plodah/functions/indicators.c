@@ -75,7 +75,6 @@
         }
       }
     #endif // CAPS_LOCK_LED_INDEX
-
     #if defined(PLODAH_LAYER_INDIC_INDEX1) || defined(PLODAH_LAYER_INDIC_INDEXES)
 
       #if defined(PLODAH_LAYER_INDIC_INDEXES)
@@ -170,7 +169,7 @@
           rgb_matrix_set_color(PLODAH_MODS_INDIC_RCTL_INDEX, RGB_OFF);
         #endif // defined(PLODAH_MODS_INDIC_RCTL_INDEX)
       }
-      if (ctl_pressed) {
+      if (get_mods() & MOD_MASK_CTRL) {
         #if defined(PLODAH_MODS_INDIC_LCTL_INDEX)
           rgb_matrix_set_color(PLODAH_MODS_INDIC_LCTL_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
         #endif // defined(PLODAH_MODS_INDIC_LCTL_INDEX)
@@ -189,7 +188,7 @@
           rgb_matrix_set_color(PLODAH_MODS_INDIC_RALT_INDEX, RGB_OFF);
         #endif  // PLODAH_MODS_INDIC_RALT_INDEX
       }
-      if (alt_pressed) {
+      if (get_mods() & MOD_MASK_ALT) {
         #if defined(PLODAH_MODS_INDIC_LALT_INDEX)
           rgb_matrix_set_color(PLODAH_MODS_INDIC_LALT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
         #endif  // PLODAH_MODS_INDIC_LALT_INDEX
@@ -209,9 +208,9 @@
         #endif  // PLODAH_MODS_INDIC_RSHIFT_INDEX
       }
       #if defined(CAPS_WORD_ENABLE)
-       if (sft_held || sft_pressed) {
+       if (is_caps_word_on() || get_mods() & MOD_MASK_SHIFT) {
       #else // CAPS_WORD_ENABLE
-       if (sft_pressed) {
+       if (get_mods() & MOD_MASK_SHIFT) {
       #endif // CAPS_WORD_ENABLE
         #if defined(PLODAH_MODS_INDIC_LSHIFT_INDEX)
           rgb_matrix_set_color(PLODAH_MODS_INDIC_LSHIFT_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
@@ -232,7 +231,7 @@
         #endif  // PLODAH_MODS_INDIC_RGUI_INDEX
       }
       #if !defined(PLODAH_MODS_INDIC_GUI_DISABLE)
-        if ( gui_pressed ) {
+        if ( get_mods() & MOD_MASK_GUI ) {
           #if defined(PLODAH_MODS_INDIC_LGUI_INDEX)
             rgb_matrix_set_color(PLODAH_MODS_INDIC_LGUI_INDEX, modsrgb.r, modsrgb.g, modsrgb.b);
           #endif  // PLODAH_MODS_INDIC_LGUI_INDEX

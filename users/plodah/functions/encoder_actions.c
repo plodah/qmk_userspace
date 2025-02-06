@@ -4,12 +4,12 @@
   uint8_t mod_state;
   uint8_t enc_layer;
 
-  void enc_act(int keycode, bool ctl_pressed, bool gui_pressed, bool alt_pressed, bool sft_pressed) {
+  void enc_act(int keycode) {
     // Exclude GUI from MOD state. unregister_mods() & register_mods() calls later
     // including them will opens/closes Windows start menu
-    mod_state = get_mods() & (~MOD_MASK_GUI);
+    mod_state = get_mods();
     if( get_highest_layer(layer_state | default_layer_state) > 0 ){
-      enc_layer = 2 - ((get_highest_layer(layer_state | default_layer_state) + PLODAH_LAYEROFFSET) % 2);
+      enc_layer = 2 - ((get_highest_layer(layer_state | default_layer_state)) % 2);
     }
     else {
       enc_layer = 0;
@@ -18,12 +18,14 @@
       if( (get_highest_layer(layer_state | default_layer_state) == PLODAH_BORING_LAYER) ){ enc_layer = 0; }
     #endif // PLODAH_BORING_LAYER
 
+    // If mod state is specifically Alt only; don't unregister it.
     if( keycode != (PL_ECPR & 0xff) && !(mod_state == MOD_MASK_ALT || mod_state == MOD_BIT(KC_LALT) || mod_state == MOD_BIT(KC_RALT))){
-      unregister_mods(mod_state);
+      // Never unregister GUI as that causes start menu to collapse/appear
+      del_mods(mod_state & MOD_MASK_CSA);
     }
 
-    if (ctl_pressed && alt_pressed && sft_pressed) {
-      //CAS
+    if (mod_state & MOD_MASK_CTRL && mod_state & MOD_MASK_SHIFT && mod_state & MOD_MASK_ALT) {
+      //CSA
       switch (keycode) {
         case PL_ECCC & 0xff:
           tap_code16(C(KC_LEFT));
@@ -37,8 +39,8 @@
       }
     }
 
-    else if (ctl_pressed && gui_pressed && sft_pressed) {
-      //CGS
+    else if (mod_state & MOD_MASK_CTRL && mod_state & MOD_MASK_SHIFT && mod_state & MOD_MASK_GUI) {
+      //CSG
       #ifdef RGB_MATRIX_ENABLE
         switch (keycode) {
           case PL_ECCC & 0xff:
@@ -55,8 +57,8 @@
       #endif // RGB_MATRIX_ENABLE
     }
 
-      else if (ctl_pressed && gui_pressed && alt_pressed) {
-        //CGA
+      else if (mod_state & MOD_MASK_CTRL && mod_state & MOD_MASK_ALT && mod_state & MOD_MASK_GUI) {
+        //CAG
         #ifdef RGB_MATRIX_ENABLE
           switch (keycode) {
             case PL_ECCC & 0xff:
@@ -73,7 +75,7 @@
         #endif // RGB_MATRIX_ENABLE
       }
 
-      else if (ctl_pressed && alt_pressed) {
+      else if (mod_state & MOD_MASK_CTRL && mod_state & MOD_MASK_ALT) {
         //CA
         switch (keycode) {
           case PL_ECCC & 0xff:
@@ -90,7 +92,7 @@
         }
       }
 
-      else if (ctl_pressed && sft_pressed) {
+      else if (mod_state & MOD_MASK_CTRL && mod_state & MOD_MASK_SHIFT) {
         //CS
         switch (keycode) {
           case PL_ECCC & 0xff:
@@ -105,8 +107,8 @@
         }
       }
 
-      else if (alt_pressed && sft_pressed) {
-        //AS
+      else if (mod_state & MOD_MASK_SHIFT && mod_state & MOD_MASK_ALT) {
+        //SA
         switch (keycode) {
           case PL_ECCC & 0xff:
             tap_code(KC_LEFT);
@@ -121,7 +123,7 @@
         }
       }
 
-      else if (ctl_pressed) {
+      else if (mod_state & MOD_MASK_CTRL) {
         //C
         switch (keycode) {
           case PL_ECCC & 0xff:
@@ -137,7 +139,7 @@
         }
       }
 
-      else if (gui_pressed) {
+      else if (mod_state & MOD_MASK_GUI) {
         //G
         switch (keycode) {
           case PL_ECCC & 0xff:
@@ -152,7 +154,7 @@
         }
       }
 
-      else if (alt_pressed) {
+      else if (mod_state & MOD_MASK_ALT) {
         //A
         switch (keycode) {
           case PL_ECCC & 0xff:
@@ -168,7 +170,7 @@
         }
       }
 
-      else if (sft_pressed) {
+      else if (mod_state & MOD_MASK_SHIFT) {
         //S
         switch (keycode) {
           case PL_ECCC & 0xff:
