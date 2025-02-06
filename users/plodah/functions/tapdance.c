@@ -107,8 +107,11 @@
       tap_dance_action_t *action;
       switch (keycode) {
       // list all tap dance keycodes with tap-hold configurations
+        case TD(TD_F2):
+        case TD(TD_F4):
         case TD(TD_F5):
         case TD(TD_F11):
+        case TD(TD_F12):
           action = &tap_dance_actions[QK_TAP_DANCE_GET_INDEX(keycode)];
           if (!record->event.pressed && action->state.count && !action->state.finished) {
             tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
