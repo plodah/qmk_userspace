@@ -80,9 +80,7 @@
           ctl_pressed = 0;
           alt_pressed = 0;
         }
-        #ifdef CONSOLE_ENABLE
-          uprintf("DM:%u\n", fwkeycode);
-        #endif
+        dprintf("DM:%u\n", fwkeycode);
         return process_dynamic_macro( fwkeycode, record );
         }
       return true;

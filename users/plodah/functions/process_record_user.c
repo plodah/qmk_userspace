@@ -29,9 +29,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #if defined(CTLPRESSED_REQUIRED)
       case KC_LCTL:
       case KC_RCTL:
-        #ifdef CONSOLE_ENABLE
-          uprintf("CTL_PRESSED %u \n", record->event.pressed);
-        #endif
+        dprintf("CTL_PRESSED %u \n", record->event.pressed);
         ctl_pressed = record->event.pressed;
         // ctl_pressed = get_mods() & (MOD_MASK_CTRL); // doesn't work. Executed BEFORE mod registered
         break;
@@ -40,9 +38,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #if defined(GUIPRESSED_REQUIRED)
       case KC_LGUI:
       case KC_RGUI:
-        #ifdef CONSOLE_ENABLE
-          uprintf("GUI_PRESSED %u \n", record->event.pressed);
-        #endif
+        dprintf("GUI_PRESSED %u \n", record->event.pressed);
         gui_pressed = record->event.pressed;
         // gui_pressed = get_mods() & (MOD_MASK_GUI); // doesn't work. Executed BEFORE mod registered
         break;
@@ -51,9 +47,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #if defined(ALTPRESSED_REQUIRED)
       case KC_LALT:
       case KC_RALT:
-        #ifdef CONSOLE_ENABLE
-          uprintf("ALT_PRESSED %u \n", record->event.pressed);
-        #endif
+        dprintf("ALT_PRESSED %u \n", record->event.pressed);
         alt_pressed = record->event.pressed;
         // alt_pressed = get_mods() & (MOD_MASK_ALT); // doesn't work. Executed BEFORE mod registered
         break;
@@ -62,9 +56,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #if defined(SFTPRESSED_REQUIRED)
       case KC_LSFT:
       case KC_RSFT:
-        #ifdef CONSOLE_ENABLE
-          uprintf("SFT_PRESSED %u \n", record->event.pressed);
-        #endif
+        dprintf("SFT_PRESSED %u \n", record->event.pressed);
         sft_pressed = record->event.pressed;
         // sft_pressed = get_mods() & (MOD_MASK_SHIFT); // doesn't work. Executed BEFORE mod registered
         break;
