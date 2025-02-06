@@ -1,10 +1,9 @@
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
   #pragma once
 
-  uint8_t mod_state;
-  uint8_t enc_layer;
-
   void enc_act(int keycode) {
+    uint8_t mod_state;
+    uint8_t enc_layer;
     // Exclude GUI from MOD state. unregister_mods() & register_mods() calls later
     // including them will opens/closes Windows start menu
     mod_state = get_mods();
