@@ -20,9 +20,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     jiggle_delay(90);
   #endif // PLODAH_MSJIGGLER_ENABLE
 
-  #if defined(PLODAH_MSWIGGLE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
-    plodah_wigglereset();
-  #endif // defined(PLODAH_MSWIGGLE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
+  #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
+    plodah_msgesturereset();
+  #endif // defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
 
   switch (keycode) {
 
