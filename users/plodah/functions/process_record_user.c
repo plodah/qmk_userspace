@@ -21,7 +21,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #endif // PLODAH_MSJIGGLER_ENABLE
 
   #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
-    plodah_msgesturereset();
+    plodah_msGestureResetAll();
   #endif // defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
 
   switch (keycode) {

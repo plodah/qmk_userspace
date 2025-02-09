@@ -6,60 +6,67 @@
   #define PLODAH_MSGESTURE_WIGGLES 4
   #define PLODAH_MSGESTURE_THRESHOLD 1800
 
+  typedef struct plodah_msGesture_t {
+    deferred_token cooldown;
+    deferred_token timeout;
+    uint8_t count;
+    int16_t accum;
+    bool stage;
+  } plodah_msGesture_t;
+
   deferred_token plodah_msGestureSwitchCooldown = INVALID_DEFERRED_TOKEN;
   deferred_token plodah_msGestureSwitchDebounce = INVALID_DEFERRED_TOKEN;
-  deferred_token plodah_msGestureShakeXTimeout = INVALID_DEFERRED_TOKEN;
-  deferred_token plodah_msGestureShakeYTimeout = INVALID_DEFERRED_TOKEN;
 
-  uint8_t plodah_msGestureXCount = 0;
-  uint8_t plodah_msGestureYCount = 0;
-  int16_t plodah_msGestureXAccum = 0;
-  int16_t plodah_msGestureYAccum = 0;
-  bool plodah_msGestureXDirection = false;
-  bool plodah_msGestureYDirection = false;
+  plodah_msGesture_t plodah_msGesture_X;
+  plodah_msGesture_t plodah_msGesture_Y;
   bool plodah_msGestureDebounce = false;
   bool plodah_msGestureCooldown = false;
 
-  void plodah_msgesturereset(void){
-    plodah_msGestureSwitchCooldown = INVALID_DEFERRED_TOKEN;
-    plodah_msGestureSwitchDebounce = INVALID_DEFERRED_TOKEN;
-    plodah_msGestureShakeXTimeout = INVALID_DEFERRED_TOKEN;
-    plodah_msGestureShakeYTimeout = INVALID_DEFERRED_TOKEN;
-    plodah_msGestureXCount = 0;
-    plodah_msGestureYCount = 0;
-    plodah_msGestureXAccum = 0;
-    plodah_msGestureYAccum = 0;
-    plodah_msGestureXDirection = false;
-    plodah_msGestureYDirection = false;
+  plodah_msGesture_t plodah_msGestureReset(plodah_msGesture_t gesture, uint8_t flags){
+    if(flags & 0b1000 ){ // 8
+        gesture.accum = 0;
+    }
+    if(flags & 0b100 ){ // 4
+        gesture.count = 0;
+    }
+    if(flags & 0b10){ // 2
+        gesture.stage = false;
+    }
+    if(flags & 0b1){ // 1
+      gesture.timeout = INVALID_DEFERRED_TOKEN;
+    }
+    return gesture;
   }
 
+  void plodah_msGestureResetAll(void){
+    plodah_msGestureSwitchCooldown = INVALID_DEFERRED_TOKEN;
+    plodah_msGestureSwitchDebounce = INVALID_DEFERRED_TOKEN;
+    plodah_msGesture_X = plodah_msGestureReset(plodah_msGesture_X, 0b1111);
+    plodah_msGesture_Y = plodah_msGestureReset(plodah_msGesture_Y, 0b1111);
+  }
+
+  //
   uint32_t plodah_msgesture_expireXTimeout(uint32_t trigger_time, void* cb_arg){
-    plodah_msGestureXCount = 0;
-    plodah_msGestureXAccum = 0;
-    plodah_msGestureXDirection = false;
+    plodah_msGesture_X = plodah_msGestureReset(plodah_msGesture_X, 0b1110);
     return 0;
   }
 
   uint32_t plodah_msgesture_expireYTimeout(uint32_t trigger_time, void* cb_arg){
-    plodah_msGestureYCount = 0;
-    plodah_msGestureYAccum = 0;
-    plodah_msGestureYDirection = false;
+    plodah_msGesture_Y = plodah_msGestureReset(plodah_msGesture_Y, 0b1110);
     return 0;
   }
 
   uint32_t plodah_msgesture_expireDebounce(uint32_t trigger_time, void* cb_arg){
-    plodah_msGestureXAccum = 0;
-    plodah_msGestureYAccum = 0;
+    plodah_msGesture_X = plodah_msGestureReset(plodah_msGesture_X, 0b1000);
+    plodah_msGesture_Y = plodah_msGestureReset(plodah_msGesture_Y, 0b1000);
     plodah_msGestureDebounce = false;
     return 0;
   }
 
   uint32_t plodah_msgesture_expireCooldown(uint32_t trigger_time, void* cb_arg){
     plodah_msGestureCooldown = false;
-    plodah_msGestureXCount = 0;
-    plodah_msGestureYCount = 0;
-    plodah_msGestureXAccum = 0;
-    plodah_msGestureYAccum = 0;
+    plodah_msGesture_X = plodah_msGestureReset(plodah_msGesture_X, 0b1100);
+    plodah_msGesture_Y = plodah_msGestureReset(plodah_msGesture_Y, 0b1100);
     return 0;
   }
 
@@ -67,41 +74,42 @@
     if(plodah_msGestureDebounce || plodah_msGestureCooldown){
         return 0;
     }
-    plodah_msGestureXAccum += (10 * mouse_report.x);
-    plodah_msGestureYAccum += (10 * mouse_report.y);
+    plodah_msGesture_X.accum += (10 * mouse_report.x);
+    plodah_msGesture_Y.accum += (10 * mouse_report.y);
 
-    if( abs(plodah_msGestureXAccum) > abs(plodah_msGestureYAccum) && abs(plodah_msGestureXAccum) > PLODAH_MSGESTURE_THRESHOLD ){
+    if( abs(plodah_msGesture_X.accum) > abs(plodah_msGesture_Y.accum) && abs(plodah_msGesture_X.accum) > PLODAH_MSGESTURE_THRESHOLD ){
         plodah_msGestureSwitchDebounce = defer_exec(PLODAH_MSGESTURE_DEBOUNCE, plodah_msgesture_expireDebounce, NULL);
-        if( (abs(plodah_msGestureXAccum) > PLODAH_MSGESTURE_THRESHOLD && plodah_msGestureXCount==0 ) || (plodah_msGestureXAccum > PLODAH_MSGESTURE_THRESHOLD && !plodah_msGestureXDirection) || (plodah_msGestureXAccum < -PLODAH_MSGESTURE_THRESHOLD && plodah_msGestureXDirection) ) {
-            plodah_msGestureXCount++;
-            dprintf("==X==> C:%d,%d  acc:%d,%d (%d,%d) \n", plodah_msGestureXCount, plodah_msGestureYCount, plodah_msGestureXAccum, plodah_msGestureYAccum, abs(plodah_msGestureXAccum), abs(plodah_msGestureYAccum) );
-            plodah_msGestureXDirection = plodah_msGestureXAccum > PLODAH_MSGESTURE_THRESHOLD;
+        if( (abs(plodah_msGesture_X.accum) > PLODAH_MSGESTURE_THRESHOLD && plodah_msGesture_X.count==0 ) || (plodah_msGesture_X.accum > PLODAH_MSGESTURE_THRESHOLD && !plodah_msGesture_X.stage) || (plodah_msGesture_X.accum < -PLODAH_MSGESTURE_THRESHOLD && plodah_msGesture_X.stage) ) {
+            plodah_msGesture_X.count++;
+            dprintf("==X==> C:%d,%d  acc:%d,%d (%d,%d) \n", plodah_msGesture_X.count, plodah_msGesture_Y.count, plodah_msGesture_X.accum, plodah_msGesture_Y.accum, abs(plodah_msGesture_X.accum), abs(plodah_msGesture_Y.accum) );
+
+            plodah_msGesture_X.stage = plodah_msGesture_X.accum > PLODAH_MSGESTURE_THRESHOLD;
             plodah_msGestureDebounce = true;
-            cancel_deferred_exec(plodah_msGestureShakeXTimeout);
-            plodah_msGestureShakeXTimeout = defer_exec( PLODAH_MSGESTURE_TIMEOUT, plodah_msgesture_expireXTimeout, NULL );
+            cancel_deferred_exec(plodah_msGesture_X.timeout);
+            plodah_msGesture_X.timeout = defer_exec( PLODAH_MSGESTURE_TIMEOUT, plodah_msgesture_expireXTimeout, NULL );
         }
     }
 
-    if( abs(plodah_msGestureYAccum) > abs(plodah_msGestureXAccum) && abs(plodah_msGestureYAccum) > PLODAH_MSGESTURE_THRESHOLD ){
+    if( abs(plodah_msGesture_Y.accum) > abs(plodah_msGesture_X.accum) && abs(plodah_msGesture_Y.accum) > PLODAH_MSGESTURE_THRESHOLD ){
         plodah_msGestureSwitchDebounce = defer_exec(PLODAH_MSGESTURE_DEBOUNCE, plodah_msgesture_expireDebounce, NULL);
-        if( (abs(plodah_msGestureYAccum) > PLODAH_MSGESTURE_THRESHOLD && plodah_msGestureYCount==0 ) || (plodah_msGestureYAccum > PLODAH_MSGESTURE_THRESHOLD && !plodah_msGestureYDirection) || (plodah_msGestureYAccum < -PLODAH_MSGESTURE_THRESHOLD && plodah_msGestureYDirection) ) {
-            plodah_msGestureYCount++;
-            dprintf("==Y==> C:%d,%d  acc:%d,%d (%d,%d) \n", plodah_msGestureXCount, plodah_msGestureYCount, plodah_msGestureXAccum, plodah_msGestureYAccum, abs(plodah_msGestureXAccum), abs(plodah_msGestureYAccum) );
-            plodah_msGestureYDirection = plodah_msGestureYAccum > PLODAH_MSGESTURE_THRESHOLD;
+        if( (abs(plodah_msGesture_Y.accum) > PLODAH_MSGESTURE_THRESHOLD && plodah_msGesture_Y.count==0 ) || (plodah_msGesture_Y.accum > PLODAH_MSGESTURE_THRESHOLD && !plodah_msGesture_Y.stage) || (plodah_msGesture_Y.accum < -PLODAH_MSGESTURE_THRESHOLD && plodah_msGesture_Y.stage) ) {
+            plodah_msGesture_Y.count++;
+            dprintf("==Y==> C:%d,%d  acc:%d,%d (%d,%d) \n", plodah_msGesture_X.count, plodah_msGesture_Y.count, plodah_msGesture_X.accum, plodah_msGesture_Y.accum, abs(plodah_msGesture_X.accum), abs(plodah_msGesture_Y.accum) );
+            plodah_msGesture_Y.stage = plodah_msGesture_Y.accum > PLODAH_MSGESTURE_THRESHOLD;
             plodah_msGestureDebounce = true;
-            cancel_deferred_exec(plodah_msGestureShakeYTimeout);
-            plodah_msGestureShakeYTimeout = defer_exec( PLODAH_MSGESTURE_TIMEOUT, plodah_msgesture_expireYTimeout, NULL );
+            cancel_deferred_exec(plodah_msGesture_Y.timeout);
+            plodah_msGesture_Y.timeout = defer_exec( PLODAH_MSGESTURE_TIMEOUT, plodah_msgesture_expireYTimeout, NULL );
         }
     }
 
-    if( plodah_msGestureXCount >= PLODAH_MSGESTURE_WIGGLES ) {
+    if( plodah_msGesture_X.count >= PLODAH_MSGESTURE_WIGGLES ) {
         plodah_msGestureCooldown = true;
         plodah_msGestureSwitchCooldown = defer_exec(PLODAH_MSGESTURE_COOLDOWN, plodah_msgesture_expireCooldown, NULL);
         dprintf("Thats an X Jiggle\n");
         return 1;
     }
 
-    if( plodah_msGestureYCount >= PLODAH_MSGESTURE_WIGGLES ) {
+    if( plodah_msGesture_Y.count >= PLODAH_MSGESTURE_WIGGLES ) {
         plodah_msGestureCooldown = true;
         plodah_msGestureSwitchCooldown = defer_exec(PLODAH_MSGESTURE_COOLDOWN, plodah_msgesture_expireCooldown, NULL);
         dprintf("Thats a Y Jiggle\n");
