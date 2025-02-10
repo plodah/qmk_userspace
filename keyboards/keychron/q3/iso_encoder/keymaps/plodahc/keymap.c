@@ -34,36 +34,10 @@ enum {
     TD_F12,
 };
 
-#define P_RAGEQ TD(TD_ESC_RAGEQUIT)
-#define P_F2 TD(TD_F2)
-#define P_F4 TD(TD_F4)
-#define P_F5 TD(TD_F5)
-#define P_F11 TD(TD_F11)
-#define P_F12 TD(TD_F12)
-
-#define P_SPCFA LT(_FNA, KC_SPC)
-#define P_BSPFB LT(_FNB, KC_BSPC)
-#define P_APPFB LT(_FNB, KC_APP)
-#define P_FNB MO(_FNB)
-
-#define P_PSTU C(S(KC_V))
-#define P_RTAB C(S(KC_T))
-#define P_XTAB C(KC_F4)
-#define P_GTAB G(KC_TAB)
-#define P_CAD LCA(KC_DEL)
-
-#define HRM_SA LALT_T(KC_S)
-#define HRM_DS LSFT_T(KC_D)
-#define HRM_FC LCTL_T(KC_F)
-#define HRM_GG LGUI_T(KC_G)
-#define HRM_HG RGUI_T(KC_H)
-#define HRM_JC RCTL_T(KC_J)
-#define HRM_KS RSFT_T(KC_K)
-#define HRM_LA RALT_T(KC_L)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_QWEA] = LAYOUT_tkl_f13_iso(
-        P_RAGEQ, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  PL_ECPR,     P_CAD,   KC_MPLY, RM_TOGG,
+        P_RAGEQ, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  PL_ECPR,     P_TMGR,  KC_MPLY, RM_TOGG,
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,     KC_PSCR, KC_HOME, KC_PGUP,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,              KC_DEL,  KC_END,  KC_PGDN,
         P_BSPFB, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_NUHS, KC_ENT,
@@ -79,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, KC_RGUI, P_FNB,   KC_RCTL,     KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_FNA] = LAYOUT_tkl_f13_iso(
-        _______, KC_BRID, KC_BRIU, P_GTAB,  G(KC_E), RM_VALD, RM_VALU, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, PL_ECPR,     P_XTAB,  P_RTAB,  _______,
+        _______, KC_BRID, KC_BRIU, P_TASK,  G(KC_E), RM_VALD, RM_VALU, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, PL_ECPR,     P_XTAB,  P_RTAB,  _______,
         _______, KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,   KC_P7,   KC_P8,   KC_P9,   KC_P0,   _______, _______, KC_DEL,      KC_INS,  _______, _______,
         KC_ENT,  KC_PGUP, KC_UP,   KC_PGDN, _______, _______, _______, _______, _______, _______, KC_PSCR, _______, _______,              _______, _______, _______,
         KC_CAPS, KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,  _______, _______, _______, _______, _______, _______, _______, _______, _______,

@@ -28,16 +28,6 @@ enum {
     TD_DRAGSCROLL,
 };
 
-#define P_MS4FA LT(_FNA, KC_BTN4)
-#define P_MS5FB LT(_FNB, KC_BTN5)
-#define P_DRGTD TD(TD_DRAGSCROLL)
-#define P_DRGMO TD(TD_DRAGSCROLL)
-#define P_DRGTG PL_DRAG_SCROLL_TOGGLE
-#define P_XWIN A(KC_F4)
-#define P_XTAB C(KC_F4)
-#define P_NTAB C(KC_TAB)
-#define P_PTAB S(C(KC_TAB))
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
         P_MS4FA, P_MS5FB, KC_BTN3, KC_BTN2,

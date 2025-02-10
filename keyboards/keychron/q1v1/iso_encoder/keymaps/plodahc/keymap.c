@@ -34,34 +34,7 @@ enum {
     TD_F11,
     TD_F12,
 };
-
-#define P_RAGEQ TD(TD_ESC_RAGEQUIT)
-#define P_F2 TD(TD_F2)
-#define P_F4 TD(TD_F4)
-#define P_F5 TD(TD_F5)
-#define P_F11 TD(TD_F11)
-#define P_F12 TD(TD_F12)
 */
-
-#define P_SPCFA LT(_FNA, KC_SPC)
-#define P_BSPFB LT(_FNB, KC_BSPC)
-#define P_APPFB LT(_FNB, KC_APP)
-#define P_FNB MO(_FNB)
-
-#define P_PSTU C(S(KC_V))
-#define P_GTAB G(KC_TAB)
-
-#define HRM_SA LALT_T(KC_S)
-#define HRM_DS LSFT_T(KC_D)
-#define HRM_FC LCTL_T(KC_F)
-#define HRM_GG LGUI_T(KC_G)
-#define HRM_HG RGUI_T(KC_H)
-#define HRM_JC RCTL_T(KC_J)
-#define HRM_KS RSFT_T(KC_K)
-#define HRM_LA RALT_T(KC_L)
-
-// #define HRM_ZG LGUI_T(KC_Z)
-// #define HRM_SLG RGUI_T(KC_SLSH)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWEA] = LAYOUT_iso_83(
@@ -81,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                    KC_RALT, P_FNB,   KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_FNA] = LAYOUT_iso_83(
-        _______, KC_BRID, KC_BRIU, P_GTAB,  G(KC_E), RM_VALD, RM_VALU, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, _______, PL_ECPR,
+        _______, KC_BRID, KC_BRIU, P_TASK,  G(KC_E), RM_VALD, RM_VALU, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, _______, PL_ECPR,
         _______, KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,   KC_P7,   KC_P8,   KC_P9,   KC_P0,   _______, _______, KC_DEL,  KC_END,
         KC_ENT,  KC_PGUP, KC_UP,   KC_PGDN, _______, _______, _______, _______, _______, _______, KC_PSCR, _______, _______,          C(KC_F4),
         KC_CAPS, KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,  _______, _______, _______, _______, _______, _______, _______, _______, _______, S(C(KC_T)),

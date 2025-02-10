@@ -1,5 +1,6 @@
 #pragma once
 #include "version.h"
+#include "configs/customkeys.h"
 
 #if defined(PLODAH_TASKSWITCH_ENABLE)  && (! defined(PLODAH_TASKSWITCH_DELAY))
   #define PLODAH_TASKSWITCH_DELAY 750

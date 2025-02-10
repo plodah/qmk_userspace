@@ -34,32 +34,6 @@ enum {
     TD_F12,
 };
 
-#define P_RAGEQ TD(TD_ESC_RAGEQUIT)
-#define P_F2 TD(TD_F2)
-#define P_F4 TD(TD_F4)
-#define P_F5 TD(TD_F5)
-#define P_F11 TD(TD_F11)
-#define P_F12 TD(TD_F12)
-
-#define P_SPCSP LT(_SUPP, KC_SPC)
-#define P_BSPFA LT(_FNA, KC_BSPC)
-#define P_APPFA LT(_FNA, KC_APP)
-#define P_FNA MO(_FNA)
-#define P_FNB MO(_FNB)
-
-#define P_RSFTB RSFT_T(KC_BSPC)
-#define P_CAD LCA(KC_DEL)
-#define P_PSTU C(S(KC_V))
-
-#define HRM_SA LALT_T(KC_S)
-#define HRM_DS LSFT_T(KC_D)
-#define HRM_FC LCTL_T(KC_F)
-#define HRM_GG LGUI_T(KC_G)
-#define HRM_HG RGUI_T(KC_H)
-#define HRM_JC RCTL_T(KC_J)
-#define HRM_KS RSFT_T(KC_K)
-#define HRM_LA RALT_T(KC_L)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_QWEA] = LAYOUT_iso_53(
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, PL_ECPR,
@@ -71,17 +45,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  PL_ECPR,
         KC_DEL,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_BSPC, KC_DEL,
         _______, _______, _______, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, _______, _______, _______, KC_VOLU,
-        _______, _______, P_FNA,                              KC_SPC,                    _______, _______, P_CAD,   KC_HOME, KC_VOLD, KC_END
+        _______, _______, P_FNA,                              KC_SPC,                    _______, _______, P_TMGR,  KC_HOME, KC_VOLD, KC_END
     ),
 	[_FNA] = LAYOUT_iso_53(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  PL_ECPR,
         MC_0,    MC_1,    MC_2,    MC_3,    MC_4,    MC_5,    MC_6,    MC_7,    MC_8,    PL_QFTR, PL_QRGB, PL_QVER, QK_MAKE, KC_BSPC, KC_PSCR,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______,                            KC_SPC,                    _______, _______, P_CAD,   _______, _______, _______
+        _______, _______, _______,                            KC_SPC,                    _______, _______, P_TMGR,  _______, _______, _______
     ),
 	[_FNB] = LAYOUT_iso_53(
         RM_TOGG, RM_NEXT, RM_VALU, RM_HUEU, RM_SATU, RM_SPDU, _______, _______, _______, _______, KC_PSCR, _______, _______, PL_ECPR,
-        KC_CAPS, RM_PREV, RM_VALD, RM_HUED, RM_SATD, RM_SPDD, _______, _______, _______, _______, _______, _______, _______, P_CAD,   KC_PSCR,
+        KC_CAPS, RM_PREV, RM_VALD, RM_HUED, RM_SATD, RM_SPDD, _______, _______, _______, _______, _______, _______, _______, P_TMGR,  KC_PSCR,
         _______, _______, _______, _______, _______, P_PSTU,  _______, NK_TOGG, _______, _______, _______, _______, _______, KC_PGUP,
         _______, _______, _______,                            _______,                   _______, _______, _______, KC_HOME, KC_PGDN, KC_END
     ),

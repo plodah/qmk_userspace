@@ -28,14 +28,9 @@ enum {
     TD_DRAGSCROLL,
 };
 
-#define P_MS4FA LT(_FNA, KC_BTN4)
-#define P_MS5FA LT(_FNA, KC_BTN5)
-#define P_COPY  C(KC_C)
-#define P_PASTE C(KC_V)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-        P_COPY,  KC_BTN1, KC_BTN3, KC_BTN2, P_PASTE,
+        P_COPY,  KC_BTN1, KC_BTN3, KC_BTN2, P_PSTU,
         P_MS4FA, P_MS5FA, DPI_CONFIG
     ),
     [_FNA] = LAYOUT(

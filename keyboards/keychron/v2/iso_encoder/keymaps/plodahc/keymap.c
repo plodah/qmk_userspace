@@ -34,33 +34,6 @@ enum {
     TD_F12,
 };
 
-#define P_RAGEQ TD(TD_ESC_RAGEQUIT)
-#define P_F2 TD(TD_F2)
-#define P_F4 TD(TD_F4)
-#define P_F5 TD(TD_F5)
-#define P_F11 TD(TD_F11)
-#define P_F12 TD(TD_F12)
-
-#define P_SPCFA LT(_FNA, KC_SPC)
-#define P_BSPFB LT(_FNB, KC_BSPC)
-#define P_APPFB LT(_FNB, KC_APP)
-#define P_FNB MO(_FNB)
-
-#define P_PSTU C(S(KC_V))
-#define P_RTAB C(S(KC_T))
-#define P_XTAB C(KC_F4)
-#define P_GTAB G(KC_TAB)
-#define P_CAD LCA(KC_DEL)
-
-#define HRM_SA LALT_T(KC_S)
-#define HRM_DS LSFT_T(KC_D)
-#define HRM_FC LCTL_T(KC_F)
-#define HRM_GG LGUI_T(KC_G)
-#define HRM_HG RGUI_T(KC_H)
-#define HRM_JC RCTL_T(KC_J)
-#define HRM_KS RSFT_T(KC_K)
-#define HRM_LA RALT_T(KC_L)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWEA] = LAYOUT_iso_68(
         P_RAGEQ, KC_1,    P_F2,    KC_3,    P_F4,    P_F5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    P_F11,   P_F12,   KC_BSPC, PL_ECPR,

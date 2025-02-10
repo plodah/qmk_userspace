@@ -41,43 +41,6 @@ enum {
     TD_F12,
 };
 
-#define P_RAGEQ TD(TD_ESC_RAGEQUIT)
-#define P_F2 TD(TD_F2)
-#define P_F4 TD(TD_F4)
-#define P_F5 TD(TD_F5)
-#define P_F11 TD(TD_F11)
-#define P_F12 TD(TD_F12)
-
-#define P_SPCFA LT(_FNA, KC_SPC)
-#define P_ENTFB LT(_FNB, KC_ENT)
-
-#define P_PSTU C(S(KC_V))
-#define P_GTAB G(KC_TAB)
-
-#define HRM_SA LALT_T(KC_S)
-#define HRM_DS LSFT_T(KC_D)
-#define HRM_FC LCTL_T(KC_F)
-#define HRM_GG LGUI_T(KC_G)
-#define HRM_HG RGUI_T(KC_H)
-#define HRM_JC RCTL_T(KC_J)
-#define HRM_KS RSFT_T(KC_K)
-#define HRM_LA RALT_T(KC_L)
-
-#define HRM_RA LALT_T(KC_R)
-#define HRM_SS LSFT_T(KC_S)
-#define HRM_TC LCTL_T(KC_T)
-#define HRM_DG LGUI_T(KC_D)
-// #define HRM_HG RGUI_T(KC_H)
-#define HRM_NC RCTL_T(KC_N)
-#define HRM_ES RSFT_T(KC_E)
-#define HRM_IA RALT_T(KC_I)
-
-#define HRM_ZG LGUI_T(KC_Z)
-#define HRM_SLG RGUI_T(KC_SLSH)
-
-#define KC_QWEATY PDF(_QWEATY)
-#define KC_COLEMAK PDF(_COLEMAK)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * QWERTY
@@ -164,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_FNB] = LAYOUT(
   KC_BSPC, PL_QVER, PL_QRGB, _______, _______, PL_MSJG,                     PL_MSJG, PL_QLYR, PL_QTAP, QK_MAKE, PL_QFTR, KC_DEL,
-  P_GTAB,  _______, _______, KC_PGUP, _______, _______,                     _______, _______, KC_PGUP, _______, KC_PSCR, _______,
+  P_TASK,  _______, _______, KC_PGUP, _______, _______,                     _______, _______, KC_PGUP, _______, KC_PSCR, _______,
   DT_PRNT, DT_UP,   KC_HOME, KC_PGDN, KC_END,  _______,                     _______, KC_HOME, KC_PGDN, KC_END,  _______, _______,
   _______, DT_DOWN, _______, _______, P_PSTU,  _______, PL_ECPR,  PL_ECPR,  _______, _______, _______, _______, _______, _______,
                     GU_TOGG, _______, _______, _______, _______,  _______,  _______, _______, _______, GU_ON
