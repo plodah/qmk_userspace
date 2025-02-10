@@ -38,35 +38,55 @@
     return gesture;
   }
 
+  void plodah_msGestureResetX(void){
+    plodah_msGesture_X.accum = 0;
+    plodah_msGesture_X.count = 0;
+    plodah_msGesture_X.stage = false;
+    plodah_msGesture_X.timeout = INVALID_DEFERRED_TOKEN;
+  }
+
+  void plodah_msGestureResetY(void){
+    plodah_msGesture_Y.accum = 0;
+    plodah_msGesture_Y.count = 0;
+    plodah_msGesture_Y.stage = false;
+    plodah_msGesture_Y.timeout = INVALID_DEFERRED_TOKEN;
+  }
+
   void plodah_msGestureResetAll(void){
     plodah_msGestureSwitchCooldown = INVALID_DEFERRED_TOKEN;
     plodah_msGestureSwitchDebounce = INVALID_DEFERRED_TOKEN;
-    plodah_msGesture_X = plodah_msGestureReset(plodah_msGesture_X, 0b1111);
-    plodah_msGesture_Y = plodah_msGestureReset(plodah_msGesture_Y, 0b1111);
+    plodah_msGestureResetX();
+    plodah_msGestureResetY();
   }
 
   //
   uint32_t plodah_msgesture_expireXTimeout(uint32_t trigger_time, void* cb_arg){
-    plodah_msGesture_X = plodah_msGestureReset(plodah_msGesture_X, 0b1110);
+    plodah_msGesture_X.accum = 0;
+    plodah_msGesture_X.count = 0;
+    plodah_msGesture_X.stage = false;
     return 0;
   }
 
   uint32_t plodah_msgesture_expireYTimeout(uint32_t trigger_time, void* cb_arg){
-    plodah_msGesture_Y = plodah_msGestureReset(plodah_msGesture_Y, 0b1110);
+    plodah_msGesture_Y.accum = 0;
+    plodah_msGesture_Y.count = 0;
+    plodah_msGesture_Y.stage = false;
     return 0;
   }
 
   uint32_t plodah_msgesture_expireDebounce(uint32_t trigger_time, void* cb_arg){
-    plodah_msGesture_X = plodah_msGestureReset(plodah_msGesture_X, 0b1000);
-    plodah_msGesture_Y = plodah_msGestureReset(plodah_msGesture_Y, 0b1000);
     plodah_msGestureDebounce = false;
+    plodah_msGesture_X.accum = 0;
+    plodah_msGesture_Y.accum = 0;
     return 0;
   }
 
   uint32_t plodah_msgesture_expireCooldown(uint32_t trigger_time, void* cb_arg){
     plodah_msGestureCooldown = false;
-    plodah_msGesture_X = plodah_msGestureReset(plodah_msGesture_X, 0b1100);
-    plodah_msGesture_Y = plodah_msGestureReset(plodah_msGesture_Y, 0b1100);
+    plodah_msGesture_X.accum = 0;
+    plodah_msGesture_X.count = 0;
+    plodah_msGesture_Y.accum = 0;
+    plodah_msGesture_Y.count = 0;
     return 0;
   }
 
