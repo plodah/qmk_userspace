@@ -25,10 +25,10 @@
 #include "functions/taskswitch.c"
 #include "functions/encoder_actions.c"
 
-#include "functions/pointing_device.c"
+#include "functions/0_pointing_device.c"
 #include "functions/led_update_user.c"
-#include "functions/process_record_user.c"
+#include "functions/0_process_record_user.c"
 #include "functions/combos.c"
 
-#include "functions/matrix_scan.c"
+#include "functions/0_matrix_scan.c"
 #include "functions/indicators.c" // last pls
