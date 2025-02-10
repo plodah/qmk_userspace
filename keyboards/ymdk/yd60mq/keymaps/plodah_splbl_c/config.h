@@ -10,6 +10,9 @@
 #endif // PRODUCT
 #define PRODUCT "YMDK yd60mq | plodah_splbl"
 
+#define ACHORDION_ENABLE
+#define ACHORDION_STREAK
+
 #define PLODAH_BORING_LAYER 1
 #define BOOTMAGIC_ROW 0
 #define BOOTMAGIC_COLUMN 0

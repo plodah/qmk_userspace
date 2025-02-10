@@ -13,6 +13,9 @@
 #endif // PRODUCT
 #define PRODUCT "dztech/dz60v2 | plodahc"
 
+#define ACHORDION_ENABLE
+#define ACHORDION_STREAK
+
 #define PLODAH_BORING_LAYER _QWEB
 
 #if defined(DEFERRED_EXEC_ENABLE)
