@@ -5,6 +5,7 @@
 #include "functions/oled.c" // required by autocorrect
 #include "functions/rgb.c" // required by autocorrect, process_record
 
+#include "functions/achordion.c"
 #include "functions/autocorrect.c"
 #include "functions/caps_word.c"
 #include "functions/debug.c"

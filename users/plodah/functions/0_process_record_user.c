@@ -24,6 +24,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     plodah_msGestureResetAll();
   #endif // defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
 
+  #if defined(ACHORDION_ENABLE)
+    if (!process_achordion(keycode, record)) { return false; }
+  #endif // ACHORDION_ENABLE
+
   switch (keycode) {
 
     #if defined(KC_PL_QFTR)
