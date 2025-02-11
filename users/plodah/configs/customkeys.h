@@ -74,36 +74,25 @@
 #define P_DRGMO TD(TD_DRAGSCROLL)
 #define P_DRGTG PL_DRAG_SCROLL_TOGGLE
 
-/*
+// Half Rows
+//      _______, _______, _______, _______, _______
+#define ___________________________________________ _______, _______, _______, _______, _______
+#define ___________________12345___________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define ___________________F12345__________________ KC_1,    P_F2,    KC_3,    P_F4,    P_F5
+#define ___________________67890___________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+#define ___________________QWERT___________________ KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
+#define ___________________YUIOP___________________ KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
+#define ___________________ASDFG___________________ KC_A,    KC_S,    KC_D,    KC_F,    KC_G
+#define ___________________HJKL____________________ KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
+#define ___________________ZXCVB___________________ KC_Z,    KC_X,    KC_C,    KC_V,    KC_B
+#define __________________NM_SLSH__________________ KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
+#define __________________NM_DOT__________          KC_N,    KC_M,    KC_COMM, KC_DOT
 
-#define P_RAGEQ TD(TD_ESC_RAGEQUIT)
-#define P_F2 TD(TD_F2)
-#define P_F4 TD(TD_F4)
-#define P_F5 TD(TD_F5)
-#define P_F11 TD(TD_F11)
-#define P_F12 TD(TD_F12)
-
-#define P_SPCFA LT(_FNA, KC_SPC)
-#define P_SPCFB LT(_FNB, KC_SPC)
-#define P_BSPFB LT(_FNB, KC_BSPC)
-#define P_APPFB LT(_FNB, KC_APP)
-#define P_FNB MO(_FNB)
-
-#define P_PSTU C(S(KC_V))
-#define P_RTAB C(S(KC_T))
-#define P_XTAB C(KC_F4)
-#define P_TASK G(KC_TAB)
-#define P_CAD LCA(KC_DEL)
-#define P_RSSLS RSFT_T(KC_SLSH)
-
-#define HRM_SA LALT_T(KC_S)
-#define HRM_DS LSFT_T(KC_D)
-#define HRM_FC LCTL_T(KC_F)
-#define HRM_GG LGUI_T(KC_G)
-#define HRM_HG RGUI_T(KC_H)
-#define HRM_JC RCTL_T(KC_J)
-#define HRM_KS RSFT_T(KC_K)
-#define HRM_LA RALT_T(KC_L)
-
-#define P_RAGEQ TD(TD_ESC_RAGEQUIT)
-*/
+#define _________________HRM_ASDFG_________________ HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG
+#define _________________HRM_ASDF__________________ HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  KC_G
+#define _________________HRM_SDFG__________________ KC_A,    HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG
+#define ________________HRM_HJKLC__________________ HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  HRM_SLG
+#define _________________HRM_HJKL__________________ HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  KC_SCLN
+#define ________________H_HRM_JKLC_________________ KC_H,    HRM_JC,  HRM_KS,  HRM_LA,  KC_SCLN
+#define ________________HRM_Z_XCVB_________________ HRM_ZG,  KC_X,    KC_C,    KC_V,    KC_B
+#define ________________NM_HRMPUNCT________________ KC_N,    KC_M,    KC_COMM, KC_DOT,  HRM_CG
