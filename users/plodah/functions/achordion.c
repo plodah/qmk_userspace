@@ -378,7 +378,8 @@
 */
 // /*
  __attribute__((weak)) bool achordion_eager_mod(uint8_t mod) {
-   return (mod & (MOD_LGUI | MOD_RGUI)) == 0;
+   // return (mod & (MOD_LGUI | MOD_RGUI)) == 0;
+    return (mod & MOD_MASK_AG) == 0;
  }
 // */
 
