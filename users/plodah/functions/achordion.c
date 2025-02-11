@@ -1,6 +1,3 @@
-#if defined(ACHORDION_ENABLE)
-  #include "achordion.h"
-
 // Copyright 2022-2024 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -334,10 +331,26 @@
 
  // By default, use the BILATERAL_COMBINATIONS rule to consider the tap-hold key
  // "held" only when it and the other key are on opposite hands.
+ /*
  __attribute__((weak)) bool achordion_chord(uint16_t tap_hold_keycode,
                                             keyrecord_t* tap_hold_record,
                                             uint16_t other_keycode,
                                             keyrecord_t* other_record) {
+   return achordion_opposite_hands(tap_hold_record, other_record);
+ }
+// */
+
+ __attribute__((weak)) bool achordion_chord(uint16_t tap_hold_keycode,
+                                            keyrecord_t* tap_hold_record,
+                                            uint16_t other_keycode,
+                                            keyrecord_t* other_record) {
+    switch (tap_hold_keycode) {
+      case HRM_HG:
+        if (other_keycode == HRM_LA) { return true; }
+        break;
+      case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+        return true;
+    }
    return achordion_opposite_hands(tap_hold_record, other_record);
  }
 
@@ -347,9 +360,27 @@
  }
 
  // By default, Shift and Ctrl mods are eager, and Alt and GUI are not.
+/*
  __attribute__((weak)) bool achordion_eager_mod(uint8_t mod) {
    return (mod & (MOD_LALT | MOD_LGUI)) == 0;
  }
+// */
+/*
+ bool achordion_eager_mod(uint8_t mod) {
+    switch (mod) {
+      case MOD_LGUI:
+      case MOD_RGUI:
+        return false;
+
+    }
+    return true;
+ }
+*/
+// /*
+ __attribute__((weak)) bool achordion_eager_mod(uint8_t mod) {
+   return (mod & (MOD_LGUI | MOD_RGUI)) == 0;
+ }
+// */
 
  #ifdef ACHORDION_STREAK
  __attribute__((weak)) bool achordion_streak_continue(uint16_t keycode) {
@@ -384,5 +415,3 @@
  #endif
 
  #endif  // version check
-
-#endif // defined(ACHORDION_ENABLE)

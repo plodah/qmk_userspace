@@ -1,5 +1,13 @@
 #if defined(COMBO_ENABLE)
   #pragma once
+
+  #if !defined(_FNA)
+    #define _FNA 2
+  #endif
+  #if !defined(_FNB)
+    #define _FNB 2
+  #endif
+
   #if defined(IS_MOUSE)
 
     const uint16_t PROGMEM pl_combo_ms12[] = {KC_BTN1, KC_BTN2, COMBO_END};
@@ -62,7 +70,7 @@
 
     #if ! defined(PLODAH_COMBOS_LIMITED)
       const uint16_t PROGMEM pl_combo_qa[]    = {KC_Q,    KC_A,                   COMBO_END};
-      const uint16_t PROGMEM pl_combo_capa[]  = {LT(2, KC_BSPC),  KC_A,           COMBO_END};
+      const uint16_t PROGMEM pl_combo_capa[]  = {P_BSPFB, KC_A,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_as[]    = {KC_A,    KC_S,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_qwop[]  = {KC_Q,    KC_W,   KC_O,   KC_P,   COMBO_END};
       const uint16_t PROGMEM pl_combo_rt[]    = {KC_R,    KC_T,                   COMBO_END};
@@ -78,20 +86,27 @@
     #endif
 
     #if defined(PLODAH_HRM_COMBOS)
-      const uint16_t PROGMEM pl_combo_as_hrm[]      = {KC_A ,   LALT_T(KC_S), COMBO_END};
-      const uint16_t PROGMEM pl_combo_bsz_hrm[]     = {KC_NUBS, LGUI_T(KC_Z), COMBO_END};
-      const uint16_t PROGMEM pl_combo_bsz2_hrm[]    = {KC_LSFT, LGUI_T(KC_Z), COMBO_END};
-      const uint16_t PROGMEM pl_combo_lsz_hrm[]     = {KC_LSFT, LGUI_T(KC_Z), COMBO_END};
-      const uint16_t PROGMEM pl_combo_zx_hrm[]      = {KC_X,    LGUI_T(KC_Z), COMBO_END};
+      const uint16_t PROGMEM pl_combo_as_hrm[]      = {KC_A ,   HRM_SA,       COMBO_END};
+      const uint16_t PROGMEM pl_combo_as_hrm2[]     = {HRM_AG,  KC_S,         COMBO_END};
+      const uint16_t PROGMEM pl_combo_as_hrm3[]     = {HRM_AG,  HRM_SA,       COMBO_END};
+      const uint16_t PROGMEM pl_combo_qa_hrm[]      = {KC_Q,    HRM_AG,       COMBO_END};
+      const uint16_t PROGMEM pl_combo_capa_hrm[]    = {P_BSPFB, HRM_AG,       COMBO_END};
+      const uint16_t PROGMEM pl_combo_bsz_hrm[]     = {KC_NUBS, HRM_ZG,       COMBO_END};
+      const uint16_t PROGMEM pl_combo_bsz2_hrm[]    = {KC_LSFT, HRM_ZG,       COMBO_END};
+      const uint16_t PROGMEM pl_combo_lsz_hrm[]     = {KC_LSFT, HRM_ZG,       COMBO_END};
+      const uint16_t PROGMEM pl_combo_zx_hrm[]      = {KC_X,    HRM_ZG,       COMBO_END};
     #endif // PLODAH_HRM_COMBOS
 
 
     #if defined(DYNAMIC_MACRO_ENABLE)
-      const uint16_t PROGMEM pl_combo_12[] = {KC_1 , KC_2, COMBO_END};
-      const uint16_t PROGMEM pl_combo_13[] = {KC_1 , KC_3, COMBO_END};
-      const uint16_t PROGMEM pl_combo_qw[] = {KC_Q , KC_W, COMBO_END};
-      const uint16_t PROGMEM pl_combo_qe[] = {KC_Q , KC_E, COMBO_END};
-      const uint16_t PROGMEM pl_combo_3e[] = {KC_3 , KC_E, COMBO_END};
+      const uint16_t PROGMEM pl_combo_12[]  = {KC_1 , KC_2, COMBO_END};
+      const uint16_t PROGMEM pl_combo_13[]  = {KC_1 , KC_3, COMBO_END};
+      const uint16_t PROGMEM pl_combo_qw[]  = {KC_Q , KC_W, COMBO_END};
+      const uint16_t PROGMEM pl_combo_qe[]  = {KC_Q , KC_E, COMBO_END};
+      const uint16_t PROGMEM pl_combo_3e[]  = {KC_3 , KC_E, COMBO_END};
+      #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
+        const uint16_t PROGMEM pl_combo_1F2[] = {KC_1 , TD(TD_F2), COMBO_END};
+      #endif
     #endif // DYNAMIC_MACRO_ENABLE
 
     #ifdef CONSOLE_ENABLE
@@ -99,6 +114,7 @@
     #endif // CONSOLE_ENABLE
 
     combo_t key_combos[] = {
+      COMBO(pl_combo_lsz,   C(KC_Z)),
       COMBO(pl_combo_zx,    C(KC_X)    ),
       COMBO(pl_combo_xc,    C(KC_C)    ),
       COMBO(pl_combo_cv,    C(KC_V)    ),
@@ -122,6 +138,10 @@
 
       #if defined(PLODAH_HRM_COMBOS)
         COMBO(pl_combo_as_hrm,    C(KC_S)),
+        COMBO(pl_combo_as_hrm2,   C(KC_S)),
+        COMBO(pl_combo_as_hrm3,   C(KC_S)),
+        COMBO(pl_combo_qa_hrm,    C(KC_A)),
+        COMBO(pl_combo_capa_hrm,  C(KC_A)),
         COMBO(pl_combo_bsz_hrm,   C(KC_Z)),
         COMBO(pl_combo_bsz2_hrm,  C(KC_Z)),
         COMBO(pl_combo_lsz_hrm,   C(KC_Z)),
@@ -134,6 +154,9 @@
         COMBO(pl_combo_qw,    DM_PLY2),
         COMBO(pl_combo_qe,    DM_REC2),
         COMBO(pl_combo_3e,    DM_RSTP),
+        #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
+          COMBO(pl_combo_1F2,   DM_PLY1),
+        #endif
       #endif // DYNAMIC_MACRO_ENABLE
 
       #ifdef CONSOLE_ENABLE
