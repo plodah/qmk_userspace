@@ -1,21 +1,31 @@
 #pragma once
 
 // TAPDANCES
-#define P_RAGEQ TD(TD_ESC_RAGEQUIT)
-#define P_F2 TD(TD_F2)
-#define P_F4 TD(TD_F4)
-#define P_F5 TD(TD_F5)
-#define P_F11 TD(TD_F11)
-#define P_F12 TD(TD_F12)
+#ifdef TAP_DANCE_ENABLE
+  #define P_RAGEQ TD(TD_ESC_RAGEQUIT)
+  #define P_F2 TD(TD_F2)
+  #define P_F4 TD(TD_F4)
+  #define P_F5 TD(TD_F5)
+  #define P_F11 TD(TD_F11)
+  #define P_F12 TD(TD_F12)
+#else // TAP_DANCE_ENABLE
+  #define P_RAGEQ KC_ESC
+  #define P_F2 KC_F2
+  #define P_F4 KC_F4
+  #define P_F5 KC_F5
+  #define P_F11 KC_F11
+  #define P_F12 KC_F12
+#endif // TAP_DANCE_ENABLE
 
 // "Function" KEYS
 #define P_SPCFA LT(_FNA, KC_SPC)
-#define P_SPCFB LT(_FNA, KC_SPC)
+#define P_SPCFB LT(_FNB, KC_SPC)
 #define P_SPCSP LT(_SUPP, KC_SPC)
 #define P_APPFA LT(_FNA, KC_APP)
 #define P_APPFB LT(_FNB, KC_APP)
 #define P_BSPFA LT(_FNA, KC_BSPC)
 #define P_BSPFB LT(_FNB, KC_BSPC)
+#define P_ENTFA LT(_FNA, KC_ENT)
 #define P_ENTFB LT(_FNB, KC_ENT)
 #define P_FNA MO(_FNA)
 #define P_FNB MO(_FNB)
