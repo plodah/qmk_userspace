@@ -1,12 +1,13 @@
 #pragma once
 
-#define KC_PL_QFTR
-#define KC_PL_QLYR
-#define KC_PL_QRGB
+// #define KC_PL_QFTR
+// #define KC_PL_QLYR
+// #define KC_PL_QRGB
 #define KC_PL_QVER
 
-#define PLODAH_TASKSWITCH_FORCE_NDE
-#define PLODAH_DYNAMIC_MACRO_FORCE_NDE
+#define PLODAH_TASKSWITCH_ENABLE
+// #define PLODAH_TASKSWITCH_FORCE_NDE
+// #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
 
 #if defined(PRODUCT)
   #undef PRODUCT

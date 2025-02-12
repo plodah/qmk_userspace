@@ -18,9 +18,9 @@ enum keymap_keycodes {
     // PL_ECCW,
     // PL_ECPR,
     PL_MSJG,
-    PL_QFTR,
+    // PL_QFTR,
     PL_QLYR,
-    PL_QRGB,
+    // PL_QRGB,
     PL_QTAP,
     PL_QVER,
 };
@@ -38,9 +38,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWEA] = LAYOUT_60_b_iso(
         P_RAGEQ, KC_1,    P_F2,    KC_3,    P_F4,    P_F5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    P_F11,   P_F12,   XXXXXXX, KC_BSPC,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,
-        P_BSPFB, KC_A,    HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,  HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  KC_SCLN, KC_QUOT, KC_NUHS, KC_ENT,
+        P_BSPFB, HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,  HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  HRM_CG,  KC_QUOT, KC_NUHS, KC_ENT,
         KC_LSFT, KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  P_SFTSL,          KC_UP,   KC_SLSH,
-        KC_LCTL, KC_LGUI, KC_LALT,          P_SPCFA,          P_BSPFB,          P_SPCFA,          P_ALAPP, KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
+        KC_LCTL, KC_LGUI, KC_LALT,          P_SPCFA,          P_SPCFB,          P_SPCFA,          P_ALAPP, KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_QWEB] = LAYOUT_60_b_iso(
         P_RAGEQ, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  XXXXXXX, KC_BSPC,
@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, GU_TOGG, _______,          KC_SPC,           KC_SPC,           KC_SPC,           _______, _______, KC_HOME, KC_PGDN, KC_END
     ),
     [_FNB] = LAYOUT_60_b_iso(
-        KC_GRV, PL_DMAC1, PL_DMAC2, MC_3,   MC_4,    MC_5,    MC_6,    PL_QFTR, PL_QLYR, PL_QRGB, PL_QVER, PL_MSJG, QK_MAKE, XXXXXXX, KC_DEL,
+        KC_GRV, PL_DMAC1, PL_DMAC2, MC_3,   MC_4,    MC_5,    MC_6,    MC_7,    MC_8,    PL_QLYR, PL_QVER, PL_MSJG, QK_MAKE, XXXXXXX, KC_DEL,
         BL_TOGG, BL_BRTG, BL_UP,   _______, _______, _______, _______, _______, _______, _______, KC_PSCR, _______, _______,
         KC_CAPS, BL_BRTG, BL_DOWN, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, P_PSTU,  _______, NK_TOGG, _______, _______, _______, _______,          KC_VOLU, _______,
