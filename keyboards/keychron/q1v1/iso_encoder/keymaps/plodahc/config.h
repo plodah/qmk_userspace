@@ -1,8 +1,10 @@
 #pragma once
 
 // #define KC_PL_QFTR
+// #define KC_PL_QLYR
 // #define KC_PL_QRGB
-#define KC_PL_QVER
+// #define KC_PL_QTAP
+// #define KC_PL_QVER
 
 // #define PLODAH_COMBOS_LIMITED
 #define TAP_CODE_DELAY 24
