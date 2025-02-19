@@ -67,6 +67,7 @@
     const uint16_t PROGMEM pl_combo_xc[]    = {KC_X,    KC_C,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_cv[]    = {KC_C,    KC_V,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_xcv[]   = {KC_X,    KC_C,   KC_V,           COMBO_END};
+    const uint16_t PROGMEM pl_combo_mk[]    = {KC_M,    KC_K,                   COMBO_END};
 
     #if ! defined(PLODAH_COMBOS_LIMITED)
 
@@ -101,6 +102,7 @@
     #if defined(PLODAH_HRM_COMBOS)
       const uint16_t PROGMEM pl_combo_lsz_hrm[]     = {KC_LSFT, HRM_ZG, COMBO_END};
       const uint16_t PROGMEM pl_combo_zx_hrm[]      = {KC_X,    HRM_ZG, COMBO_END};
+      const uint16_t PROGMEM pl_combo_mk_hrm[]      = {KC_M,    HRM_KS, COMBO_END};
 
       #if !defined(PLODAH_COMBOS_LIMITED)
         const uint16_t PROGMEM pl_combo_qa_hrm[]      = {KC_Q,    HRM_AG, COMBO_END};
@@ -152,6 +154,7 @@
       COMBO(pl_combo_xc,    C(KC_C)    ),
       COMBO(pl_combo_cv,    C(KC_V)    ),
       COMBO(pl_combo_xcv,   C(S(KC_V)) ),
+      COMBO(pl_combo_mk,    QK_MAKE    ),
 
       #if ! defined(PLODAH_COMBOS_LIMITED)
         #if defined(PLODAH_TASKSWITCH_ENABLE)
@@ -184,6 +187,7 @@
       #if defined(PLODAH_HRM_COMBOS)
         COMBO(pl_combo_lsz_hrm,     C(KC_Z)),
         COMBO(pl_combo_zx_hrm,      C(KC_X)),
+        COMBO(pl_combo_mk_hrm,      QK_MAKE),
 
         #if ! defined(PLODAH_COMBOS_LIMITED)
           COMBO(pl_combo_qa_hrm,      C(KC_A)),
@@ -206,7 +210,7 @@
           COMBO(pl_combo_hj_hrm,      C(KC_J)),
           COMBO(pl_combo_hj_hrm2,     C(KC_J)),
           COMBO(pl_combo_hj_hrm3,     C(KC_J)),
-          
+
           COMBO(pl_combo_bsz_hrm,     C(KC_Z)),
           COMBO(pl_combo_bsz2_hrm,    C(KC_Z)),
         #endif // ! defined(PLODAH_COMBOS_LIMITED)
