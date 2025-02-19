@@ -345,8 +345,13 @@
                                             uint16_t other_keycode,
                                             keyrecord_t* other_record) {
 
-    if (KC_1 <= other_keycode && other_keycode <= KC_0) { return true; }
-    if (other_keycode == KC_TAB) { return true; }
+    // if (KC_1 <= other_keycode && other_keycode <= KC_0) { return true; }
+    // if (other_keycode == KC_TAB) { return true; }
+    // if (other_keycode == KC_BSPC) { return true; }
+    // if (other_keycode == KC_DEL) { return true; }
+    // if (other_keycode == KC_ESC) { return true; }
+    if (KC_1 <= other_keycode && other_keycode <= QK_BASIC_MAX) { return true; }
+
     switch (tap_hold_keycode) {
       case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
         return true;
