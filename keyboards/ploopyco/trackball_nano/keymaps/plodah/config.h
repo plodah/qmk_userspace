@@ -8,6 +8,7 @@
 #define PRODUCT "Ploopy Nano | plodah"
 
 #define PLOOPY_DRAGSCROLL_SCRLK_ENABLE
+#define PLODAH_MSGESTURE_ENABLE
 
 #ifdef PLOOPY_DPI_OPTIONS
   #undef PLOOPY_DPI_OPTIONS
