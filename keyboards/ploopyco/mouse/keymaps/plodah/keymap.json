@@ -2,8 +2,8 @@
     "version": 1,
     "notes": "Hello",
     "author": "Plodah",
-    "documentation": "qmk compile -kb ploopyco/mouse -km plodah",
-    "keyboard": "ploopyco/mouse",
+    "documentation": "qmk compile -kb ploopyco/mouse/rev1_002 -km plodah",
+    "keyboard": "ploopyco/mouse/rev1_002",
     "keymap": "plodah",
     "layout": "LAYOUT",
     "config": {

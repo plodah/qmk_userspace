@@ -9,7 +9,7 @@ KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="CB10", ATTRS{idProduct
 
 #ploopyco/madromys
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="5c47", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-#ploopyco/mouse
+#ploopyco/mouse/rev1_002
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="4d6f", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
 #ploopyco/trackball_mini
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="1eab", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
