@@ -20,6 +20,10 @@ enum layer_names {
     _FNA,
     _FNB,
     _FNC,
+    _BASE,
+    _LOWER,
+    _RAISE,
+    _ADJUST,
 };
 
 enum keymap_keycodes {
@@ -49,9 +53,12 @@ enum {
     TD_F12,
 };
 
+#define LOWER MO(_LOWER)
+#define RAISE MO(_RAISE)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWEA] = LAYOUT(
-    KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+    P_RAGEQ, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_TAB,  KC_A,    HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,           HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  KC_SCLN, KC_QUOT,
     KC_NUBS, HRM_ZG,  KC_X,    KC_C,    KC_V,    KC_B,             KC_N,    KC_M,    KC_COMM, KC_DOT,  HRM_SLG, KC_RSFT,
                                         KC_LALT, P_ENTFB, P_SPCFA, P_ENTFB, KC_RALT
@@ -78,12 +85,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         _______, _______, XXXXXXX, _______, _______
   ),
 
-/*
   [_BASE] = LAYOUT(
-    KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,      KC_T,               KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
+    P_RAGEQ,   KC_Q,     KC_W,     KC_E,     KC_R,      KC_T,               KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
     KC_LCTL,  KC_A,     KC_S,     KC_D,     KC_F,      KC_G,               KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
     KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,               KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  RSFT_T(KC_ENT),
-                                            KC_LGUI,   MO(1),    KC_SPC,   MO(2),    LT(3, KC_RALT)
+                                            KC_LGUI,   LOWER,    KC_SPC,   RAISE,    LT(_ADJUST, KC_RALT)
   ),
 
   [_LOWER] = LAYOUT(
@@ -106,6 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,            QK_BOOT,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
                                             _______,   _______,  XXXXXXX,  _______,  _______
   ),
+/*
   [_BLANK] = LAYOUT(
     _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
