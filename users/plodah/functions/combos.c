@@ -85,6 +85,8 @@
 
       const uint16_t PROGMEM pl_combo_89[]     = {KC_8,     KC_9,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_90[]     = {KC_9,     KC_0,                   COMBO_END};
+      const uint16_t PROGMEM pl_combo_0bsp[]   = {KC_0,     KC_BSPC,                COMBO_END};
+      const uint16_t PROGMEM pl_combo_eqbsp[]  = {KC_EQL,   KC_BSPC,                COMBO_END};
 
       const uint16_t PROGMEM pl_combo_qwop[]   = {KC_Q,     KC_W,   KC_O,   KC_P,   COMBO_END};
       const uint16_t PROGMEM pl_combo_we[]     = {KC_W,     KC_E,                   COMBO_END};
@@ -93,6 +95,7 @@
       const uint16_t PROGMEM pl_combo_rt[]     = {KC_R,     KC_T,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_ert[]    = {KC_E,     KC_R,   KC_T,           COMBO_END};
       const uint16_t PROGMEM pl_combo_op[]     = {KC_O,     KC_P,                   COMBO_END};
+      const uint16_t PROGMEM pl_combo_pbsp[]   = {KC_P,     KC_BSPC,                COMBO_END};
 
       const uint16_t PROGMEM pl_combo_qa[]     = {KC_Q,     KC_A,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_capa[]   = {P_BSPFA,  KC_A,                   COMBO_END};
@@ -182,6 +185,8 @@
 
         COMBO(pl_combo_89,    KC_MINS    ),
         COMBO(pl_combo_90,    KC_EQL     ),
+        COMBO(pl_combo_0bsp,  KC_DEL     ),
+        COMBO(pl_combo_eqbsp, KC_DEL     ),
 
         COMBO(pl_combo_qwop,  QK_BOOT    ),
         COMBO(pl_combo_we,    G(KC_E)    ),
@@ -190,6 +195,7 @@
         COMBO(pl_combo_rt,    C(KC_T)    ),
         COMBO(pl_combo_ert,   C(S(KC_T)) ),
         COMBO(pl_combo_op,    KC_PSCR    ),
+        COMBO(pl_combo_pbsp,  KC_DEL     ),
 
         COMBO(pl_combo_qa,    C(KC_A)    ),
         COMBO(pl_combo_capa,  C(KC_A)    ),
