@@ -11,11 +11,9 @@
   #if defined(IS_MOUSE)
 
     const uint16_t PROGMEM pl_combo_ms12[] = {KC_BTN1, KC_BTN2, COMBO_END};
-    const uint16_t PROGMEM pl_combo_ms14[] = {KC_BTN1, KC_BTN4, COMBO_END};
     const uint16_t PROGMEM pl_combo_ms15[] = {KC_BTN1, KC_BTN5, COMBO_END};
     const uint16_t PROGMEM pl_combo_ms24[] = {KC_BTN2, KC_BTN4, COMBO_END};
     const uint16_t PROGMEM pl_combo_ms25[] = {KC_BTN2, KC_BTN5, COMBO_END};
-    const uint16_t PROGMEM pl_combo_ms45[] = {KC_BTN4, KC_BTN5, COMBO_END};
 
     const uint16_t PROGMEM pl_combo_ms14_lt1[] = {KC_BTN1 , LT(1, KC_BTN4), COMBO_END};
     const uint16_t PROGMEM pl_combo_ms15_lt1[] = {KC_BTN1 , LT(1, KC_BTN5), COMBO_END};
@@ -23,14 +21,19 @@
     const uint16_t PROGMEM pl_combo_ms24_lt1[] = {KC_BTN2 , LT(1, KC_BTN4), COMBO_END};
     const uint16_t PROGMEM pl_combo_ms25_lt1[] = {KC_BTN2 , LT(1, KC_BTN5), COMBO_END};
     const uint16_t PROGMEM pl_combo_ms25_lt2[] = {KC_BTN2 , LT(2, KC_BTN5), COMBO_END};
-    const uint16_t PROGMEM pl_combo_ms45_lt01[] = {KC_BTN4 , LT(1, KC_BTN5), COMBO_END};
-    const uint16_t PROGMEM pl_combo_ms45_lt02[] = {KC_BTN4 , LT(2, KC_BTN5), COMBO_END};
-    const uint16_t PROGMEM pl_combo_ms45_lt10[] = {LT(1, KC_BTN4) , KC_BTN5, COMBO_END};
-    const uint16_t PROGMEM pl_combo_ms45_lt11[] = {LT(1, KC_BTN4) , LT(1, KC_BTN5), COMBO_END};
-    const uint16_t PROGMEM pl_combo_ms45_lt12[] = {LT(1, KC_BTN4) , LT(2, KC_BTN5), COMBO_END};
 
     const uint16_t PROGMEM pl_combo_ms1d[] = {KC_BTN1, PL_DRAG_SCROLL_MOMENTARY, COMBO_END};
     const uint16_t PROGMEM pl_combo_ms2d[] = {KC_BTN2, PL_DRAG_SCROLL_MOMENTARY, COMBO_END};
+
+    #if defined(PLODAH_MSJIGGLER_ENABLE)
+      const uint16_t PROGMEM pl_combo_ms14[] = {KC_BTN1, KC_BTN4, COMBO_END};
+      const uint16_t PROGMEM pl_combo_ms45[] = {KC_BTN4, KC_BTN5, COMBO_END};
+      const uint16_t PROGMEM pl_combo_ms45_lt01[] = {KC_BTN4 , LT(1, KC_BTN5), COMBO_END};
+      const uint16_t PROGMEM pl_combo_ms45_lt02[] = {KC_BTN4 , LT(2, KC_BTN5), COMBO_END};
+      const uint16_t PROGMEM pl_combo_ms45_lt10[] = {LT(1, KC_BTN4) , KC_BTN5, COMBO_END};
+      const uint16_t PROGMEM pl_combo_ms45_lt11[] = {LT(1, KC_BTN4) , LT(1, KC_BTN5), COMBO_END};
+      const uint16_t PROGMEM pl_combo_ms45_lt12[] = {LT(1, KC_BTN4) , LT(2, KC_BTN5), COMBO_END};
+    #endif // PLODAH_MSJIGGLER_ENABLE
 
     combo_t key_combos[] = {
       #if defined(TAP_DANCE_ENABLE) && defined(PLODAH_DRAGSCROLL_TAPDANCE)
@@ -38,11 +41,9 @@
       #else // PLODAH_DRAGSCROLL_TAPDANCE
         COMBO(pl_combo_ms12,  PL_DRAG_SCROLL_MOMENTARY),
       #endif // PLODAH_DRAGSCROLL_TAPDANCE
-      COMBO(pl_combo_ms14,  PL_MSJG),
       COMBO(pl_combo_ms15,  C(KC_C)),
       COMBO(pl_combo_ms24,  PL_DRAG_SCROLL_MOMENTARY),
-      COMBO(pl_combo_ms25,  C(KC_V)),
-      COMBO(pl_combo_ms45,  PL_MSJG),
+      COMBO(pl_combo_ms25,  C(KC_V))
 
       COMBO(pl_combo_ms14_lt1,  PL_MSJG),
       COMBO(pl_combo_ms15_lt1,  C(KC_C)),
@@ -50,14 +51,19 @@
       COMBO(pl_combo_ms24_lt1,  PL_DRAG_SCROLL_MOMENTARY),
       COMBO(pl_combo_ms25_lt1,  C(KC_V)),
       COMBO(pl_combo_ms25_lt2,  C(KC_V)),
-      COMBO(pl_combo_ms45_lt01,  PL_MSJG),
-      COMBO(pl_combo_ms45_lt02,  PL_MSJG),
-      COMBO(pl_combo_ms45_lt10,  PL_MSJG),
-      COMBO(pl_combo_ms45_lt11,  PL_MSJG),
-      COMBO(pl_combo_ms45_lt12,  PL_MSJG),
 
       COMBO(pl_combo_ms1d,  PL_DRAG_SCROLL_TOGGLE),
       COMBO(pl_combo_ms2d,  PL_DRAG_SCROLL_TOGGLE),
+
+      #if defined(PLODAH_MSJIGGLER_ENABLE)
+        COMBO(pl_combo_ms14,  PL_MSJG),
+        COMBO(pl_combo_ms45,  PL_MSJG),
+        COMBO(pl_combo_ms45_lt01,  PL_MSJG),
+        COMBO(pl_combo_ms45_lt02,  PL_MSJG),
+        COMBO(pl_combo_ms45_lt10,  PL_MSJG),
+        COMBO(pl_combo_ms45_lt11,  PL_MSJG),
+        COMBO(pl_combo_ms45_lt12,  PL_MSJG),
+      #endif // PLODAH_MSJIGGLER_ENABLE
     };
 
   #else // not IS_MOUSE
@@ -147,7 +153,6 @@
       #endif // !defined(PLODAH_COMBOS_LIMITED)
     #endif // PLODAH_HRM_COMBOS
 
-
     #if defined(DYNAMIC_MACRO_ENABLE)
       const uint16_t PROGMEM pl_combo_12[]  = {KC_1 , KC_2, COMBO_END};
       const uint16_t PROGMEM pl_combo_13[]  = {KC_1 , KC_3, COMBO_END};
@@ -162,6 +167,13 @@
     #ifdef CONSOLE_ENABLE
       const uint16_t PROGMEM pl_combo_db[] = {KC_D , KC_B, COMBO_END};
     #endif // CONSOLE_ENABLE
+
+    #ifdef PLODAH_MSJIGGLER_ENABLE
+      const uint16_t PROGMEM pl_combo_mj[] = {KC_M , KC_J, COMBO_END};
+      #if defined(PLODAH_HRM_COMBOS)
+        const uint16_t PROGMEM pl_combo_mj_hrm[] = {KC_M , HRM_JC, COMBO_END};
+      #endif // PLODAH_HRM_COMBOS
+    #endif // PLODAH_MSJIGGLER_ENABLE
 
     combo_t key_combos[] = {
       COMBO(pl_combo_lsz,   C(KC_Z)),
@@ -258,6 +270,13 @@
 
       #ifdef CONSOLE_ENABLE
         COMBO(pl_combo_db,    DB_TOGG),
+      #endif // CONSOLE_ENABLE
+
+      #ifdef PLODAH_MSJIGGLER_ENABLE
+        COMBO(pl_combo_mj,     PL_MSJG),
+        #if defined(PLODAH_HRM_COMBOS)
+          COMBO(pl_combo_mj_hrm, PL_MSJG),
+        #endif // PLODAH_HRM_COMBOS
       #endif // CONSOLE_ENABLE
 
     };
