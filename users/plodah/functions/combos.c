@@ -75,6 +75,15 @@
     const uint16_t PROGMEM pl_combo_xcv[]   = {KC_X,    KC_C,   KC_V,           COMBO_END};
     const uint16_t PROGMEM pl_combo_mk[]    = {KC_M,    KC_K,                   COMBO_END};
 
+    const uint16_t PROGMEM pl_combo_volud[] = {KC_VOLU, KC_VOLD,                COMBO_END};
+
+    #ifdef PLODAH_MSJIGGLER_ENABLE
+      const uint16_t PROGMEM pl_combo_mj[] = {KC_M , KC_J, COMBO_END};
+      #if defined(PLODAH_HRM_COMBOS)
+        const uint16_t PROGMEM pl_combo_mj_hrm[] = {KC_M , HRM_JC, COMBO_END};
+      #endif // PLODAH_HRM_COMBOS
+    #endif // PLODAH_MSJIGGLER_ENABLE
+
     #if ! defined(PLODAH_COMBOS_LIMITED)
 
       #if defined(PLODAH_TASKSWITCH_ENABLE)
@@ -168,13 +177,6 @@
       const uint16_t PROGMEM pl_combo_db[] = {KC_D , KC_B, COMBO_END};
     #endif // CONSOLE_ENABLE
 
-    #ifdef PLODAH_MSJIGGLER_ENABLE
-      const uint16_t PROGMEM pl_combo_mj[] = {KC_M , KC_J, COMBO_END};
-      #if defined(PLODAH_HRM_COMBOS)
-        const uint16_t PROGMEM pl_combo_mj_hrm[] = {KC_M , HRM_JC, COMBO_END};
-      #endif // PLODAH_HRM_COMBOS
-    #endif // PLODAH_MSJIGGLER_ENABLE
-
     combo_t key_combos[] = {
       COMBO(pl_combo_lsz,   C(KC_Z)    ),
       COMBO(pl_combo_zx,    C(KC_X)    ),
@@ -182,6 +184,15 @@
       COMBO(pl_combo_cv,    C(KC_V)    ),
       COMBO(pl_combo_xcv,   C(S(KC_V)) ),
       COMBO(pl_combo_mk,    QK_MAKE    ),
+
+      COMBO(pl_combo_volud, KC_MUTE    ),
+
+      #ifdef PLODAH_MSJIGGLER_ENABLE
+        COMBO(pl_combo_mj,     PL_MSJG),
+        #if defined(PLODAH_HRM_COMBOS)
+          COMBO(pl_combo_mj_hrm, PL_MSJG),
+        #endif // PLODAH_HRM_COMBOS
+      #endif // CONSOLE_ENABLE
 
       #if ! defined(PLODAH_COMBOS_LIMITED)
         #if defined(PLODAH_TASKSWITCH_ENABLE)
@@ -270,13 +281,6 @@
 
       #ifdef CONSOLE_ENABLE
         COMBO(pl_combo_db,    DB_TOGG),
-      #endif // CONSOLE_ENABLE
-
-      #ifdef PLODAH_MSJIGGLER_ENABLE
-        COMBO(pl_combo_mj,     PL_MSJG),
-        #if defined(PLODAH_HRM_COMBOS)
-          COMBO(pl_combo_mj_hrm, PL_MSJG),
-        #endif // PLODAH_HRM_COMBOS
       #endif // CONSOLE_ENABLE
 
     };
