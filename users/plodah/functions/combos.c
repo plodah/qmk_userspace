@@ -43,7 +43,7 @@
       #endif // PLODAH_DRAGSCROLL_TAPDANCE
       COMBO(pl_combo_ms15,  C(KC_C)),
       COMBO(pl_combo_ms24,  PL_DRAG_SCROLL_MOMENTARY),
-      COMBO(pl_combo_ms25,  C(KC_V))
+      COMBO(pl_combo_ms25,  C(KC_V)),
 
       COMBO(pl_combo_ms14_lt1,  PL_MSJG),
       COMBO(pl_combo_ms15_lt1,  C(KC_C)),
@@ -176,7 +176,7 @@
     #endif // PLODAH_MSJIGGLER_ENABLE
 
     combo_t key_combos[] = {
-      COMBO(pl_combo_lsz,   C(KC_Z)),
+      COMBO(pl_combo_lsz,   C(KC_Z)    ),
       COMBO(pl_combo_zx,    C(KC_X)    ),
       COMBO(pl_combo_xc,    C(KC_C)    ),
       COMBO(pl_combo_cv,    C(KC_V)    ),
@@ -291,5 +291,4 @@
       return true;
     }
   #endif // PLODAH_BORING_LAYER
-
 #endif // COMBO_ENABLE
