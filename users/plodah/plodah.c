@@ -8,6 +8,7 @@
 #include "functions/achordion.c"
 #include "functions/autocorrect.c"
 #include "functions/caps_word.c"
+#include "functions/chordal_hold.c"
 #include "functions/debug.c"
 #include "functions/dipswitch.c"
 #include "functions/dragscroll.c"
