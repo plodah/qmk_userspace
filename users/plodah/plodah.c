@@ -26,6 +26,7 @@
 
 #include "functions/taskswitch.c"
 #include "functions/encoder_actions.c"
+#include "functions/leader.c"
 
 #include "functions/0_pointing_device.c"
 #include "functions/0_housekeeping.c"
