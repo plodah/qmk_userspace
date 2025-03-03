@@ -13,7 +13,7 @@
             pl_dragscroll_toggle(true);
             break;
           case -1:
-            jiggler_onclick(PL_MSJG);
+            jiggler_toggle();
             break;
         }
       #endif // defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
