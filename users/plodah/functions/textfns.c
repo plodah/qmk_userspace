@@ -244,3 +244,9 @@
         send_string_with_delay ( "\n", TAP_CODE_DELAY );
     }
 #endif // defined(KC_PL_QTAP)
+
+#if defined(KC_PL_QVER)
+  void verQuerySs(void) {
+    send_string_with_delay ( "\\ " QMK_KEYBOARD "/" QMK_KEYMAP " \" " QMK_VERSION ", Built on: " QMK_BUILDDATE "\n", TAP_CODE_DELAY);
+  }
+#endif // defined(KC_PL_QVER)

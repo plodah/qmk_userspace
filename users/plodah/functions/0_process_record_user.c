@@ -68,7 +68,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #if defined(KC_PL_QVER)
       case PL_QVER:
         if (record->event.pressed) {
-          send_string_with_delay ( "\\ " QMK_KEYBOARD "/" QMK_KEYMAP " \" " QMK_VERSION ", Built on: " QMK_BUILDDATE "\n", TAP_CODE_DELAY);
+            verQuerySs();
         }
         return false;
     #endif // defined(KC_PL_QVER)
