@@ -12,7 +12,8 @@
 #endif // defined(PLODAH_REPEATHOLD_RGB) && (! defined(PLODAH_REPEATHOLD_RATE))
 
 #if defined(COMBO_ENABLE) && (! defined(COMBO_TERM))
-  #define COMBO_TERM 35
+  #define COMBO_STRICT_TIMER
+  #define COMBO_TERM 25
 #endif // COMBO_ENABLE
 
 #ifndef DEBOUNCE
