@@ -1,4 +1,5 @@
 #ifdef OLED_ENABLE
+  #pragma once
   #if defined (AUTOCORRECT_ENABLE)
     char recAcA[15] = "_____";
     char recAcB[15] = "_____";

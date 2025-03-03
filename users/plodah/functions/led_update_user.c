@@ -1,4 +1,5 @@
 #if defined(PLOOPY_DRAGSCROLL_SCRLK_ENABLE) || defined(PLOOPY_DRAGSCROLL_CAPLK_ENABLE)
+  #pragma once
     bool led_update_user(led_t led_state) {
       dprintf("scr:%d", led_state.scroll_lock);
       plodah_dragscroll_enabled =
