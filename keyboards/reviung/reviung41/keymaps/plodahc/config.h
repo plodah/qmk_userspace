@@ -1,8 +1,9 @@
 #pragma once
 
-// #define KC_PL_QFTR
+#define KC_PL_QFTR
 #define KC_PL_QLYR
-// #define KC_PL_QRGB
+#define KC_PL_QRGB
+#define KC_PL_QTAP
 #define KC_PL_QVER
 
 #define PLODAH_TASKSWITCH_ENABLE
@@ -15,8 +16,9 @@
 #endif // PRODUCT
 #define PRODUCT "reviung41 | plodahc"
 
-#define ACHORDION_ENABLE
-#define ACHORDION_STREAK
+// #define ACHORDION_ENABLE
+// #define ACHORDION_STREAK
+#define CHORDAL_HOLD
 
 #define PLODAH_BORING_LAYER _BASE
 
