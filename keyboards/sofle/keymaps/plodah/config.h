@@ -26,8 +26,9 @@
 #endif // PRODUCT
 #define PRODUCT "Sofle | plodahc"
 
-#define ACHORDION_ENABLE
-#define ACHORDION_STREAK
+// #define ACHORDION_ENABLE
+// #define ACHORDION_STREAK
+#define CHORDAL_HOLD
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 // #define PLODAH_TASKSWITCH_FORCE_NDE
