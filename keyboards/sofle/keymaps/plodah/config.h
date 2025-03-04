@@ -18,6 +18,7 @@
 #define KC_PL_QRGB
 #define KC_PL_QTAP
 #define KC_PL_QVER
+#define KC_PL_SCRL
 
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "oQwer", "oCole", "oFn A", "oFn B", "Mouse", "Tenth" }
 

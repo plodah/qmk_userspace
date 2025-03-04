@@ -73,6 +73,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     #endif // defined(KC_PL_QVER)
 
+    #if defined(KC_PL_SCRL)
+      case PL_SCRL:
+        tap_code(KC_SCRL);
+        return false;
+    #endif // defined(KC_PL_QVER)
+
     #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
       case PL_DMAC1 ... PL_DMAC2:
         return dynamic_macros_process_record_user( keycode, record );

@@ -117,6 +117,7 @@
       const uint16_t PROGMEM pl_combo_capa2[]  = {P_BSPFB,  KC_A,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_capa3[]  = {KC_NUBS,  KC_A,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_taba[]   = {KC_TAB,   KC_A,                   COMBO_END};
+      const uint16_t PROGMEM pl_combo_bspa[]   = {KC_BSPC,  KC_A,                   COMBO_END};
 
       const uint16_t PROGMEM pl_combo_as[]     = {KC_A,     KC_S,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_df[]     = {KC_D,     KC_F,                   COMBO_END};
@@ -145,6 +146,7 @@
         const uint16_t PROGMEM pl_combo_capa_hrm2[]   = {P_BSPFB, HRM_AG, COMBO_END};
         const uint16_t PROGMEM pl_combo_capa_hrm3[]   = {KC_NUBS, HRM_AG, COMBO_END};
         const uint16_t PROGMEM pl_combo_taba_hrm[]    = {KC_TAB,  HRM_AG, COMBO_END};
+        const uint16_t PROGMEM pl_combo_bspa_hrm[]    = {KC_BSPC, HRM_AG, COMBO_END};
 
         const uint16_t PROGMEM pl_combo_as_hrm[]      = {KC_A ,   HRM_SA, COMBO_END};
         const uint16_t PROGMEM pl_combo_as_hrm2[]     = {HRM_AG,  KC_S,   COMBO_END};
@@ -240,6 +242,7 @@
         COMBO(pl_combo_capa2, C(KC_A)    ),
         COMBO(pl_combo_capa3, C(KC_A)    ),
         COMBO(pl_combo_taba,  C(KC_A)    ),
+        COMBO(pl_combo_bspa,  C(KC_A)    ),
 
         COMBO(pl_combo_as,    C(KC_S)    ),
         COMBO(pl_combo_df,    C(KC_F)    ),
@@ -267,6 +270,7 @@
           COMBO(pl_combo_capa_hrm2,   C(KC_A)),
           COMBO(pl_combo_capa_hrm3,   C(KC_A)),
           COMBO(pl_combo_taba_hrm,    C(KC_A)),
+          COMBO(pl_combo_bspa_hrm,    C(KC_A)),
 
           COMBO(pl_combo_as_hrm,      C(KC_S)),
           COMBO(pl_combo_as_hrm2,     C(KC_S)),
