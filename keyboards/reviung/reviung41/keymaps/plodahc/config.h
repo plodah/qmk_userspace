@@ -5,6 +5,7 @@
 #define KC_PL_QRGB
 #define KC_PL_QTAP
 #define KC_PL_QVER
+#define KC_PL_SCRL
 
 #define PLODAH_TASKSWITCH_ENABLE
 // #define PLODAH_TASKSWITCH_FORCE_NDE
