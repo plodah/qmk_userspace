@@ -25,7 +25,7 @@
     const uint16_t PROGMEM pl_combo_ms1d[] = {KC_BTN1, PL_DRAG_SCROLL_MOMENTARY, COMBO_END};
     const uint16_t PROGMEM pl_combo_ms2d[] = {KC_BTN2, PL_DRAG_SCROLL_MOMENTARY, COMBO_END};
 
-    #if defined(PLODAH_MSJIGGLER_ENABLE)
+    #if defined(PLODAH_MSJIGGLER_ENABLE) || defined(MSJIGGLER_ENABLE)
       const uint16_t PROGMEM pl_combo_ms14[] = {KC_BTN1, KC_BTN4, COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45[] = {KC_BTN4, KC_BTN5, COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45_lt01[] = {KC_BTN4 , LT(1, KC_BTN5), COMBO_END};
@@ -64,6 +64,16 @@
         COMBO(pl_combo_ms45_lt11,  PL_MSJG),
         COMBO(pl_combo_ms45_lt12,  PL_MSJG),
       #endif // PLODAH_MSJIGGLER_ENABLE
+
+      #if defined(MSJIGGLER_ENABLE)
+        COMBO(pl_combo_ms14,  CM_MSJG),
+        COMBO(pl_combo_ms45,  CM_MSJG),
+        COMBO(pl_combo_ms45_lt01,  CM_MSJG),
+        COMBO(pl_combo_ms45_lt02,  CM_MSJG),
+        COMBO(pl_combo_ms45_lt10,  CM_MSJG),
+        COMBO(pl_combo_ms45_lt11,  CM_MSJG),
+        COMBO(pl_combo_ms45_lt12,  CM_MSJG),
+      #endif // PLODAH_MSJIGGLER_ENABLE
     };
 
   #else // not IS_MOUSE
@@ -77,7 +87,7 @@
 
     const uint16_t PROGMEM pl_combo_volud[] = {KC_VOLU, KC_VOLD,                COMBO_END};
 
-    #ifdef PLODAH_MSJIGGLER_ENABLE
+    #if defined(PLODAH_MSJIGGLER_ENABLE) || defined(MSJIGGLER_ENABLE)
       const uint16_t PROGMEM pl_combo_mj[] = {KC_M , KC_J, COMBO_END};
       #if defined(PLODAH_HRM_COMBOS)
         const uint16_t PROGMEM pl_combo_mj_hrm[] = {KC_M , HRM_JC, COMBO_END};
@@ -86,7 +96,7 @@
 
     #if ! defined(PLODAH_COMBOS_LIMITED)
 
-      #if defined(PLODAH_TASKSWITCH_ENABLE)
+      #if defined(PLODAH_TASKSWITCH_ENABLE) || defined(TASKSWITCH_ENABLE)
         const uint16_t PROGMEM pl_combo_escq[] = {KC_ESC , KC_Q , COMBO_END};
         const uint16_t PROGMEM pl_combo_escw[] = {KC_ESC , KC_W , COMBO_END};
         #if defined(TAP_DANCE_ENABLE)
@@ -211,6 +221,13 @@
         #endif // PLODAH_HRM_COMBOS
       #endif // CONSOLE_ENABLE
 
+      #ifdef MSJIGGLER_ENABLE
+        COMBO(pl_combo_mj,     CM_MSJG),
+        #if defined(PLODAH_HRM_COMBOS)
+          COMBO(pl_combo_mj_hrm, CM_MSJG),
+        #endif // PLODAH_HRM_COMBOS
+      #endif // CONSOLE_ENABLE
+
       #if ! defined(PLODAH_COMBOS_LIMITED)
         #if defined(PLODAH_TASKSWITCH_ENABLE)
           COMBO(pl_combo_escq,    PL_TSKB),
@@ -222,6 +239,16 @@
           COMBO(pl_combo_tabq,    PL_TSKB),
           COMBO(pl_combo_tabw,    PL_TSKA),
         #endif // PLODAH_TASKSWITCH_ENABLE
+        #if defined(TASKSWITCH_ENABLE)
+          COMBO(pl_combo_escq,    CM_TSKP),
+          COMBO(pl_combo_escw,    CM_TSKN),
+          #if defined(TAP_DANCE_ENABLE)
+            COMBO(pl_combo_ragq,    CM_TSKP),
+            COMBO(pl_combo_ragw,    CM_TSKN),
+          #endif // defined(TAP_DANCE_ENABLE)
+          COMBO(pl_combo_tabq,    CM_TSKP),
+          COMBO(pl_combo_tabw,    CM_TSKN),
+        #endif // TASKSWITCH_ENABLE
 
         COMBO(pl_combo_89,    KC_MINS    ),
         COMBO(pl_combo_90,    KC_EQL     ),
