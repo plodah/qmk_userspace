@@ -197,7 +197,7 @@
     char* layerQuery(void) {
         char * str;
         str = malloc(sizeof(char)*20);
-        strcpy (str, "\\ LYR:");
+        strcpy (str, "\\ HIGHEST LAYER:");
         strcat (str, get_u8_str(get_highest_layer(layer_state), '0'));
         strcat (str, " DEF");
         strcat (str, get_u8_str(get_highest_layer(default_layer_state), '0'));
@@ -220,6 +220,7 @@
 
 #if defined(KC_PL_QTAP)
     void tapQuerySs(void) {
+        send_string_with_delay ( "\\ TAPPING: ", TAP_CODE_DELAY );
         #ifdef TAPPING_TERM
             send_string_with_delay ("TAPPING_TERM:", TAP_CODE_DELAY );
         send_string_with_delay ( get_u16_str(TAPPING_TERM, '0'), TAP_CODE_DELAY );
