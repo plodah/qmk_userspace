@@ -129,7 +129,7 @@
         #if defined(MSJIGGLER_AUTOSTOP)
             msJigMainToken != INVALID_DEFERRED_TOKEN ||
         #endif // MSJIGGLER_AUTOSTOP
-        keycode == COMMUNITY_MODULE_MOUSE_JIGGLER_TOGGLE
+        keycode == PL_MSJG
     ) {
       jiggler_toggle();
     }
