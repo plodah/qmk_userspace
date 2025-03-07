@@ -48,8 +48,6 @@ void taskswitch_start(bool reverse) {
     }
 }
 
-
-
 bool process_record_task_switch(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_task_switch_kb(keycode, record)) {
         return false;
