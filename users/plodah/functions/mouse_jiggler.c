@@ -126,10 +126,10 @@
   void jiggler_onclick( uint16_t keycode ) {
     dprintf("jiggler_onclick %d\n", msJigMainToken);
     if (
-        #if !defined(PLODAH_MSJIGGLER_AUTOSTOP)
-          keycode == PL_MSJG ||
-        #endif // PLODAH_MSJIGGLER_AUTOSTOP
-        msJigMainToken != INVALID_DEFERRED_TOKEN
+        #if defined(MSJIGGLER_AUTOSTOP)
+            msJigMainToken != INVALID_DEFERRED_TOKEN ||
+        #endif // MSJIGGLER_AUTOSTOP
+        keycode == COMMUNITY_MODULE_MOUSE_JIGGLER_TOGGLE
     ) {
       jiggler_toggle();
     }
