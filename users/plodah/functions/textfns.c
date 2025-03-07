@@ -241,6 +241,11 @@
         #ifdef RETRO_TAPPING
             send_string_with_delay (" RETRO_TAPPING", TAP_CODE_DELAY );
         #endif // RETRO_TAPPING
+
+        #ifdef CHORDAL_HOLD
+            send_string_with_delay (" CHORDAL_HOLD", TAP_CODE_DELAY );
+        #endif // CHORDAL_HOLD
+
         send_string_with_delay ( "\n", TAP_CODE_DELAY );
     }
 #endif // defined(KC_PL_QTAP)
