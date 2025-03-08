@@ -55,6 +55,23 @@
     }
   #endif // PLODAH_DRAGSCROLL_TAPDANCE
 
+  #if defined(CM_DRAGSCROLL_TAPDANCE)
+    void dragscrolltd_fin(tap_dance_state_t *state, void *user_data){
+      dprintf("fin; pressed:%d $dcount:%d \n", state->pressed, state->count);
+      if(state->count >= 2){
+        dragscroll_toggle(true);
+      }
+      else{
+        dragscroll_momentary(true);
+      }
+    }
+    void dragscrolltd_rst(tap_dance_state_t *state, void *user_data){
+      if(state->count < 2){
+        dragscroll_momentary(false);
+      }
+    }
+  #endif // CM_DRAGSCROLL_TAPDANCE
+
   #if defined(PLODAH_BORING_LAYER)
     void rage_quit_fin(tap_dance_state_t *state, void *user_data){
       if(state->count >= 5){
@@ -88,6 +105,9 @@
     #if defined(PLODAH_DRAGSCROLL_TAPDANCE)
       [TD_DRAGSCROLL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dragscrolltd_fin, dragscrolltd_rst),
     #endif // PLODAH_DRAGSCROLL_TAPDANCE
+    #if defined(CM_DRAGSCROLL_TAPDANCE)
+      [TD_DRAGSCROLL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dragscrolltd_fin, dragscrolltd_rst),
+    #endif // CM_DRAGSCROLL_TAPDANCE
 
     #if defined(PLODAH_BORING_LAYER)
       [TD_ESC_RAGEQUIT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rage_quit_fin, rage_quit_rst),

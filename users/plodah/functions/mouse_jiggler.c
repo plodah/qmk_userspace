@@ -33,7 +33,7 @@
     }
   }
 
-  void jiggle_delay(uint16_t delay_sec){
+  void pl_jiggle_delay(uint16_t delay_sec){
     if( msJigMainToken != INVALID_DEFERRED_TOKEN ){
         extend_deferred_exec(msJigMainToken, delay_sec*1000 );
     }
@@ -112,8 +112,8 @@
     #endif // PLODAH_MSJIGGLER_INTRO
   }
 
-  void jiggler_toggle(void){
-    dprintf("jiggler_toggle %d\n", msJigMainToken);
+  void pl_jiggler_toggle(void){
+    dprintf("pl_jiggler_toggle %d\n", msJigMainToken);
     jiggler_intro_end();
     if (msJigMainToken != INVALID_DEFERRED_TOKEN){
       jiggler_end();
@@ -131,7 +131,7 @@
         #endif // MSJIGGLER_AUTOSTOP
         keycode == PL_MSJG
     ) {
-      jiggler_toggle();
+      pl_jiggler_toggle();
     }
   }
 

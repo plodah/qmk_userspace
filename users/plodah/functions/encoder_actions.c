@@ -1,5 +1,8 @@
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
   #pragma once
+  #if defined COMMUNITY_MODULE_TASK_SWITCH_ENABLE
+    #include "task_switch.h"
+  #endif // COMMUNITY_MODULE_TASK_SWITCH_ENABLE
 
   void enc_act(int keycode) {
     uint8_t mod_state;
@@ -157,10 +160,20 @@
         //A
         switch (keycode) {
           case PL_ECCC & 0xff:
-            plodah_taskswitch_start(true);
+            #if defined(PLODAH_TASKSWITCH_ENABLE)
+              plodah_taskswitch_start(true);
+            #endif
+            #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
+              taskswitch_start(true);
+            #endif
             break;
           case PL_ECCW & 0xff:
-            plodah_taskswitch_start(false);
+            #if defined(PLODAH_TASKSWITCH_ENABLE)
+              plodah_taskswitch_start(false);
+            #endif
+            #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
+              taskswitch_start(false);
+            #endif
             break;
           case PL_ECPR & 0xff:
           default:

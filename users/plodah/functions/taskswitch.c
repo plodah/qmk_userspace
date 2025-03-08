@@ -15,8 +15,8 @@
     static deferred_token taskSwitchToken = INVALID_DEFERRED_TOKEN;
   #else // PLODAH_TASKSWITCH_MODE_DE
     // #pragma message("Non-Deferred Exec TaskSwitch")
-    bool is_taskswitch_active = false;
-    uint16_t taskswitch_timer = 0;
+    bool is_pl_taskswitch_active = false;
+    uint16_t pl_taskswitch_timer = 0;
   #endif // PLODAH_TASKSWITCH_MODE_DE
 
 
@@ -29,10 +29,10 @@
     }
   #else // PLODAH_TASKSWITCH_MODE_DE
     void plodah_taskswitch_check(void) {
-      if (is_taskswitch_active) {
-        if (timer_elapsed(taskswitch_timer) > PLODAH_TASKSWITCH_DELAY) {
+      if (is_pl_taskswitch_active) {
+        if (timer_elapsed(pl_taskswitch_timer) > PLODAH_TASKSWITCH_DELAY) {
           unregister_code(KC_LALT);
-          is_taskswitch_active = false;
+          is_pl_taskswitch_active = false;
         }
       }
     }
@@ -46,8 +46,8 @@
       }
       else{
     #else
-      taskswitch_timer = timer_read();
-      if (!is_taskswitch_active) {
+      pl_taskswitch_timer = timer_read();
+      if (!is_pl_taskswitch_active) {
     #endif // PLODAH_TASKSWITCH_MODE_DE
         #if ! defined(IS_MOUSE)
           if (!(get_mods() & MOD_MASK_ALT)){
@@ -56,7 +56,7 @@
         #if defined(PLODAH_TASKSWITCH_MODE_DE)
           taskSwitchToken = defer_exec(PLODAH_TASKSWITCH_DELAY, plodah_taskswitch_reset, NULL);
         #else // PLODAH_TASKSWITCH_MODE_DE
-          is_taskswitch_active = true;
+          is_pl_taskswitch_active = true;
         #endif // PLODAH_TASKSWITCH_MODE_DE
           register_code(KC_LALT);
         #if ! defined(IS_MOUSE)

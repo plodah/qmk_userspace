@@ -20,7 +20,7 @@
 #include "functions/textfns.c"
 #include "functions/typing_indicator.c"
 
-#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) && (!defined(PLODAH_TASKSWITCH_ENABLE))
+#if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) && (!defined(PLODAH_TASKSWITCH_ENABLE)) && (!defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE))
   #define PLODAH_TASKSWITCH_ENABLE
 #endif
 

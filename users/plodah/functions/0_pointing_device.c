@@ -3,7 +3,7 @@
   report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     #if defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
       if( mouse_report.x != 0 || mouse_report.y != 0 ){
-        jiggle_delay(5);
+        pl_jiggle_delay(5);
       }
     #endif
     #if defined(PLODAH_DRAGSCROLL)
@@ -13,7 +13,7 @@
             pl_dragscroll_toggle(true);
             break;
           case -1:
-            jiggler_toggle();
+            pl_jiggler_toggle();
             break;
         }
       #endif // defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)

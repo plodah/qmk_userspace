@@ -11,7 +11,7 @@
     }
     #if defined(PLODAH_MSJIGGLER_ENABLE)
     else if ( leader_sequence_one_key(KC_J) || leader_sequence_one_key(HRM_JC) ) {
-        jiggler_toggle();
+        pl_jiggler_toggle();
       }
     #endif // #if defined(PLODAH_MSJIGGLER_ENABLE)
 
