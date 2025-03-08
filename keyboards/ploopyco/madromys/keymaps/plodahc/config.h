@@ -9,6 +9,15 @@
 #endif // PRODUCT
 #define PRODUCT "Ploopy Adept (Madromys) | plodahc"
 
+#ifdef PLOOPY_DPI_OPTIONS
+  #undef PLOOPY_DPI_OPTIONS
+#endif
+#define PLOOPY_DPI_OPTIONS { 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800 }
+#ifdef PLOOPY_DPI_DEFAULT
+  #undef PLOOPY_DPI_DEFAULT
+#endif
+#define PLOOPY_DPI_DEFAULT 4
+
 #ifdef PLOOPY_DRAGSCROLL_DIVISOR_H
   #undef PLOOPY_DRAGSCROLL_DIVISOR_H
 #endif
