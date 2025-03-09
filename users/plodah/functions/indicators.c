@@ -120,42 +120,30 @@
         }
       #endif // ACHORDION_ENABLE
     #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
-    #if (defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE) && defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)) || (defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX))
-        #if defined(PLODAH_MSJIGGLER_INDICATOR_HSV)
-            RGB msjigrgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), PLODAH_MSJIGGLER_INDICATOR_HSV, PLODAH_INDICATOR_MINVAL ) );
-        #endif // defined(PLODAH_MSJIGGLER_INDICATOR_HSV)
+    #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX)
         #if defined(MSJIGGLER_INDICATOR_HSV)
             RGB msjigrgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), MSJIGGLER_INDICATOR_HSV, PLODAH_INDICATOR_MINVAL ) );
         #endif // defined(MSJIGGLER_INDICATOR_HSV)
 
         if(!rgb_matrix_get_flags()){
-        #if defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
-          rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
-        #endif // defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
         #if defined(MSJIGGLER_INDICATOR_RGBINDEX)
           rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
         #endif // defined(MSJIGGLER_INDICATOR_RGBINDEX)
       }
-      #if !defined(PLODAH_MSJIGGLER_NOINTRO) || !defined(MSJIGGLER_NOINTRO)
+      #if !defined(MSJIGGLER_NOINTRO)
       if(msJigIntroToken != INVALID_DEFERRED_TOKEN){
-        #if defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
-          rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, RGB_RED);
-        #endif // defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
         #if defined(MSJIGGLER_INDICATOR_RGBINDEX)
           rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, RGB_RED);
         #endif // defined(MSJIGGLER_INDICATOR_RGBINDEX);
       }
       else
-      #endif // !defined(PLODAH_MSJIGGLER_NOINTRO) || !defined(MSJIGGLER_NOINTRO)
+      #endif // !defined(MSJIGGLER_NOINTRO)
       if(msJigMainToken != INVALID_DEFERRED_TOKEN){
-        #if defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
-          rgb_matrix_set_color(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
-        #endif // defined(PLODAH_MSJIGGLER_INDICATOR_RGBINDEX)
         #if defined(MSJIGGLER_INDICATOR_RGBINDEX)
           rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
         #endif // defined(MSJIGGLER_INDICATOR_RGBINDEX);
       }
-    #endif // defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE) && PLODAH_MSJIGGLER_INDICATOR_RGBINDEX
+    #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX)
     #if ( defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) )
       RGB modsrgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), PLODAH_MODS_INDIC_HSV, PLODAH_INDICATOR_MINVAL ) );
     #endif // PLODAH_MODS_INDIC_LALT_INDEX

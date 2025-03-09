@@ -2,23 +2,16 @@
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_DRAGSCROLL) || (defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE))
+  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_DRAGSCROLL)
     if (record->event.pressed) {
       #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
         plodah_typingindicator_start(keycode);
       #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
       #if defined(PLODAH_DRAGSCROLL)
         pl_dragscroll_everypress(keycode);
-      #endif // PLODAH_DRAGSCROLL
-      #if defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
-        jiggler_onclick(keycode);
-      #endif // PLODAH_MSJIGGLER_ENABLE
+      #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_DRAGSCROLL)
     }
-  #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || (defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE))
-
-  #if defined(PLODAH_MSJIGGLER_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
-    pl_jiggle_delay(90);
-  #endif // PLODAH_MSJIGGLER_ENABLE
+  #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
 
   #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
     plodah_msGestureResetAll();

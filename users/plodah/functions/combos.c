@@ -24,7 +24,7 @@
     const uint16_t PROGMEM pl_combo_ms1d[] = {KC_BTN1, PL_DRAG_SCROLL_MOMENTARY, COMBO_END};
     const uint16_t PROGMEM pl_combo_ms2d[] = {KC_BTN2, PL_DRAG_SCROLL_MOMENTARY, COMBO_END};
 
-    #if defined(PLODAH_MSJIGGLER_ENABLE) || defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
+    #if defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
       const uint16_t PROGMEM pl_combo_ms14[] = {KC_BTN1, KC_BTN4, COMBO_END};
       const uint16_t PROGMEM pl_combo_ms14_lt1[] = {KC_BTN1 , LT(1, KC_BTN4), COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45[] = {KC_BTN4, KC_BTN5, COMBO_END};
@@ -33,7 +33,7 @@
       const uint16_t PROGMEM pl_combo_ms45_lt10[] = {LT(1, KC_BTN4) , KC_BTN5, COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45_lt11[] = {LT(1, KC_BTN4) , LT(1, KC_BTN5), COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45_lt12[] = {LT(1, KC_BTN4) , LT(2, KC_BTN5), COMBO_END};
-    #endif // defined(PLODAH_MSJIGGLER_ENABLE) || defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
+    #endif // defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
 
     combo_t key_combos[] = {
       #if defined(TAP_DANCE_ENABLE) && defined(PLODAH_DRAGSCROLL_TAPDANCE)
@@ -53,17 +53,6 @@
 
       COMBO(pl_combo_ms1d,  PL_DRAG_SCROLL_TOGGLE),
       COMBO(pl_combo_ms2d,  PL_DRAG_SCROLL_TOGGLE),
-
-      #if defined(PLODAH_MSJIGGLER_ENABLE)
-        COMBO(pl_combo_ms14,  PL_MSJG),
-        COMBO(pl_combo_ms14_lt1,  PL_MSJG),
-        COMBO(pl_combo_ms45,  PL_MSJG),
-        COMBO(pl_combo_ms45_lt01,  PL_MSJG),
-        COMBO(pl_combo_ms45_lt02,  PL_MSJG),
-        COMBO(pl_combo_ms45_lt10,  PL_MSJG),
-        COMBO(pl_combo_ms45_lt11,  PL_MSJG),
-        COMBO(pl_combo_ms45_lt12,  PL_MSJG),
-      #endif // PLODAH_MSJIGGLER_ENABLE
 
       #if defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
         COMBO(pl_combo_ms14,  CM_MSJG),
@@ -88,12 +77,12 @@
 
     const uint16_t PROGMEM pl_combo_volud[] = {KC_VOLU, KC_VOLD,                COMBO_END};
 
-    #if defined(PLODAH_MSJIGGLER_ENABLE) || defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
+    #if defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
       const uint16_t PROGMEM pl_combo_mj[] = {KC_M , KC_J, COMBO_END};
       #if defined(PLODAH_HRM_COMBOS)
         const uint16_t PROGMEM pl_combo_mj_hrm[] = {KC_M , HRM_JC, COMBO_END};
       #endif // PLODAH_HRM_COMBOS
-    #endif // PLODAH_MSJIGGLER_ENABLE
+    #endif // COMMUNITY_MODULE_MSJIGGLER_ENABLE
 
     #if ! defined(PLODAH_COMBOS_LIMITED)
 
@@ -196,14 +185,14 @@
       const uint16_t PROGMEM pl_combo_qw[]  = {KC_Q , KC_W, COMBO_END};
       const uint16_t PROGMEM pl_combo_qe[]  = {KC_Q , KC_E, COMBO_END};
       const uint16_t PROGMEM pl_combo_3e[]  = {KC_3 , KC_E, COMBO_END};
-      #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
+      #if defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
         const uint16_t PROGMEM pl_combo_1F2[] = {KC_1 , TD(TD_F2), COMBO_END};
-      #endif
+      #endif // defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
     #endif // DYNAMIC_MACRO_ENABLE
 
-    #ifdef CONSOLE_ENABLE
+    #if defined(CONSOLE_ENABLE)
       const uint16_t PROGMEM pl_combo_db[] = {KC_D , KC_B, COMBO_END};
-    #endif // CONSOLE_ENABLE
+    #endif // defined(CONSOLE_ENABLE)
 
     combo_t key_combos[] = {
       COMBO(pl_combo_lsz,   C(KC_Z)    ),
@@ -215,19 +204,12 @@
 
       COMBO(pl_combo_volud, KC_MUTE    ),
 
-      #ifdef PLODAH_MSJIGGLER_ENABLE
-        COMBO(pl_combo_mj,     PL_MSJG),
-        #if defined(PLODAH_HRM_COMBOS)
-          COMBO(pl_combo_mj_hrm, PL_MSJG),
-        #endif // PLODAH_HRM_COMBOS
-      #endif // CONSOLE_ENABLE
-
-      #ifdef COMMUNITY_MODULE_MSJIGGLER_ENABLE
+      #if defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
         COMBO(pl_combo_mj,     CM_MSJG),
         #if defined(PLODAH_HRM_COMBOS)
           COMBO(pl_combo_mj_hrm, CM_MSJG),
         #endif // PLODAH_HRM_COMBOS
-      #endif // CONSOLE_ENABLE
+      #endif // defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
 
       #if ! defined(PLODAH_COMBOS_LIMITED)
         #if defined(PLODAH_TASKSWITCH_ENABLE)
@@ -336,14 +318,14 @@
         COMBO(pl_combo_qw,    DM_PLY2),
         COMBO(pl_combo_qe,    DM_REC2),
         COMBO(pl_combo_3e,    DM_RSTP),
-        #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
+        #if defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
           COMBO(pl_combo_1F2,   DM_PLY1),
-        #endif
+        #endif // defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
       #endif // DYNAMIC_MACRO_ENABLE
 
-      #ifdef CONSOLE_ENABLE
+      #if defined(CONSOLE_ENABLE)
         COMBO(pl_combo_db,    DB_TOGG),
-      #endif // CONSOLE_ENABLE
+      #endif // defined(CONSOLE_ENABLE)
 
     };
 
