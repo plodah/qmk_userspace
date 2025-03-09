@@ -1,6 +1,6 @@
 #ifdef OLED_ENABLE
   #pragma once
-  #if defined (AUTOCORRECT_ENABLE)
+  #if defined(AUTOCORRECT_ENABLE)
     char recAcA[15] = "_____";
     char recAcB[15] = "_____";
     char recAcC[15] = "_____";
@@ -69,7 +69,7 @@
       mods_display();
       layer_display(layer_state);
 
-      #if defined (AUTOCORRECT_ENABLE)
+      #if defined(AUTOCORRECT_ENABLE)
         oled_write_P(PSTR("\n"), false);
         oled_write_P(PSTR(autocorrect_display(recAcA)), false);
         oled_write_P(PSTR(autocorrect_display(recAcB)), false);

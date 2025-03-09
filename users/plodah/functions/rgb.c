@@ -57,7 +57,7 @@ char* rgbQuery(void){
         strcat (str, get_u8_str(rgblight_get_speed(), '0'));
         strcat (str, " \n");
     #endif // RGBLIGHT_ENABLE
-    #if ( ! (defined RGB_MATRIX_ENABLE ) || ( defined RGBLIGHT_ENABLE ) )
+    #if ( ! (defined(RGB_MATRIX_ENABLE) ) || ( defined(RGBLIGHT_ENABLE) ) )
         strcpy (str, "\\ No RGB! \n");
     #endif // NO RGB_MATRIX_ENABLE OR RGBLIGHT_ENABLE
     return str;
@@ -73,7 +73,7 @@ char * rgbQuerySmert(void)
     #ifdef RGBLIGHT_ENABLE
         snprintf (str, 50, "\\ RGBLIGHT:%d H:%d S:%d V:%d SP:%d \n", rgblight_get_mode(), rgblight_get_hue(), rgblight_get_sat(), rgblight_get_val(), rgblight_get_speed());
     #endif // RGBLIGHT_ENABLE
-    #if ( ! (defined RGB_MATRIX_ENABLE ) || ( defined RGBLIGHT_ENABLE ) )
+    #if ( ! (defined(RGB_MATRIX_ENABLE) ) || ( defined(RGBLIGHT_ENABLE) ) )
         strcpy (str, "\\ No RGB! \n");
     #endif // NO RGB_MATRIX_ENABLE OR RGBLIGHT_ENABLE
     return str;
@@ -107,7 +107,7 @@ void rgbQuerySs(void)
         send_string_with_delay ( get_u8_str(rgblight_get_speed(),'0'), TAP_CODE_DELAY );
         send_string_with_delay ( " \n", TAP_CODE_DELAY );
     #endif // RGBLIGHT_ENABLE
-    #if ( ! (defined RGB_MATRIX_ENABLE ) || ( defined RGBLIGHT_ENABLE ) )
+    #if ( ! (defined(RGB_MATRIX_ENABLE) ) || ( defined(RGBLIGHT_ENABLE) ) )
         send_string_with_delay ( "\\ No RGB! \n", TAP_CODE_DELAY );
     #endif // NO RGB_MATRIX_ENABLE OR RGBLIGHT_ENABLE
 }

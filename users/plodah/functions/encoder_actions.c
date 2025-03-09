@@ -1,6 +1,6 @@
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
   #pragma once
-  #if defined COMMUNITY_MODULE_TASK_SWITCH_ENABLE
+  #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
     #include "task_switch.h"
   #endif // COMMUNITY_MODULE_TASK_SWITCH_ENABLE
 

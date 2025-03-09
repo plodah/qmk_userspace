@@ -1,10 +1,10 @@
 #if defined(LEADER_ENABLE)
     #pragma once
 
-    #if defined COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
+    #if defined(COMMUNITY_MODULE_CONFIG_QUERY_ENABLE)
         #include "config_query.h"
     #endif // COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
-    #if defined COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
+    #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
         #include "mouse_jiggler.h"
     #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
 

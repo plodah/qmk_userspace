@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
+#if defined(COMMUNITY_MODULE_CONFIG_QUERY_ENABLE)
     // #define CM_QFTR_DISABLED
     #define CM_QLYR_DISABLED
     #define CM_QTAP_DISABLED

@@ -1,7 +1,7 @@
 #if defined(DYNAMIC_MACRO_ENABLE)
   #pragma once
 
-  #if (defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)) || (defined(PLODAH_DYNAMIC_MACRO_TIMEOUT))
+  #if (defined(RGB_MATRIX_ENABLE) && defined(PLODAH_DMAC_INDIC_INDEX)) || (defined(PLODAH_DYNAMIC_MACRO_TIMEOUT))
     bool is_dynamic_macro_recording = false;
   #endif // DYNAMIC_MACRO_ENABLE
 
@@ -22,7 +22,7 @@
     #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)
       dynamicMacroToken = INVALID_DEFERRED_TOKEN;
     #endif // PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE
-    #if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
+    #if defined(RGB_MATRIX_ENABLE) && defined(PLODAH_DMAC_INDIC_INDEX)
       is_dynamic_macro_recording = false;
     #endif
     return true;
@@ -47,7 +47,7 @@
   }
 
   bool dynamic_macro_record_start_user(int8_t direction) {
-    #if defined (RGB_MATRIX_ENABLE) && defined (PLODAH_DMAC_INDIC_INDEX)
+    #if defined(RGB_MATRIX_ENABLE) && defined(PLODAH_DMAC_INDIC_INDEX)
       is_dynamic_macro_recording = true;
     #endif
     #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
