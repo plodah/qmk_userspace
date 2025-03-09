@@ -1,33 +1,10 @@
 #if defined(RGB_MATRIX_ENABLE)
   #pragma once
+  #include "indicators.h"
 
   #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
     #include "mouse_jiggler.h"
   #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
-
-  #if ( defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LGUI_INDEX) || defined(PLODAH_MODS_INDIC_RGUI_INDEX) || defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) ) && (!defined(PLODAH_MODS_INDIC_HSV))
-    #define PLODAH_MODS_INDIC_HSV HSV_WHITE
-  #endif // PLODAH_MODS_INDIC_HSV
-
-  #if ( (defined(PLODAH_MODS_INDIC_LGUI_INDEX) || defined(PLODAH_MODS_INDIC_RGUI_INDEX)) && defined(PLODAH_GULOCK_INDIC_ENABLE) && (!defined(PLODAH_GULOCK_INDIC_HSV)) )
-    #define PLODAH_GULOCK_INDIC_HSV HSV_RED
-  #endif // PLODAH_GULOCK_INDIC_HSV
-
-  #if (defined(PLODAH_DMAC_INDIC_INDEX)) && (!defined(PLODAH_DMAC_INDIC_HSV))
-    #define PLODAH_DMAC_INDIC_HSV HSV_RED
-  #endif // PLODAH_DMAC_INDIC_HSV
-
-  #if (defined(CAPS_LOCK_LED_INDEX)) && (! defined(PLODAH_CAPS_INDIC_HSV))
-    #define PLODAH_CAPS_INDIC_HSV HSV_RED
-  #endif // PLODAH_CAPS_INDIC_HSV
-
-  #if (defined(PLODAH_LAYER_INDIC_INDEX1)) && (!defined(PLODAH_LAYER_INDIC_HSV))
-    #define PLODAH_LAYER_INDIC_HSV HSV_YELLOW
-  #endif // PLODAH_LAYER_INDIC_HSV
-
-  #ifndef PLODAH_INDICATOR_MINVAL
-    #define PLODAH_INDICATOR_MINVAL 85
-  #endif // PLODAH_INDICATOR_MINVAL
 
   bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if (!rgb_matrix_indicators_user()) {
@@ -120,30 +97,25 @@
         }
       #endif // ACHORDION_ENABLE
     #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+
     #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX)
-        #if defined(MSJIGGLER_INDICATOR_HSV)
-            RGB msjigrgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), MSJIGGLER_INDICATOR_HSV, PLODAH_INDICATOR_MINVAL ) );
-        #endif // defined(MSJIGGLER_INDICATOR_HSV)
+        RGB msjigrgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), MSJIGGLER_INDICATOR_HSV, PLODAH_INDICATOR_MINVAL ) );
 
         if(!rgb_matrix_get_flags()){
-        #if defined(MSJIGGLER_INDICATOR_RGBINDEX)
           rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
-        #endif // defined(MSJIGGLER_INDICATOR_RGBINDEX)
-      }
+        }
       #if !defined(MSJIGGLER_NOINTRO)
-      if(msJigIntroToken != INVALID_DEFERRED_TOKEN){
-        #if defined(MSJIGGLER_INDICATOR_RGBINDEX)
-          rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, RGB_RED);
-        #endif // defined(MSJIGGLER_INDICATOR_RGBINDEX);
-      }
-      else
+        RGB msjigintrorgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), MSJIGGLER_INDICATOR_INTRO_HSV, PLODAH_INDICATOR_MINVAL ) );
+        if(msJigIntroToken != INVALID_DEFERRED_TOKEN){
+          rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigintrorgb.r, msjigintrorgb.g, msjigintrorgb.b);
+        }
+        else
       #endif // !defined(MSJIGGLER_NOINTRO)
-      if(msJigMainToken != INVALID_DEFERRED_TOKEN){
-        #if defined(MSJIGGLER_INDICATOR_RGBINDEX)
+        if(msJigMainToken != INVALID_DEFERRED_TOKEN){
           rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
-        #endif // defined(MSJIGGLER_INDICATOR_RGBINDEX);
-      }
+        }
     #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX)
+
     #if ( defined(PLODAH_MODS_INDIC_LALT_INDEX) || defined(PLODAH_MODS_INDIC_RALT_INDEX) || defined(PLODAH_MODS_INDIC_LCTL_INDEX) || defined(PLODAH_MODS_INDIC_RCTL_INDEX) || defined(PLODAH_MODS_INDIC_LSHIFT_INDEX) || defined(PLODAH_MODS_INDIC_RSHIFT_INDEX) )
       RGB modsrgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), PLODAH_MODS_INDIC_HSV, PLODAH_INDICATOR_MINVAL ) );
     #endif // PLODAH_MODS_INDIC_LALT_INDEX
