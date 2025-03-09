@@ -159,22 +159,14 @@
       else if (mod_state & MOD_MASK_ALT) {
         //A
         switch (keycode) {
-          case PL_ECCC & 0xff:
-            #if defined(PLODAH_TASKSWITCH_ENABLE)
-              plodah_taskswitch_start(true);
-            #endif
-            #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
+          #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
+            case PL_ECCC & 0xff:
               taskswitch_start(true);
-            #endif
-            break;
-          case PL_ECCW & 0xff:
-            #if defined(PLODAH_TASKSWITCH_ENABLE)
-              plodah_taskswitch_start(false);
-            #endif
-            #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
+              break;
+            case PL_ECCW & 0xff:
               taskswitch_start(false);
-            #endif
-            break;
+              break;
+          #endif // defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
           case PL_ECPR & 0xff:
           default:
             tap_code16(A(KC_F4));

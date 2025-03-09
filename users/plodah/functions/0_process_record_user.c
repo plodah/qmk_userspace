@@ -39,19 +39,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return tap_dance_process_record_user( keycode, record );
     #endif // PLODAH_TAPDANCE_TAPHOLD_ENABLE
 
-    #if defined(PLODAH_TASKSWITCH_ENABLE)
-      case PL_TSKA:
-        if (record->event.pressed) {
-          plodah_taskswitch_start(false);
-        }
-        return false;
-      case PL_TSKB:
-        if (record->event.pressed) {
-          plodah_taskswitch_start(true);
-        }
-        return false;
-    #endif  // defined(PLODAH_TASKSWITCH_ENABLE)
-
     #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
       case PL_ECCC:
       case PL_ECCW:

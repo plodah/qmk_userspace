@@ -2,9 +2,9 @@
 #include "version.h"
 #include "configs/customkeys.h"
 
-#if defined(PLODAH_TASKSWITCH_ENABLE)  && (! defined(PLODAH_TASKSWITCH_DELAY))
-  #define PLODAH_TASKSWITCH_DELAY 750
-#endif // PLODAH_TASKSWITCH_ENABLE
+#if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)  && (! defined(TASKSWITCH_DELAY))
+  #define TASKSWITCH_DELAY 750
+#endif // defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)  && (! defined(TASKSWITCH_DELAY))
 
 // #define PLODAH_REPEATHOLD_RGB
 #if defined(PLODAH_REPEATHOLD_RGB) && (! defined(PLODAH_REPEATHOLD_RATE))
