@@ -27,9 +27,7 @@ enum layer_names {
 };
 
 enum keymap_keycodes {
-    PL_TSKA = QK_USER_0,
-    PL_TSKB,
-    PL_DMAC1,
+    PL_DMAC1 = QK_USER_0,
     PL_DMAC2,
     // PL_DRAG_SCROLL_MOMENTARY,
     // PL_DRAG_SCROLL_TOGGLE,

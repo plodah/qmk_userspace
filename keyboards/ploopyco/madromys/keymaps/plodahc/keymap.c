@@ -7,11 +7,9 @@ enum layers {
 };
 
 enum keymap_keycodes {
-    PL_TSKA = QK_USER_0,
-    PL_TSKB,
     // PL_DMAC1,
     // PL_DMAC2,
-    PL_DRAG_SCROLL_MOMENTARY,
+    PL_DRAG_SCROLL_MOMENTARY = QK_USER_0,
     PL_DRAG_SCROLL_TOGGLE,
     // PL_ECCC,
     // PL_ECCW,
@@ -28,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_BTN1,                   P_DRGTD
     ),
     [_FNA] = LAYOUT(
-        _______, PL_TSKB, PL_TSKA, P_XWIN,
+        _______, CM_TSKP, CM_TSKN, P_XWIN,
         DPI_CONFIG,                P_DRGTG
     ),
     [_FNB] = LAYOUT(

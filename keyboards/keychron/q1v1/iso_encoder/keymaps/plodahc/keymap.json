@@ -1,6 +1,7 @@
 {
     "modules": [
         "plodah/config_query",
-        "plodah/mouse_jiggler"
+        "plodah/mouse_jiggler",
+        "plodah/task_switch"
     ]
 }

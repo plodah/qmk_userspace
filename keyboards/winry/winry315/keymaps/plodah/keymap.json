@@ -8,7 +8,8 @@
     "keymap": "winry315_plodah",
     "modules": [
         "plodah/config_query",
-        "plodah/mouse_jiggler"
+        "plodah/mouse_jiggler",
+        "plodah/task_switch"
     ],
     "config": {
         "bootmagic": {
@@ -121,10 +122,6 @@
             "toggle": 3
         }
     },
-    "keycodes": [
-        { "key": "PL_TSKA" },
-        { "key": "PL_TSKB" }
-    ],
     "encoders": [
         [
             {
@@ -136,8 +133,8 @@
                 "cw": "KC_VOLU"
             },
             {
-                "ccw": "PL_TSKB",
-                "cw": "PL_TSKA"
+                "ccw": "CM_TSKP",
+                "cw": "CM_TSKN"
             }
         ],
         [

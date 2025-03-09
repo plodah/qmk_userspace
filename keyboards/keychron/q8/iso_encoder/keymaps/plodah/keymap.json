@@ -8,7 +8,8 @@
     "layout": "LAYOUT_iso_70",
     "modules": [
         "plodah/config_query",
-        "plodah/mouse_jiggler"
+        "plodah/mouse_jiggler",
+        "plodah/task_switch"
     ],
     "config": {
         "bootmagic": {
@@ -128,8 +129,6 @@
         }
     },
     "keycodes": [
-        { "key": "PL_TSKA" },
-        { "key": "PL_TSKB" },
         { "key": "PL_ECCC" },
         { "key": "PL_ECCW" },
         { "key": "PL_ECPR" }

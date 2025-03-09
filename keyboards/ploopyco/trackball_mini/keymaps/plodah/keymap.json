@@ -8,7 +8,8 @@
     "layout": "LAYOUT",
     "modules": [
         "plodah/config_query",
-        "plodah/mouse_jiggler"
+        "plodah/mouse_jiggler",
+        "plodah/task_switch"
     ],
     "config": {
         "bootmagic": {
@@ -62,8 +63,6 @@
         }
     },
     "keycodes": [
-        { "key": "PL_TSKA" },
-        { "key": "PL_TSKB" },
         { "key": "PL_DRAG_SCROLL_MOMENTARY" },
         { "key": "PL_DRAG_SCROLL_TOGGLE" }
     ],
@@ -79,8 +78,8 @@
             "_______",
             "DPI_CONFIG",
             "_______",
-            "PL_TSKB",
-            "PL_TSKA"
+            "CM_TSKP",
+            "CM_TSKN"
         ],
         [
             "_______",
