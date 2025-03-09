@@ -7,7 +7,8 @@
     "keyboard": "winry/winry315",
     "keymap": "winry315_plodah",
     "modules": [
-        "plodah/config_query"
+        "plodah/config_query",
+        "plodah/mouse_jiggler"
     ],
     "config": {
         "bootmagic": {
@@ -122,8 +123,7 @@
     },
     "keycodes": [
         { "key": "PL_TSKA" },
-        { "key": "PL_TSKB" },
-        { "key": "PL_MSJG" }
+        { "key": "PL_TSKB" }
     ],
     "encoders": [
         [
@@ -302,7 +302,7 @@
                         "MC_14",    "KC_NO",    "MC_15",
             "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",
             "MC_5",     "MC_6",     "MC_7",     "MC_8",     "CM_QFTR",
-            "CM_QRGB",  "CM_QVER",  "QK_MAKE",  "PL_MSJG", "MO(9)"
+            "CM_QRGB",  "CM_QVER",  "QK_MAKE",  "CM_MSJG", "MO(9)"
         ],
 
         [
@@ -327,7 +327,7 @@
                         "_______",  "_______",  "_______",
             "DF(0)",    "DF(1)",    "DF(2)",    "DF(3)",    "DF(4)",
             "DF(5)",    "DF(6)",    "DF(7)",    "DF(8)",    "DF(9)",
-            "PL_MSJG", "KC_NUM",   "_______",  "CM_QFTR",  "MO(9)"
+            "CM_MSJG", "KC_NUM",   "_______",  "CM_QFTR",  "MO(9)"
         ]
     ]
 }

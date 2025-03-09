@@ -16,7 +16,6 @@ enum keymap_keycodes {
     // PL_ECCC,
     // PL_ECCW,
     // PL_ECPR,
-    PL_MSJG,
 };
 
 enum {
@@ -29,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         P_MS4FA, P_MS5FA, DPI_CONFIG
     ),
     [_FNA] = LAYOUT(
-        PL_MSJG, PL_TSKB, _______, PL_TSKA, CM_QVER,
+        CM_MSJG, PL_TSKB, _______, PL_TSKA, CM_QVER,
         _______, _______, QK_MAKE
     ),
     [_FNB] = LAYOUT(

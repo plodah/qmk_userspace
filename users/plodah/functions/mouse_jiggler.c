@@ -84,12 +84,12 @@
     cancel_deferred_exec(msJigMainToken);
     msJigReport = (report_mouse_t){};  // Clear the mouse.
     host_mouse_send(&msJigReport);
-    #if defined(PLODAH_MSJIGGLER_INTRO)
+    #if !defined(PLODAH_MSJIGGLER_NOINTRO)
       msJigIntroToken = defer_exec(1, jiggler_xline, NULL);
       #if defined(PLODAH_MSJIGGLER_INTRO_TIMEOUT)
         msJigIntroTimerToken = defer_exec(PLODAH_MSJIGGLER_INTRO_TIMEOUT, jiggler_introtimer, NULL);
       #endif // PLODAH_MSJIGGLER_INTRO_TIMEOUT
-    #endif // PLODAH_MSJIGGLER_INTRO
+    #endif // PLODAH_MSJIGGLER_NOINTRO
     msJigMainToken = INVALID_DEFERRED_TOKEN;
   }
 
@@ -104,12 +104,12 @@
     #else // PLODAH_MSJIGGLER_PATTERN
       msJigMainToken = defer_exec(1, jiggler_subtle, NULL);
     #endif // PLODAH_MSJIGGLER_PATTERN
-    #if defined(PLODAH_MSJIGGLER_INTRO)
+    #if !defined(PLODAH_MSJIGGLER_NOINTRO)
       msJigIntroToken = defer_exec(1, jiggler_intro, NULL);
       #if defined(PLODAH_MSJIGGLER_INTRO_TIMEOUT)
         msJigIntroTimerToken = defer_exec(PLODAH_MSJIGGLER_INTRO_TIMEOUT, jiggler_introtimer, NULL);
       #endif // PLODAH_MSJIGGLER_INTRO_TIMEOUT
-    #endif // PLODAH_MSJIGGLER_INTRO
+    #endif // PLODAH_MSJIGGLER_NOINTRO
   }
 
   void pl_jiggler_toggle(void){
@@ -131,7 +131,7 @@
         #endif // MSJIGGLER_AUTOSTOP
         keycode == PL_MSJG
     ) {
-      pl_jiggler_toggle();
+        pl_jiggler_toggle();
     }
   }
 

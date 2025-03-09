@@ -16,7 +16,6 @@ enum keymap_keycodes {
     // PL_ECCC,
     // PL_ECCW,
     // PL_ECPR,
-    PL_MSJG,
 };
 
 enum {

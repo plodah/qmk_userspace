@@ -36,7 +36,6 @@ enum keymap_keycodes {
     // PL_ECCC,
     // PL_ECCW,
     // PL_ECPR,
-    PL_MSJG,
     PL_SCRL,
 };
 
@@ -75,13 +74,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_FNC] = LAYOUT(
-    KC_CAPS, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),          S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), PL_MSJG,
+    KC_CAPS, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),          S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), CM_MSJG,
     KC_VOLU, XXXXXXX, PL_SCRL, MS_BTN2, MS_BTN1, MS_BTN3,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_MAKE, KC_VOLU,
     KC_VOLD, XXXXXXX, XXXXXXX, MS_BTN4, MS_BTN5, PL_SCRL,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
                                         _______, _______, _______, _______, _______
   ),
 /*
-    KC_CAPS, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),          S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), PL_MSJG,
+    KC_CAPS, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),          S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), CM_MSJG,
     UG_TOGG, UG_VALU, UG_SATU, UG_HUEU, UG_NEXT, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, UG_VALD, UG_SATD, UG_HUED, UG_PREV, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                         _______, _______, XXXXXXX, _______, _______

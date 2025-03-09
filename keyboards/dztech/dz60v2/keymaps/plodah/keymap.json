@@ -7,7 +7,8 @@
     "keymap": "plodah",
     "layout": "LAYOUT_60_b_iso",
     "modules": [
-        "plodah/config_query"
+        "plodah/config_query",
+        "plodah/mouse_jiggler"
     ],
     "config": {
         "bootmagic": {
@@ -65,8 +66,7 @@
     },
     "keycodes": [
         { "key": "PL_TSKA" },
-        { "key": "PL_TSKB" },
-        { "key": "PL_MSJG" }
+        { "key": "PL_TSKB" }
     ],
     "layers": [
         [
@@ -91,7 +91,7 @@
             "_______",  "GU_TOGG",  "_______",              "KC_SPC",               "KC_SPC ",              "KC_SPC",               "_______",  "_______",  "KC_HOME",  "KC_PGDN",  "KC_END"
         ],
         [
-            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "CM_QFTR",  "CM_QLYR",  "CM_QRGB",  "CM_QVER",  "PL_MSJG",  "QK_MAKE",  "KC_NO",    "KC_DEL",
+            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "CM_QFTR",  "CM_QLYR",  "CM_QRGB",  "CM_QVER",  "CM_MSJG",  "QK_MAKE",  "KC_NO",    "KC_DEL",
             "BL_TOGG",  "BL_BRTG",  "BL_UP",    "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",
             "KC_CAPS",  "BL_BRTG",  "BL_DOWN",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",              "_______",
             "_______",  "_______",  "_______",  "_______",  "_______",  "C(S(KC_V))","_______", "NK_TOGG",  "_______",  "_______",  "_______",  "_______",              "KC_VOLU",  "_______",

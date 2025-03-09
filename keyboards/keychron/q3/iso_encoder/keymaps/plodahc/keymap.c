@@ -16,8 +16,7 @@ enum keymap_keycodes {
     // PL_DRAG_SCROLL_TOGGLE,
     PL_ECCC,
     PL_ECCW,
-    PL_ECPR,
-    // PL_MSJG,
+    PL_ECPR
 };
 
 enum {

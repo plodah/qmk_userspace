@@ -7,7 +7,8 @@
     "keymap": "plodah",
     "layout": "LAYOUT_iso_68",
     "modules": [
-        "plodah/config_query"
+        "plodah/config_query",
+        "plodah/mouse_jiggler"
     ],
     "config": {
         "bootmagic": {
@@ -131,8 +132,7 @@
         { "key": "PL_TSKB" },
         { "key": "PL_ECCC" },
         { "key": "PL_ECCW" },
-        { "key": "PL_ECPR" },
-        { "key": "PL_MSJG" }
+        { "key": "PL_ECPR" }
     ],
     "encoders": [
         [
@@ -184,7 +184,7 @@
         ],
         [
             "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "CM_QFTR",  "CM_QRGB",  "CM_QVER",  "QK_MAKE",  "_______",  "PL_ECPR",
-            "RM_TOGG",  "RM_NEXT",  "RM_VALU",  "RM_HUEU",  "RM_SATU",  "RM_SPDU",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "PL_MSJG",
+            "RM_TOGG",  "RM_NEXT",  "RM_VALU",  "RM_HUEU",  "RM_SATU",  "RM_SPDU",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "CM_MSJG",
             "_______",  "RM_PREV",  "RM_VALD",  "RM_HUED",  "RM_SATD",  "RM_SPDD",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "TO(3)",
             "_______",  "_______",  "_______",  "_______",  "_______", "C(S(KC_V))","_______",  "NK_TOGG",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_VOLU",
             "_______",  "GU_TOGG",  "_______",                                "KC_SPC",                                 "_______",  "_______",  "_______",  "KC_HOME",  "KC_VOLD",  "KC_END"

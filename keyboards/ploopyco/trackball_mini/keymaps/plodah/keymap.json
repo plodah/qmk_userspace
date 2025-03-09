@@ -7,7 +7,8 @@
     "keymap": "plodah",
     "layout": "LAYOUT",
     "modules": [
-        "plodah/config_query"
+        "plodah/config_query",
+        "plodah/mouse_jiggler"
     ],
     "config": {
         "bootmagic": {
@@ -64,8 +65,7 @@
         { "key": "PL_TSKA" },
         { "key": "PL_TSKB" },
         { "key": "PL_DRAG_SCROLL_MOMENTARY" },
-        { "key": "PL_DRAG_SCROLL_TOGGLE" },
-        { "key": "PL_MSJG" }
+        { "key": "PL_DRAG_SCROLL_TOGGLE" }
     ],
     "layers": [
         [

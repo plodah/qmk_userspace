@@ -16,8 +16,7 @@ enum keymap_keycodes {
     // PL_DRAG_SCROLL_TOGGLE,
     // PL_ECCC,
     // PL_ECCW,
-    // PL_ECPR,
-    PL_MSJG,
+    // PL_ECPR
 };
 
 enum {
@@ -52,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             KC_LGUI, KC_ENT,  KC_SPC,  KC_SPC,  KC_ENT,  KC_RGUI
     ),
     [_FNB] = LAYOUT(
-        KC_BSPC, _______, _______, CM_QFTR, CM_QRGB, QK_MAKE,                   QK_MAKE, CM_QVER, PL_MSJG, KC_MINS, KC_EQL,  KC_DEL,
+        KC_BSPC, _______, _______, CM_QFTR, CM_QRGB, QK_MAKE,                   QK_MAKE, CM_QVER, CM_MSJG, KC_MINS, KC_EQL,  KC_DEL,
         BL_TOGG, _______, _______, KC_PGUP, _______, _______,                   _______, _______, KC_PGUP, _______, KC_PSCR, KC_MUTE,
         BL_UP,   _______, KC_HOME, KC_PGDN, KC_END,  _______,                   _______, KC_HOME, KC_PGDN, KC_END,  _______, KC_VOLU,
         BL_DOWN, BL_BRTG, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, KC_VOLD,

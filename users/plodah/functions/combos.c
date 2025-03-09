@@ -15,7 +15,6 @@
     const uint16_t PROGMEM pl_combo_ms24[] = {KC_BTN2, KC_BTN4, COMBO_END};
     const uint16_t PROGMEM pl_combo_ms25[] = {KC_BTN2, KC_BTN5, COMBO_END};
 
-    const uint16_t PROGMEM pl_combo_ms14_lt1[] = {KC_BTN1 , LT(1, KC_BTN4), COMBO_END};
     const uint16_t PROGMEM pl_combo_ms15_lt1[] = {KC_BTN1 , LT(1, KC_BTN5), COMBO_END};
     const uint16_t PROGMEM pl_combo_ms15_lt2[] = {KC_BTN1 , LT(2, KC_BTN5), COMBO_END};
     const uint16_t PROGMEM pl_combo_ms24_lt1[] = {KC_BTN2 , LT(1, KC_BTN4), COMBO_END};
@@ -27,6 +26,7 @@
 
     #if defined(PLODAH_MSJIGGLER_ENABLE) || defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
       const uint16_t PROGMEM pl_combo_ms14[] = {KC_BTN1, KC_BTN4, COMBO_END};
+      const uint16_t PROGMEM pl_combo_ms14_lt1[] = {KC_BTN1 , LT(1, KC_BTN4), COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45[] = {KC_BTN4, KC_BTN5, COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45_lt01[] = {KC_BTN4 , LT(1, KC_BTN5), COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45_lt02[] = {KC_BTN4 , LT(2, KC_BTN5), COMBO_END};
@@ -45,7 +45,6 @@
       COMBO(pl_combo_ms24,  PL_DRAG_SCROLL_MOMENTARY),
       COMBO(pl_combo_ms25,  C(KC_V)),
 
-      COMBO(pl_combo_ms14_lt1,  PL_MSJG),
       COMBO(pl_combo_ms15_lt1,  C(KC_C)),
       COMBO(pl_combo_ms15_lt2,  C(KC_C)),
       COMBO(pl_combo_ms24_lt1,  PL_DRAG_SCROLL_MOMENTARY),
@@ -57,6 +56,7 @@
 
       #if defined(PLODAH_MSJIGGLER_ENABLE)
         COMBO(pl_combo_ms14,  PL_MSJG),
+        COMBO(pl_combo_ms14_lt1,  PL_MSJG),
         COMBO(pl_combo_ms45,  PL_MSJG),
         COMBO(pl_combo_ms45_lt01,  PL_MSJG),
         COMBO(pl_combo_ms45_lt02,  PL_MSJG),
@@ -67,6 +67,7 @@
 
       #if defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
         COMBO(pl_combo_ms14,  CM_MSJG),
+        COMBO(pl_combo_ms14_lt1,  CM_MSJG),
         COMBO(pl_combo_ms45,  CM_MSJG),
         COMBO(pl_combo_ms45_lt01,  CM_MSJG),
         COMBO(pl_combo_ms45_lt02,  CM_MSJG),

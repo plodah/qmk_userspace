@@ -17,7 +17,6 @@ enum keymap_keycodes {
     PL_ECCC,
     PL_ECCW,
     PL_ECPR,
-    PL_MSJG,
 };
 
 enum {
@@ -48,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FNA] = LAYOUT_iso_90(
         PL_ECPR, _______, KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,           KC_F19,  KC_F20,  KC_F21,  KC_F22,  KC_F23,  KC_F24,  _______, _______,
-        PL_MSJG, MC_0,    MC_1,    MC_2,    MC_3,    MC_4,    MC_5,    MC_6,             MC_7,    MC_8,    CM_QFTR, CM_QRGB, CM_QVER, QK_MAKE, _______, KC_END,
+        CM_MSJG, MC_0,    MC_1,    MC_2,    MC_3,    MC_4,    MC_5,    MC_6,             MC_7,    MC_8,    CM_QFTR, CM_QRGB, CM_QVER, QK_MAKE, _______, KC_END,
         _______, KC_ENT,  KC_PGUP, KC_UP,   KC_PGDN, _______, _______,          _______, _______, _______, _______, KC_PSCR, _______, _______, _______,
         _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,  _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, _______, _______, CW_TOGG, KC_PGUP,

@@ -4,6 +4,9 @@
     #if defined COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
         #include "config_query.h"
     #endif // COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
+    #if defined COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
+        #include "mouse_jiggler.h"
+    #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
 
     void leader_start_user(void) {
 
@@ -13,11 +16,11 @@
         if ( leader_sequence_three_keys(KC_Q, KC_M, KC_K) ) {
             SEND_STRING("QMK is awesome.");
         }
-        #if defined(PLODAH_MSJIGGLER_ENABLE)
+        #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
         else if ( leader_sequence_one_key(KC_J) || leader_sequence_one_key(HRM_JC) ) {
-            pl_jiggler_toggle();
+            jiggler_toggle();
         }
-        #endif // #if defined(PLODAH_MSJIGGLER_ENABLE)
+        #endif // #if defined(MSJIGGLER_ENABLE)
 
         #if !defined(CM_QFTR_DISABLED)
             else if ( leader_sequence_two_keys(KC_Q, KC_F) || leader_sequence_two_keys(KC_Q, HRM_FC) ) {
