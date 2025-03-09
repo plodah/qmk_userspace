@@ -6,6 +6,9 @@
     "keyboard": "ploopyco/trackball_mini",
     "keymap": "plodah",
     "layout": "LAYOUT",
+    "modules": [
+        "plodah/config_query"
+    ],
     "config": {
         "bootmagic": {
             "matrix": [
@@ -62,10 +65,7 @@
         { "key": "PL_TSKB" },
         { "key": "PL_DRAG_SCROLL_MOMENTARY" },
         { "key": "PL_DRAG_SCROLL_TOGGLE" },
-        { "key": "PL_MSJG" },
-        { "key": "PL_QFTR" },
-        { "key": "PL_QRGB" },
-        { "key": "PL_QVER" }
+        { "key": "PL_MSJG" }
     ],
     "layers": [
         [

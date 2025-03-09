@@ -13,11 +13,13 @@
 #endif //ENCODER_RESOLUTION_RIGHT
 #define ENCODER_RESOLUTION_RIGHT 4
 
-#define KC_PL_QFTR
-#define KC_PL_QLYR
-#define KC_PL_QRGB
-#define KC_PL_QTAP
-#define KC_PL_QVER
+#if defined COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
+    // #define CM_QFTR_DISABLED
+    // #define CM_QLYR_DISABLED
+    // #define CM_QTAP_DISABLED
+    // #define CM_QVER_DISABLED
+    // #define CM_QRGB_DISABLED
+#endif // COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
 #define KC_PL_SCRL
 
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "oQwer", "oCole", "oFn A", "oFn B", "Mouse", "Tenth" }

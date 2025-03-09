@@ -6,6 +6,9 @@
     "keyboard": "kprepublic/bm65hsrgb_iso/rev2",
     "keymap": "plodah",
     "layout": "LAYOUT_65_iso_blocker",
+    "modules": [
+        "plodah/config_query"
+    ],
     "config": {
         "bootmagic": {
             "matrix": [0, 0]
@@ -150,10 +153,7 @@
     "keycodes": [
 
         { "key": "PL_TSKA" },
-        { "key": "PL_TSKB" },
-        { "key": "PL_QFTR" },
-        { "key": "PL_QRGB"},
-        { "key": "PL_QVER" }
+        { "key": "PL_TSKB" }
     ],
     "layers": [
         [
@@ -178,7 +178,7 @@
             "_______",  "GU_TOGG",  "_______",                                      "KC_SPC",                                       "_______",  "_______",  "KC_HOME",  "KC_PGDN",  "KC_END"
         ],
         [
-            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_QFTR",  "PL_QRGB",  "PL_QVER",  "QK_MAKE",  "KC_DEL",   "_______",
+            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "CM_QFTR",  "CM_QRGB",  "CM_QVER",  "QK_MAKE",  "KC_DEL",   "_______",
             "RM_TOGG",  "RM_NEXT",  "RM_VALU",  "RM_HUEU",  "RM_SATU",  "RM_SPDU",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "KC_END",
             "KC_CAPS",  "RM_PREV",  "RM_VALD",  "RM_HUED",  "RM_SATD",  "RM_SPDD",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
             "_______",  "_______",  "_______",  "_______",  "_______",  "C(S(KC_V))","_______", "NK_TOGG",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_VOLU",  "_______",

@@ -6,6 +6,9 @@
     "keyboard": "keychron/q3/iso_encoder",
     "keymap": "plodah",
     "layout": "LAYOUT_tkl_f13_iso",
+    "modules": [
+        "plodah/config_query"
+    ],
     "config": {
         "bootmagic": {
             "matrix": [0, 0]
@@ -128,10 +131,7 @@
         { "key": "PL_TSKB" },
         { "key": "PL_ECCC" },
         { "key": "PL_ECCW" },
-        { "key": "PL_ECPR" },
-        { "key": "PL_QFTR" },
-        { "key": "PL_QRGB"},
-        { "key": "PL_QVER" }
+        { "key": "PL_ECPR" }
     ],
     "encoders": [
         [
@@ -186,7 +186,7 @@
         ],
         [
             "_______",  "KC_F13",   "KC_F14",   "KC_F15",   "KC_F16",   "KC_F17",   "KC_F18",   "KC_F19",   "KC_F20",   "KC_F21",   "KC_F22",   "KC_F23",   "KC_F24",   "PL_ECPR",         "C(KC_F4)", "C(S(KC_T))", "_______",
-            "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_QFTR",  "PL_QRGB",  "PL_QVER",  "QK_MAKE",  "_______",          "KC_INS",   "_______",  "_______",
+            "MC_0",     "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "CM_QFTR",  "CM_QRGB",  "CM_QVER",  "QK_MAKE",  "_______",          "KC_INS",   "_______",  "_______",
             "RM_TOGG",  "RM_NEXT",  "RM_VALU",  "RM_HUEU",  "RM_SATU",  "RM_SPDU",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",                      "_______",  "DF(3)",    "_______",
             "KC_CAPS",  "RM_PREV",  "RM_VALD",  "RM_HUED",  "RM_SATD",  "RM_SPDD",  "_______",  "_______",  "DM_RSTP",  "DM_REC1",  "DM_REC2",  "_______",  "_______",  "_______",
             "_______",  "_______",  "_______",  "_______",  "_______",  "C(S(KC_V))", "_______","NK_TOGG",  "_______",  "_______",  "DM_PLY1",  "DM_PLY2",  "_______",                                  "KC_VOLU",

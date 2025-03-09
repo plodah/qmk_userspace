@@ -18,11 +18,6 @@ enum keymap_keycodes {
     PL_ECCW,
     PL_ECPR,
     PL_MSJG,
-    PL_QFTR,
-    PL_QLYR,
-    PL_QRGB,
-    // PL_QTAP,
-    PL_QVER,
 };
 
 enum {
@@ -56,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, GU_TOGG, _______,                            KC_SPC,                    _______, _______, _______, KC_HOME, KC_PGDN, KC_END
     ),
     [_FNB] = LAYOUT_iso_68(
-        KC_GRV,  MC_1,    MC_2,    MC_3,    MC_4,    MC_5,    MC_6,    MC_7,    MC_8,    PL_QFTR, PL_QRGB, PL_QVER, QK_MAKE, _______, PL_ECPR,
+        KC_GRV,  MC_1,    MC_2,    MC_3,    MC_4,    MC_5,    MC_6,    MC_7,    MC_8,    CM_QFTR, CM_QRGB, CM_QVER, QK_MAKE, _______, PL_ECPR,
         RM_TOGG, RM_NEXT, RM_VALU, RM_HUEU, RM_SATU, RM_SPDU, _______, _______, _______, _______, KC_PSCR, _______, _______,          PL_MSJG,
         _______, RM_PREV, RM_VALD, RM_HUED, RM_SATD, RM_SPDD, _______, _______, _______, _______, _______, _______, _______, _______, TO(_QWEB),
         _______, _______, _______, _______, _______, P_PSTU,  _______, NK_TOGG, _______, _______, _______, _______, _______, KC_VOLU,

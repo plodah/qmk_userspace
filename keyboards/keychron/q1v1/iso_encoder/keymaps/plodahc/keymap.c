@@ -17,12 +17,7 @@ enum keymap_keycodes {
     PL_ECCC,
     PL_ECCW,
     PL_ECPR,
-    PL_MSJG,
-    // PL_QFTR,
-    // PL_QLYR,
-    // PL_QRGB,
-    // PL_QTAP,
-    // PL_QVER,
+    PL_MSJG
 };
 
 /*

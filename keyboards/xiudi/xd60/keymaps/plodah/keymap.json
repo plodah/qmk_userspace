@@ -6,6 +6,9 @@
     "keyboard": "xiudi/xd60/rev3",
     "keymap": "plodah",
     "layout": "LAYOUT_60_iso_split_bs_rshift",
+    "modules": [
+        "plodah/config_query"
+    ],
     "config": {
         "bootmagic": {
             "matrix": [0, 0]
@@ -59,10 +62,7 @@
     },
     "keycodes": [
         { "key": "PL_TSKA" },
-        { "key": "PL_TSKB" },
-        { "key": "PL_QFTR" },
-        { "key": "PL_QRGB" },
-        { "key": "PL_QVER" }
+        { "key": "PL_TSKB" }
     ],
     "layers": [
         [
@@ -87,7 +87,7 @@
             "_______",  "GU_TOGG",  "_______",                                      "KC_SPC ",                                      "_______",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT"
         ],
         [
-            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_QFTR",  "PL_QRGB",  "PL_QVER",  "QK_MAKE",  "KC_MUTE",   "XXXXXXX",
+            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "CM_QFTR",  "CM_QRGB",  "CM_QVER",  "QK_MAKE",  "KC_MUTE",   "XXXXXXX",
             "_______",  "_______",  "KC_VOLU",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",
             "KC_CAPS",  "KC_HOME",  "KC_VOLD",  "KC_END",   "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
             "_______",  "_______",  "_______",  "_______",  "_______",  "C(S(KC_V))", "_______", "NK_TOGG", "_______",  "_______",  "_______",  "KC_HOME",  "CW_TOGG",  "KC_END",

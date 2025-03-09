@@ -6,6 +6,9 @@
     "keyboard": "ploopyco/trackball_thumb/rev1_001",
     "keymap": "via",
     "layout": "LAYOUT",
+    "modules": [
+        "plodah/config_query"
+    ],
     "config": {
         "bootmagic": {
             "matrix": [0, 0]
@@ -59,10 +62,7 @@
         { "key": "PL_TSKB" },
         { "key": "PL_DRAG_SCROLL_MOMENTARY" },
         { "key": "PL_DRAG_SCROLL_TOGGLE" },
-        { "key": "PL_MSJG" },
-        { "key": "PL_QFTR" },
-        { "key": "PL_QRGB" },
-        { "key": "PL_QVER" }
+        { "key": "PL_MSJG" }
     ],
     "layers": [
         [
@@ -70,7 +70,7 @@
             "KC_BTN4"
         ],
         [
-            "_______", "PL_TSKB", "PL_QVER", "PL_TSKA", "DPI_CONFIG",
+            "_______", "PL_TSKB", "CM_QVER", "PL_TSKA", "DPI_CONFIG",
             "_______"
         ]
     ]

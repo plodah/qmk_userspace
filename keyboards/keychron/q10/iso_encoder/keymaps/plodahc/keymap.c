@@ -18,11 +18,6 @@ enum keymap_keycodes {
     PL_ECCW,
     PL_ECPR,
     PL_MSJG,
-    PL_QFTR,
-    PL_QLYR,
-    PL_QRGB,
-    // PL_QTAP,
-    PL_QVER,
 };
 
 enum {
@@ -53,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FNA] = LAYOUT_iso_90(
         PL_ECPR, _______, KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,           KC_F19,  KC_F20,  KC_F21,  KC_F22,  KC_F23,  KC_F24,  _______, _______,
-        PL_MSJG, MC_0,    MC_1,    MC_2,    MC_3,    MC_4,    MC_5,    MC_6,             MC_7,    MC_8,    PL_QFTR, PL_QRGB, PL_QVER, QK_MAKE, _______, KC_END,
+        PL_MSJG, MC_0,    MC_1,    MC_2,    MC_3,    MC_4,    MC_5,    MC_6,             MC_7,    MC_8,    CM_QFTR, CM_QRGB, CM_QVER, QK_MAKE, _______, KC_END,
         _______, KC_ENT,  KC_PGUP, KC_UP,   KC_PGDN, _______, _______,          _______, _______, _______, _______, KC_PSCR, _______, _______, _______,
         _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,  _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, _______, _______, CW_TOGG, KC_PGUP,
@@ -63,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         PL_ECPR, _______, KC_BRID, KC_BRIU, P_TASK,  G(KC_E), RM_VALD, RM_VALU,          KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,
         _______, _______, KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,            KC_P7,   KC_P8,   KC_P9,   KC_P0,   _______, _______, _______, KC_END,
         _______, RM_TOGG, RM_NEXT, RM_VALU, RM_HUEU, RM_SATU, RM_SPDU,          _______, _______, _______, _______, KC_PSCR, _______, _______, _______,
-        PL_QVER, KC_CAPS, RM_PREV, RM_VALD, RM_HUED, RM_SATD, RM_SPDD,          _______, _______, DM_RSTP, DM_REC1, DM_REC2, _______, _______, _______, _______,
+        CM_QVER, KC_CAPS, RM_PREV, RM_VALD, RM_HUED, RM_SATD, RM_SPDD,          _______, _______, DM_RSTP, DM_REC1, DM_REC2, _______, _______, _______, _______,
         QK_MAKE, _______, _______, _______, _______, _______, P_PSTU,  _______, _______, NK_TOGG, _______, _______, DM_PLY1, DM_PLY2, _______, KC_VOLU,
         _______, _______, GU_TOGG, _______,          KC_SPC, _______,                    KC_SPC,  KC_APP,                             KC_HOME, KC_VOLD, KC_END
     ),

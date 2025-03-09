@@ -6,6 +6,9 @@
     "keyboard": "ymdk/yd60mq/12led",
     "keymap": "plodah_jpn",
     "layout": "LAYOUT_all",
+    "modules": [
+        "plodah/config_query"
+    ],
     "config": {
         "bootmagic": {
             "matrix": [0, 0]
@@ -62,10 +65,7 @@
     },
     "keycodes": [
         { "key": "PL_TSKA" },
-        { "key": "PL_TSKB" },
-        { "key": "PL_QFTR" },
-        { "key": "PL_QRGB" },
-        { "key": "PL_QVER" }
+        { "key": "PL_TSKB" }
     ],
     "layers": [
         [
@@ -90,7 +90,7 @@
             "_______",  "GU_TOGG",  "_______",              "KC_SPC",               "KC_SPC ",              "KC_SPC",               "_______",  "_______",  "KC_HOME",  "KC_PGDN",  "KC_END"
         ],
         [
-            "TO(3)",    "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "PL_QFTR",  "PL_QRGB",  "PL_QVER",  "QK_MAKE",  "KC_NO",    "KC_DEL",
+            "TO(3)",    "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "CM_QFTR",  "CM_QRGB",  "CM_QVER",  "QK_MAKE",  "KC_NO",    "KC_DEL",
             "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "KC_NO",
             "KC_CAPS",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",              "_______",
             "_______",  "_______",  "_______",  "_______",  "_______",  "C(S(KC_V))","_______", "NK_TOGG",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_VOLU",  "_______",
