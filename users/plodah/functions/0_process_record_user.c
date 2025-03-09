@@ -30,54 +30,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
 
-    #if defined(KC_PL_QFTR)
-      case PL_QFTR:
-        if (record->event.pressed) {
-            featureQuerySs();
-        }
-        return false;
-    #endif // defined(KC_PL_QFTR)
-
-    #if defined(KC_PL_QLYR)
-      case PL_QLYR:
-        if (record->event.pressed) {
-            // send_string_with_delay(layerQuery(), TAP_CODE_DELAY);
-            layerQuerySs();
-        }
-        return false;
-    #endif // defined(KC_PL_QLYR)
-
-    #if defined(KC_PL_QRGB)
-      case PL_QRGB:
-        if (record->event.pressed) {
-            // send_string_with_delay(rgbQuery(), TAP_CODE_DELAY);
-            // send_string_with_delay(rgbQuerySmert(), TAP_CODE_DELAY);
-            rgbQuerySs();
-        }
-        return false;
-    #endif // defined(KC_PL_QRGB)
-
-    #if defined(KC_PL_QTAP)
-      case PL_QTAP:
-        if (record->event.pressed) {
-            tapQuerySs();
-        }
-        return false;
-    #endif // defined(KC_PL_QTAP)
-
-    #if defined(KC_PL_QVER)
-      case PL_QVER:
-        if (record->event.pressed) {
-            verQuerySs();
-        }
-        return false;
-    #endif // defined(KC_PL_QVER)
-
     #if defined(KC_PL_SCRL)
       case PL_SCRL:
         tap_code(KC_SCRL);
         return false;
-    #endif // defined(KC_PL_QVER)
+    #endif // defined(KC_PL_SCRL)
 
     #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
       case PL_DMAC1 ... PL_DMAC2:

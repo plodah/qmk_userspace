@@ -17,7 +17,6 @@
 #include "functions/mouse_jiggler.c"
 #include "functions/repeathold_rgb.c"
 #include "functions/tapdance.c"
-#include "functions/textfns.c"
 #include "functions/typing_indicator.c"
 
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE) && (!defined(PLODAH_TASKSWITCH_ENABLE)) && (!defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE))
