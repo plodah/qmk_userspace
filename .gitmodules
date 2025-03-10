@@ -10,3 +10,6 @@
 [submodule "modules/elpekenin"]
 	path = modules/elpekenin
 	url = https://github.com/elpekenin/qmk_modules.git
+[submodule "modules/getreuer"]
+	path = modules/getreuer
+	url = https://github.com/getreuer/qmk-modules.git
