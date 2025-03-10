@@ -1,0 +1,16 @@
+{
+    "module_name": "Achordion",
+    "maintainer": "Pascal Getreuer",
+    "features": {
+    },
+    "keycodes": [
+        {
+            "key": "COMMUNITY_MODULE_BETTER_DRAGSCROLL_MOMENTARY",
+            "aliases": ["CM_DRGM"]
+        },
+        {
+            "key": "COMMUNITY_MODULE_BETTER_DRAGSCROLL_TOGGLE",
+            "aliases": ["CM_DRGT"]
+        }
+    ]
+}

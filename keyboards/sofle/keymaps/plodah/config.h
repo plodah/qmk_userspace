@@ -29,7 +29,6 @@
 #endif // PRODUCT
 #define PRODUCT "Sofle | plodahc"
 
-// #define ACHORDION_ENABLE
 // #define ACHORDION_STREAK
 #define CHORDAL_HOLD
 

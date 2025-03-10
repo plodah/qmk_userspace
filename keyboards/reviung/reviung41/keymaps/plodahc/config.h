@@ -18,7 +18,6 @@
 #endif // PRODUCT
 #define PRODUCT "reviung41 | plodahc"
 
-// #define ACHORDION_ENABLE
 // #define ACHORDION_STREAK
 #define CHORDAL_HOLD
 

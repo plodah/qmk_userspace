@@ -13,7 +13,6 @@
 #endif // PRODUCT
 #define PRODUCT "Keychron Q10 ISO Enc | plodahc"
 
-#define ACHORDION_ENABLE
 #define ACHORDION_STREAK
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE

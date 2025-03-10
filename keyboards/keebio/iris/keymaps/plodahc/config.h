@@ -15,7 +15,6 @@
 #endif // PRODUCT
 #define PRODUCT "Keebio Iris rev2 | plodahc"
 
-#define ACHORDION_ENABLE
 // #define ACHORDION_STREAK
 
 #define PLODAH_BORING_LAYER 1

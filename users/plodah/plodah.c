@@ -22,7 +22,6 @@
 #include "functions/leader.c"
 
 #include "functions/0_pointing_device.c"
-#include "functions/0_housekeeping.c"
 #include "functions/0_process_record_user.c"
 #include "functions/led_update_user.c"
 #include "functions/combos.c"
