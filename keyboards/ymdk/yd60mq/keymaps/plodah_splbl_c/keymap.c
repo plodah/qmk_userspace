@@ -11,8 +11,6 @@ enum layers {
 enum keymap_keycodes {
     // PL_DMAC1 = QK_USER_0,
     // PL_DMAC2,
-    // PL_DRAG_SCROLL_MOMENTARY,
-    // PL_DRAG_SCROLL_TOGGLE,
     // PL_ECCC,
     // PL_ECCW,
     // PL_ECPR
