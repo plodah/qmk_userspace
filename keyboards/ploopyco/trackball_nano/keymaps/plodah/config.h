@@ -2,11 +2,6 @@
 
 #include "configs/ploopy-common.h"
 
-#ifdef PRODUCT
-  #undef PRODUCT
-#endif // PRODUCT
-#define PRODUCT "Ploopy Nano | plodah"
-
 #define PLOOPY_DRAGSCROLL_SCRLK_ENABLE
 // #define PLODAH_MSGESTURE_ENABLE
 

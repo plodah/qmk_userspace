@@ -21,7 +21,7 @@
         "combo": {
             "term": 35
         },
-        "dynamic_keymap":{
+        "dynamic_keymap": {
             "layer_count": 4
         },
         "features": {
@@ -48,7 +48,7 @@
         },
         "keyboard_name": "PloopyCo Thumb | plodah",
         "matrix": {
-          "debounce": 20
+            "debounce": 20
         },
         "qmk": {
             "tap_keycode_delay": 8
@@ -58,19 +58,5 @@
             "term": 180,
             "toggle": 3
         }
-    },
-    "keycodes": [
-        { "key": "PL_DRAG_SCROLL_MOMENTARY" },
-        { "key": "PL_DRAG_SCROLL_TOGGLE" }
-    ],
-    "layers": [
-        [
-            "LT(1, KC_BTN5)", "KC_BTN1", "KC_BTN3", "KC_BTN2", "KC_BTN5",
-            "KC_BTN4"
-        ],
-        [
-            "_______", "CM_TSKP", "CM_QVER", "CM_TSKN", "DPI_CONFIG",
-            "_______"
-        ]
-    ]
+    }
 }

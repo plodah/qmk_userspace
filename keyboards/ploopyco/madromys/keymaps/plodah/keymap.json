@@ -21,7 +21,7 @@
         "combo": {
             "term": 35
         },
-        "dynamic_keymap":{
+        "dynamic_keymap": {
             "layer_count": 4
         },
         "features": {
@@ -39,42 +39,26 @@
             "extrakey": true,
             "leader": false,
             "mousekey": true,
+            "oled": false,
             "os_detection": false,
             "rgblight": false,
             "rgb_matrix": false,
             "space_cadet": false,
-            "tap_dance": false,
+            "tap_dance": true,
+            "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "Ploopy Adept (Madromys) | plodah",
+        "keyboard_name": "Ploopy Adept (Madromys) | plodahc",
         "matrix": {
-          "debounce": 20
+            "debounce": 20
         },
         "qmk": {
             "tap_keycode_delay": 8
         },
         "tapping": {
             "permissive_hold": true,
-            "term": 180,
+            "term": 250,
             "toggle": 3
         }
-    },
-    "keycodes": [
-        { "key": "PL_DRAG_SCROLL_MOMENTARY" },
-        { "key": "PL_DRAG_SCROLL_TOGGLE" }
-    ],
-    "layers": [
-        [
-            "LT(1, KC_BTN4)", "LT(2, KC_BTN5)", "KC_BTN3", "KC_BTN2",
-            "KC_BTN1",                       "PL_DRAG_SCROLL_MOMENTARY"
-        ],
-        [
-            "_______",  "CM_TSKP", "CM_TSKN", "A(KC_F4)",
-            "DPI_CONFIG",                       "PL_DRAG_SCROLL_TOGGLE"
-        ],
-        [
-            "C(KC_F4)", "_______", "S(C(KC_TAB))", "C(KC_TAB)",
-            "DPI_CONFIG",                       "PL_DRAG_SCROLL_TOGGLE"
-        ]
-    ]
+    }
 }

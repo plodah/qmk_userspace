@@ -13,10 +13,7 @@
     ],
     "config": {
         "bootmagic": {
-            "matrix": [
-                0,
-                0
-            ]
+            "matrix": [0, 0]
         },
         "build": {
             "lto": true
@@ -61,32 +58,5 @@
             "term": 180,
             "toggle": 3
         }
-    },
-    "keycodes": [
-        { "key": "PL_DRAG_SCROLL_MOMENTARY" },
-        { "key": "PL_DRAG_SCROLL_TOGGLE" }
-    ],
-    "layers": [
-        [
-            "KC_BTN1",
-            "KC_BTN3",
-            "LT(1, KC_BTN4)",
-            "KC_BTN2",
-            "LT(1, KC_BTN5)"
-        ],
-        [
-            "_______",
-            "DPI_CONFIG",
-            "_______",
-            "CM_TSKP",
-            "CM_TSKN"
-        ],
-        [
-            "_______",
-            "_______",
-            "_______",
-            "_______",
-            "_______"
-        ]
-    ]
+    }
 }

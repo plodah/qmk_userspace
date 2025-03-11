@@ -39,11 +39,13 @@
             "extrakey": true,
             "leader": false,
             "mousekey": true,
+            "oled": false,
             "os_detection": false,
             "rgblight": false,
             "rgb_matrix": false,
             "space_cadet": false,
-            "tap_dance": false,
+            "tap_dance": true,
+            "tri_layer": false,
             "via": true
         },
         "keyboard_name": "Ploopy Mouse | plodah",
@@ -54,30 +56,7 @@
             "tap_keycode_delay": 8
         },
         "tapping": {
-            "permissive_hold": true,
-            "term": 180,
-            "toggle": 3
+            "term": 250
         }
-    },
-    "keycodes": [
-        { "key": "PL_DRAG_SCROLL_MOMENTARY" },
-        { "key": "PL_DRAG_SCROLL_TOGGLE" }
-    ],
-    "layers": [
-        [
-            "C(KC_C)", "KC_BTN1", "KC_BTN3", "KC_BTN2", "C(KC_V)",
-            "LT(1, KC_BTN4)",
-            "LT(1, KC_BTN5)",     "DPI_CONFIG"
-        ],
-        [
-            "CM_MSJG", "CM_TSKP", "_______", "CM_TSKN", "CM_QVER",
-            "_______",
-            "_______",            "QK_MAKE"
-        ],
-        [
-            "_______", "_______","_______", "_______", "_______",
-            "_______",
-            "_______",           "_______"
-        ]
-    ]
+    }
 }

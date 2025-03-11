@@ -1,7 +1,45 @@
 {
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "documentation": "qmk compile -kb ploopyco/trackball_nano -km plodah",
+    "keyboard": "ploopyco/trackball_nano",
+    "keymap": "plodah",
+    "layout": "LAYOUT",
     "modules": [
         "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/task_switch"
-    ]
+    ],
+    "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
+        "build": {
+            "lto": true
+        },
+        "features": {
+            "auto_shift": false,
+            "autocorrect": false,
+            "backlight": false,
+            "bootmagic": true,
+            "caps_word": false,
+            "combo": false,
+            "console": false,
+            "deferred_exec": true,
+            "dynamic_macro": false,
+            "dynamic_tapping_term": false,
+            "encoder_map": false,
+            "extrakey": true,
+            "leader": false,
+            "mousekey": true,
+            "os_detection": false,
+            "rgblight": false,
+            "rgb_matrix": false,
+            "space_cadet": false,
+            "tap_dance": false,
+            "via": true
+        },
+        "keyboard_name": "Ploopy Nano | plodah"
+    }
 }

@@ -2,10 +2,16 @@
 
 #include "configs/ploopy-common.h"
 
+#define PLODAH_DRAGSCROLL_TAPDANCE
+
 #ifdef PLOOPY_DPI_OPTIONS
   #undef PLOOPY_DPI_OPTIONS
 #endif
 #define PLOOPY_DPI_OPTIONS { 1000, 1200, 1500, 1800, 2100 }
+#ifdef PLOOPY_DPI_DEFAULT
+  #undef PLOOPY_DPI_DEFAULT
+#endif
+#define PLOOPY_DPI_DEFAULT 1
 
 #ifdef PLOOPY_DRAGSCROLL_DIVISOR_H
   #undef PLOOPY_DRAGSCROLL_DIVISOR_H
