@@ -2,8 +2,8 @@
 
 #if defined(COMMUNITY_MODULE_CONFIG_QUERY_ENABLE)
     // #define CM_QFTR_DISABLED
-    #define CM_QLYR_DISABLED
-    #define CM_QTAP_DISABLED
+    // #define CM_QLYR_DISABLED
+    // #define CM_QTAP_DISABLED
     // #define CM_QVER_DISABLED
     // #define CM_QRGB_DISABLED
 #endif // COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
@@ -37,7 +37,8 @@
 
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
-  #include "configs/rgbmatrix-effects-none.h"
+  #include "configs/rgbmatrix-effects-few.h"
+  #include "configs/rgbmatrix-config.h"
   #define PLODAH_REPEATHOLD_RGB
   // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGB_MATRIX_ENABLE

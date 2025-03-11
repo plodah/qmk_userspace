@@ -1,12 +1,13 @@
 {
     "version": 1,
-    "notes": "In order for RGB animations to take effect, must remove equivalent settings from qmk_firmware/../info.json",
+    "notes": "",
     "author": "Plodah",
     "documentation": "qmk compile -kb keychron/q8/iso_encoder -km plodah",
     "keyboard": "keychron/q8/iso_encoder",
     "keymap": "plodah",
     "layout": "LAYOUT_iso_70",
     "modules": [
+        "achordion",
         "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/task_switch"
@@ -19,7 +20,7 @@
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": false,
             "idle_timeout": 1200,
-            "invert_on_shift": false
+            "invert_on_shift": true
         },
         "combo": {
             "term": 35
@@ -42,82 +43,18 @@
             "extrakey": true,
             "leader": false,
             "mousekey": true,
+            "oled": false,
             "os_detection": false,
             "rgblight": false,
             "rgb_matrix": true,
             "space_cadet": false,
             "tap_dance": false,
+            "tri_layer": false,
             "via": true
         },
         "keyboard_name": "Keychron Q8 ISO Enc | plodah",
         "matrix": {
           "debounce": 20
-        },
-        "rgb_matrix": {
-            "animations": {
-                "alphas_mods": false,
-                "gradient_up_down": false,
-                "gradient_left_right": true,
-                "breathing": false,
-                "band_sat": false,
-                "band_val": false,
-                "band_pinwheel_sat": false,
-                "band_pinwheel_val": false,
-                "band_spiral_sat": false,
-                "band_spiral_val": false,
-                "cycle_all": false,
-                "cycle_left_right": false,
-                "cycle_up_down": false,
-                "rainbow_moving_chevron": false,
-                "cycle_out_in": false,
-                "cycle_out_in_dual": false,
-                "cycle_pinwheel": false,
-                "cycle_spiral": false,
-                "dual_beacon": false,
-                "rainbow_beacon": false,
-                "rainbow_pinwheels": false,
-                "flower_blooming": false,
-                "raindrops": false,
-                "jellybean_raindrops": false,
-                "hue_breathing": false,
-                "hue_pendulum": false,
-                "hue_wave": false,
-                "pixel_fractal": false,
-                "pixel_flow": false,
-                "pixel_rain": false,
-                "typing_heatmap": false,
-                "digital_rain": false,
-                "solid_reactive_simple": false,
-                "solid_reactive": false,
-                "solid_reactive_wide": false,
-                "solid_reactive_multiwide": false,
-                "solid_reactive_cross": false,
-                "solid_reactive_multicross": false,
-                "solid_reactive_nexus": false,
-                "solid_reactive_multinexus": false,
-                "splash": false,
-                "multisplash": false,
-                "solid_splash": false,
-                "solid_multisplash": false,
-                "starlight": false,
-                "starlight_dual_hue": false,
-                "starlight_dual_sat": true,
-                "riverflow": true
-            },
-            "default": {
-                "animation": "gradient_left_right",
-                "hue": 79,
-                "sat": 239,
-                "val": 167,
-                "speed": 48
-            },
-            "hue_steps": 5,
-            "react_on_keyup": false,
-            "sat_steps": 16,
-            "sleep": true,
-            "speed_steps": 8,
-            "timeout": 270000,
-            "val_steps": 8
         },
         "qmk": {
             "tap_keycode_delay": 8
@@ -127,66 +64,5 @@
             "term": 180,
             "toggle": 3
         }
-    },
-    "keycodes": [
-        { "key": "PL_ECCC" },
-        { "key": "PL_ECCW" },
-        { "key": "PL_ECPR" }
-    ],
-    "encoders": [
-        [
-            {
-                "ccw": "PL_ECCC",
-                "cw": "PL_ECCW"
-            }
-        ],
-        [
-            {
-                "ccw": "KC_VOLD",
-                "cw": "KC_VOLU"
-            }
-        ],
-        [
-            {
-                "ccw": "PL_ECCC",
-                "cw": "PL_ECCW"
-            }
-        ],
-        [
-            {
-                "ccw": "PL_ECCC",
-                "cw": "PL_ECCW"
-            }
-        ]
-    ],
-    "layers": [
-        [
-            "KC_ESC",   "KC_1",     "KC_2",     "KC_3",     "KC_4",     "KC_5",     "KC_6",                 "KC_7",     "KC_8",     "KC_9",     "KC_0",     "KC_MINS",  "KC_EQL",   "KC_BSPC",  "PL_ECPR",
-            "KC_TAB",   "KC_Q",     "KC_W",     "KC_E",     "KC_R",     "KC_T",     "KC_Y",                 "KC_U",     "KC_I",     "KC_O",     "KC_P",     "KC_LBRC",  "KC_RBRC",              "KC_END",
-            "LT(3,KC_BSPC)","KC_A", "KC_S",     "KC_D",     "KC_F",     "KC_G",     "KC_H",                 "KC_J",     "KC_K",     "KC_L",     "KC_SCLN",  "KC_QUOT",  "KC_NUHS",  "KC_ENT",   "KC_HOME",
-            "KC_LSFT",  "KC_NUBS",  "KC_Z",     "KC_X",     "KC_C",     "KC_V",     "KC_B",     "KC_B",     "KC_N",     "KC_M",     "KC_COMM",  "KC_DOT",   "KC_SLSH",  "KC_RSFT",  "KC_UP",
-            "KC_LCTL",  "KC_LWIN",              "KC_LALT",  "LT(2,KC_SPC)", "LT(3,KC_APP)",                 "LT(3,KC_APP)", "LT(2,KC_SPC)", "KC_RALT",                  "KC_LEFT",  "KC_DOWN",  "KC_RGHT"
-        ],
-        [
-            "KC_ESC",   "KC_1",     "KC_2",     "KC_3",     "KC_4",     "KC_5",     "KC_6",                 "KC_7",     "KC_8",     "KC_9",     "KC_0",     "KC_MINS",  "KC_EQL",   "KC_BSPC",  "KC_MUTE",
-            "KC_TAB",   "KC_Q",     "KC_W",     "KC_E",     "KC_R",     "KC_T",     "KC_Y",                 "KC_U",     "KC_I",     "KC_O",     "KC_P",     "KC_LBRC",  "KC_RBRC",              "KC_END",
-            "KC_CAPS",  "KC_A",     "KC_S",     "KC_D",     "KC_F",     "KC_G",     "KC_H",                 "KC_J",     "KC_K",     "KC_L",     "KC_SCLN",  "KC_QUOT",  "KC_NUHS",  "KC_ENT",   "KC_HOME",
-            "KC_LSFT",  "KC_NUBS",  "KC_Z",     "KC_X",     "KC_C",     "KC_V",     "KC_B",     "KC_B",     "KC_N",     "KC_M",     "KC_COMM",  "KC_DOT",   "KC_SLSH",  "KC_RSFT",  "KC_UP",
-            "KC_LCTL",  "KC_LWIN",              "KC_LALT",  "KC_SPC",   "MO(3)",                            "MO(2)",    "KC_SPC",   "KC_RCTL",                          "KC_LEFT",  "KC_DOWN",  "KC_RGHT"
-        ],
-        [
-            "KC_GRV",   "KC_F1",    "KC_F2",    "KC_F3",    "KC_F4",    "KC_F5",    "KC_F6",                "KC_F7",    "KC_F8",    "KC_F9",    "KC_F10",   "KC_F11",   "KC_F12",   "KC_DEL",   "PL_ECPR",
-            "KC_ENT",   "KC_PGUP",  "KC_UP",    "KC_PGDN",  "_______",  "_______",  "_______",              "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "KC_PGUP",
-            "KC_CAPS",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT",  "KC_ENT",   "_______",  "_______",              "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_PGDN",
-            "_______",  "_______",  "_______",  "_______",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "_______",  "_______",  "CW_TOGG",  "KC_PGUP",
-            "_______",  "GU_TOGG",              "_______",  "KC_SPC",   "_______",                          "_______",  "KC_SPC",   "_______",                          "KC_HOME",  "KC_PGDN",  "KC_END"
-        ],
-        [
-            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",                 "MC_7",     "MC_8",     "CM_QFTR",  "CM_QRGB",  "CM_QVER",  "QK_MAKE",  "_______",  "PL_ECPR",
-            "RM_TOGG",  "RM_NEXT",  "RM_VALU",  "RM_HUEU",  "RM_SATU",  "RM_SPDU",  "_______",              "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",              "CM_MSJG",
-            "_______",  "RM_PREV",  "RM_VALD",  "RM_HUED",  "RM_SATD",  "RM_SPDD",  "_______",              "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
-            "_______",  "_______",  "_______",  "_______",  "_______", "C(S(KC_V))","_______",  "_______",  "NK_TOGG",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_VOLU",
-            "_______",  "GU_TOGG",              "AG_TOGG",  "KC_SPC",   "_______",                          "_______",  "KC_SPC",   "_______",                          "KC_HOME",  "KC_PGDN",  "KC_END"
-        ]
-    ]
+    }
 }
