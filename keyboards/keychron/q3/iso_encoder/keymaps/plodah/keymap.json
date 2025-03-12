@@ -48,6 +48,7 @@
             "rgb_matrix": true,
             "space_cadet": false,
             "tap_dance": true,
+            "tri_layer": false,
             "via": true
         },
         "keyboard_name": "Keychron Q3 ISO Enc | plodah",

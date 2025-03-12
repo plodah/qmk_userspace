@@ -21,7 +21,7 @@
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": false,
             "idle_timeout": 1200,
-            "invert_on_shift": false
+            "invert_on_shift": true
         },
         "combo": {
             "term": 35
@@ -44,11 +44,13 @@
             "extrakey": true,
             "leader": false,
             "mousekey": true,
+            "oled": false,
             "os_detection": false,
             "rgblight": false,
             "rgb_matrix": false,
             "space_cadet": false,
             "tap_dance": false,
+            "tri_layer": false,
             "via": true
         },
         "keyboard_name": "YMDK yd60mq | plodah_spl",
@@ -69,8 +71,8 @@
             "KC_ESC",   "KC_1",     "KC_2",     "KC_3",     "KC_4",     "KC_5",     "KC_6",     "KC_7",     "KC_8",     "KC_9",     "KC_0",     "KC_MINS",  "KC_EQL",   "KC_NO",    "KC_BSPC",
             "KC_TAB",   "KC_Q",     "KC_W",     "KC_E",     "KC_R",     "KC_T",     "KC_Y",     "KC_U",     "KC_I",     "KC_O",     "KC_P",     "KC_LBRC",  "KC_RBRC",              "KC_NO",
             "LT(3,KC_BSPC)", "KC_A", "KC_S",    "KC_D",     "KC_F",     "KC_G",     "KC_H",     "KC_J",     "KC_K",     "KC_L",     "KC_SCLN",  "KC_QUOT",  "KC_NUHS",              "KC_ENT",
-            "KC_LSFT",  "KC_NUBS",  "KC_Z",     "KC_X",     "KC_C",     "KC_V",     "KC_B",     "KC_N",     "KC_M",     "KC_COMM",  "KC_DOT", "RSFT_T(KC_SLSH)", "KC_NO", "KC_UP",  "KC_SLSH",
-            "KC_LCTL",  "KC_LGUI",  "KC_LALT",              "LT(2,KC_SPC)",         "LT(3,KC_SPC)",      "LT(2,KC_SPC)", "MT(MOD_RALT,KC_APP)", "KC_RCTL",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT"
+            "KC_LSFT",  "KC_NUBS",  "KC_Z",     "KC_X",     "KC_C",     "KC_V",     "KC_B",     "KC_N",     "KC_M",     "KC_COMM",  "KC_DOT", "P_SLSFT", "KC_NO", "KC_UP",  "KC_SLSH",
+            "KC_LCTL",  "KC_LGUI",  "KC_LALT",              "LT(2,KC_SPC)",         "LT(3,KC_SPC)",      "LT(2,KC_SPC)", "P_APPAL", "KC_RCTL",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT"
         ],
         [
             "KC_ESC",   "KC_1",     "KC_2",     "KC_3",     "KC_4",     "KC_5",     "KC_6",     "KC_7",     "KC_8",     "KC_9",     "KC_0",     "KC_MINS",  "KC_EQL",   "KC_NO",    "KC_BSPC",

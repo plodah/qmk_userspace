@@ -46,11 +46,13 @@
             "extrakey": true,
             "leader": false,
             "mousekey": true,
+            "oled": false,
             "os_detection": false,
             "rgblight": false,
             "rgb_matrix": true,
             "space_cadet": false,
             "tap_dance": false,
+            "tri_layer": false,
             "via": true
         },
         "keyboard_name": "Keychron Q1v1 ISO Enc | plodah",

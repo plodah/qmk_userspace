@@ -18,7 +18,7 @@
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": false,
             "idle_timeout": 1200,
-            "invert_on_shift": false
+            "invert_on_shift": true
         },
         "combo": {
             "term": 35
@@ -41,11 +41,13 @@
             "extrakey": true,
             "leader": false,
             "mousekey": true,
+            "oled": false,
             "os_detection": false,
             "rgblight": true,
             "rgb_matrix": true,
             "space_cadet": false,
             "tap_dance": false,
+            "tri_layer": false,
             "via": true
         },
         "keyboard_name": "KPRepublic BM65 ANSI | plodah",
@@ -177,7 +179,7 @@
             "KC_GRV",   "MC_1",    "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "CM_QFTR",  "CM_QRGB",   "CM_QVER", "QK_MAKE",  "KC_DEL",   "_______",
             "RM_TOGG",  "RM_NEXT", "RM_VALU",  "RM_HUEU",  "RM_SATU",  "RM_SPDU",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",   "_______", "_______",  "KC_NUBS",  "KC_END",
             "KC_CAPS",  "RM_PREV", "RM_VALD",  "RM_HUED",  "RM_SATD",  "RM_SPDD",  "_______",  "_______",  "DM_RSTP",  "DM_REC1",  "DM_REC2",              "_______",  "_______",  "_______",
-            "_______",  "KC_NUBS", "_______",  "_______",  "C(S(KC_V))","_______", "NK_TOGG",  "_______",  "_______",  "DM_PLY1",  "DM_PLY2",              "_______",  "KC_VOLU",  "_______",
+            "_______",  "KC_NUBS", "_______",  "_______",  "P_PSTU","_______", "NK_TOGG",  "_______",  "_______",  "DM_PLY1",  "DM_PLY2",              "_______",  "KC_VOLU",  "_______",
             "_______",  "GU_TOGG", "_______",                                      "KC_SPC",                                       "_______",   "_______", "KC_HOME",  "KC_VOLD",  "KC_END"
         ]
     ]
