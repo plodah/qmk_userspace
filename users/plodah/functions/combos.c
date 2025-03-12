@@ -125,6 +125,8 @@
       const uint16_t PROGMEM pl_combo_gh[]     = {KC_G,     KC_H,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_hj[]     = {KC_H,     KC_J,                   COMBO_END};
 
+      const uint16_t PROGMEM pl_combo_cad[]    = {KC_C,     KC_A,     KC_D,         COMBO_END};
+
       #if defined(LEADER_ENABLE)
         const uint16_t PROGMEM pl_combo_sf[]     = {KC_S,     KC_F,                   COMBO_END};
         const uint16_t PROGMEM pl_combo_jl[]     = {KC_J,     KC_L,                   COMBO_END};
@@ -163,6 +165,10 @@
         const uint16_t PROGMEM pl_combo_hj_hrm[]      = {KC_H,    HRM_JC, COMBO_END};
         const uint16_t PROGMEM pl_combo_hj_hrm2[]     = {HRM_HG,  KC_J,   COMBO_END};
         const uint16_t PROGMEM pl_combo_hj_hrm3[]     = {HRM_HG,  HRM_JC, COMBO_END};
+
+        const uint16_t PROGMEM pl_combo_cad_hrm[]     = {KC_C,  HRM_AG, KC_D,   COMBO_END};
+        const uint16_t PROGMEM pl_combo_cad_hrm2[]    = {KC_C,  KC_A,   HRM_DS, COMBO_END};
+        const uint16_t PROGMEM pl_combo_cad_hrm3[]    = {KC_C,  HRM_AG, HRM_DS, COMBO_END};
 
         #if defined(LEADER_ENABLE)
           const uint16_t PROGMEM pl_combo_sf_hrm[]     = {HRM_SA,   HRM_FC, COMBO_END};
@@ -250,6 +256,8 @@
         COMBO(pl_combo_gh,    C(KC_H)    ),
         COMBO(pl_combo_hj,    C(KC_J)    ),
 
+        COMBO(pl_combo_cad,   LCA(KC_DEL)),
+
         #if defined(LEADER_ENABLE)
           COMBO(pl_combo_sf,  QK_LEAD),
           COMBO(pl_combo_jl,  QK_LEAD),
@@ -287,6 +295,10 @@
           COMBO(pl_combo_hj_hrm,      C(KC_J)),
           COMBO(pl_combo_hj_hrm2,     C(KC_J)),
           COMBO(pl_combo_hj_hrm3,     C(KC_J)),
+
+          COMBO(pl_combo_cad_hrm,     LCA(KC_DEL)),
+          COMBO(pl_combo_cad_hrm2,    LCA(KC_DEL)),
+          COMBO(pl_combo_cad_hrm3,    LCA(KC_DEL)),
 
           #if defined(LEADER_ENABLE)
             COMBO(pl_combo_sf_hrm,      QK_LEAD),
