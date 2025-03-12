@@ -26,15 +26,6 @@ enum layer_names {
     _ADJUST,
 };
 
-enum keymap_keycodes {
-    PL_DMAC1 = QK_USER_0,
-    PL_DMAC2,
-    // PL_ECCC,
-    // PL_ECCW,
-    // PL_ECPR,
-    PL_SCRL,
-};
-
 enum {
     TD_ESC_RAGEQUIT,
     TD_F2,

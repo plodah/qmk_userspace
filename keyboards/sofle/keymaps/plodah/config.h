@@ -24,11 +24,6 @@
 
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "oQwer", "oCole", "oFn A", "oFn B", "Mouse", "Tenth" }
 
-#ifdef PRODUCT
-  #undef PRODUCT
-#endif // PRODUCT
-#define PRODUCT "Sofle | plodahc"
-
 // #define ACHORDION_STREAK
 #define CHORDAL_HOLD
 
@@ -49,30 +44,13 @@
   #define PLODAH_TAPDANCE_TAPHOLD_ENABLE
 #endif // TAP_DANCE_ENABLE
 
-#define BOOTMAGIC_ROW 5
-#define BOOTMAGIC_COLUMN 0
-
 #ifdef COMBO_ENABLE
-  #ifdef COMBO_TERM
-    #undef COMBO_TERM
-  #endif
-  #define COMBO_TERM 50
   #define PLODAH_HRM_COMBOS
 #endif
-
-#ifdef TAPPING_TERM
-  #undef TAPPING_TERM
-#endif
-#define TAPPING_TERM 240
 
 #ifdef QUICK_TAP_TERM
   #undef QUICK_TAP_TERM
 #endif
 #define QUICK_TAP_TERM 60
-
-#ifdef DYNAMIC_KEYMAP_LAYER_COUNT
-  #undef DYNAMIC_KEYMAP_LAYER_COUNT
-#endif
-#define DYNAMIC_KEYMAP_LAYER_COUNT 12
 
 #include "plodah.h"

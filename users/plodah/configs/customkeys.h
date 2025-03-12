@@ -30,22 +30,31 @@
 #define P_FNA MO(_FNA)
 #define P_FNB MO(_FNB)
 
+// ModTaps
+#define P_DOTAL MT(MOD_RALT,KC_PDOT)
+#define P_SLSFT RSFT_T(KC_SLSH)
+#define P_APPAL RALT_T(KC_APP)
+#define P_RSFTB RSFT_T(KC_BSPC)
+
 // GENERAL SHORTCUTS
+#define P_SALL C(KC_A)
 #define P_COPY C(KC_C)
+#define P_CUT  C(KC_X)
 #define P_PAST C(KC_V)
 #define P_PSTU C(S(KC_V))
+#define P_PSTM G(KC_V)
+#define P_UNDO C(KC_Z)
+#define P_REDO C(KC_Y)
 #define P_TASK G(KC_TAB)
 #define P_XWIN A(KC_F4)
 #define P_XTAB C(KC_F4)
 #define P_NTAB C(KC_TAB)
 
-#define P_RTAB C(S(KC_T))
-#define P_PTAB C(S(KC_TAB))
+// #define P_RTAB C(S(KC_T))
+// #define P_PTAB C(S(KC_TAB))
+#define P_RTAB C(KC_PGUP)
+#define P_PTAB C(KC_PGDN)
 #define P_TMGR LCA(KC_DEL)
-
-#define P_ALAPP RALT_T(KC_APP)
-#define P_SFTSL RSFT_T(KC_SLSH)
-#define P_RSFTB RSFT_T(KC_BSPC)
 
 // HOME ROW MODS (QWERTY)
 #define HRM_AG LGUI_T(KC_A)

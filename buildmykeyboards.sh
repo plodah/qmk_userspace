@@ -29,7 +29,7 @@ declare -a usesmalldict=(
 )
 declare -a uselargedict=(
     "keychron/v6/iso_encoder/keymaps/plodah"
-    "reviung/reviung41/keymaps/plodahc"
+    "reviung/reviung41/keymaps/plodah"
     "sofle/keymaps/plodah"
 )
 #        dictionary.txt exists   &&   (  dictionary.h does not exist      ||  (dictionary.h exists && dictionary.txt is newer than dictionary.h)  )
