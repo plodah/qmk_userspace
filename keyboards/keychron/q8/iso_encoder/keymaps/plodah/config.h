@@ -8,13 +8,10 @@
     // #define CM_QRGB_DISABLED
 #endif // COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
 
-#define ACHORDION_STREAK
-
 #define PLODAH_HRM_COMBOS
+
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #define PLODAH_BORING_LAYER 1
-#define PLODAH_HRM_COMBOS
-
 #define PLODAH_CAPS_INDIC_HSV 240, 84, 255
 
 #define PLODAH_MODS_INDIC_LCTL_INDEX 59
@@ -59,7 +56,7 @@
 
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
-  #include "configs/rgbmatrix-effects-few.h"
+  #include "configs/rgbmatrix-effects-many.h"
   #include "configs/rgbmatrix-config.h"
   #define PLODAH_REPEATHOLD_RGB
   // #define PLODAH_REPEATHOLD_RATE 100

@@ -7,7 +7,6 @@
     "keymap": "plodah",
     "layout": "LAYOUT_iso_70",
     "modules": [
-        "achordion",
         "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/task_switch"
@@ -48,7 +47,7 @@
             "rgblight": false,
             "rgb_matrix": true,
             "space_cadet": false,
-            "tap_dance": false,
+            "tap_dance": true,
             "tri_layer": false,
             "via": true
         },
@@ -60,6 +59,7 @@
             "tap_keycode_delay": 8
         },
         "tapping": {
+            "chordal_hold": true,
             "permissive_hold": true,
             "term": 180,
             "toggle": 3

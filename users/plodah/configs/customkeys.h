@@ -10,11 +10,11 @@
   #define P_F12 TD(TD_F12)
 #else // TAP_DANCE_ENABLE
   #define P_RAGEQ KC_ESC
-  #define P_F2 KC_F2
-  #define P_F4 KC_F4
-  #define P_F5 KC_F5
-  #define P_F11 KC_F11
-  #define P_F12 KC_F12
+  #define P_F2 KC_2
+  #define P_F4 KC_4
+  #define P_F5 KC_5
+  #define P_F11 KC_MINS
+  #define P_F12 KC_EQL
 #endif // TAP_DANCE_ENABLE
 
 // "Function" KEYS
