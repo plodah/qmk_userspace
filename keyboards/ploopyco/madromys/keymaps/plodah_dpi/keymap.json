@@ -1,0 +1,64 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "documentation": "qmk compile -kb ploopyco/madromys -km plodah",
+    "keyboard": "ploopyco/madromys",
+    "keymap": "plodah",
+    "layout": "LAYOUT",
+    "modules": [
+        "plodah/config_query",
+        "plodah/mouse_jiggler",
+        "plodah/task_switch"
+    ],
+    "config": {
+        "bootmagic": {
+            "matrix": [0, 1]
+        },
+        "build": {
+            "lto": true
+        },
+        "combo": {
+            "term": 35
+        },
+        "dynamic_keymap": {
+            "layer_count": 4
+        },
+        "features": {
+            "auto_shift": false,
+            "autocorrect": false,
+            "backlight": false,
+            "bootmagic": true,
+            "caps_word": false,
+            "combo": true,
+            "console": true,
+            "deferred_exec": true,
+            "dynamic_macro": false,
+            "dynamic_tapping_term": false,
+            "encoder_map": false,
+            "extrakey": true,
+            "leader": false,
+            "mousekey": true,
+            "oled": false,
+            "os_detection": false,
+            "rgblight": false,
+            "rgb_matrix": false,
+            "space_cadet": false,
+            "tap_dance": true,
+            "tri_layer": false,
+            "via": true
+        },
+        "keyboard_name": "Ploopy Adept (Madromys) | plodahc",
+        "matrix": {
+            "debounce": 20
+        },
+        "qmk": {
+            "tap_keycode_delay": 8
+        },
+        "tapping": {
+            "permissive_hold": true,
+            "term": 250,
+            "toggle": 3
+        }
+    }
+}
