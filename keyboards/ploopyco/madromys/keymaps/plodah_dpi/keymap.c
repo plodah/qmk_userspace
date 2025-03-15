@@ -45,18 +45,21 @@ void values_load(void);
 void values_save(void);
 
 enum via_pointingdpi_value {
-    id_pointingdpi_base = 1,
+    id_pointingdpi_presets = 1,
+    id_pointingdpi_activepreset,
     id_pointingdpi_multiplier,
 };
 
 typedef struct {
-    uint8_t pointingdpi_base;
+    uint8_t pointingdpi_presets[5];
+    uint8_t pointingdpi_activepreset;
     uint8_t pointingdpi_multiplier;
 } pointingdpi_settings_config;
 
 pointingdpi_settings_config g_config = {
-    .pointingdpi_base = 40,
-    .pointingdpi_multiplier = 10,
+    .pointingdpi_presets = {20, 30, 40, 60, 80},
+    .pointingdpi_activepreset = 2,
+    .pointingdpi_multiplier = 20,
 };
 
 void values_load(void)
@@ -70,7 +73,8 @@ void values_save(void)
 }
 
 void update_dpi(void) {
-    pointing_device_set_cpi(g_config.pointingdpi_base * g_config.pointingdpi_multiplier);
+    //dpi_array[]
+    pointing_device_set_cpi(g_config.pointingdpi_presets[g_config.pointingdpi_activepreset] * g_config.pointingdpi_multiplier * 0.5);
 }
 
 void via_init_kb(void)
@@ -134,16 +138,20 @@ void pointingdpi_config_set_value( uint8_t *data )
 
     switch ( *value_id )
     {
-        case id_pointingdpi_base:
-            g_config.pointingdpi_base = *value_data;
-            dprintf("pointingdpi_base: %d\n", g_config.pointingdpi_base);
+        case id_pointingdpi_presets:
+            g_config.pointingdpi_presets[value_data[0]] = value_data[1];
+            dprintf("pointingdpi_presets[%d]: %d\n", value_data[0], value_data[1]);
+            update_dpi();
+            break;
+        case id_pointingdpi_activepreset:
+            g_config.pointingdpi_activepreset = *value_data;
+            dprintf("pointingdpi_multiplier: %d\n", g_config.pointingdpi_multiplier);
             update_dpi();
             break;
         case id_pointingdpi_multiplier:
             g_config.pointingdpi_multiplier = *value_data;
             dprintf("pointingdpi_multiplier: %d\n", g_config.pointingdpi_multiplier);
             update_dpi();
-
             break;
     }
 }
@@ -155,8 +163,12 @@ void pointingdpi_config_get_value( uint8_t *data )
 
     switch ( *value_id )
     {
-        case id_pointingdpi_base:
-            *value_data = g_config.pointingdpi_base;
+        case id_pointingdpi_presets:
+            //*value_data = g_config.pointingdpi_presets;
+            value_data[1] = g_config.pointingdpi_presets[value_data[0]];
+            break;
+        case id_pointingdpi_activepreset:
+            *value_data = g_config.pointingdpi_activepreset;
             break;
         case id_pointingdpi_multiplier:
             *value_data = g_config.pointingdpi_multiplier;
