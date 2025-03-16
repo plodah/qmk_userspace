@@ -7,7 +7,7 @@
     "keymap": "plodah",
     "layout": "LAYOUT_tkl_f13_iso",
     "modules": [
-        "achordion",
+        "getreuer/achordion",
         "plodah/config_query",
         "plodah/task_switch"
     ],

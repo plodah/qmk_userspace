@@ -7,7 +7,7 @@
     "keymap": "plodah",
     "layout": "LAYOUT_iso_68",
     "modules": [
-        "achordion",
+        "getreuer/achordion",
         "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/task_switch"
