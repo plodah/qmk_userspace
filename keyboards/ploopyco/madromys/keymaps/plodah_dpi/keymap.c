@@ -64,9 +64,8 @@ void values_save(void)
 }
 
 void update_dpi(void) {
-    pointing_device_set_cpi(dpi_array[keyboard_config.dpi_config] * g_config.pointingdpi_multiplier * 0.05);
-    dprintf("Set CPI %d * %d /20 \n", dpi_array[keyboard_config.dpi_config], g_config.pointingdpi_multiplier);
-    dprintf("pointingdpi_preset: %d\n", keyboard_config.dpi_config);
+    pointing_device_set_cpi(dpi_array[keyboard_config.dpi_config]);
+    dprintf("Set CPI %d\n", dpi_array[keyboard_config.dpi_config]);
 }
 
 void via_init_kb(void)
@@ -126,7 +125,7 @@ void pointingdpi_config_set_value( uint8_t *data )
     switch ( *value_id )
     {
         case id_pointingdpi_presets:
-            dpi_array[value_data[0]] = value_data[1] * 10;
+            dpi_array[value_data[0]] = (value_data[1]*10) * (g_config.pointingdpi_multiplier/20) ;
             dprintf("pointingdpi_presets[%d]: %d\n", value_data[0], value_data[1]);
             update_dpi();
             break;
@@ -136,6 +135,9 @@ void pointingdpi_config_set_value( uint8_t *data )
             update_dpi();
             break;
         case id_pointingdpi_multiplier:
+            for (int i = 0; i <  5; ++i) {
+                dpi_array[i] = dpi_array[i] / g_config.pointingdpi_multiplier * *value_data;
+            }
             g_config.pointingdpi_multiplier = *value_data;
             dprintf("pointingdpi_multiplier: %d\n", g_config.pointingdpi_multiplier);
             update_dpi();
@@ -151,7 +153,7 @@ void pointingdpi_config_get_value( uint8_t *data )
     switch ( *value_id )
     {
         case id_pointingdpi_presets:
-            value_data[1] = dpi_array[value_data[0]] / 10;
+            value_data[1] = (dpi_array[value_data[0]] / 10) / (g_config.pointingdpi_multiplier/20)  ;
             break;
         case id_pointingdpi_activepreset:
             *value_data = keyboard_config.dpi_config;
