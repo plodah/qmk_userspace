@@ -18,7 +18,7 @@
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": false,
             "idle_timeout": 1200,
-            "invert_on_shift": false
+            "invert_on_shift": true
         },
         "combo": {
             "term": 35
@@ -41,11 +41,13 @@
             "extrakey": true,
             "leader": false,
             "mousekey": true,
+            "oled": false,
             "os_detection": false,
             "rgblight": false,
             "rgb_matrix": false,
             "space_cadet": false,
             "tap_dance": false,
+            "tri_layer": false,
             "via": true
         },
         "keyboard_name": "Xiudi XD60 Rev3 | plodah",
@@ -60,35 +62,5 @@
             "term": 180,
             "toggle": 3
         }
-    },
-    "layers": [
-        [
-            "KC_ESC",   "KC_1",     "KC_2",     "KC_3",     "KC_4",     "KC_5",     "KC_6",     "KC_7",     "KC_8",     "KC_9",     "KC_0",     "KC_MINS",  "KC_EQL",   "KC_BSPC",  "XXXXXXX",
-            "KC_TAB",   "KC_Q",     "KC_W",     "KC_E",     "KC_R",     "KC_T",     "KC_Y",     "KC_U",     "KC_I",     "KC_O",     "KC_P",     "KC_LBRC",  "KC_RBRC",
-            "LT(3,KC_BSPC)", "KC_A", "KC_S",    "KC_D",     "KC_F",     "KC_G",     "KC_H",     "KC_J",     "KC_K",     "KC_L",     "KC_SCLN",  "KC_QUOT",  "KC_NUHS",  "KC_ENT",
-            "KC_LSFT",  "KC_NUBS",  "KC_Z",     "KC_X",     "KC_C",     "KC_V",     "KC_B",     "KC_N",     "KC_M",     "KC_COMM",  "KC_DOT",   "KC_SLSH",  "KC_RSFT",  "KC_HOME",
-            "KC_LCTL",  "KC_LGUI",  "KC_LALT",                                      "LT(2,KC_SPC)",                               "KC_RALT", "LT(3,KC_APP)", "KC_RGUI", "KC_RCTL"
-        ],
-        [
-            "KC_ESC",   "KC_1",     "KC_2",     "KC_3",     "KC_4",     "KC_5",     "KC_6",     "KC_7",     "KC_8",     "KC_9",     "KC_0",     "KC_MINS",  "KC_EQL",   "KC_BSPC",  "XXXXXXX",
-            "KC_TAB",   "KC_Q",     "KC_W",     "KC_E",     "KC_R",     "KC_T",     "KC_Y",     "KC_U",     "KC_I",     "KC_O",     "KC_P",     "KC_LBRC",  "KC_RBRC",
-            "KC_CAPS",  "KC_A",     "KC_S",     "KC_D",     "KC_F",     "KC_G",     "KC_H",     "KC_J",     "KC_K",     "KC_L",     "KC_SCLN",  "KC_QUOT",  "KC_NUHS",  "KC_ENT",
-            "KC_LSFT",  "KC_NUBS",  "KC_Z",     "KC_X",     "KC_C",     "KC_V",     "KC_B",     "KC_N",     "KC_M",     "KC_COMM",  "KC_DOT",   "KC_SLSH",  "KC_RSFT",  "KC_HOME",
-            "KC_LCTL",  "KC_LGUI",  "KC_LALT",                                      "KC_SPC",                                       "KC_RALT",  "MO(2)",    "KC_RGUI",  "KC_RCTL"
-        ],
-        [
-            "KC_GRV",   "KC_F1",    "KC_F2",    "KC_F3",    "KC_F4",    "KC_F5",    "KC_F6",    "KC_F7",    "KC_F8",    "KC_F9",    "KC_F10",   "KC_F11",   "KC_F12",   "KC_DEL",   "XXXXXXX",
-            "KC_ENT",   "KC_PGUP",  "KC_UP",    "KC_PGDN",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",
-            "KC_CAPS",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT",  "KC_ENT",   "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
-            "_______",  "_______",  "_______",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "KC_BTN1",  "_______",  "KC_HOME",  "KC_UP",    "KC_END",
-            "_______",  "GU_TOGG",  "_______",                                      "KC_SPC ",                                      "_______",  "KC_LEFT",  "KC_DOWN",  "KC_RGHT"
-        ],
-        [
-            "KC_GRV",   "MC_1",     "MC_2",     "MC_3",     "MC_4",     "MC_5",     "MC_6",     "MC_7",     "MC_8",     "CM_QFTR",  "CM_QRGB",  "CM_QVER",  "QK_MAKE",  "KC_MUTE",   "XXXXXXX",
-            "_______",  "_______",  "KC_VOLU",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "KC_PSCR",  "_______",  "_______",
-            "KC_CAPS",  "KC_HOME",  "KC_VOLD",  "KC_END",   "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",  "_______",
-            "_______",  "_______",  "_______",  "_______",  "_______",  "C(S(KC_V))", "_______", "NK_TOGG", "_______",  "_______",  "_______",  "KC_HOME",  "CW_TOGG",  "KC_END",
-            "_______",  "GU_TOGG",  "_______",                                      "KC_SPC ",                                      "_______",  "_______",  "_______",  "_______"
-        ]
-    ]
+    }
 }
