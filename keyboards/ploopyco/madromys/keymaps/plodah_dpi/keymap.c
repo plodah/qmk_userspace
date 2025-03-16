@@ -8,13 +8,8 @@ enum layers {
 };
 
 enum keymap_keycodes {
-    // PL_DMAC1,
-    // PL_DMAC2,
     PL_DRAG_SCROLL_MOMENTARY = QK_USER_0,
     PL_DRAG_SCROLL_TOGGLE,
-    // PL_ECCC,
-    // PL_ECCW,
-    // PL_ECPR,
 };
 
 enum {
@@ -51,14 +46,10 @@ enum via_pointingdpi_value {
 };
 
 typedef struct {
-    uint8_t pointingdpi_presets[5];
-    uint8_t pointingdpi_activepreset;
     uint8_t pointingdpi_multiplier;
 } pointingdpi_settings_config;
 
 pointingdpi_settings_config g_config = {
-    .pointingdpi_presets = {20, 30, 40, 60, 80},
-    .pointingdpi_activepreset = 2,
     .pointingdpi_multiplier = 20,
 };
 
@@ -73,8 +64,9 @@ void values_save(void)
 }
 
 void update_dpi(void) {
-    //dpi_array[]
-    pointing_device_set_cpi(g_config.pointingdpi_presets[g_config.pointingdpi_activepreset] * g_config.pointingdpi_multiplier * 0.5);
+    pointing_device_set_cpi(dpi_array[keyboard_config.dpi_config] * g_config.pointingdpi_multiplier * 0.05);
+    dprintf("Set CPI %d * %d /20 \n", dpi_array[keyboard_config.dpi_config], g_config.pointingdpi_multiplier);
+    dprintf("pointingdpi_preset: %d\n", keyboard_config.dpi_config);
 }
 
 void via_init_kb(void)
@@ -116,7 +108,6 @@ void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
             }
             default:
             {
-                // Unhandled message.
                 *command_id = id_unhandled;
                 break;
             }
@@ -124,28 +115,24 @@ void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
         return;
     }
 
-    // Return the unhandled state
     *command_id = id_unhandled;
-
-    // DO NOT call raw_hid_send(data,length) here, let caller do this
 }
 
 void pointingdpi_config_set_value( uint8_t *data )
 {
-    // data = [ value_id, value_data ]
     uint8_t *value_id   = &(data[0]);
     uint8_t *value_data = &(data[1]);
 
     switch ( *value_id )
     {
         case id_pointingdpi_presets:
-            g_config.pointingdpi_presets[value_data[0]] = value_data[1];
+            dpi_array[value_data[0]] = value_data[1] * 10;
             dprintf("pointingdpi_presets[%d]: %d\n", value_data[0], value_data[1]);
             update_dpi();
             break;
         case id_pointingdpi_activepreset:
-            g_config.pointingdpi_activepreset = *value_data;
-            dprintf("pointingdpi_multiplier: %d\n", g_config.pointingdpi_multiplier);
+            keyboard_config.dpi_config = *value_data;
+            dprintf("pointingdpi_preset: %d\n", keyboard_config.dpi_config);
             update_dpi();
             break;
         case id_pointingdpi_multiplier:
@@ -164,11 +151,10 @@ void pointingdpi_config_get_value( uint8_t *data )
     switch ( *value_id )
     {
         case id_pointingdpi_presets:
-            //*value_data = g_config.pointingdpi_presets;
-            value_data[1] = g_config.pointingdpi_presets[value_data[0]];
+            value_data[1] = dpi_array[value_data[0]] / 10;
             break;
         case id_pointingdpi_activepreset:
-            *value_data = g_config.pointingdpi_activepreset;
+            *value_data = keyboard_config.dpi_config;
             break;
         case id_pointingdpi_multiplier:
             *value_data = g_config.pointingdpi_multiplier;
