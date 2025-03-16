@@ -21,10 +21,10 @@
 #include "functions/encoder_actions.c"
 #include "functions/leader.c"
 
-#include "functions/0_pointing_device.c"
+#include "functions/0_pointing_device_task_user.c"
 #include "functions/0_process_record_user.c"
 #include "functions/led_update_user.c"
 #include "functions/combos.c"
 
-#include "functions/0_matrix_scan.c"
+#include "functions/0_housekeeping_task_user.c"
 #include "functions/indicators.c" // last pls

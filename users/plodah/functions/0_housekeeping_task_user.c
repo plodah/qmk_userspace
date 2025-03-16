@@ -1,5 +1,5 @@
-#if ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX)) || (defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE))
-void matrix_scan_user(void) {
+#if ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) && (!defined(PLODAH_AUTOCORRECT_IND_MODE_DE)) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX)) || (defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT) && !defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)) || (defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE))
+void housekeeping_task_user(void) {
   #if defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) && (!defined(PLODAH_AUTOCORRECT_IND_MODE_DE))
     plodah_autocorrect_indicator_check();
   #endif // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
