@@ -1,25 +1,11 @@
-#if (defined(PLODAH_DRAGSCROLL) || defined(COMMUNITY_MODULE_BETTER_DRAGSCROLL_ENABLED)) && (defined(PLOOPY_DRAGSCROLL_SCRLK_ENABLE) || defined(PLOOPY_DRAGSCROLL_CAPLK_ENABLE))
-  #pragma once
+#if defined(BETTER_DRAGSCROLL)
+    #include "functions/better_dragscroll.h"
+#endif // defined(BETTER_DRAGSCROLL)
+#if ( defined(BETTER_DRAGSCROLL) && (defined(BETTER_DRAGSCROLL_SCRLK_ENABLE) || defined(BETTER_DRAGSCROLL_CAPLK_ENABLE) || defined(BETTER_DRAGSCROLL_NUMLK_ENABLE) || (defined(VIA_ENABLE) && defined(PLODAH_VIADPI))) || defined(COMMUNITY_MODULE_BETTER_DRAGSCROLL_ENABLED))
     bool led_update_user(led_t led_state) {
-      dprintf("scr:%d", led_state.scroll_lock);
-        #if defined(PLODAH_DRAGSCROLL)
-            plodah_dragscroll_enabled =
-        #endif // defined(PLODAH_DRAGSCROLL)
-        #if defined(COMMUNITY_MODULE_BETTER_DRAGSCROLL_ENABLED)
-            better_dragscroll_enabled =
-        #endif // defined(COMMUNITY_MODULE_BETTER_DRAGSCROLL_ENABLED)
-
-        #if defined(PLOOPY_DRAGSCROLL_SCRLK_ENABLE)
-            led_state.scroll_lock
-            #if defined(PLOOPY_DRAGSCROLL_CAPLK_ENABLE)
-                ||
-            #endif
-        #endif // PLOOPY_DRAGSCROLL_SCRLK_ENABLE
-
-        #if defined(PLOOPY_DRAGSCROLL_CAPLK_ENABLE)
-            led_state.caps_lock
-        #endif // PLOOPY_DRAGSCROLL_SCRLK_ENABLE
-        ;
+      if(led_update_better_dragscroll(led_state)){
         return true;
+      }
+      return false;
     }
 #endif //

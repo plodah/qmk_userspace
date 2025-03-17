@@ -1,4 +1,4 @@
-#if defined(PLODAH_DRAGSCROLL) // any condition requiring a pointing_device_task_user
+#if defined(BETTER_DRAGSCROLL) // any condition requiring a pointing_device_task_user
   #pragma once
 
     #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
@@ -6,7 +6,7 @@
     #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
 
   report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    #if defined(PLODAH_DRAGSCROLL)
+    #if defined(BETTER_DRAGSCROLL)
       #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
         switch(plodah_msgesturecheck(mouse_report)){
           case 1:
@@ -19,9 +19,9 @@
             break;
         }
       #endif // defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
-      mouse_report = plodah_dragscroll_pointingtask(mouse_report);
+      mouse_report = pointing_device_task_better_dragscroll(mouse_report);
     #endif
     return mouse_report;
   }
 
-#endif // PLODAH_DRAGSCROLL (all)
+#endif // BETTER_DRAGSCROLL (all)

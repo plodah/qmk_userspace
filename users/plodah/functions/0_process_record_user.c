@@ -2,14 +2,14 @@
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_DRAGSCROLL)
+  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(BETTER_DRAGSCROLL)
     if (record->event.pressed) {
       #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
         plodah_typingindicator_start(keycode);
       #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
-      #if defined(PLODAH_DRAGSCROLL)
-        pl_dragscroll_everypress(keycode);
-      #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(PLODAH_DRAGSCROLL)
+      #if defined(BETTER_DRAGSCROLL)
+        process_record_better_dragscroll(keycode, record);
+      #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(BETTER_DRAGSCROLL)
     }
   #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
 
@@ -71,15 +71,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         repeathold_rgb_start(keycode & 0xff, record->event.pressed);
         return true;
     #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGBLIGHT_ENABLE)
-
-    #if defined(PLODAH_DRAGSCROLL)
-      case PL_DRAG_SCROLL_MOMENTARY:
-        pl_dragscroll_momentary(record->event.pressed);
-        return true;
-      case PL_DRAG_SCROLL_TOGGLE:
-        pl_dragscroll_toggle(record->event.pressed);
-        return true;
-    #endif // PLODAH_DRAGSCROLL
 
   }
   return true;

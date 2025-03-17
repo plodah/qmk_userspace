@@ -2,7 +2,7 @@
 
 #include "configs/ploopy-common.h"
 
-#define PLODAH_DRAGSCROLL_TAPDANCE
+#define BETTER_DRAGSCROLL_TAPDANCE
 
 #ifdef PLOOPY_SCROLL_DEBOUNCE
   #undef PLOOPY_SCROLL_DEBOUNCE

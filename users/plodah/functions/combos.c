@@ -36,11 +36,11 @@
     #endif // defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
 
     combo_t key_combos[] = {
-      #if defined(TAP_DANCE_ENABLE) && defined(PLODAH_DRAGSCROLL_TAPDANCE)
+      #if defined(TAP_DANCE_ENABLE) && defined(BETTER_DRAGSCROLL_TAPDANCE)
         COMBO(pl_combo_ms12,  TD(TD_DRAGSCROLL)),
-      #else // PLODAH_DRAGSCROLL_TAPDANCE
+      #else // BETTER_DRAGSCROLL_TAPDANCE
         COMBO(pl_combo_ms12,  PL_DRAG_SCROLL_MOMENTARY),
-      #endif // PLODAH_DRAGSCROLL_TAPDANCE
+      #endif // BETTER_DRAGSCROLL_TAPDANCE
       COMBO(pl_combo_ms15,  C(KC_C)),
       COMBO(pl_combo_ms24,  PL_DRAG_SCROLL_MOMENTARY),
       COMBO(pl_combo_ms25,  C(KC_V)),
