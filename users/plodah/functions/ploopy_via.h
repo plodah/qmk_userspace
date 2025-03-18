@@ -1,7 +1,5 @@
 #pragma once
 
-#define VIA_EEPROM_CUSTOM_CONFIG_SIZE 9
-
 void pointing_dpi_config_set_value( uint8_t *data );
 void pointing_dpi_config_get_value( uint8_t *data );
 void pointing_dpi_config_save ( void );
