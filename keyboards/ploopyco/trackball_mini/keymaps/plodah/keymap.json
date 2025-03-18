@@ -48,7 +48,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "Ploopy Mini | plodah",
+        "manufacturer": "Ploopy",
+        "keyboard_name": "Trackball Mini | plodah",
         "matrix": {
             "debounce": 20
         },

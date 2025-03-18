@@ -50,7 +50,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "KPRepublic BM65 ISO | plodah",
+        "manufacturer": "KPRepublic",
+        "keyboard_name": "BM65 ISO | plodah",
         "matrix": {
           "debounce": 20
         },

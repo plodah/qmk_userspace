@@ -48,7 +48,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "Ploopy Adept (Madromys) | plodahc",
+        "manufacturer": "Ploopy",
+        "keyboard_name": "Adept (Madromys) | plodah_dpi",
         "matrix": {
             "debounce": 20
         },

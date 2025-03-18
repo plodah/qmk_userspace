@@ -48,7 +48,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "PloopyCo Thumb | plodah",
+        "manufacturer": "Ploopy",
+        "keyboard_name": "Trackball Thumb | plodah",
         "matrix": {
             "debounce": 20
         },

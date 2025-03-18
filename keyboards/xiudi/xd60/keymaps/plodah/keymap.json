@@ -50,7 +50,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "Xiudi XD60 Rev3 | plodah",
+        "manufacturer": "Xiudi",
+        "keyboard_name": "XD60 Rev3 | plodah",
         "matrix": {
           "debounce": 20
         },

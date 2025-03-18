@@ -42,6 +42,7 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "Ploopy Nano | plodah"
+        "manufacturer": "Ploopy",
+        "keyboard_name": "Trackball Nano | plodah"
     }
 }

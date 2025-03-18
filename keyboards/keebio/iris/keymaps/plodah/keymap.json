@@ -62,7 +62,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "Keebio Iris rev2 | plodah",
+        "manufacturer": "Keebio",
+        "keyboard_name": "Iris rev2 | plodah",
         "matrix": {
           "debounce": 20
         },

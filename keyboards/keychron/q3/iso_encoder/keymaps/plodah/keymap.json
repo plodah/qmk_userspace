@@ -51,7 +51,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "Keychron Q3 ISO Enc | plodah",
+        "manufacturer": "Keychron",
+        "keyboard_name": "Q3 ISO Enc | plodah",
         "matrix": {
             "debounce": 20
         },

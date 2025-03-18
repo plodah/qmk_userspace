@@ -50,7 +50,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "Keychron Q9 ISO Enc | plodah",
+        "manufacturer": "Keychron",
+        "keyboard_name": "Q9 ISO Enc | plodah",
         "matrix": {
             "debounce": 20
         },

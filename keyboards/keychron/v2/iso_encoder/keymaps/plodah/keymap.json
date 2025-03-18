@@ -52,7 +52,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "Keychron V2 ISO Enc | plodah",
+        "manufacturer": "Keychron",
+        "keyboard_name": "V2 ISO Enc | plodah",
         "matrix": {
           "debounce": 20
         },

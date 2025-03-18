@@ -53,7 +53,8 @@
             "tri_layer": false,
             "via": true
         },
-        "keyboard_name": "YMDK yd60mq | plodah_spl",
+        "manufacturer": "YMDK",
+        "keyboard_name": "yd60mq | plodah_spl",
         "matrix": {
           "debounce": 20
         },
