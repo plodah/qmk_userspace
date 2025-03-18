@@ -3,7 +3,6 @@
 #include "configs/ploopy-common.h"
 
 #define PLODAH_VIADPI
-#define VIA_EEPROM_CUSTOM_CONFIG_SIZE 9
 
 #define BETTER_DRAGSCROLL_TAPDANCE
 
