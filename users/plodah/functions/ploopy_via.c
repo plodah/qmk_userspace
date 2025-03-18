@@ -8,11 +8,11 @@
 
     pointing_dpi_settings_config ploopyvia_config = {
         .pointing_dpi_multiplier            = 20,
-        .pointing_wiggleball_count       = 0,
-        .pointing_wiggleball_action_h    = 0,
-        .pointing_wiggleball_action_v    = 0,
-        .pointing_dragscroll_invert_h    = false,
-        .pointing_dragscroll_invert_v    = false,
+        .pointing_wiggleball_count          = 4,
+        .pointing_wiggleball_action_h       = 0,
+        .pointing_wiggleball_action_v       = 0,
+        .pointing_dragscroll_invert_h       = false,
+        .pointing_dragscroll_invert_v       = false,
         .pointing_dragscroll_caps           = false,
         .pointing_dragscroll_num            = false,
         .pointing_dragscroll_scroll         = false,
