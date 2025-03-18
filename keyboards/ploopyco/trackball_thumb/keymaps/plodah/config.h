@@ -1,6 +1,6 @@
 #pragma once
 
-#define PLODAH_VIADPI
+#define PLOOPY_VIAMENUS
 
 #include "configs/ploopy-common.h"
 

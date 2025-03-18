@@ -2,8 +2,7 @@
 
 #include "configs/ploopy-common.h"
 
-#define PLODAH_VIADPI
-
+#define PLOOPY_VIAMENUS
 
 #define BETTER_DRAGSCROLL_TAPDANCE
 

@@ -1,4 +1,4 @@
-#if defined(VIA_ENABLE) && defined(PLODAH_VIADPI)
+#if defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)
     #pragma once
 
     // #include QMK_KEYBOARD_H
@@ -211,4 +211,4 @@
         }
     }
 
-#endif // if defined(VIA_ENABLE) && defined(PLODAH_VIADPI)
+#endif // if defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)

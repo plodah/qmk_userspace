@@ -2,7 +2,7 @@
 
 #include "configs/ploopy-common.h"
 
-#define PLODAH_VIADPI
+#define PLOOPY_VIAMENUS
 
 #define PLOOPY_DRAGSCROLL_SCRLK_ENABLE
 // #define PLODAH_MSGESTURE_ENABLE

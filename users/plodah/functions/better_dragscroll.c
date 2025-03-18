@@ -71,15 +71,15 @@
         return mouse_report;
     }
 
-    #if defined(BETTER_DRAGSCROLL_SCRLK_ENABLE) || defined(BETTER_DRAGSCROLL_CAPLK_ENABLE) || defined(BETTER_DRAGSCROLL_NUMLK_ENABLE) || (defined(VIA_ENABLE) && defined(PLODAH_VIADPI))
+    #if defined(BETTER_DRAGSCROLL_SCRLK_ENABLE) || defined(BETTER_DRAGSCROLL_CAPLK_ENABLE) || defined(BETTER_DRAGSCROLL_NUMLK_ENABLE) || (defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS))
     bool led_update_better_dragscroll(led_t led_state) {
 
         if( false
-        #if (defined(VIA_ENABLE) && defined(PLODAH_VIADPI))
+        #if (defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS))
             || (ploopyvia_config.pointing_dragscroll_caps && led_state.caps_lock)
             || (ploopyvia_config.pointing_dragscroll_num && led_state.num_lock)
             || (ploopyvia_config.pointing_dragscroll_scroll && led_state.scroll_lock)
-        #else // (defined(VIA_ENABLE) && defined(PLODAH_VIADPI))
+        #else // (defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS))
             #if defined(BETTER_DRAGSCROLL_SCRLK_ENABLE)
                 || led_state.scroll_lock
             #endif // BETTER_DRAGSCROLL_SCRLK_ENABLE
@@ -89,7 +89,7 @@
             #if defined(BETTER_DRAGSCROLL_NUMLK_ENABLE)
                 || led_state.num_lock
             #endif // BETTER_DRAGSCROLL_NUMLK_ENABLE
-        #endif // (defined(VIA_ENABLE) && defined(PLODAH_VIADPI))
+        #endif // (defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS))
         ){
             better_dragscroll_enabled_bylock = true;
         }
