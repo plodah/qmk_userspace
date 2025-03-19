@@ -1,9 +1,8 @@
 #if defined(PLODAH_DRAGSCROLL)
-  #pragma once
-
-  bool plodah_dragscroll_enabled = 0;
-  float plodah_dragscroll_acc_h = 0;
-  float plodah_dragscroll_acc_v = 0;
+  #include "dragscroll.h"
+  plodah_dragscroll_enabled = 0;
+  plodah_dragscroll_acc_h = 0;
+  plodah_dragscroll_acc_v = 0;
 
   void pl_dragscroll_toggle(bool pressed){
     if(pressed){

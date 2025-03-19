@@ -5,12 +5,13 @@
     #include "via.h" // uses EEPROM address, lighting value IDs
     #include "mouse_jiggler.h"
     #include "ploopy_via.h"
+    #include "mouse_gesture.h"
 
     pointing_dpi_settings_config ploopyvia_config = {
         .pointing_dpi_multiplier            = 20,
-        .pointing_wiggleball_count          = 4,
-        .pointing_wiggleball_action_h       = 0,
-        .pointing_wiggleball_action_v       = 0,
+        .pointing_wiggleball_count          = PLODAH_MSGESTURE_WIGGLES,
+        .pointing_wiggleball_action_h       = GESTURE_ACTION_NOTHING,
+        .pointing_wiggleball_action_v       = GESTURE_ACTION_NOTHING,
         .pointing_dragscroll_invert_h       = false,
         .pointing_dragscroll_invert_v       = false,
         .pointing_dragscroll_caps           = false,
@@ -40,6 +41,7 @@
         if (via_eeprom_is_valid()) {
             values_load();
             update_dpi();
+            plodah_msGestureUpdate();
         } else	{
             values_save();
             // DO NOT set EEPROM valid here, let caller do this
@@ -119,14 +121,17 @@
 
             case id_pointing_wiggleball_count:
                 ploopyvia_config.pointing_wiggleball_count = *value_data;
+                plodah_msGestureUpdate();
                 break;
 
             case id_pointing_wiggleball_action_h:
                 ploopyvia_config.pointing_wiggleball_action_h = *value_data;
+                plodah_msGestureUpdate();
                 break;
 
             case id_pointing_wiggleball_action_v:
                 ploopyvia_config.pointing_wiggleball_action_v = *value_data;
+                plodah_msGestureUpdate();
                 break;
 
             case id_pointing_dragscroll_invert_h:

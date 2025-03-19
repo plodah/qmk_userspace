@@ -1,43 +1,25 @@
 #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
-  #pragma once
+  #include "mouse_gesture.h"
+  #include "mouse_jiggler.h"
+  #include "dragscroll.h"
+  #include "ploopy_via.h"
 
-  #define PLODAH_MSGESTURE_TIMEOUT 225
-  #define PLODAH_MSGESTURE_DEBOUNCE 25
-  #define PLODAH_MSGESTURE_COOLDOWN 800
-  #define PLODAH_MSGESTURE_WIGGLES 4
-  #define PLODAH_MSGESTURE_THRESHOLD 1800
-
-  typedef struct plodah_msGesture_t {
-    deferred_token cooldown;
-    deferred_token timeout;
-    uint8_t count;
-    int16_t accum;
-    bool stage;
-  } plodah_msGesture_t;
-
+  void plodah_msGestureUpdate(void){
+    #if defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)
+      plodah_msGesture_X.action = ploopyvia_config.pointing_wiggleball_action_h;
+      plodah_msGesture_Y.action = ploopyvia_config.pointing_wiggleball_action_v;
+      gestureCount              = ploopyvia_config.pointing_wiggleball_count;
+    #else
+      plodah_msGesture_X.action = GESTURE_ACTION_DRAGSCROLL;
+      plodah_msGesture_Y.action = GESTURE_ACTION_MSJIGGLER;
+      gestureCount = PLODAH_MSGESTURE_WIGGLES;
+    #endif
+  }
   deferred_token plodah_msGestureSwitchCooldown = INVALID_DEFERRED_TOKEN;
   deferred_token plodah_msGestureSwitchDebounce = INVALID_DEFERRED_TOKEN;
 
-  plodah_msGesture_t plodah_msGesture_X;
-  plodah_msGesture_t plodah_msGesture_Y;
   bool plodah_msGestureDebounce = false;
   bool plodah_msGestureCooldown = false;
-
-  plodah_msGesture_t plodah_msGestureReset(plodah_msGesture_t gesture, uint8_t flags){
-    if(flags & 0b1000 ){ // 8
-        gesture.accum = 0;
-    }
-    if(flags & 0b100 ){ // 4
-        gesture.count = 0;
-    }
-    if(flags & 0b10){ // 2
-        gesture.stage = false;
-    }
-    if(flags & 0b1){ // 1
-      gesture.timeout = INVALID_DEFERRED_TOKEN;
-    }
-    return gesture;
-  }
 
   void plodah_msGestureResetX(void){
     plodah_msGesture_X.accum = 0;
@@ -91,9 +73,22 @@
     return 0;
   }
 
-  int8_t plodah_msgesturecheck(report_mouse_t mouse_report) {
+  void plodah_msGestureTriggered(uint8_t action){
+    plodah_msGestureCooldown = true;
+    plodah_msGestureSwitchCooldown = defer_exec(PLODAH_MSGESTURE_COOLDOWN, plodah_msgesture_expireCooldown, NULL);
+    switch(action){
+        case GESTURE_ACTION_MSJIGGLER:
+          jiggler_toggle();
+          break;
+        case GESTURE_ACTION_DRAGSCROLL:
+          better_dragscroll_toggle(true);
+          break;
+    }
+  }
+
+  report_mouse_t pointing_device_task_mouse_gesture(report_mouse_t mouse_report) {
     if(plodah_msGestureDebounce || plodah_msGestureCooldown){
-        return 0;
+        return mouse_report;
     }
     plodah_msGesture_X.accum += (10 * mouse_report.x);
     plodah_msGesture_Y.accum += (10 * mouse_report.y);
@@ -123,19 +118,15 @@
         }
     }
 
-    if( plodah_msGesture_X.count >= PLODAH_MSGESTURE_WIGGLES ) {
-        plodah_msGestureCooldown = true;
-        plodah_msGestureSwitchCooldown = defer_exec(PLODAH_MSGESTURE_COOLDOWN, plodah_msgesture_expireCooldown, NULL);
-        dprintf("Thats an X Jiggle\n");
-        return 1;
+    if( plodah_msGesture_X.count >= gestureCount ) {
+        dprintf("X Jiggle a:%d\n", plodah_msGesture_X.action);
+        plodah_msGestureTriggered(plodah_msGesture_X.action);
     }
 
-    if( plodah_msGesture_Y.count >= PLODAH_MSGESTURE_WIGGLES ) {
-        plodah_msGestureCooldown = true;
-        plodah_msGestureSwitchCooldown = defer_exec(PLODAH_MSGESTURE_COOLDOWN, plodah_msgesture_expireCooldown, NULL);
-        dprintf("Thats a Y Jiggle\n");
-        return -1;
+    if( plodah_msGesture_Y.count >= gestureCount ) {
+        dprintf("Y Jiggle a:%d\n", plodah_msGesture_Y.action);
+        plodah_msGestureTriggered(plodah_msGesture_Y.action);
     }
-    return 0;
+    return mouse_report;
   }
 #endif
