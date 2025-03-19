@@ -7,18 +7,18 @@ void values_load(void);
 void values_save(void);
 
 enum via_pointing_dpi_value {
-    id_pointing_dpi_presets = 1,
-    id_pointing_dpi_activepreset,
+    id_pointing_dpi_activepreset = 1,
     id_pointing_dpi_multiplier,
     id_pointing_msjiggler_enabled,
-    id_pointing_wiggleball_count,
+    id_pointing_wiggleball_count = 11,
     id_pointing_wiggleball_action_h,
     id_pointing_wiggleball_action_v,
-    id_pointing_dragscroll_invert_h,
+    id_pointing_dragscroll_invert_h = 21,
     id_pointing_dragscroll_invert_v,
     id_pointing_dragscroll_caps,
     id_pointing_dragscroll_num,
     id_pointing_dragscroll_scroll,
+    id_pointing_dpi_presets = 31,
 };
 
 typedef struct {
