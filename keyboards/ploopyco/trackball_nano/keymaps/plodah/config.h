@@ -1,8 +1,7 @@
 #pragma once
 
+#define PLOOPY_VIAMENUS // needs to be before common
 #include "configs/ploopy-common.h"
-
-#define PLOOPY_VIAMENUS
 
 #define PLOOPY_DRAGSCROLL_SCRLK_ENABLE
 // #define PLODAH_MSGESTURE_ENABLE
