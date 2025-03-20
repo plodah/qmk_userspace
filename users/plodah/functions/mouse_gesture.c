@@ -1,7 +1,7 @@
 #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
   #include "mouse_gesture.h"
   #include "mouse_jiggler.h"
-  #include "dragscroll.h"
+  #include "better_dragscroll.h"
   #include "ploopy_via.h"
 
   void plodah_msGestureUpdate(void){
