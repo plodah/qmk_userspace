@@ -131,13 +131,13 @@
     },
     "menus": [
         {
-            "label": "Pointing",
+            "label": "Ploopy Stuff",
             "content": [
                 {
                     "label": "Settings",
                     "content": [
                         {
-                            "label": "Active DPI Preset",
+                            "label": "DPI Preset",
                             "type": "dropdown",
                             "options": [
                                 ["1", 0],
@@ -146,7 +146,7 @@
                                 ["4", 3],
                                 ["5", 4]
                             ],
-                            "content": ["id_pointing_dpi_activepreset", 0, 1]
+                            "content": ["id_ploopystuff_dpi_preset", 0, 1]
                         },
                         {
                             "label": "DPI Multiplier",
@@ -165,12 +165,22 @@
                                 ["4x", 80],
                                 ["5x", 100]
                             ],
-                            "content": ["id_pointing_dpi_multiplier", 0, 2]
+                            "content": ["id_ploopystuff_dpi_multiplier", 0, 2]
                         },
                         {
                             "label": "Mouse Jiggler",
                             "type": "toggle",
-                            "content": ["id_pointing_msjiggler_enabled", 0, 3]
+                            "content": ["id_ploopystuff_msjiggler_enabled", 0, 3]
+                        },
+                        {
+                            "label": "Pointer Invert X",
+                            "type": "toggle",
+                            "content": ["id_ploopystuff_pointer_invert_h", 0, 4]
+                        },
+                        {
+                            "label": "Pointer Invert Y",
+                            "type": "toggle",
+                            "content": ["id_ploopystuff_pointer_invert_v", 0, 5]
                         }
                     ]
                 },
@@ -191,7 +201,7 @@
                                 ["9", 9],
                                 ["10", 10]
                             ],
-                            "content": ["id_pointing_wiggleball_count", 0, 11]
+                            "content": ["id_ploopystuff_gesture_count", 0, 11]
                         },
                         {
                             "label": "Wiggleball H",
@@ -201,7 +211,7 @@
                                 ["Dragscroll", 1],
                                 ["Mouse Jiggler", 2]
                             ],
-                            "content": ["id_pointing_wiggleball_action_h", 0, 12]
+                            "content": ["id_ploopystuff_gesture_action_h", 0, 12]
                         },
                         {
                             "label": "Wiggleball V",
@@ -211,7 +221,7 @@
                                 ["Dragscroll", 1],
                                 ["Mouse Jiggler", 2]
                             ],
-                            "content": ["id_pointing_wiggleball_action_v", 0, 13]
+                            "content": ["id_ploopystuff_gesture_action_v", 0, 13]
                         }
                     ]
                 },
@@ -221,27 +231,27 @@
                         {
                             "label": "Dragscroll Invert X",
                             "type": "toggle",
-                            "content": ["id_pointing_dragscroll_invert_h", 0, 21]
+                            "content": ["id_ploopystuff_dragscroll_invert_h", 0, 21]
                         },
                         {
                             "label": "Dragscroll Invert Y",
                             "type": "toggle",
-                            "content": ["id_pointing_dragscroll_invert_v", 0, 22]
+                            "content": ["id_ploopystuff_dragscroll_invert_v", 0, 22]
                         },
                         {
                             "label": "Dragscroll on Caps Lock",
                             "type": "toggle",
-                            "content": ["id_pointing_dragscroll_caps", 0, 23]
+                            "content": ["id_ploopystuff_dragscroll_caps", 0, 23]
                         },
                         {
                             "label": "Dragscroll on Num Lock",
                             "type": "toggle",
-                            "content": ["id_pointing_dragscroll_num", 0, 24]
+                            "content": ["id_ploopystuff_dragscroll_num", 0, 24]
                         },
                         {
                             "label": "Dragscroll on Scroll Lock",
                             "type": "toggle",
-                            "content": ["id_pointing_dragscroll_scroll", 0, 25]
+                            "content": ["id_ploopystuff_dragscroll_scroll", 0, 25]
                         }
                     ]
                 },
@@ -270,7 +280,7 @@
                                 ["1400", 140],
                                 ["1600", 160]
                             ],
-                            "content": ["id_pointing_dpi_preset[0]", 0, 31, 0]
+                            "content": ["id_ploopystuff_dpi_preset[0]", 0, 31, 0]
                         },
                         {
                             "label": "Preset 2",
@@ -294,7 +304,7 @@
                                 ["1400", 140],
                                 ["1600", 160]
                             ],
-                            "content": ["id_pointing_dpi_preset[1]", 0, 31, 1]
+                            "content": ["id_ploopystuff_dpi_preset[1]", 0, 31, 1]
                         },
                         {
                             "label": "Preset 3",
@@ -318,7 +328,7 @@
                                 ["1400", 140],
                                 ["1600", 160]
                             ],
-                            "content": ["id_pointing_dpi_preset[2]", 0, 31, 2]
+                            "content": ["id_ploopystuff_dpi_preset[2]", 0, 31, 2]
                         },
                         {
                             "label": "Preset 4",
@@ -342,7 +352,7 @@
                                 ["1400", 140],
                                 ["1600", 160]
                             ],
-                            "content": ["id_pointing_dpi_preset[3]", 0, 31, 3]
+                            "content": ["id_ploopystuff_dpi_preset[3]", 0, 31, 3]
                         },
                         {
                             "label": "Preset 5",
@@ -366,7 +376,7 @@
                                 ["1400", 140],
                                 ["1600", 160]
                             ],
-                            "content": ["id_pointing_dpi_preset[4]", 0, 31, 4]
+                            "content": ["id_ploopystuff_dpi_preset[4]", 0, 31, 4]
                         }
                     ]
                 }

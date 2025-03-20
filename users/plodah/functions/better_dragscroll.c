@@ -49,13 +49,13 @@
 
             // Assign integer parts of accumulated scroll values to the mouse report
             #if defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)
-                if(ploopyvia_config.pointing_dragscroll_invert_h) {
+                if(ploopyvia_config.dragscroll_invert_h) {
                     mouse_report.h = -(int8_t)dragscroll_acc_h;
                 } else {
                     mouse_report.h = (int8_t)dragscroll_acc_h;
                 }
 
-                if(ploopyvia_config.pointing_dragscroll_invert_v) {
+                if(ploopyvia_config.dragscroll_invert_v) {
                     mouse_report.v = -(int8_t)dragscroll_acc_v;
                 } else {
                     mouse_report.v = (int8_t)dragscroll_acc_v;
@@ -90,9 +90,9 @@
 
         if( false
         #if (defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS))
-            || (ploopyvia_config.pointing_dragscroll_caps && led_state.caps_lock)
-            || (ploopyvia_config.pointing_dragscroll_num && led_state.num_lock)
-            || (ploopyvia_config.pointing_dragscroll_scroll && led_state.scroll_lock)
+            || (ploopyvia_config.dragscroll_caps && led_state.caps_lock)
+            || (ploopyvia_config.dragscroll_num && led_state.num_lock)
+            || (ploopyvia_config.dragscroll_scroll && led_state.scroll_lock)
         #else // (defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS))
             #if defined(BETTER_DRAGSCROLL_SCRLK_ENABLE)
                 || led_state.scroll_lock
