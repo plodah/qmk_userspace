@@ -48,17 +48,31 @@
             dragscroll_acc_v += (float)mouse_report.y / BETTER_DRAGSCROLL_DIVISOR_V;
 
             // Assign integer parts of accumulated scroll values to the mouse report
+            #if defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)
+                if(ploopyvia_config.pointing_dragscroll_invert_h) {
+                    mouse_report.h = -(int8_t)dragscroll_acc_h;
+                } else {
+                    mouse_report.h = (int8_t)dragscroll_acc_h;
+                }
 
-            #ifdef BETTER_DRAGSCROLL_INVERT_H
-            mouse_report.h = -(int8_t)dragscroll_acc_h;
-            #else
-            mouse_report.h = (int8_t)dragscroll_acc_h;
-            #endif // BETTER_DRAGSCROLL_INVERT_V
-            #ifdef BETTER_DRAGSCROLL_INVERT_V
-            mouse_report.v = -(int8_t)dragscroll_acc_v;
-            #else
-            mouse_report.v = (int8_t)dragscroll_acc_v;
-            #endif // BETTER_DRAGSCROLL_INVERT_V
+                if(ploopyvia_config.pointing_dragscroll_invert_v) {
+                    mouse_report.v = -(int8_t)dragscroll_acc_v;
+                } else {
+                    mouse_report.v = (int8_t)dragscroll_acc_v;
+                }
+            #else // defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)
+                #if defined(BETTER_DRAGSCROLL_INVERT_H)
+                    mouse_report.h = -(int8_t)dragscroll_acc_h;
+                #else
+                    mouse_report.h = (int8_t)dragscroll_acc_h;
+                #endif // BETTER_DRAGSCROLL_INVERT_V
+
+                #ifdef BETTER_DRAGSCROLL_INVERT_V
+                    mouse_report.v = -(int8_t)dragscroll_acc_v;
+                #else
+                    mouse_report.v = (int8_t)dragscroll_acc_v;
+                #endif // BETTER_DRAGSCROLL_INVERT_V
+            #endif // defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)
 
             // Update accumulated scroll values by subtracting the integer parts
             dragscroll_acc_h -= (int8_t)dragscroll_acc_h;

@@ -12,11 +12,36 @@
         .pointing_wiggleball_count          = PLODAH_MSGESTURE_WIGGLES,
         .pointing_wiggleball_action_h       = GESTURE_ACTION_NOTHING,
         .pointing_wiggleball_action_v       = GESTURE_ACTION_NOTHING,
-        .pointing_dragscroll_invert_h       = false,
-        .pointing_dragscroll_invert_v       = false,
-        .pointing_dragscroll_caps           = false,
-        .pointing_dragscroll_num            = false,
-        .pointing_dragscroll_scroll         = false,
+
+        #if defined(BETTER_DRAGSCROLL_INVERT_H)
+          .pointing_dragscroll_invert_h       = true,
+        #else // BETTER_DRAGSCROLL_INVERT_H
+          .pointing_dragscroll_invert_h       = false,
+        #endif // BETTER_DRAGSCROLL_INVERT_H
+
+        #if defined(BETTER_DRAGSCROLL_INVERT_V)
+          .pointing_dragscroll_invert_v       = true,
+        #else // BETTER_DRAGSCROLL_INVERT_V
+          .pointing_dragscroll_invert_v       = false,
+        #endif // BETTER_DRAGSCROLL_INVERT_V
+
+        #if defined(BETTER_DRAGSCROLL_CAPLK_ENABLE)
+            .pointing_dragscroll_caps         = true,
+        #else // BETTER_DRAGSCROLL_CAPLK_ENABLE
+            .pointing_dragscroll_caps       = false,
+        #endif // BETTER_DRAGSCROLL_CAPLK_ENABLE
+
+        #if defined(BETTER_DRAGSCROLL_NUMLK_ENABLE)
+            .pointing_dragscroll_num         = true,
+        #else // BETTER_DRAGSCROLL_NUMLK_ENABLE
+            .pointing_dragscroll_num       = false,
+        #endif // BETTER_DRAGSCROLL_NUMLK_ENABLE
+
+        #if defined(BETTER_DRAGSCROLL_SCRLK_ENABLE)
+            .pointing_dragscroll_scroll         = true,
+        #else // BETTER_DRAGSCROLL_SCRLK_ENABLE
+            .pointing_dragscroll_scroll       = false,
+        #endif // BETTER_DRAGSCROLL_SCRLK_ENABLE
     };
 
     void values_load(void)
