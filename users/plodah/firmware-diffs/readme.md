@@ -123,6 +123,6 @@ update-branch() {
 }
 
 diffpath="../plodah_qmk_userspace/users/plodah/firmware-diffs"
-update-branch "develop" "mydevbuilds-$(date +%Y-%m)" $diffpath n
-update-branch "master" "mybuilds-$(date +%Y-%m)" $diffpath n
+update-branch "develop" "mydevbuilds-$(date +%Y-%m-%d)" $diffpath n
+update-branch "master" "mybuilds-$(date +%Y-%m-%d)" $diffpath n
 ```
