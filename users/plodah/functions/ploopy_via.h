@@ -33,6 +33,8 @@ typedef struct {
     uint8_t wiggleball_count;
     uint8_t wiggleball_action_h;
     uint8_t wiggleball_action_v;
+    bool    pointer_invert_h;
+    bool    pointer_invert_v;
     bool    dragscroll_invert_h;
     bool    dragscroll_invert_v;
     bool    dragscroll_caps;

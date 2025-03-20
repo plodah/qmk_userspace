@@ -43,6 +43,22 @@
     }
 
     report_mouse_t pointing_device_task_better_dragscroll(report_mouse_t mouse_report) {
+        #if defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)
+            if(ploopyvia_config.pointer_invert_h){
+                mouse_report.x = -mouse_report.x;
+            }
+            if(ploopyvia_config.pointer_invert_v){
+                mouse_report.y = -mouse_report.y;
+            }
+        #else
+            #if defined(BETTER_DRAGSCROLL_POINTERINVERT_X)
+                mouse_report.x = -mouse_report.x;
+            #endif // BETTER_DRAGSCROLL_POINTERINVERT_X
+            #if defined(BETTER_DRAGSCROLL_POINTERINVERT_Y)
+                mouse_report.y = -mouse_report.y;
+            #endif // BETTER_DRAGSCROLL_POINTERINVERT_Y
+        #endif // defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)
+
         if (better_dragscroll_enabled_bylock || better_dragscroll_enabled_bypress) {
             dragscroll_acc_h += (float)mouse_report.x / BETTER_DRAGSCROLL_DIVISOR_H;
             dragscroll_acc_v += (float)mouse_report.y / BETTER_DRAGSCROLL_DIVISOR_V;

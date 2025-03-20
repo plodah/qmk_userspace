@@ -116,12 +116,6 @@
 
         switch ( *value_id )
         {
-            case id_ploopystuff_dpi_presets:
-                dpi_array[value_data[0]] = (value_data[1]*10) * (ploopyvia_config.dpi_multiplier/20) ;
-                dprintf("ploopyvia_dpi_presets[%d]: %d\n", value_data[0], value_data[1]);
-                update_dpi();
-                break;
-
             case id_ploopystuff_dpi_preset:
                 keyboard_config.dpi_config = *value_data;
                 dprintf("ploopyvia_dpi_preset: %d\n", keyboard_config.dpi_config);
@@ -142,6 +136,14 @@
                     // ^ is an XOR, buddy
                     jiggler_toggle();
                 }
+                break;
+
+            case id_ploopystuff_pointer_invert_h:
+                ploopyvia_config.pointer_invert_h = *value_data;
+                break;
+
+            case id_ploopystuff_pointer_invert_v:
+                ploopyvia_config.pointer_invert_v = *value_data;
                 break;
 
             case id_ploopystuff_gesture_count:
@@ -180,6 +182,12 @@
             case id_ploopystuff_dragscroll_scroll:
                 ploopyvia_config.dragscroll_scroll = *value_data;
                 dprintf("pointing_dragscroll_scroll: %d\n", ploopyvia_config.dragscroll_scroll);
+                break;
+
+            case id_ploopystuff_dpi_presets:
+                dpi_array[value_data[0]] = (value_data[1]*10) * (ploopyvia_config.dpi_multiplier/20) ;
+                dprintf("ploopyvia_dpi_presets[%d]: %d\n", value_data[0], value_data[1]);
+                update_dpi();
                 break;
 
         }
