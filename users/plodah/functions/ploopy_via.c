@@ -118,7 +118,7 @@
         {
             case id_ploopystuff_dpi_preset:
                 keyboard_config.dpi_config = *value_data;
-                dprintf("ploopyvia_dpi_preset: %d\n", keyboard_config.dpi_config);
+                dprintf("dpi_preset: %d\n", keyboard_config.dpi_config);
                 update_dpi();
                 break;
 
@@ -127,7 +127,7 @@
                     dpi_array[i] = dpi_array[i] / ploopyvia_config.dpi_multiplier * *value_data;
                 }
                 ploopyvia_config.dpi_multiplier = *value_data;
-                dprintf("ploopyvia_dpi_multiplier: %d\n", ploopyvia_config.dpi_multiplier);
+                dprintf("dpi_multiplier: %d\n", ploopyvia_config.dpi_multiplier);
                 update_dpi();
                 break;
 
@@ -135,58 +135,66 @@
                 if( (msJigMainToken != INVALID_DEFERRED_TOKEN) ^ (*value_data) ) {
                     // ^ is an XOR, buddy
                     jiggler_toggle();
+                    dprintf("msjiggler_enabled\n");
                 }
                 break;
 
             case id_ploopystuff_pointer_invert_h:
                 ploopyvia_config.pointer_invert_h = *value_data;
+                dprintf("pointer_invert_h:%d\n", ploopyvia_config.pointer_invert_h);
                 break;
 
             case id_ploopystuff_pointer_invert_v:
                 ploopyvia_config.pointer_invert_v = *value_data;
+                dprintf("pointer_invert_v:%d\n", ploopyvia_config.pointer_invert_v);
                 break;
 
             case id_ploopystuff_gesture_count:
                 ploopyvia_config.wiggleball_count = *value_data;
                 plodah_msGestureUpdate();
+                dprintf("gesture_count:%d\n", ploopyvia_config.wiggleball_count);
                 break;
 
             case id_ploopystuff_gesture_action_h:
                 ploopyvia_config.wiggleball_action_h = *value_data;
                 plodah_msGestureUpdate();
+                dprintf("gesture_action_h:%d\n", ploopyvia_config.wiggleball_action_h);
                 break;
 
             case id_ploopystuff_gesture_action_v:
                 ploopyvia_config.wiggleball_action_v = *value_data;
                 plodah_msGestureUpdate();
+                dprintf("gesture_action_v:%d\n", ploopyvia_config.wiggleball_action_v);
                 break;
 
             case id_ploopystuff_dragscroll_invert_h:
                 ploopyvia_config.dragscroll_invert_h = *value_data;
+                dprintf("dragscroll_invert_h:%d\n", ploopyvia_config.dragscroll_invert_h);
                 break;
 
             case id_ploopystuff_dragscroll_invert_v:
                 ploopyvia_config.dragscroll_invert_v = *value_data;
+                dprintf("dragscroll_invert_v:%d\n", ploopyvia_config.dragscroll_invert_v);
                 break;
 
             case id_ploopystuff_dragscroll_caps:
                 ploopyvia_config.dragscroll_caps = *value_data;
-                dprintf("pointing_dragscroll_caps: %d\n", ploopyvia_config.dragscroll_caps);
+                dprintf("dragscroll_caps: %d\n", ploopyvia_config.dragscroll_caps);
                 break;
 
             case id_ploopystuff_dragscroll_num:
                 ploopyvia_config.dragscroll_num = *value_data;
-                dprintf("pointing_dragscroll_num: %d\n", ploopyvia_config.dragscroll_num);
+                dprintf("dragscroll_num: %d\n", ploopyvia_config.dragscroll_num);
                 break;
 
             case id_ploopystuff_dragscroll_scroll:
                 ploopyvia_config.dragscroll_scroll = *value_data;
-                dprintf("pointing_dragscroll_scroll: %d\n", ploopyvia_config.dragscroll_scroll);
+                dprintf("dragscroll_scroll: %d\n", ploopyvia_config.dragscroll_scroll);
                 break;
 
             case id_ploopystuff_dpi_presets:
                 dpi_array[value_data[0]] = (value_data[1]*10) * (ploopyvia_config.dpi_multiplier/20) ;
-                dprintf("ploopyvia_dpi_presets[%d]: %d\n", value_data[0], value_data[1]);
+                dprintf("dpi_presets[%d]: %d\n", value_data[0], value_data[1]);
                 update_dpi();
                 break;
 

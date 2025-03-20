@@ -4,7 +4,13 @@
 #include "configs/ploopy-common.h"
 
 #define PLOOPY_DRAGSCROLL_SCRLK_ENABLE
+
 // #define PLODAH_MSGESTURE_ENABLE
+#define CM_QFTR_DISABLED
+#define CM_QLYR_DISABLED
+#define CM_QTAP_DISABLED
+// #define CM_QVER_DISABLED
+#define CM_QRGB_DISABLED
 
 #ifdef PLOOPY_DPI_OPTIONS
   #undef PLOOPY_DPI_OPTIONS
