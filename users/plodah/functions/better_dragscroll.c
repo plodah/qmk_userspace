@@ -26,20 +26,22 @@
         // if (!process_record_better_dragscroll_kb(keycode, record)) {
         //     return false;
         // }
-        switch (keycode) {
-            case PL_DRAG_SCROLL_MOMENTARY:
-                better_dragscroll_momentary(record->event.pressed);
-                return false;
-            case PL_DRAG_SCROLL_TOGGLE:
-                better_dragscroll_toggle(record->event.pressed);
-                return false;
-            #if !defined(BETTER_DRAGSCROLL_INDEFINITE)
-            default:
-                better_dragscroll_enabled_bypress = 0; // this is potentially breaking but can't test
-                break;
-            #endif // !defined(BETTER_DRAGSCROLL_INDEFINITE)
+        if(record->event.pressed){
+            switch (keycode) {
+                case BETTER_DRAG_SCROLL_MOMENTARY:
+                    better_dragscroll_momentary(record->event.pressed);
+                    return false;
+                case BETTER_DRAG_SCROLL_TOGGLE:
+                    better_dragscroll_toggle(record->event.pressed);
+                    return false;
+                #if !defined(BETTER_DRAGSCROLL_INDEFINITE)
+                default:
+                    better_dragscroll_enabled_bypress = 0; // this is potentially breaking but can't test
+                    break;
+                #endif // !defined(BETTER_DRAGSCROLL_INDEFINITE)
+            }
+            return true;
         }
-        return true;
     }
 
     report_mouse_t pointing_device_task_better_dragscroll(report_mouse_t mouse_report) {

@@ -7,8 +7,8 @@ enum layers {
 };
 
 enum keymap_keycodes {
-    PL_DRAG_SCROLL_MOMENTARY = QK_USER_0,
-    PL_DRAG_SCROLL_TOGGLE,
+    BETTER_DRAG_SCROLL_MOMENTARY = QK_USER_0,
+    BETTER_DRAG_SCROLL_TOGGLE,
 };
 
 enum {

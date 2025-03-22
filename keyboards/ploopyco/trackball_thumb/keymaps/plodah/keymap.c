@@ -7,13 +7,8 @@ enum layers {
 };
 
 enum keymap_keycodes {
-    // PL_DMAC1,
-    // PL_DMAC2,
-    PL_DRAG_SCROLL_MOMENTARY = QK_USER_0,
-    PL_DRAG_SCROLL_TOGGLE,
-    // PL_ECCC,
-    // PL_ECCW,
-    // PL_ECPR,
+    BETTER_DRAG_SCROLL_MOMENTARY = QK_USER_0,
+    BETTER_DRAG_SCROLL_TOGGLE,
 };
 
 enum {
@@ -25,6 +20,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         P_MS5FA, KC_BTN1, KC_BTN3, KC_BTN2, P_MS5FA, P_MS4FA
     ),
     [_FNA] = LAYOUT(
-        _______, CM_TSKP, CM_QVER, CM_TSKN, DPI_CONFIG, _______
+        _______, CM_TSKP, _______, CM_TSKN, DPI_CONFIG, _______
     )
 };

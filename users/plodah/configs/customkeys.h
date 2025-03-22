@@ -91,7 +91,7 @@
 #define P_MS5FB LT(_FNB, KC_BTN5)
 #define P_DRGTD TD(TD_DRAGSCROLL)
 #define P_DRGMO TD(TD_DRAGSCROLL)
-#define P_DRGTG PL_DRAG_SCROLL_TOGGLE
+#define P_DRGTG BETTER_DRAG_SCROLL_TOGGLE
 
 // Half Rows
 //      _______, _______, _______, _______, _______

@@ -7,7 +7,6 @@
     "keymap": "via",
     "layout": "LAYOUT",
     "modules": [
-        "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/task_switch"
     ],
