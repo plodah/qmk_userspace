@@ -18,9 +18,8 @@
     // QK_LAYER_TAP      = 0x4000,
     // QK_LAYER_TAP_MAX  = 0x4FFF,
     if(
-        record->event.pressed &&
-        ( ( (keycode & 0xFF00) == 0x0000 ) || ( (keycode & 0xF000) == 0x2000 ) || ( (keycode & 0xF000) == 0x3000 ) || ( (keycode & 0xF000) == 0x4000 ) ) &&
-        ( ( (keycode & 0x00FF) >= KC_A   ) && ( (keycode & 0x00FF) <= KC_SLASH) )
+        record->event.pressed && (keycode & 0x00FF) >= KC_A && (keycode & 0x00FF) <= KC_SLASH &&
+        ( IS_QK_BASIC(keycode) || IS_QK_MOD_TAP(keycode) || IS_QK_LAYER_TAP(keycode) )
     ) {
       plodah_typingindicator_timer = timer_read();
       plodah_typingindicator_active = true;

@@ -40,8 +40,8 @@
                     break;
                 #endif // !defined(BETTER_DRAGSCROLL_INDEFINITE)
             }
-            return true;
         }
+        return true;
     }
 
     report_mouse_t pointing_device_task_better_dragscroll(report_mouse_t mouse_report) {
