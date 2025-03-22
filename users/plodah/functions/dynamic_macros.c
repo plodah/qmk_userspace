@@ -62,7 +62,7 @@
 
 
   #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
-    bool dynamic_macros_process_record_user( uint16_t keycode, keyrecord_t *record ) {
+    bool process_record_plodah_dynamic_macros( uint16_t keycode, keyrecord_t *record ) {
       /*
         QK_DYNAMIC_MACRO_RECORD_START_1 = 0x7C53,
         QK_DYNAMIC_MACRO_RECORD_START_2 = 0x7C54,
@@ -70,24 +70,29 @@
         QK_DYNAMIC_MACRO_PLAY_1 = 0x7C56,
         QK_DYNAMIC_MACRO_PLAY_2 = 0x7C57,
       */
-      if(!record->event.pressed){
-        uint16_t fwkeycode = QK_DYNAMIC_MACRO_PLAY_1;
-        if( keycode == PL_DMAC2 ) {
-          fwkeycode ++;
-        }
-        if( get_mods() & MOD_MASK_CA ) {
-          fwkeycode -=3;
-          del_mods(MOD_MASK_CA);
-        }
-        dprintf("DM:%u\n", fwkeycode);
-        return process_dynamic_macro( fwkeycode, record );
-        }
-      return true;
+      switch(keycode){
+        case PL_DMAC1 ... PL_DMAC2:
+          if(!record->event.pressed){
+            uint16_t fwkeycode = QK_DYNAMIC_MACRO_PLAY_1;
+            if( keycode == PL_DMAC2 ) {
+              fwkeycode ++;
+            }
+            if( get_mods() & MOD_MASK_CA ) {
+              fwkeycode -=3;
+              del_mods(MOD_MASK_CA);
+            }
+            dprintf("DM:%u\n", fwkeycode);
+            return process_dynamic_macro( fwkeycode, record );
+            }
+          return false;
+        default:
+          return true;
+    }
     }
   #endif // PLODAH_DYNAMIC_MACRO_KCS_ENABLE
 
   #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT) && !defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)
-  void plodah_dynamic_macro_check(void){
+  void housekeeping_task_plodah_dynamic_macro(void){
     if (timer_elapsed(dynamic_macro_timer) > PLODAH_DYNAMIC_MACRO_TIMEOUT){
       dynamic_macro_stop_recording();
     }

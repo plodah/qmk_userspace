@@ -7,7 +7,7 @@
 #define PLODAH_MSGESTURE_THRESHOLD 1800
 
 report_mouse_t pointing_device_task_mouse_gesture(report_mouse_t mouse_report);
-void plodah_msGestureResetAll(void);
+void process_record_msGesture(void);
 void plodah_msGestureUpdate(void);
 
 enum gesture_actions {

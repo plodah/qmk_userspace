@@ -104,7 +104,7 @@
   };
 
   #if defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
-    bool tap_dance_process_record_user(uint16_t keycode, keyrecord_t *record) {
+    bool process_record_tapdance_taphold(uint16_t keycode, keyrecord_t *record) {
       tap_dance_action_t *action;
       switch (keycode) {
       // list all tap dance keycodes with tap-hold configurations

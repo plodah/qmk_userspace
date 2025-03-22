@@ -18,65 +18,67 @@
     int8_t ug_sp_state = -1;
   #endif // defined(RGBLIGHT_ENABLE)
 
-  void repeathold_rgb_start(int8_t keycode, bool pressed) {
-    switch(keycode){
-      #if defined(RGB_MATRIX_ENABLE)
-        case RM_HUEU & 0xff:
-        case RM_HUED & 0xff:
-          if(pressed){rm_hu_state = keycode & 0x1;}
+  bool process_record_repeathold_rgb(uint16_t keycode, keyrecord_t *record) {
+
+    #if defined(RGB_MATRIX_ENABLE)
+      switch(keycode){
+        case RM_HUEU ... RM_HUED:
+          if(record->event.pressed){rm_hu_state = keycode & 0x1;}
           else{rm_hu_state = -1;}
+          repeathold_rgb_timer = timer_read();
           break;
 
-        case RM_SATU & 0xff:
-        case RM_SATD & 0xff:
-          if(pressed){rm_sa_state = keycode & 0x1;}
+        case RM_SATU ... RM_SATD:
+          if(record->event.pressed){rm_sa_state = keycode & 0x1;}
           else{rm_sa_state = -1;}
+          repeathold_rgb_timer = timer_read();
           break;
 
-        case RM_VALU & 0xff:
-        case RM_VALD & 0xff:
-          if(pressed){rm_va_state = keycode & 0x1;}
+        case RM_VALU ... RM_VALD:
+          if(record->event.pressed){rm_va_state = keycode & 0x1;}
           else{rm_va_state = -1;}
+          repeathold_rgb_timer = timer_read();
           break;
 
-        case RM_SPDU & 0xff:
-        case RM_SPDD & 0xff:
-          if(pressed){rm_sp_state = keycode & 0x1;}
+        case RM_SPDU ... RM_SPDD:
+          if(record->event.pressed){rm_sp_state = keycode & 0x1;}
           else{rm_sp_state = -1;}
+          repeathold_rgb_timer = timer_read();
           break;
-      #endif // RGB_MATRIX_ENABLE
+      }
+    #endif // RGB_MATRIX_ENABLE
 
-      #if defined(RGBLIGHT_ENABLE)
-        case UG_HUEU & 0xff:
-        case UG_HUED & 0xff:
-          if(pressed){ug_hu_state = keycode & 0x1;}
+    #if defined(RGBLIGHT_ENABLE)
+      switch(keycode){
+        case UG_HUEU ... UG_HUED:
+          if(record->event.pressed){ug_hu_state = keycode & 0x1;}
           else{ug_hu_state = -1;}
+          repeathold_rgb_timer = timer_read();
           break;
 
-        case UG_SATU & 0xff:
-        case UG_SATD & 0xff:
-          if(pressed){ug_sa_state = keycode & 0x1;}
+        case UG_SATU ... UG_SATD:
+          if(record->event.pressed){ug_sa_state = keycode & 0x1;}
           else{ug_sa_state = -1;}
+          repeathold_rgb_timer = timer_read();
           break;
 
-        case UG_VALU & 0xff:
-        case UG_VALD & 0xff:
-          if(pressed){ug_va_state = keycode & 0x1;}
+        case UG_VALU ... UG_VALD:
+          if(record->event.pressed){ug_va_state = keycode & 0x1;}
           else{ug_va_state = -1;}
+          repeathold_rgb_timer = timer_read();
           break;
 
-        case UG_SPDU & 0xff:
-        case UG_SPDD & 0xff:
-          if(pressed){ug_sp_state = keycode & 0x1;}
+        case UG_SPDU ... UG_SPDD:
+          if(record->event.pressed){ug_sp_state = keycode & 0x1;}
           else{ug_sp_state = -1;}
+          repeathold_rgb_timer = timer_read();
           break;
-      #endif // defined(RGBLIGHT_ENABLE)
-
-    }
-    repeathold_rgb_timer = timer_read();
+      }
+    #endif // defined(RGBLIGHT_ENABLE)
+    return true;
   }
 
-  void repeathold_rgb_check(void){
+  void housekeeping_task_repeathold_rgb(void){
     if(timer_elapsed(repeathold_rgb_timer) > PLODAH_REPEATHOLD_RATE){
       #if defined(RGB_MATRIX_ENABLE)
         if(rm_va_state == 1){

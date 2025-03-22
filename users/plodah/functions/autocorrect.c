@@ -74,7 +74,7 @@
     }
 
     #if !defined(PLODAH_AUTOCORRECT_IND_MODE_DE)
-      void plodah_autocorrect_indicator_check(void){
+      void housekeeping_task_autocorrect_indicator(void){
         if (autocorrect_indicator_count < PLODAH_AUTOCORRECT_INDICATOR_BLINKCOUNT){
           if (timer_elapsed(autocorrect_indicator_timer) > PLODAH_AUTOCORRECT_INDICATOR_DURATION){
             if (autocorrect_indicator_on){

@@ -2,20 +2,39 @@
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(BETTER_DRAGSCROLL)
-    if (record->event.pressed) {
-      #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
-        plodah_typingindicator_start(keycode);
-      #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
-      #if defined(BETTER_DRAGSCROLL)
-        process_record_better_dragscroll(keycode, record);
-      #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX) || defined(BETTER_DRAGSCROLL)
-    }
-  #endif // defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
+  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
+    process_record_typing_indicator(keycode, record);
+  #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+
+  #if defined(BETTER_DRAGSCROLL)
+    process_record_better_dragscroll(keycode, record);
+  #endif // defined(BETTER_DRAGSCROLL)
 
   #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
-    plodah_msGestureResetAll();
+    process_record_msGesture();
   #endif // defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
+
+  #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
+    if ( ! process_record_plodah_dynamic_macros(keycode, record) ) {
+      return false;
+    }
+  #endif // PLODAH_DYNAMIC_MACRO_KCS_ENABLE
+
+  #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
+    if ( ! process_record_tapdance_taphold(keycode, record) ) {
+      return false;
+    }
+  #endif // PLODAH_TAPDANCE_TAPHOLD_ENABLE
+
+  #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
+    if ( ! process_record_encoder_actions(keycode, record) ) {
+      return false;
+    }
+  #endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
+
+  #if defined(PLODAH_REPEATHOLD_RGB) && (defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE))
+    process_record_repeathold_rgb(keycode, record);
+  #endif // defined(PLODAH_REPEATHOLD_RGB) && (defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE))
 
   switch (keycode) {
 
@@ -24,53 +43,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         tap_code(KC_SCRL);
         return false;
     #endif // defined(KC_PL_SCRL)
-
-    #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
-      case PL_DMAC1 ... PL_DMAC2:
-        return dynamic_macros_process_record_user( keycode, record );
-    #endif // PLODAH_DYNAMIC_MACRO_KCS_ENABLE
-
-    #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
-      case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
-        return tap_dance_process_record_user( keycode, record );
-    #endif // PLODAH_TAPDANCE_TAPHOLD_ENABLE
-
-    #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
-      case PL_ECCC:
-      case PL_ECCW:
-      case PL_ECPR:
-        if (record->event.pressed) {
-          enc_act(keycode & 0xff/*, ctl_pressed, gui_pressed, alt_pressed, sft_pressed*/);
-          return true;
-        }
-        return false;
-    #endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
-
-    #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
-      case RM_HUED:
-      case RM_HUEU:
-      case RM_SATD:
-      case RM_SATU:
-      case RM_VALD:
-      case RM_VALU:
-      case RM_SPDD:
-      case RM_SPDU:
-        repeathold_rgb_start(keycode & 0xff, record->event.pressed);
-        return true;
-    #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
-
-    #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGBLIGHT_ENABLE)
-      case UG_HUEU:
-      case UG_HUED:
-      case UG_SATU:
-      case UG_SATD:
-      case UG_VALU:
-      case UG_VALD:
-      case UG_SPDU:
-      case UG_SPDD:
-        repeathold_rgb_start(keycode & 0xff, record->event.pressed);
-        return true;
-    #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGBLIGHT_ENABLE)
 
   }
   return true;

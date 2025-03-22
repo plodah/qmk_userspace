@@ -35,7 +35,7 @@
     plodah_msGesture_Y.timeout = INVALID_DEFERRED_TOKEN;
   }
 
-  void plodah_msGestureResetAll(void){
+  void process_record_msGesture(void){
     plodah_msGestureSwitchCooldown = INVALID_DEFERRED_TOKEN;
     plodah_msGestureSwitchDebounce = INVALID_DEFERRED_TOKEN;
     plodah_msGestureResetX();

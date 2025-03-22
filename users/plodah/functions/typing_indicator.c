@@ -11,14 +11,24 @@
     #define PLODAH_TYPINGINDICATOR_DURATION 1000
   #endif //PLODAH_TYPINGINDICATOR_DURATION
 
-  void plodah_typingindicator_start(uint16_t keycode){
-    if( keycode >= KC_A && keycode <= KC_SLASH ){
+  bool process_record_typing_indicator(uint16_t keycode, keyrecord_t *record){
+    // Some madness to include layer taps / mod taps
+    // QK_MOD_TAP        = 0x2000,
+    // QK_MOD_TAP_MAX    = 0x3FFF,
+    // QK_LAYER_TAP      = 0x4000,
+    // QK_LAYER_TAP_MAX  = 0x4FFF,
+    if(
+        record->event.pressed &&
+        ( ( (keycode & 0xFF00) == 0x0000 ) || ( (keycode & 0xF000) == 0x2000 ) || ( (keycode & 0xF000) == 0x3000 ) || ( (keycode & 0xF000) == 0x4000 ) ) &&
+        ( ( (keycode & 0x00FF) >= KC_A   ) && ( (keycode & 0x00FF) <= KC_SLASH) )
+    ) {
       plodah_typingindicator_timer = timer_read();
       plodah_typingindicator_active = true;
     }
+    return true;
   }
 
-  void plodah_typingindicator_check(void){
+  void housekeeping_task_typing_indicator(void){
     if(plodah_typingindicator_active){
       if(timer_elapsed(plodah_typingindicator_timer) > PLODAH_TYPINGINDICATOR_DURATION){
         plodah_typingindicator_active = false;
