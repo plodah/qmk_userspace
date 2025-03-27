@@ -161,10 +161,12 @@
       switch (keycode) {
         #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
           case PL_ECCC & 0xff:
-            taskswitch_start(true);
+            taskswitch_press(true);
+            taskswitch_release();
             break;
           case PL_ECCW & 0xff:
-            taskswitch_start(false);
+            taskswitch_press(false);
+            taskswitch_release();
             break;
         #endif // defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
         case PL_ECPR & 0xff:
