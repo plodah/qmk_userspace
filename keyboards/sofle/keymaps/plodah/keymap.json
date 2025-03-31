@@ -5,6 +5,14 @@
     "documentation": "qmk compile -kb sofle -km plodah",
     "keyboard": "sofle",
     "keymap": "plodah",
+    "keycodes": [
+        { "key": "PL_DMAC1" },
+        { "key": "PL_DMAC2" },
+        { "key": "PL_SCRL" },
+        { "key": "PL_ECCC" },
+        { "key": "PL_ECCW" },
+        { "key": "PL_ECPR" }
+    ],
     "layout": "LAYOUT",
     "modules": [
         "plodah/config_query",
@@ -12,27 +20,14 @@
         "plodah/task_switch"
     ],
     "config": {
-        "backlight": {
-            "breathing": true,
-            "breathing_period": 5,
-            "default": {
-                "on": true,
-                "breathing": false,
-                "brightness": 2
-            },
-            "levels": 7
-        },
         "bootmagic": {
             "matrix": [5, 0]
         },
         "caps_word": {
             "both_shifts_turns_on": true,
-            "double_tap_shift_turns_on": false,
+            "double_tap_shift_turns_on": true,
             "idle_timeout": 1200,
             "invert_on_shift": true
-        },
-        "combo": {
-            "term": 50
         },
         "dynamic_keymap": {
             "layer_count": 12
@@ -54,29 +49,13 @@
             "mousekey": true,
             "oled": true,
             "os_detection": false,
-            "rgblight": false,
+            "rgblight": true,
             "rgb_matrix": false,
             "space_cadet": false,
             "tap_dance": true,
             "tri_layer": true,
             "via": true
         },
-        "keyboard_name": "Sofle | plodah",
-        "matrix": {
-          "debounce": 20
-        },
-        "qmk": {
-            "tap_keycode_delay": 8
-        },
-        "split": {
-            "handedness": {
-                "pin": "C6"
-            }
-        },
-        "tapping": {
-            "permissive_hold": true,
-            "term": 240,
-            "toggle": 3
-        }
+        "keyboard_name": "Sofle | plodah"
     }
 }

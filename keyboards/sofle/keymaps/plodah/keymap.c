@@ -14,15 +14,6 @@ enum layers {
     _MOUSE,
 };
 
-enum keymap_keycodes {
-    // PL_DMAC1,
-    // PL_DMAC2,
-    PL_ECCC = QK_USER_0,
-    PL_ECCW,
-    PL_ECPR,
-    PL_SCRL,
-};
-
 enum {
     TD_ESC_RAGEQUIT,
     TD_F2,
