@@ -113,3 +113,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _FNA, _FNB, _FNC);
 }
+
+char chordal_hold_handedness(keypos_t key) {
+    char answer='*';
+    switch(key.row){
+        case 0:
+        case 1:
+        case 2:
+            answer='L';
+            break;
+        case 3:
+        case 4:
+        case 5:
+            answer='R';
+            break;
+        case 6:
+            if(key.col == 2){answer='*';}
+            else if(key.col < 2){answer='L';}
+            else if(key.col > 2){answer='R';}
+            break;
+    }
+    // On split keyboards, typically, the first half of the rows are on the
+    // left, and the other half are on the right.
+    dprintf("chordal_hold_handedness %c\n", answer);
+    return answer;
+}
