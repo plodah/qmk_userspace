@@ -3,7 +3,11 @@
   void caps_word_set_user(bool active) {
     #if defined(PLODAH_BORING_LAYER)
       if( get_highest_layer(layer_state | default_layer_state) == PLODAH_BORING_LAYER){
+        dprintf("caps_word_off on boring layer\n");
         caps_word_off();
+      }
+      else{
+        dprintf("caps_word_on this is not boring layer\n");
       }
     #endif // defined(PLODAH_BORING_LAYER)
   }
