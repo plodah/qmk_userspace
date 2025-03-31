@@ -24,7 +24,7 @@
     const uint16_t PROGMEM pl_combo_ms1d[] = {KC_BTN1, BETTER_DRAG_SCROLL_MOMENTARY, COMBO_END};
     const uint16_t PROGMEM pl_combo_ms2d[] = {KC_BTN2, BETTER_DRAG_SCROLL_MOMENTARY, COMBO_END};
 
-    #if defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
+    #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
       const uint16_t PROGMEM pl_combo_ms14[] = {KC_BTN1, KC_BTN4, COMBO_END};
       const uint16_t PROGMEM pl_combo_ms14_lt1[] = {KC_BTN1 , LT(1, KC_BTN4), COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45[] = {KC_BTN4, KC_BTN5, COMBO_END};
@@ -33,7 +33,7 @@
       const uint16_t PROGMEM pl_combo_ms45_lt10[] = {LT(1, KC_BTN4) , KC_BTN5, COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45_lt11[] = {LT(1, KC_BTN4) , LT(1, KC_BTN5), COMBO_END};
       const uint16_t PROGMEM pl_combo_ms45_lt12[] = {LT(1, KC_BTN4) , LT(2, KC_BTN5), COMBO_END};
-    #endif // defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
+    #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
 
     combo_t key_combos[] = {
       #if defined(TAP_DANCE_ENABLE) && defined(BETTER_DRAGSCROLL_TAPDANCE)
@@ -54,7 +54,7 @@
       COMBO(pl_combo_ms1d,  BETTER_DRAG_SCROLL_TOGGLE),
       COMBO(pl_combo_ms2d,  BETTER_DRAG_SCROLL_TOGGLE),
 
-      #if defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
+      #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
         COMBO(pl_combo_ms14,  CM_MSJG),
         COMBO(pl_combo_ms14_lt1,  CM_MSJG),
         COMBO(pl_combo_ms45,  CM_MSJG),
@@ -63,7 +63,7 @@
         COMBO(pl_combo_ms45_lt10,  CM_MSJG),
         COMBO(pl_combo_ms45_lt11,  CM_MSJG),
         COMBO(pl_combo_ms45_lt12,  CM_MSJG),
-      #endif // COMMUNITY_MODULE_MSJIGGLER_ENABLE
+      #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
     };
 
   #else // not IS_MOUSE
@@ -73,46 +73,37 @@
     const uint16_t PROGMEM pl_combo_xc[]    = {KC_X,    KC_C,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_cv[]    = {KC_C,    KC_V,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_xcv[]   = {KC_X,    KC_C,   KC_V,           COMBO_END};
-    const uint16_t PROGMEM pl_combo_mk[]    = {KC_M,    KC_K,                   COMBO_END};
 
     const uint16_t PROGMEM pl_combo_volud[] = {KC_VOLU, KC_VOLD,                COMBO_END};
 
-    #if defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
+    #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
       const uint16_t PROGMEM pl_combo_mj[] = {KC_M , KC_J, COMBO_END};
       #if defined(PLODAH_HRM_COMBOS)
         const uint16_t PROGMEM pl_combo_mj_hrm[] = {KC_M , HRM_JC, COMBO_END};
       #endif // PLODAH_HRM_COMBOS
-    #endif // COMMUNITY_MODULE_MSJIGGLER_ENABLE
+    #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
+
+    #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
+      const uint16_t PROGMEM pl_combo_escq[] = {KC_ESC , KC_Q , COMBO_END};
+      const uint16_t PROGMEM pl_combo_escw[] = {KC_ESC , KC_W , COMBO_END};
+      #if defined(TAP_DANCE_ENABLE)
+        const uint16_t PROGMEM pl_combo_ragq[] = {P_RAGEQ, KC_Q , COMBO_END};
+        const uint16_t PROGMEM pl_combo_ragw[] = {P_RAGEQ, KC_W , COMBO_END};
+      #endif // defined(TAP_DANCE_ENABLE)
+      const uint16_t PROGMEM pl_combo_tabq[] = {KC_TAB , KC_Q , COMBO_END};
+      const uint16_t PROGMEM pl_combo_tabw[] = {KC_TAB , KC_W , COMBO_END};
+    #endif // COMMUNITY_MODULE_TASK_SWITCH_ENABLE
 
     #if ! defined(PLODAH_COMBOS_LIMITED)
-
-      #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
-        const uint16_t PROGMEM pl_combo_escq[] = {KC_ESC , KC_Q , COMBO_END};
-        const uint16_t PROGMEM pl_combo_escw[] = {KC_ESC , KC_W , COMBO_END};
-        #if defined(TAP_DANCE_ENABLE)
-          const uint16_t PROGMEM pl_combo_ragq[] = {P_RAGEQ, KC_Q , COMBO_END};
-          const uint16_t PROGMEM pl_combo_ragw[] = {P_RAGEQ, KC_W , COMBO_END};
-        #endif // defined(TAP_DANCE_ENABLE)
-
-        const uint16_t PROGMEM pl_combo_tabq[] = {KC_TAB , KC_Q , COMBO_END};
-        const uint16_t PROGMEM pl_combo_tabw[] = {KC_TAB , KC_W , COMBO_END};
-      #endif // COMMUNITY_MODULE_TASK_SWITCH_ENABLE
-
-      const uint16_t PROGMEM pl_combo_89[]     = {KC_8,     KC_9,                   COMBO_END};
-      const uint16_t PROGMEM pl_combo_90[]     = {KC_9,     KC_0,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_0bsp[]   = {KC_0,     KC_BSPC,                COMBO_END};
       const uint16_t PROGMEM pl_combo_eqbsp[]  = {KC_EQL,   KC_BSPC,                COMBO_END};
 
       const uint16_t PROGMEM pl_combo_qwop[]   = {KC_Q,     KC_W,   KC_O,   KC_P,   COMBO_END};
-      const uint16_t PROGMEM pl_combo_we[]     = {KC_W,     KC_E,                   COMBO_END};
-      const uint16_t PROGMEM pl_combo_er[]     = {KC_E,     KC_R,                   COMBO_END};
+      const uint16_t PROGMEM pl_combo_wr[]     = {KC_W,     KC_R,                   COMsaBO_END};
       const uint16_t PROGMEM pl_combo_et[]     = {KC_E,     KC_T,                   COMBO_END};
-      const uint16_t PROGMEM pl_combo_rt[]     = {KC_R,     KC_T,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_ert[]    = {KC_E,     KC_R,   KC_T,           COMBO_END};
-      const uint16_t PROGMEM pl_combo_op[]     = {KC_O,     KC_P,                   COMBO_END};
-      const uint16_t PROGMEM pl_combo_pbsp[]   = {KC_P,     KC_BSPC,                COMBO_END};
+      const uint16_t PROGMEM pl_combo_up[]     = {KC_U,     KC_P,                   COMBO_END};
 
-      const uint16_t PROGMEM pl_combo_qa[]     = {KC_Q,     KC_A,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_capa[]   = {P_BSPFA,  KC_A,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_capa2[]  = {P_BSPFB,  KC_A,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_capa3[]  = {KC_NUBS,  KC_A,                   COMBO_END};
@@ -143,7 +134,6 @@
       const uint16_t PROGMEM pl_combo_mk_hrm[]      = {KC_M,    HRM_KS, COMBO_END};
 
       #if !defined(PLODAH_COMBOS_LIMITED)
-        const uint16_t PROGMEM pl_combo_qa_hrm[]      = {KC_Q,    HRM_AG, COMBO_END};
         const uint16_t PROGMEM pl_combo_capa_hrm[]    = {P_BSPFA, HRM_AG, COMBO_END};
         const uint16_t PROGMEM pl_combo_capa_hrm2[]   = {P_BSPFB, HRM_AG, COMBO_END};
         const uint16_t PROGMEM pl_combo_capa_hrm3[]   = {KC_NUBS, HRM_AG, COMBO_END};
@@ -181,7 +171,6 @@
 
         const uint16_t PROGMEM pl_combo_bsz_hrm[]     = {KC_NUBS, HRM_ZG, COMBO_END};
         const uint16_t PROGMEM pl_combo_bsz2_hrm[]    = {KC_LSFT, HRM_ZG, COMBO_END};
-
       #endif // !defined(PLODAH_COMBOS_LIMITED)
     #endif // PLODAH_HRM_COMBOS
 
@@ -206,44 +195,37 @@
       COMBO(pl_combo_xc,    C(KC_C)    ),
       COMBO(pl_combo_cv,    C(KC_V)    ),
       COMBO(pl_combo_xcv,   C(S(KC_V)) ),
-      COMBO(pl_combo_mk,    QK_MAKE    ),
 
       COMBO(pl_combo_volud, KC_MUTE    ),
 
-      #if defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
+      #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
         COMBO(pl_combo_mj,     CM_MSJG),
         #if defined(PLODAH_HRM_COMBOS)
           COMBO(pl_combo_mj_hrm, CM_MSJG),
         #endif // PLODAH_HRM_COMBOS
-      #endif // defined(COMMUNITY_MODULE_MSJIGGLER_ENABLE)
+      #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
+
+      #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
+        COMBO(pl_combo_escq,    CM_TSKP),
+        COMBO(pl_combo_escw,    CM_TSKN),
+        #if defined(TAP_DANCE_ENABLE)
+          COMBO(pl_combo_ragq,    CM_TSKP),
+          COMBO(pl_combo_ragw,    CM_TSKN),
+        #endif // defined(TAP_DANCE_ENABLE)
+        COMBO(pl_combo_tabq,    CM_TSKP),
+        COMBO(pl_combo_tabw,    CM_TSKN),
+      #endif // COMMUNITY_MODULE_TASK_SWITCH_ENABLE
 
       #if ! defined(PLODAH_COMBOS_LIMITED)
-        #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
-          COMBO(pl_combo_escq,    CM_TSKP),
-          COMBO(pl_combo_escw,    CM_TSKN),
-          #if defined(TAP_DANCE_ENABLE)
-            COMBO(pl_combo_ragq,    CM_TSKP),
-            COMBO(pl_combo_ragw,    CM_TSKN),
-          #endif // defined(TAP_DANCE_ENABLE)
-          COMBO(pl_combo_tabq,    CM_TSKP),
-          COMBO(pl_combo_tabw,    CM_TSKN),
-        #endif // COMMUNITY_MODULE_TASK_SWITCH_ENABLE
-
-        COMBO(pl_combo_89,    KC_MINS    ),
-        COMBO(pl_combo_90,    KC_EQL     ),
         COMBO(pl_combo_0bsp,  KC_DEL     ),
         COMBO(pl_combo_eqbsp, KC_DEL     ),
 
         COMBO(pl_combo_qwop,  QK_BOOT    ),
-        COMBO(pl_combo_we,    G(KC_E)    ),
-        COMBO(pl_combo_er,    C(KC_R)    ),
-        COMBO(pl_combo_et,    C(KC_F5)   ),
-        COMBO(pl_combo_rt,    C(KC_T)    ),
+        COMBO(pl_combo_wr,    C(KC_F5)   ),
+        COMBO(pl_combo_et,    C(KC_T)    ),
         COMBO(pl_combo_ert,   C(S(KC_T)) ),
-        COMBO(pl_combo_op,    KC_PSCR    ),
-        COMBO(pl_combo_pbsp,  KC_DEL     ),
+        COMBO(pl_combo_up,    KC_PSCR    ),
 
-        COMBO(pl_combo_qa,    C(KC_A)    ),
         COMBO(pl_combo_capa,  C(KC_A)    ),
         COMBO(pl_combo_capa2, C(KC_A)    ),
         COMBO(pl_combo_capa3, C(KC_A)    ),
@@ -273,7 +255,6 @@
         COMBO(pl_combo_mk_hrm,      QK_MAKE),
 
         #if ! defined(PLODAH_COMBOS_LIMITED)
-          COMBO(pl_combo_qa_hrm,      C(KC_A)),
           COMBO(pl_combo_capa_hrm,    C(KC_A)),
           COMBO(pl_combo_capa_hrm2,   C(KC_A)),
           COMBO(pl_combo_capa_hrm3,   C(KC_A)),
