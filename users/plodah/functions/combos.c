@@ -99,7 +99,7 @@
       const uint16_t PROGMEM pl_combo_eqbsp[]  = {KC_EQL,   KC_BSPC,                COMBO_END};
 
       const uint16_t PROGMEM pl_combo_qwop[]   = {KC_Q,     KC_W,   KC_O,   KC_P,   COMBO_END};
-      const uint16_t PROGMEM pl_combo_wr[]     = {KC_W,     KC_R,                   COMsaBO_END};
+      const uint16_t PROGMEM pl_combo_wr[]     = {KC_W,     KC_R,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_et[]     = {KC_E,     KC_T,                   COMBO_END};
       const uint16_t PROGMEM pl_combo_ert[]    = {KC_E,     KC_R,   KC_T,           COMBO_END};
       const uint16_t PROGMEM pl_combo_up[]     = {KC_U,     KC_P,                   COMBO_END};
