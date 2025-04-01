@@ -2,15 +2,15 @@
     "version": 1,
     "notes": "Hello",
     "author": "Plodah",
-    "documentation": "qmk compile -kb reviung/reviung41 -km plodahc",
+    "documentation": "qmk compile -kb reviung/reviung41 -km plodah",
     "keyboard": "reviung/reviung41",
-    "keymap": "plodahc",
+    "keymap": "plodah",
+    "converter": "rp2040_ce",
     "keycodes": [
         { "key": "PL_DMAC1" },
         { "key": "PL_DMAC2" },
         { "key": "PL_SCRL" }
     ],
-    "converter": "rp2040_ce",
     "modules": [
         "plodah/config_query",
         "plodah/mouse_jiggler",
@@ -21,8 +21,11 @@
         "bootmagic": {
             "matrix": [0, 0]
         },
-        "build": {
-            "lto": true
+        "caps_word": {
+            "both_shifts_turns_on": true,
+            "double_tap_shift_turns_on": true,
+            "idle_timeout": 1200,
+            "invert_on_shift": true
         },
         "dynamic_keymap": {
             "layer_count": 10
@@ -51,6 +54,6 @@
             "tri_layer": true,
             "via": true
         },
-        "keyboard_name": "reviung41 | plodahc"
+        "keyboard_name": "reviung41 | plodah"
     }
 }

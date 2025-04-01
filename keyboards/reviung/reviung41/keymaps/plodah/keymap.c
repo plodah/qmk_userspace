@@ -49,14 +49,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FNA] = LAYOUT(
     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,             KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
     KC_BSPC, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,            KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS,
-    _______, KC_MINS, KC_EQL,  _______, KC_LCBR, KC_LBRC,          KC_RBRC, KC_RCBR, _______, _______, _______, _______,
+    _______, KC_MINS, KC_EQL,  _______, KC_LCBR, KC_LBRC,          KC_RBRC, KC_RCBR, _______, _______, _______, CW_TOGG,
                                         _______, _______, _______, _______, _______
   ),
 
   [_FNB] = LAYOUT(
     _______, _______, KC_HOME, KC_UP,   KC_END,  KC_PGUP,          KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_PSCR, KC_ESC,
     KC_DEL,  _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_PIPE,
-    _______, KC_UNDS, KC_PLUS, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
+    _______, KC_UNDS, KC_PLUS, _______, _______, _______,          _______, _______, _______, _______, _______, CW_TOGG,
                                         _______, _______, _______, _______, _______
   ),
 
@@ -128,13 +128,20 @@ char chordal_hold_handedness(keypos_t key) {
             answer='R';
             break;
         case 6:
-            if(key.col == 2){answer='*';}
-            else if(key.col < 2){answer='L';}
-            else if(key.col > 2){answer='R';}
-            break;
+            switch(key.col){
+                case 0:
+                case 1:
+                    answer='L';
+                    break;
+                case 2:
+                    answer='*';
+                    break;
+                case 3:
+                case 4:
+                    answer='R';
+                    break;
+            }
     }
-    // On split keyboards, typically, the first half of the rows are on the
-    // left, and the other half are on the right.
-    dprintf("chordal_hold_handedness %c\n", answer);
+    dprintf("CH Hand %u:%u %c\n", key.row, key.col, answer);
     return answer;
 }

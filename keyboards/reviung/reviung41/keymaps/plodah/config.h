@@ -29,6 +29,11 @@
   #define PLODAH_HRM_COMBOS
 #endif
 
+#ifdef QUICK_TAP_TERM
+  #undef QUICK_TAP_TERM
+#endif
+#define QUICK_TAP_TERM 60
+
 #if defined(DYNAMIC_MACRO_ENABLE)
   #define PLODAH_DYNAMIC_MACRO_KCS_ENABLE
 #endif // DYNAMIC_MACRO_ENABLE
