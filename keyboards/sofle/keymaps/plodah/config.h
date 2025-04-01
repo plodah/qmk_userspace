@@ -51,4 +51,8 @@
 #endif
 #define QUICK_TAP_TERM 60
 
+#if defined(DYNAMIC_MACRO_ENABLE)
+  #define PLODAH_DYNAMIC_MACRO_KCS_ENABLE
+#endif // DYNAMIC_MACRO_ENABLE
+
 #include "plodah.h"

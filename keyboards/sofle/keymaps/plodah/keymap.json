@@ -5,6 +5,7 @@
     "documentation": "qmk compile -kb sofle -km plodah",
     "keyboard": "sofle",
     "keymap": "plodah",
+    "converter": "rp2040_ce",
     "keycodes": [
         { "key": "PL_DMAC1" },
         { "key": "PL_DMAC2" },
