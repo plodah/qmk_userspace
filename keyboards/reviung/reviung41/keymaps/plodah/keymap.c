@@ -124,6 +124,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     dprintf("tril 3 off \n");
     return state & ~mask3;
   }
+   return state;
 }
 
 char chordal_hold_handedness(keypos_t key) {

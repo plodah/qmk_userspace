@@ -40,7 +40,7 @@
             "combo": true,
             "console": false,
             "deferred_exec": true,
-            "dynamic_macro": true,
+            "dynamic_macro": false,
             "dynamic_tapping_term": false,
             "encoder_map": false,
             "extrakey": true,
