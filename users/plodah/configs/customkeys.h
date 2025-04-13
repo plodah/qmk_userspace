@@ -27,8 +27,13 @@
 #define P_BSPFB LT(_FNB, KC_BSPC)
 #define P_ENTFA LT(_FNA, KC_ENT)
 #define P_ENTFB LT(_FNB, KC_ENT)
+#define P_HOMFC LT(_FNC, KC_HOME)
 #define P_FNA MO(_FNA)
 #define P_FNB MO(_FNB)
+#define P_FNC MO(_FNC)
+#define LOWER MO(_LOWER)
+#define RAISE MO(_RAISE)
+#define ADJUST MO(_ADJUST)
 
 // ModTaps
 #define P_DOTAL MT(MOD_RALT,KC_PDOT)
