@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "documentation": "qmk compile -kb reviung/reviung41 -km plodah",
+    "keyboard": "reviung/reviung41",
+    "keymap": "plodah",
+    "keycodes": [
+        { "key": "PL_DMAC1" },
+        { "key": "PL_DMAC2" },
+        { "key": "PL_SCRL" }
+    ],
+    "modules": [
+        "plodah/task_switch"
+    ],
+    "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
+        "caps_word": {
+            "both_shifts_turns_on": true,
+            "double_tap_shift_turns_on": true,
+            "idle_timeout": 1200,
+            "invert_on_shift": true
+        },
+        "dynamic_keymap": {
+            "layer_count": 4
+        },
+        "features": {
+            "auto_shift": false,
+            "autocorrect": false,
+            "backlight": false,
+            "bootmagic": true,
+            "caps_word": true,
+            "combo": true,
+            "console": false,
+            "deferred_exec": false,
+            "dynamic_macro": false,
+            "dynamic_tapping_term": false,
+            "encoder_map": false,
+            "extrakey": true,
+            "leader": false,
+            "mousekey": true,
+            "oled": false,
+            "os_detection": false,
+            "rgblight": true,
+            "rgb_matrix": false,
+            "space_cadet": false,
+            "tap_dance": false,
+            "tri_layer": false,
+            "via": false
+        },
+        "keyboard_name": "reviung41 | plodahatm"
+    }
+}
