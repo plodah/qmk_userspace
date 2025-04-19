@@ -29,6 +29,7 @@
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
   #include "configs/rgblight-effects-few.h"
+  #include "configs/rgblight-config.h"
   #define PLODAH_REPEATHOLD_RGB
   // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGBLIGHT_ENABLE
