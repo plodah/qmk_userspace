@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef RGB_MATRIX_ENABLE
+#if defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE)
   HSV plodah_rgblimit(HSV currenthsv, HSV target_hsv, uint8_t minval){
     HSV output = target_hsv;
     if(minval > currenthsv.v){
@@ -25,7 +25,7 @@
     HSV target_hsv = {target_h, target_s, target_v};
     return plodah_rgblimit(currenthsv, target_hsv, minval);
   }
-#endif // RGB_MATRIX_ENABLE
+#endif // defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE)
 
 char* rgbQuery(void){
     //may take 80 bytes more than sending string directly

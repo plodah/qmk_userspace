@@ -1,6 +1,6 @@
 #if defined(AUTOCORRECT_ENABLE)
   #pragma once
-  #if defined(RGB_MATRIX_ENABLE)
+  #if defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE)
     // #define PLODAH_AUTOCORRECT_INDICATOR_FORCE_NDE
     #if defined(DEFERRED_EXEC_ENABLE) && (!defined(PLODAH_AUTOCORRECT_INDICATOR_FORCE_NDE))
       #define PLODAH_AUTOCORRECT_IND_MODE_DE
@@ -46,9 +46,18 @@
     #endif
 
     void plodah_autocorrect_indicator_on(void){
-      HSV indhsv = plodah_rgblimit_ind(rgb_matrix_get_hsv(), PLODAH_AUTOCORRECT_INDICATOR_COLOUR, PLODAH_INDICATOR_MINVAL);
-      rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-      rgb_matrix_sethsv_noeeprom(indhsv.h, indhsv.s, indhsv.v);
+      #if defined(RGB_MATRIX_ENABLE)
+        HSV indhsv = plodah_rgblimit_ind(rgb_matrix_get_hsv(), PLODAH_AUTOCORRECT_INDICATOR_COLOUR, PLODAH_INDICATOR_MINVAL);
+        rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+        rgb_matrix_sethsv_noeeprom(indhsv.h, indhsv.s, indhsv.v);
+      #endif // RGB_MATRIX_ENABLE
+      #if defined(RGBLIGHT_ENABLE)
+        HSV indhsv = {rgblight_get_hue(), rgblight_get_sat(), rgblight_get_val()};
+        indhsv = plodah_rgblimit_ind(indhsv, PLODAH_AUTOCORRECT_INDICATOR_COLOUR, PLODAH_INDICATOR_MINVAL);
+        rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+        rgblight_sethsv_noeeprom(indhsv.h, indhsv.s, indhsv.v);
+      #endif // RGBLIGHT_ENABLE
+
       #if defined(PLODAH_AUTOCORRECT_IND_MODE_DE)
         autoCorrectIndToken = defer_exec(PLODAH_AUTOCORRECT_INDICATOR_DURATION, plodah_autocorrect_indicator_off_DE, NULL);
       #else // PLODAH_AUTOCORRECT_IND_MODE_DE
@@ -58,7 +67,13 @@
     }
 
     void plodah_autocorrect_indicator_off(void){
-      rgb_matrix_reload_from_eeprom();
+      #if defined(RGB_MATRIX_ENABLE)
+        rgb_matrix_reload_from_eeprom();
+      #endif // RGB_MATRIX_ENABLE
+      #if defined(RGBLIGHT_ENABLE)
+        rgblight_reload_from_eeprom();
+      #endif // RGBLIGHT_ENABLE
+
       autocorrect_indicator_count ++;
       #if defined(PLODAH_AUTOCORRECT_IND_MODE_DE)
         if (autocorrect_indicator_count < PLODAH_AUTOCORRECT_INDICATOR_BLINKCOUNT){
@@ -87,7 +102,7 @@
         }
       }
     #endif // ! PLODAH_AUTOCORRECT_IND_MODE_DE
-  #endif // RGB_MATRIX_ENABLE
+  #endif // defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE)
 
   bool process_autocorrect_user(uint16_t *keycode, keyrecord_t *record, uint8_t *typo_buffer_size, uint8_t *mods) {
     #if defined(PLODAH_BORING_LAYER)
@@ -112,12 +127,12 @@
   }
 
   bool apply_autocorrect(uint8_t backspaces, const char *str, char *typo, char *correct) {
-    #if defined(RGB_MATRIX_ENABLE)
+    #if defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE)
       autocorrect_indicator_count = 0;
       #if defined(PLODAH_AUTOCORRECT_IND_MODE_DE)
         autoCorrectIndToken = defer_exec(PLODAH_AUTOCORRECT_INDICATOR_DURATION, plodah_autocorrect_indicator_on_DE, NULL);
       #endif // defined(PLODAH_AUTOCORRECT_IND_MODE_DE)
-    #endif // RGB_MATRIX_ENABLE
+    #endif // defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE)
     #if defined(OLED_ENABLE)
       strcpy(recAcC, recAcB);
       strcpy(recAcB, recAcA);
