@@ -12,7 +12,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     with:
       qmk_repo: plodah/qmk_firmware
-      qmk_ref: mybuilds-2025-03-20
+      qmk_ref: mybuilds-2025-04-21
 
   publish:
     name: 'QMK Userspace Publish'
