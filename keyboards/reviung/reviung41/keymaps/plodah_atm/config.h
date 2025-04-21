@@ -7,13 +7,8 @@
 #define CM_QRGB_DISABLED
 #define KC_PL_SCRL
 
-// #define TASKSWITCH_FORCE_NDE
-// #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
-
 #define TURBO_FIRE_KEY_A KC_BTN1
-// #define ACHORDION_STREAK
 #define CHORDAL_HOLD
-#define PLODAH_COMBOS_LIMITED
 
 // #define PLODAH_BORING_LAYER _BASE
 
@@ -28,6 +23,7 @@
 
 #ifdef COMBO_ENABLE
   #define PLODAH_HRM_COMBOS
+  // #define PLODAH_COMBOS_LIMITED
 #endif
 
 #ifdef QUICK_TAP_TERM

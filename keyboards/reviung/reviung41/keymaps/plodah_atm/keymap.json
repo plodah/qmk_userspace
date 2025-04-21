@@ -6,11 +6,10 @@
     "keyboard": "reviung/reviung41",
     "keymap": "plodah",
     "keycodes": [
-        { "key": "PL_DMAC1" },
-        { "key": "PL_DMAC2" },
         { "key": "PL_SCRL" }
     ],
     "modules": [
+        "plodah/mouse_jiggler",
         "plodah/task_switch"
     ],
     "config": {
@@ -28,13 +27,13 @@
         },
         "features": {
             "auto_shift": false,
-            "autocorrect": false,
+            "autocorrect": true,
             "backlight": false,
             "bootmagic": true,
-            "caps_word": true,
+            "caps_word": false,
             "combo": true,
             "console": false,
-            "deferred_exec": false,
+            "deferred_exec": true,
             "dynamic_macro": false,
             "dynamic_tapping_term": false,
             "encoder_map": false,
