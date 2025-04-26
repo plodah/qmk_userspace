@@ -37,7 +37,7 @@
             "bootmagic": true,
             "caps_word": true,
             "combo": true,
-            "console": false,
+            "console": true,
             "deferred_exec": true,
             "dynamic_macro": true,
             "dynamic_tapping_term": true,

@@ -17,13 +17,6 @@
   #define P_F12 KC_EQL
 #endif // TAP_DANCE_ENABLE
 
-#if !defined(_FNA)
-  #define _FNA 2
-#endif
-#if !defined(_FNB)
-  #define _FNB 3
-#endif
-
 // "Function" KEYS
 #define P_SPCFA LT(_FNA, KC_SPC)
 #define P_SPCFB LT(_FNB, KC_SPC)

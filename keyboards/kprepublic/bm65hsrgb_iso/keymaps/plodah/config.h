@@ -6,6 +6,11 @@
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
 
+#ifdef PRODUCT
+  #undef PRODUCT
+#endif // PRODUCT
+#define PRODUCT "KPRepublic BM65 ISO | plodahc"
+
 #define PLODAH_BORING_LAYER 1
 
 #define PLODAH_CAPS_INDIC_HSV 240, 84, 255

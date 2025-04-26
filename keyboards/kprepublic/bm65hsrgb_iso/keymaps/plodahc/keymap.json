@@ -1,6 +1,0 @@
-{
-    "modules": [
-        "plodah/config_query",
-        "plodah/task_switch"
-    ]
-}

@@ -48,7 +48,7 @@
             "rgblight": false,
             "rgb_matrix": true,
             "space_cadet": false,
-            "tap_dance": false,
+            "tap_dance": true,
             "tri_layer": false,
             "via": true
         },
