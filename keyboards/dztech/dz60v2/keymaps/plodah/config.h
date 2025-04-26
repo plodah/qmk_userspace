@@ -7,7 +7,11 @@
 #define CM_QRGB_DISABLED
 
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
-#define PLODAH_HRM_COMBOS
+
+#ifdef COMBO_ENABLE
+  #define PLODAH_HRM_COMBOS
+  #define PLODAH_BRM_COMBOS
+#endif
 
 #define ACHORDION_STREAK
 

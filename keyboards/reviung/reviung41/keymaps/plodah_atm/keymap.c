@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWEA] = LAYOUT(
         P_RAGEQ, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         KC_TAB,  KC_A,    HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,           HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  KC_SCLN, KC_QUOT,
-        KC_NUBS, ZRM_ZG,  ZRM_XA,  ZRM_CS,  ZRM_VC,  KC_B,             KC_N,    ZRM_MC,  ZRM_COS, ZRM_DOA, ZRM_SLG, KC_NUHS,
+        KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  KC_B,             KC_N,    BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, KC_NUHS,
                                             P_HOMFC, P_ENTFB, P_SPCFA, P_ENTFB, KC_END
       ),
 

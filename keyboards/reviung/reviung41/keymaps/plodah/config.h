@@ -27,6 +27,7 @@
 
 #ifdef COMBO_ENABLE
   #define PLODAH_HRM_COMBOS
+  #define PLODAH_BRM_COMBOS
 #endif
 
 #ifdef QUICK_TAP_TERM

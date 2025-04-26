@@ -16,6 +16,7 @@
 
 #ifdef COMBO_ENABLE
   #define PLODAH_HRM_COMBOS
+  #define PLODAH_BRM_COMBOS
   #define PLODAH_COMBOS_LIMITED
 #endif
 

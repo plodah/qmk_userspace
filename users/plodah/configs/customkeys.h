@@ -17,6 +17,13 @@
   #define P_F12 KC_EQL
 #endif // TAP_DANCE_ENABLE
 
+#if !defined(_FNA)
+  #define _FNA 2
+#endif
+#if !defined(_FNB)
+  #define _FNB 3
+#endif
+
 // "Function" KEYS
 #define P_SPCFA LT(_FNA, KC_SPC)
 #define P_SPCFB LT(_FNB, KC_SPC)
@@ -74,18 +81,18 @@
 #define HRM_LA RALT_T(KC_L)
 #define HRM_CG RGUI_T(KC_SCLN)
 
-// Z ROW MODS (QWERTY)
-#define ZRM_ZG LGUI_T(KC_Z)
-#define ZRM_XA LALT_T(KC_X)
-#define ZRM_CS LSFT_T(KC_C)
-#define ZRM_VC LCTL_T(KC_V)
-#define ZRM_BG LGUI_T(KC_B)
+// BOTTOM ROW MODS (QWERTY)
+#define BRM_ZG LGUI_T(KC_Z)
+#define BRM_XA LALT_T(KC_X)
+#define BRM_CS LSFT_T(KC_C)
+#define BRM_VC LCTL_T(KC_V)
+#define BRM_BG LGUI_T(KC_B)
 
-#define ZRM_NG RGUI_T(KC_N)
-#define ZRM_MC RCTL_T(KC_M)
-#define ZRM_COS RSFT_T(KC_COMM)
-#define ZRM_DOA RALT_T(KC_DOT)
-#define ZRM_SLG RGUI_T(KC_SLSH)
+#define BRM_NG RGUI_T(KC_N)
+#define BRM_MC RCTL_T(KC_M)
+#define BRM_COS RSFT_T(KC_COMM)
+#define BRM_DOA RALT_T(KC_DOT)
+#define BRM_SLG RGUI_T(KC_SLSH)
 
 // HOME ROW MODS (COLEMAK)
 // #define HRM_AG LGUI_T(KC_A) // SAME AS QWERTY
@@ -98,6 +105,19 @@
 #define HRM_ES RSFT_T(KC_E)
 #define HRM_IA RALT_T(KC_I)
 #define HRM_OG RGUI_T(KC_O)
+
+// Z ROW MODS (COLEMAK)
+// #define BRM_ZG LGUI_T(KC_Z) // SAME AS QWERTY
+// #define BRM_XA LALT_T(KC_X) // SAME AS QWERTY
+// #define BRM_CS LSFT_T(KC_C) // SAME AS QWERTY
+// #define BRM_VC LCTL_T(KC_V) // SAME AS QWERTY
+// #define BRM_BG LGUI_T(KC_B) // SAME AS QWERTY
+
+#define BRM_KG RGUI_T(KC_K)
+// #define BRM_MC RCTL_T(KC_M) // SAME AS QWERTY
+// #define BRM_COS RSFT_T(KC_COMM) // SAME AS QWERTY
+// #define BRM_DOA RALT_T(KC_DOT) // SAME AS QWERTY
+// #define BRM_SLG RGUI_T(KC_SLSH) // SAME AS QWERTY
 
 // POINTING DEVICES
 #define P_MS4FA LT(_FNA, KC_BTN4)
