@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "documentation": "qmk compile -kb sofle -km plodah",
+    "keyboard": "sofle",
+    "keymap": "plodah",
+    "converter": "rp2040_ce",
+    "keycodes": [
+        { "key": "PL_DMAC1" },
+        { "key": "PL_DMAC2" },
+        { "key": "PL_SCRL" },
+        { "key": "PL_ECCC" },
+        { "key": "PL_ECCW" },
+        { "key": "PL_ECPR" }
+    ],
+    "layout": "LAYOUT",
+    "modules": [
+        "plodah/config_query",
+        "plodah/mouse_jiggler",
+        "plodah/task_switch"
+    ],
+    "config": {
+        "caps_word": {
+            "both_shifts_turns_on": true,
+            "double_tap_shift_turns_on": true,
+            "idle_timeout": 1200,
+            "invert_on_shift": true
+        },
+        "dynamic_keymap": {
+            "layer_count": 12
+        },
+        "features": {
+            "auto_shift": false,
+            "autocorrect": true,
+            "backlight": false,
+            "bootmagic": true,
+            "caps_word": true,
+            "combo": true,
+            "console": true,
+            "deferred_exec": true,
+            "dynamic_macro": true,
+            "dynamic_tapping_term": true,
+            "encoder_map": true,
+            "extrakey": true,
+            "leader": true,
+            "mousekey": true,
+            "oled": true,
+            "os_detection": false,
+            "rgblight": true,
+            "rgb_matrix": false,
+            "space_cadet": false,
+            "tap_dance": true,
+            "tri_layer": true,
+            "via": true
+        },
+        "keyboard_name": "Sofle | plodaho"
+    }
+}
