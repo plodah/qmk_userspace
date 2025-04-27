@@ -1,4 +1,7 @@
 #pragma once
+#include <stdbool.h>
+#include <stdint.h>
+#include "quantum.h" // Include the header that defines keyrecord_t
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 

@@ -60,6 +60,7 @@ declare -a compilationdbs=(
     "-km plodah -kb ymdk/yd60mq/keymaps/plodah_jpn"
     "-km plodah -kb ploopyco/trackball_thumb"
     "-km plodah -kb ploopyco/madromys"
+    "-km plodah -kb reviung/reviung41"
 )
 
 if [ "$1" == "clean" ]
