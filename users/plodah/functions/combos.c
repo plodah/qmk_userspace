@@ -135,34 +135,46 @@
     const uint16_t PROGMEM pl_combo_zx[]    = {KC_Z,    KC_X,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_xc[]    = {KC_X,    KC_C,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_cv[]    = {KC_C,    KC_V,                   COMBO_END};
+    const uint16_t PROGMEM pl_combo_zxc[]   = {KC_Z,    KC_X,   KC_C,           COMBO_END};
     const uint16_t PROGMEM pl_combo_xcv[]   = {KC_X,    KC_C,   KC_V,           COMBO_END};
     #if ! defined(PLODAH_COMBOS_LIMITED)
         const uint16_t PROGMEM pl_combo_vb[]     = {KC_V,    KC_B,                    COMBO_END};
     #endif // ! defined(PLODAH_COMBOS_LIMITED)
+
     #if defined(PLODAH_BRM_COMBOS)
         const uint16_t PROGMEM pl_combo_lsz_brm[]     = {KC_LSFT, BRM_ZG,  COMBO_END};
+        const uint16_t PROGMEM pl_combo_zxc_brm[]     = {BRM_ZG,  KC_X,    KC_C,    COMBO_END};
         const uint16_t PROGMEM pl_combo_zx_brm[]      = {BRM_ZG,  KC_X,    COMBO_END};
-        const uint16_t PROGMEM pl_combo_zx_brm2[]     = {KC_Z,    BRM_XA,  COMBO_END};
-        const uint16_t PROGMEM pl_combo_zx_brm3[]     = {BRM_ZG,  BRM_XA,  COMBO_END};
-        const uint16_t PROGMEM pl_combo_xc_brm[]      = {BRM_XA,  KC_C,    COMBO_END};
-        const uint16_t PROGMEM pl_combo_xc_brm2[]     = {KC_X,    BRM_CS,  COMBO_END};
-        const uint16_t PROGMEM pl_combo_xc_brm3[]     = {BRM_XA,  BRM_CS,  COMBO_END};
-        const uint16_t PROGMEM pl_combo_cv_brm[]      = {BRM_CS,  KC_V,    COMBO_END};
-        const uint16_t PROGMEM pl_combo_cv_brm2[]     = {KC_C,    BRM_VC,  COMBO_END};
-        const uint16_t PROGMEM pl_combo_cv_brm3[]     = {BRM_CS,  BRM_VC,  COMBO_END};
 
-        const uint16_t PROGMEM pl_combo_xcv_brm[]     = {BRM_XA,  KC_C,    KC_V,    COMBO_END};
-        const uint16_t PROGMEM pl_combo_xcv_brm2[]    = {KC_X,    BRM_CS,  KC_V,    COMBO_END};
-        const uint16_t PROGMEM pl_combo_xcv_brm3[]    = {KC_X,    KC_C,    BRM_VC,  COMBO_END};
-        const uint16_t PROGMEM pl_combo_xcv_brm4[]    = {BRM_XA,  BRM_CS,  KC_V,    COMBO_END};
-        const uint16_t PROGMEM pl_combo_xcv_brm5[]    = {BRM_XA,  KC_C,    BRM_VC,  COMBO_END};
-        const uint16_t PROGMEM pl_combo_xcv_brm6[]    = {KC_X,    BRM_CS,  BRM_VC,  COMBO_END};
-        const uint16_t PROGMEM pl_combo_xcv_brm7[]    = {BRM_XA,  BRM_CS,  BRM_VC,  COMBO_END};
-        #if ! defined(PLODAH_COMBOS_LIMITED)
+        #if ! (defined(PLODAH_COMBOS_LIMITED) || defined(PLODAH_COMBOS_BRM_LIMITED))
+            const uint16_t PROGMEM pl_combo_zx_brm2[]     = {KC_Z,    BRM_XA,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_zx_brm3[]     = {BRM_ZG,  BRM_XA,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_xc_brm[]      = {BRM_XA,  KC_C,    COMBO_END};
+            const uint16_t PROGMEM pl_combo_xc_brm2[]     = {KC_X,    BRM_CS,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_xc_brm3[]     = {BRM_XA,  BRM_CS,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_cv_brm[]      = {BRM_CS,  KC_V,    COMBO_END};
+            const uint16_t PROGMEM pl_combo_cv_brm2[]     = {KC_C,    BRM_VC,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_cv_brm3[]     = {BRM_CS,  BRM_VC,  COMBO_END};
+
+            const uint16_t PROGMEM pl_combo_zxc_brm2[]    = {KC_Z,    BRM_XA,  KC_C,    COMBO_END};
+            const uint16_t PROGMEM pl_combo_zxc_brm3[]    = {KC_Z,    KC_X,    BRM_CS,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_zxc_brm4[]    = {BRM_ZG,  BRM_XA,  KC_C,    COMBO_END};
+            const uint16_t PROGMEM pl_combo_zxc_brm5[]    = {BRM_ZG,  KC_X,    BRM_CS,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_zxc_brm6[]    = {KC_Z,    BRM_XA,  BRM_CS,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_zxc_brm7[]    = {BRM_ZG,  BRM_XA,  BRM_CS,  COMBO_END};
+
+            const uint16_t PROGMEM pl_combo_xcv_brm[]     = {BRM_XA,  KC_C,    KC_V,    COMBO_END};
+            const uint16_t PROGMEM pl_combo_xcv_brm2[]    = {KC_X,    BRM_CS,  KC_V,    COMBO_END};
+            const uint16_t PROGMEM pl_combo_xcv_brm3[]    = {KC_X,    KC_C,    BRM_VC,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_xcv_brm4[]    = {BRM_XA,  BRM_CS,  KC_V,    COMBO_END};
+            const uint16_t PROGMEM pl_combo_xcv_brm5[]    = {BRM_XA,  KC_C,    BRM_VC,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_xcv_brm6[]    = {KC_X,    BRM_CS,  BRM_VC,  COMBO_END};
+            const uint16_t PROGMEM pl_combo_xcv_brm7[]    = {BRM_XA,  BRM_CS,  BRM_VC,  COMBO_END};
+
             const uint16_t PROGMEM pl_combo_vb_brm[]      = {BRM_VC,  KC_B,    COMBO_END};
             const uint16_t PROGMEM pl_combo_vb_brm2[]     = {KC_V,    BRM_BG,  COMBO_END};
             const uint16_t PROGMEM pl_combo_vb_brm3[]     = {BRM_VC,  BRM_BG,  COMBO_END};
-        #endif // ! defined(PLODAH_COMBOS_LIMITED)
+        #endif // ! (defined(PLODAH_COMBOS_LIMITED) || defined(PLODAH_COMBOS_BRM_LIMITED))
     #endif // defined(PLODAH_BRM_COMBOS)
 
     const uint16_t PROGMEM pl_combo_volud[] = {KC_VOLU, KC_VOLD,                COMBO_END};
@@ -321,35 +333,47 @@
         COMBO(pl_combo_zx,    C(KC_X)    ),
         COMBO(pl_combo_xc,    C(KC_C)    ),
         COMBO(pl_combo_cv,    C(KC_V)    ),
+        COMBO(pl_combo_zxc,   C(S(KC_C)) ),
         COMBO(pl_combo_xcv,   C(S(KC_V)) ),
         #if ! defined(PLODAH_COMBOS_LIMITED)
             COMBO(pl_combo_vb,    C(KC_B)    ),
         #endif // ! defined(PLODAH_COMBOS_LIMITED)
 
         #if defined(PLODAH_BRM_COMBOS)
-            COMBO(pl_combo_lsz_brm,     C(KC_Z)),
-            COMBO(pl_combo_zx_brm,      C(KC_X)),
-            COMBO(pl_combo_zx_brm2,     C(KC_X)),
-            COMBO(pl_combo_zx_brm3,     C(KC_X)),
-            COMBO(pl_combo_xc_brm,      C(KC_C)),
-            COMBO(pl_combo_xc_brm2,     C(KC_C)),
-            COMBO(pl_combo_xc_brm3,     C(KC_C)),
-            COMBO(pl_combo_cv_brm,      C(KC_V)),
-            COMBO(pl_combo_cv_brm2,     C(KC_V)),
-            COMBO(pl_combo_cv_brm3,     C(KC_V)),
 
-            COMBO(pl_combo_xcv_brm,   C(S(KC_V))),
-            COMBO(pl_combo_xcv_brm2,  C(S(KC_V))),
-            COMBO(pl_combo_xcv_brm3,  C(S(KC_V))),
-            COMBO(pl_combo_xcv_brm4,  C(S(KC_V))),
-            COMBO(pl_combo_xcv_brm5,  C(S(KC_V))),
-            COMBO(pl_combo_xcv_brm6,  C(S(KC_V))),
-            COMBO(pl_combo_xcv_brm7,  C(S(KC_V))),
-            #if ! defined(PLODAH_COMBOS_LIMITED)
+            COMBO(pl_combo_lsz_brm,     C(KC_Z)),
+            COMBO(pl_combo_zxc_brm,   C(S(KC_C))),
+            COMBO(pl_combo_zx_brm,      C(KC_X)),
+
+            #if ! (defined(PLODAH_COMBOS_LIMITED) || defined(PLODAH_COMBOS_BRM_LIMITED))
+                COMBO(pl_combo_zx_brm2,     C(KC_X)),
+                COMBO(pl_combo_zx_brm3,     C(KC_X)),
+                COMBO(pl_combo_xc_brm,      C(KC_C)),
+                COMBO(pl_combo_xc_brm2,     C(KC_C)),
+                COMBO(pl_combo_xc_brm3,     C(KC_C)),
+                COMBO(pl_combo_cv_brm,      C(KC_V)),
+                COMBO(pl_combo_cv_brm2,     C(KC_V)),
+                COMBO(pl_combo_cv_brm3,     C(KC_V)),
+
+                COMBO(pl_combo_zxc_brm2,  C(S(KC_C))),
+                COMBO(pl_combo_zxc_brm3,  C(S(KC_C))),
+                COMBO(pl_combo_zxc_brm4,  C(S(KC_C))),
+                COMBO(pl_combo_zxc_brm5,  C(S(KC_C))),
+                COMBO(pl_combo_zxc_brm6,  C(S(KC_C))),
+                COMBO(pl_combo_zxc_brm7,  C(S(KC_C))),
+
+                COMBO(pl_combo_xcv_brm,   C(S(KC_V))),
+                COMBO(pl_combo_xcv_brm2,  C(S(KC_V))),
+                COMBO(pl_combo_xcv_brm3,  C(S(KC_V))),
+                COMBO(pl_combo_xcv_brm4,  C(S(KC_V))),
+                COMBO(pl_combo_xcv_brm5,  C(S(KC_V))),
+                COMBO(pl_combo_xcv_brm6,  C(S(KC_V))),
+                COMBO(pl_combo_xcv_brm7,  C(S(KC_V))),
+
                 COMBO(pl_combo_vb_brm,      C(KC_B)),
                 COMBO(pl_combo_vb_brm2,     C(KC_B)),
                 COMBO(pl_combo_vb_brm3,     C(KC_B)),
-            #endif // ! defined(PLODAH_COMBOS_LIMITED)
+            #endif // ! (defined(PLODAH_COMBOS_LIMITED) || defined(PLODAH_COMBOS_BRM_LIMITED))
         #endif // defined(PLODAH_BRM_COMBOS)
 
         COMBO(pl_combo_volud, KC_MUTE ),
