@@ -39,7 +39,7 @@
   const char *autocorrect_display( char* corrected ) {
     char * str;
     char * str2;
-    str = malloc(sizeof(char)*10);
+    str = malloc(sizeof(char)*25);
     str2 = malloc(sizeof(char)*10);
     strcpy(str, corrected);
     strcat(str, "          ");

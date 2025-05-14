@@ -1,10 +1,10 @@
 #pragma once
 
-// #define CM_QFTR_DISABLED
+#define CM_QFTR_DISABLED
 #define CM_QLYR_DISABLED
 #define CM_QTAP_DISABLED
 // #define CM_QVER_DISABLED
-// #define CM_QRGB_DISABLED
+#define CM_QRGB_DISABLED
 
 // #define PLODAH_CAPS_INDIC_HSV HSV_MAGENTA
 // #define PLODAH_LAYER_INDIC_INDEX1 6
