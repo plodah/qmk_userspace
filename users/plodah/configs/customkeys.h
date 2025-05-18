@@ -28,6 +28,7 @@
 #define P_ENTFA LT(_FNA, KC_ENT)
 #define P_ENTFB LT(_FNB, KC_ENT)
 #define P_HOMFC LT(_FNC, KC_HOME)
+#define P_ENDFC LT(_FNC, KC_END)
 #define P_FNA MO(_FNA)
 #define P_FNB MO(_FNB)
 #define P_FNC MO(_FNC)
