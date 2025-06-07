@@ -115,7 +115,7 @@
             const uint16_t PROGMEM pl_combo_hj_hrm2[]     = {HRM_HG,  KC_J,   COMBO_END};
             const uint16_t PROGMEM pl_combo_hj_hrm3[]     = {HRM_HG,  HRM_JC, COMBO_END};
 
-            const uint16_t PROGMEM pl_combo_dk_hrm[]      = {HRM_DS,  HRM_KS, COMBO_END};
+            // const uint16_t PROGMEM pl_combo_dk_hrm[]      = {HRM_DS,  HRM_KS, COMBO_END};
 
             const uint16_t PROGMEM pl_combo_mk_hrm[]      = {HRM_KS,  KC_K, COMBO_END};
             const uint16_t PROGMEM pl_combo_mk2_hrm[]     = {KC_M,    HRM_KS, COMBO_END};
@@ -311,7 +311,7 @@
                 COMBO(pl_combo_hj_hrm2,     C(KC_J)),
                 COMBO(pl_combo_hj_hrm3,     C(KC_J)),
 
-                COMBO(pl_combo_dk_hrm,      CW_TOGG),
+                // COMBO(pl_combo_dk_hrm,      CW_TOGG),
 
                 COMBO(pl_combo_mk_hrm,      QK_MAKE),
                 COMBO(pl_combo_mk2_hrm,     QK_MAKE),
