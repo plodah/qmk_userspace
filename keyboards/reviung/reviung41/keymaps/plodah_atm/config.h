@@ -9,8 +9,10 @@
 
 #define TURBO_FIRE_KEY_A KC_BTN1
 #define CHORDAL_HOLD
+#define COMBOFLOW_ENABLE
+#define COMBOFLOW_TERM 110
 
-// #define PLODAH_BORING_LAYER _BASE
+#define PLODAH_BORING_LAYER _BASE
 
 #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
   // #define MSJIGGLER_NOINTRO
@@ -42,8 +44,8 @@
 
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
-  #include "configs/rgblight-effects-few.h"
-  #include "configs/rgblight-config.h"
+  #include "configs/rgblight-effects-fewer.h"
+  #include "configs/rgblight-config-fewer.h"
   #define PLODAH_REPEATHOLD_RGB
   // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGBLIGHT_ENABLE

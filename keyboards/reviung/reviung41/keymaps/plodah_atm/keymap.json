@@ -23,14 +23,14 @@
             "invert_on_shift": true
         },
         "dynamic_keymap": {
-            "layer_count": 4
+            "layer_count": 10
         },
         "features": {
             "auto_shift": false,
             "autocorrect": true,
             "backlight": false,
             "bootmagic": true,
-            "caps_word": false,
+            "caps_word": true,
             "combo": true,
             "command": false,
             "console": false,
@@ -46,7 +46,7 @@
             "rgblight": true,
             "rgb_matrix": false,
             "space_cadet": false,
-            "tap_dance": false,
+            "tap_dance": true,
             "tri_layer": false,
             "via": false
         },
