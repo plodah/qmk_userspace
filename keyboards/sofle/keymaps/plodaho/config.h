@@ -23,12 +23,22 @@
 
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "oQwer", "oCole", "oFn A", "oFn B", "Mouse", "Tenth" }
 
-// #define ACHORDION_STREAK
 #define CHORDAL_HOLD
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 // #define TASKSWITCH_FORCE_NDE
+
 #define PLODAH_BORING_LAYER _O_QWEA
+
+#ifdef QUICK_TAP_TERM
+  #undef QUICK_TAP_TERM
+#endif
+#define QUICK_TAP_TERM 60
+
+#ifdef FLOW_TAP_TERM
+  #undef FLOW_TAP_TERM
+#endif
+#define FLOW_TAP_TERM 150
 
 #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
   // #define MSJIGGLER_NOINTRO
@@ -61,11 +71,6 @@
   #define PLODAH_HRM_COMBOS
   #define PLODAH_BRM_COMBOS
 #endif
-
-#ifdef QUICK_TAP_TERM
-  #undef QUICK_TAP_TERM
-#endif
-#define QUICK_TAP_TERM 60
 
 #if defined(DYNAMIC_MACRO_ENABLE)
   #define PLODAH_DYNAMIC_MACRO_KCS_ENABLE

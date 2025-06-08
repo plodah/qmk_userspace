@@ -8,9 +8,26 @@
 #define CM_QVER_DISABLED
 #define CM_QRGB_DISABLED
 
-// #define ACHORDION_STREAK
+#ifdef COMBO_ENABLE
+  #define PLODAH_HRM_COMBOS
+  #define PLODAH_BRM_COMBOS
+  #define PLODAH_COMBOS_BRM_LIMITED
+  #define PLODAH_COMBOS_LIMITED
+#endif
+
+#define CHORDAL_HOLD
 
 #define PLODAH_BORING_LAYER 1
+
+#ifdef QUICK_TAP_TERM
+  #undef QUICK_TAP_TERM
+#endif
+#define QUICK_TAP_TERM 60
+
+#ifdef FLOW_TAP_TERM
+  #undef FLOW_TAP_TERM
+#endif
+#define FLOW_TAP_TERM 150
 
 #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
   // #define MSJIGGLER_NOINTRO
@@ -23,16 +40,5 @@
 
 #include "configs/backlight-common.h"
 #define SPLIT_LED_STATE_ENABLE
-
-#ifdef COMBO_ENABLE
-  #define PLODAH_HRM_COMBOS
-  #define PLODAH_BRM_COMBOS
-  #define PLODAH_COMBOS_BRM_LIMITED
-#endif
-
-#ifdef QUICK_TAP_TERM
-  #undef QUICK_TAP_TERM
-#endif
-#define QUICK_TAP_TERM 60
 
 #include "plodah.h"

@@ -90,13 +90,6 @@
       if(plodah_typingindicator_active){
         rgb_matrix_set_color(PLODAH_TYPINGINDICATOR_RGBINDEX, typnrgb.r, typnrgb.g, typnrgb.b);
       }
-      #if defined(COMMUNITY_MODULE_ACHORDION_ENABLE) && defined(PLODAH_ACHORDIONINDICATOR_HSV) && defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
-        #include "achordion.h"
-        RGB achorgb = hsv_to_rgb( plodah_rgblimit_ind( rgb_matrix_get_hsv(), PLODAH_ACHORDIONINDICATOR_HSV, PLODAH_INDICATOR_MINVAL ) );
-        if(achordion_state == STATE_UNSETTLED || achordion_state == STATE_RECURSING){
-          rgb_matrix_set_color(PLODAH_TYPINGINDICATOR_RGBINDEX, achorgb.r, achorgb.g, achorgb.b);
-        }
-      #endif // COMMUNITY_MODULE_ACHORDION_ENABLE
     #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
 
     #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX)
