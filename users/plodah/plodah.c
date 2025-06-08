@@ -11,6 +11,7 @@
 #include "functions/chordal_hold.c"
 #include "functions/debug.c"
 #include "functions/dipswitch.c"
+#include "functions/flow_tap.c"
 #include "functions/better_dragscroll.c"
 #include "functions/dynamic_macros.c"
 #include "functions/mouse_gesture.c"
