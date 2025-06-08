@@ -9,6 +9,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     process_record_typing_indicator(keycode, record);
   #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
 
+  #if defined (COMBO_ENABLE) && defined(DEFERRED_EXEC_ENABLE) && defined(COMBOFLOW_ENABLE)
+    process_record_comboflow(keycode, record);
+  #endif // defined(DEFERRED_EXEC_ENABLE) && defined(COMBOFLOW_ENABLE)
+
   #if defined(BETTER_DRAGSCROLL)
     process_record_better_dragscroll(keycode, record);
   #endif // defined(BETTER_DRAGSCROLL)

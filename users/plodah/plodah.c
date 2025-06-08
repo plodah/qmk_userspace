@@ -9,6 +9,7 @@
 #include "functions/autocorrect.c"
 #include "functions/caps_word.c"
 #include "functions/chordal_hold.c"
+#include "functions/comboflow.c"
 #include "functions/debug.c"
 #include "functions/dipswitch.c"
 #include "functions/flow_tap.c"
