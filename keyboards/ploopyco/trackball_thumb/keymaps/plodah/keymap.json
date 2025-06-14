@@ -31,7 +31,7 @@
             "caps_word": false,
             "combo": true,
             "command": false,
-            "console": true,
+            "console": false,
             "deferred_exec": true,
             "dynamic_macro": false,
             "dynamic_tapping_term": false,
@@ -44,7 +44,7 @@
             "rgblight": false,
             "rgb_matrix": false,
             "space_cadet": false,
-            "tap_dance": false,
+            "tap_dance": true,
             "tri_layer": false,
             "via": true
         },

@@ -12,8 +12,14 @@
     #define BETTER_DRAGSCROLL_DIVISOR_V 4
 #endif
 
+#if !defined(BETTER_DRAGSCROLL_VOLUME_DIVISOR)
+    #define BETTER_DRAGSCROLL_VOLUME_DIVISOR 8
+#endif
+
 bool better_dragscroll_enabled_bylock;
 bool better_dragscroll_enabled_bypress;
+bool better_dragscroll_volume_enabled;
+bool better_dragscroll_straighten_enable;
 
 void better_dragscroll_toggle(bool pressed);
 void better_dragscroll_momentary(bool pressed);

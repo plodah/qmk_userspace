@@ -25,7 +25,7 @@
             "caps_word": false,
             "combo": false,
             "command": false,
-            "console": true,
+            "console": false,
             "deferred_exec": true,
             "dynamic_macro": false,
             "dynamic_tapping_term": false,

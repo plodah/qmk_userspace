@@ -8,87 +8,17 @@
     },
     "customKeycodes": [
         { "name": "DPI Config", "title": "DPI Config", "shortName": "DPI" },
-        { "name": "Drag Scroll", "title": "Drag Scroll", "shortName": "DragScl" },
-        { "name": "Extra 1", "title": "Extra 1", "shortName": "Extra1" },
-        { "name": "Extra 2", "title": "Extra 2", "shortName": "Extra2" },
-        { "name": "Extra 3", "title": "Extra 3", "shortName": "Extra3" },
-        { "name": "Extra 4", "title": "Extra 4", "shortName": "Extra4" },
-        { "name": "Extra 5", "title": "Extra 5", "shortName": "Extra5" },
-        { "name": "Extra 6", "title": "Extra 6", "shortName": "Extra6" },
-        { "name": "Extra 7", "title": "Extra 7", "shortName": "Extra7" },
-        { "name": "Extra 8", "title": "Extra 8", "shortName": "Extra8" },
-        { "name": "Extra 9", "title": "Extra 9", "shortName": "Extra9" },
-        { "name": "Extra 10", "title": "Extra 10", "shortName": "Extra10" },
-        { "name": "Extra 11", "title": "Extra 11", "shortName": "Extra11" },
-        { "name": "Extra 12", "title": "Extra 12", "shortName": "Extra12" },
-        { "name": "Extra 13", "title": "Extra 13", "shortName": "Extra13" },
-        { "name": "Extra 14", "title": "Extra 14", "shortName": "Extra14" },
-        { "name": "Extra 15", "title": "Extra 15", "shortName": "Extra15" },
-        { "name": "Extra 16", "title": "Extra 16", "shortName": "Extra16" },
-        { "name": "Extra 17", "title": "Extra 17", "shortName": "Extra17" },
-        { "name": "Extra 18", "title": "Extra 18", "shortName": "Extra18" },
-        { "name": "Extra 19", "title": "Extra 19", "shortName": "Extra19" },
-        { "name": "Extra 20", "title": "Extra 20", "shortName": "Extra20" },
-        { "name": "Extra 21", "title": "Extra 21", "shortName": "Extra21" },
-        { "name": "Extra 22", "title": "Extra 22", "shortName": "Extra22" },
-        { "name": "Extra 23", "title": "Extra 23", "shortName": "Extra23" },
-        { "name": "Extra 24", "title": "Extra 24", "shortName": "Extra24" },
-        { "name": "Extra 25", "title": "Extra 25", "shortName": "Extra25" },
-        { "name": "Extra 26", "title": "Extra 26", "shortName": "Extra26" },
-        { "name": "Extra 27", "title": "Extra 27", "shortName": "Extra27" },
-        { "name": "Extra 28", "title": "Extra 28", "shortName": "Extra28" },
-        { "name": "Extra 29", "title": "Extra 29", "shortName": "Extra29" },
-        { "name": "Extra 30", "title": "Extra 30", "shortName": "Extra30" },
-        { "name": "Extra 31", "title": "Extra 31", "shortName": "Extra31" },
-        { "name": "Extra 32", "title": "Extra 32", "shortName": "Extra32" },
-        { "name": "Extra 33", "title": "Extra 33", "shortName": "Extra33" },
-        { "name": "Extra 34", "title": "Extra 34", "shortName": "Extra34" },
-        { "name": "Extra 35", "title": "Extra 35", "shortName": "Extra35" },
-        { "name": "Extra 36", "title": "Extra 36", "shortName": "Extra36" },
-        { "name": "Extra 37", "title": "Extra 37", "shortName": "Extra37" },
-        { "name": "Extra 38", "title": "Extra 38", "shortName": "Extra38" },
-        { "name": "Extra 39", "title": "Extra 39", "shortName": "Extra39" },
-        { "name": "Extra 40", "title": "Extra 40", "shortName": "Extra40" },
-        { "name": "Extra 41", "title": "Extra 41", "shortName": "Extra41" },
-        { "name": "Extra 42", "title": "Extra 42", "shortName": "Extra42" },
-        { "name": "Extra 43", "title": "Extra 43", "shortName": "Extra43" },
-        { "name": "Extra 44", "title": "Extra 44", "shortName": "Extra44" },
-        { "name": "Extra 45", "title": "Extra 45", "shortName": "Extra45" },
-        { "name": "Extra 46", "title": "Extra 46", "shortName": "Extra46" },
-        { "name": "Extra 47", "title": "Extra 47", "shortName": "Extra47" },
-        { "name": "Extra 48", "title": "Extra 48", "shortName": "Extra48" },
-        { "name": "Extra 49", "title": "Extra 49", "shortName": "Extra49" },
-        { "name": "Extra 50", "title": "Extra 50", "shortName": "Extra50" },
-        { "name": "Extra 51", "title": "Extra 51", "shortName": "Extra51" },
-        { "name": "Extra 52", "title": "Extra 52", "shortName": "Extra52" },
-        { "name": "Extra 53", "title": "Extra 53", "shortName": "Extra53" },
-        { "name": "Extra 54", "title": "Extra 54", "shortName": "Extra54" },
-        { "name": "Extra 55", "title": "Extra 55", "shortName": "Extra55" },
-        { "name": "Extra 56", "title": "Extra 56", "shortName": "Extra56" },
-        { "name": "Extra 57", "title": "Extra 57", "shortName": "Extra57" },
-        { "name": "Extra 58", "title": "Extra 58", "shortName": "Extra58" },
-        { "name": "Extra 59", "title": "Extra 59", "shortName": "Extra59" },
-        { "name": "Extra 60", "title": "Extra 60", "shortName": "Extra60" },
-        { "name": "Extra 61", "title": "Extra 61", "shortName": "Extra61" },
-        { "name": "Extra 62", "title": "Extra 62", "shortName": "Extra62" },
-        { "name": "Extra 63", "title": "Extra 63", "shortName": "Extra63" },
-        { "name": "Extra 64", "title": "Extra 64", "shortName": "Extra64" },
-        { "name": "Extra 65", "title": "Extra 65", "shortName": "Extra65" },
-        { "name": "Extra 66", "title": "Extra 66", "shortName": "Extra66" },
-        { "name": "Extra 67", "title": "Extra 67", "shortName": "Extra67" },
-        { "name": "Extra 68", "title": "Extra 68", "shortName": "Extra68" },
-        { "name": "Extra 69", "title": "Extra 69", "shortName": "Extra69" },
-        { "name": "Extra 70", "title": "Extra 70", "shortName": "Extra70" },
-        { "name": "Extra 71", "title": "Extra 71", "shortName": "Extra71" },
-        { "name": "Extra 72", "title": "Extra 72", "shortName": "Extra72" },
-        { "name": "Extra 73", "title": "Extra 73", "shortName": "Extra73" },
-        { "name": "Extra 74", "title": "Extra 74", "shortName": "Extra74" },
-        { "name": "Extra 75", "title": "Extra 75", "shortName": "Extra75" },
-        { "name": "Extra 76", "title": "Extra 76", "shortName": "Extra76" },
-        { "name": "Extra 77", "title": "Extra 77", "shortName": "Extra77" },
-        { "name": "Extra 78", "title": "Extra 78", "shortName": "Extra78" },
-        { "name": "Extra 79", "title": "Extra 79", "shortName": "Extra79" },
-        { "name": "Extra 80", "title": "Extra 80", "shortName": "Extra80" }
+        { "name": "Ploopy Drag Scroll", "title": "Ploopy Drag Scroll", "shortName": "DragScl" },
+        { "name": "Better DragSc Moment", "title": "Better Drag Scroll Momentary", "shortName": "Drg Mo" },
+        { "name": "Better DragSc Toggle", "title": "Better Drag Scroll Toggle", "shortName": "Drg Tg" },
+        { "name": "Mouse Jiggler Toggle", "title": "Mouse Jiggler Toggle", "shortName": "MsJig" },
+        { "name": "Task Switch Next", "title": "Task Switcher Next", "shortName": "Tsk N" },
+        { "name": "Task Switch Prev", "title": "Task Switcher Previous", "shortName": "Tsk P" },
+        { "name": "Sniper A Mo", "title": "Sniper A Momentary", "shortName": "SnpA Mo" },
+        { "name": "Sniper A Tg", "title": "Sniper A Toggle", "shortName": "SnpA Tg" },
+        { "name": "Sniper B Mo", "title": "Sniper B Momentary", "shortName": "SnpB Mo" },
+        { "name": "Sniper B Tg", "title": "Sniper B Toggle", "shortName": "SnpB Tg" },
+        { "name": "Better DragSc Volume", "title": "Better Drag Scroll Volume", "shortName": "Drg Vol" }
     ],
     "layouts": {
         "keymap": [
@@ -146,7 +76,7 @@
                                 ["4", 3],
                                 ["5", 4]
                             ],
-                            "content": ["id_ploopystuff_dpi_preset", 0, 1]
+                            "content": ["id_ploopystuff_dpi_activepreset", 0, 1]
                         },
                         {
                             "label": "DPI Multiplier",
@@ -222,12 +152,71 @@
                                 ["Mouse Jiggler", 2]
                             ],
                             "content": ["id_ploopystuff_gesture_action_v", 0, 13]
+                        },
+                        {
+                            "label": "Combos Enable",
+                            "type": "toggle",
+                            "content": ["id_ploopystuff_combos_enabled", 0, 14]
                         }
                     ]
                 },
                 {
                     "label": "Dragscroll",
                     "content": [
+                        {
+                            "label": "Dragscroll Divisor X",
+                            "type": "dropdown",
+                            "options": [
+                                ["1", 4],
+                                ["1.5", 6],
+                                ["2", 8],
+                                ["2.5", 10],
+                                ["3", 12],
+                                ["3.5", 14],
+                                ["4", 16],
+                                ["4.5", 18],
+                                ["5", 20],
+                                ["6", 24],
+                                ["7", 28],
+                                ["8", 32],
+                                ["10", 40],
+                                ["12", 48],
+                                ["16", 64],
+                                ["20", 80],
+                                ["24", 96],
+                                ["32", 128],
+                                ["48", 192],
+                                ["64", 255]
+                            ],
+                            "content": ["id_ploopystuff_dragscroll_divisor_h", 0, 23]
+                        },
+                        {
+                            "label": "Dragscroll Divisor Y",
+                            "type": "dropdown",
+                            "options": [
+                                ["1", 4],
+                                ["1.5", 6],
+                                ["2", 8],
+                                ["2.5", 10],
+                                ["3", 12],
+                                ["3.5", 14],
+                                ["4", 16],
+                                ["4.5", 18],
+                                ["5", 20],
+                                ["6", 24],
+                                ["7", 28],
+                                ["8", 32],
+                                ["10", 40],
+                                ["12", 48],
+                                ["16", 64],
+                                ["20", 80],
+                                ["24", 96],
+                                ["32", 128],
+                                ["48", 192],
+                                ["64", 255]
+                            ],
+                            "content": ["id_ploopystuff_dragscroll_divisor_v", 0, 24]
+                        },
                         {
                             "label": "Dragscroll Invert X",
                             "type": "toggle",
@@ -239,19 +228,64 @@
                             "content": ["id_ploopystuff_dragscroll_invert_v", 0, 22]
                         },
                         {
+                            "label": "Dragscroll Straighten",
+                            "type": "dropdown",
+                            "options": [
+                                ["Off",    0],
+                                ["25%",   25],
+                                ["50%",   50],
+                                ["75%",   75],
+                                ["85%",   85],
+                                ["90%",   90],
+                                ["95%",   95],
+                                ["100%", 100]
+                            ],
+                            "content": ["id_ploopystuff_dragscroll_straighten_enabled", 0, 51]
+                        }
+                    ]
+                },
+                {
+                    "label": "Moar Dragscroll",
+                    "content": [
+                        {
                             "label": "Dragscroll on Caps Lock",
-                            "type": "toggle",
-                            "content": ["id_ploopystuff_dragscroll_caps", 0, 23]
+                            "type": "dropdown",
+                            "options": [
+                                ["Off", 0],
+                                ["Scroll while enabled", 1],
+                                ["Scroll while disabled", 2]
+                            ],
+                            "content": ["id_ploopystuff_dragscroll_caps", 0, 25]
                         },
                         {
                             "label": "Dragscroll on Num Lock",
-                            "type": "toggle",
-                            "content": ["id_ploopystuff_dragscroll_num", 0, 24]
+                            "type": "dropdown",
+                            "options": [
+                                ["Off", 0],
+                                ["Scroll while enabled", 1],
+                                ["Scroll while disabled", 2]
+                            ],
+                            "content": ["id_ploopystuff_dragscroll_num", 0, 26]
                         },
                         {
                             "label": "Dragscroll on Scroll Lock",
+                            "type": "dropdown",
+                            "options": [
+                                ["Off", 0],
+                                ["Scroll while enabled", 1],
+                                ["Scroll while disabled", 2]
+                            ],
+                            "content": ["id_ploopystuff_dragscroll_scroll", 0, 27]
+                        },
+                        {
+                            "label": "Dragscroll on Permanently",
                             "type": "toggle",
-                            "content": ["id_ploopystuff_dragscroll_scroll", 0, 25]
+                            "content": ["id_ploopystuff_dragscroll_permanently", 0, 29]
+                        },
+                        {
+                            "label": "Dragscroll end on keypress",
+                            "type": "toggle",
+                            "content": ["id_ploopystuff_dragscroll_end_on_keypress", 0, 28]
                         }
                     ]
                 },
@@ -263,13 +297,9 @@
                             "type": "dropdown",
                             "options": [
                                 ["100", 10],
-                                ["150", 15],
                                 ["200", 20],
-                                ["250", 25],
                                 ["300", 30],
-                                ["350", 35],
                                 ["400", 40],
-                                ["450", 45],
                                 ["500", 50],
                                 ["600", 60],
                                 ["700", 70],
@@ -278,22 +308,20 @@
                                 ["1000", 100],
                                 ["1200", 120],
                                 ["1400", 140],
-                                ["1600", 160]
+                                ["1600", 160],
+                                ["2000", 200],
+                                ["2400", 240]
                             ],
-                            "content": ["id_ploopystuff_dpi_preset[0]", 0, 31, 0]
+                            "content": ["id_ploopystuff_dpi_presets[0]", 0, 31, 0]
                         },
                         {
                             "label": "Preset 2",
                             "type": "dropdown",
                             "options": [
                                 ["100", 10],
-                                ["150", 15],
                                 ["200", 20],
-                                ["250", 25],
                                 ["300", 30],
-                                ["350", 35],
                                 ["400", 40],
-                                ["450", 45],
                                 ["500", 50],
                                 ["600", 60],
                                 ["700", 70],
@@ -302,22 +330,20 @@
                                 ["1000", 100],
                                 ["1200", 120],
                                 ["1400", 140],
-                                ["1600", 160]
+                                ["1600", 160],
+                                ["2000", 200],
+                                ["2400", 240]
                             ],
-                            "content": ["id_ploopystuff_dpi_preset[1]", 0, 31, 1]
+                            "content": ["id_ploopystuff_dpi_presets[1]", 0, 31, 1]
                         },
                         {
                             "label": "Preset 3",
                             "type": "dropdown",
                             "options": [
                                 ["100", 10],
-                                ["150", 15],
                                 ["200", 20],
-                                ["250", 25],
                                 ["300", 30],
-                                ["350", 35],
                                 ["400", 40],
-                                ["450", 45],
                                 ["500", 50],
                                 ["600", 60],
                                 ["700", 70],
@@ -326,22 +352,20 @@
                                 ["1000", 100],
                                 ["1200", 120],
                                 ["1400", 140],
-                                ["1600", 160]
+                                ["1600", 160],
+                                ["2000", 200],
+                                ["2400", 240]
                             ],
-                            "content": ["id_ploopystuff_dpi_preset[2]", 0, 31, 2]
+                            "content": ["id_ploopystuff_dpi_presets[2]", 0, 31, 2]
                         },
                         {
                             "label": "Preset 4",
                             "type": "dropdown",
                             "options": [
                                 ["100", 10],
-                                ["150", 15],
                                 ["200", 20],
-                                ["250", 25],
                                 ["300", 30],
-                                ["350", 35],
                                 ["400", 40],
-                                ["450", 45],
                                 ["500", 50],
                                 ["600", 60],
                                 ["700", 70],
@@ -350,12 +374,41 @@
                                 ["1000", 100],
                                 ["1200", 120],
                                 ["1400", 140],
-                                ["1600", 160]
+                                ["1600", 160],
+                                ["2000", 200],
+                                ["2400", 240]
                             ],
-                            "content": ["id_ploopystuff_dpi_preset[3]", 0, 31, 3]
+                            "content": ["id_ploopystuff_dpi_presets[3]", 0, 31, 3]
                         },
                         {
                             "label": "Preset 5",
+                            "type": "dropdown",
+                            "options": [
+                                ["100", 10],
+                                ["200", 20],
+                                ["300", 30],
+                                ["400", 40],
+                                ["500", 50],
+                                ["600", 60],
+                                ["700", 70],
+                                ["800", 80],
+                                ["900", 90],
+                                ["1000", 100],
+                                ["1200", 120],
+                                ["1400", 140],
+                                ["1600", 160],
+                                ["2000", 200],
+                                ["2400", 240]
+                            ],
+                            "content": ["id_ploopystuff_dpi_presets[4]", 0, 31, 4]
+                        }
+                    ]
+                },
+                {
+                    "label": "Sniper DPIs",
+                    "content": [
+                        {
+                            "label": "Sniper DPI A",
                             "type": "dropdown",
                             "options": [
                                 ["100", 10],
@@ -366,17 +419,25 @@
                                 ["350", 35],
                                 ["400", 40],
                                 ["450", 45],
-                                ["500", 50],
-                                ["600", 60],
-                                ["700", 70],
-                                ["800", 80],
-                                ["900", 90],
-                                ["1000", 100],
-                                ["1200", 120],
-                                ["1400", 140],
-                                ["1600", 160]
+                                ["500", 50]
                             ],
-                            "content": ["id_ploopystuff_dpi_preset[4]", 0, 31, 4]
+                            "content": ["id_ploopystuff_sniper_a_dpi", 0, 41]
+                        },
+                        {
+                            "label": "Sniper DPI B",
+                            "type": "dropdown",
+                            "options": [
+                                ["100", 10],
+                                ["150", 15],
+                                ["200", 20],
+                                ["250", 25],
+                                ["300", 30],
+                                ["350", 35],
+                                ["400", 40],
+                                ["450", 45],
+                                ["500", 50]
+                            ],
+                            "content": ["id_ploopystuff_sniper_b_dpi", 0, 42]
                         }
                     ]
                 }
