@@ -18,7 +18,16 @@
     }
 
     bool process_record_comboflow(uint16_t keycode, keyrecord_t *record) {
-        if(is_combo_enabled()) {
+        if(IS_COMBOEVENT(record->event)){
+            dprintf("COMBOFLOW leave it");
+            if(ComboFlowToken != INVALID_DEFERRED_TOKEN){
+                cancel_deferred_exec(ComboFlowToken);
+            }
+            if(! is_combo_enabled()){
+                combo_enable();
+            }
+        }
+        else if(is_combo_enabled()) {
             combo_disable();
             dprintf("COMBOFLOW disable\n");
             ComboFlowToken = defer_exec(COMBOFLOW_TERM, ComboFlow_reenable, NULL);
