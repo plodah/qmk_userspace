@@ -1,5 +1,11 @@
 #ifdef CHORDAL_HOLD
   #pragma once
+  #include <stdbool.h>
+  #include <stdint.h>
+  #include "action.h"
+  #include "action_tapping.h"
+  #include "debug.h"
+
   bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
     uint16_t other_keycode, keyrecord_t* other_record) {
     if (KC_1 <= other_keycode && other_keycode <= QK_BASIC_MAX) {

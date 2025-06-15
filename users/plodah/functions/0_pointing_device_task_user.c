@@ -4,6 +4,10 @@
     #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
         #include "mouse_jiggler.h"
     #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
+    #include "mouse_gesture.h"
+    #if defined(BETTER_DRAGSCROLL)
+        #include "better_dragscroll.h"
+    #endif // #BETTER_DRAGSCROLL
 
     report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         #if defined(BETTER_DRAGSCROLL)

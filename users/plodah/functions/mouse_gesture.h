@@ -1,5 +1,7 @@
 #pragma once
 
+#include "deferred_exec.h"
+#include "report.h"
 #define PLODAH_MSGESTURE_TIMEOUT 225
 #define PLODAH_MSGESTURE_DEBOUNCE 25
 #define PLODAH_MSGESTURE_COOLDOWN 800

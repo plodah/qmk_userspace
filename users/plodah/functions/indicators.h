@@ -34,3 +34,17 @@
   #endif // !defined(MSJIGGLER_NOINTRO) && !defined(MSJIGGLER_INDICATOR_INTRO_HSV)
 #endif // !defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX)
 
+#if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
+    bool plodah_typingindicator_active = false;
+    uint16_t plodah_typingindicator_timer = 0;
+
+    #ifndef PLODAH_TYPINGINDICATOR_HSV
+      #define PLODAH_TYPINGINDICATOR_HSV HSV_RED
+    #endif //PLODAH_TYPINGINDICATOR_HSV
+
+    #ifndef PLODAH_TYPINGINDICATOR_DURATION
+      #define PLODAH_TYPINGINDICATOR_DURATION 1000
+    #endif //PLODAH_TYPINGINDICATOR_DURATION
+    void housekeeping_task_typing_indicator(void);
+    bool process_record_typing_indicator(uint16_t keycode, keyrecord_t *record);
+#endif // PLODAH_TYPINGINDICATOR_RGBINDEX

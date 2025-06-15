@@ -1,22 +1,12 @@
 #if defined(DYNAMIC_MACRO_ENABLE)
   #pragma once
-
-  #if (defined(RGB_MATRIX_ENABLE) && defined(PLODAH_DMAC_INDIC_INDEX)) || (defined(PLODAH_DYNAMIC_MACRO_TIMEOUT))
-    bool is_dynamic_macro_recording = false;
-  #endif // DYNAMIC_MACRO_ENABLE
-
-  // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
-  #if defined(DEFERRED_EXEC_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT) && (!defined(PLODAH_DYNAMIC_MACRO_FORCE_NDE))
-    #define PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE
-  #endif // DEFERRED_EXEC_ENABLE
-
-  #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)
-    // #pragma message("Deferred Exec Dynamic Macro Timeout")
-    deferred_token dynamicMacroToken = INVALID_DEFERRED_TOKEN;
-  #else
-    // #pragma message("Non-DE Dynamic Macro Timeout")
-    uint16_t dynamic_macro_timer;
-  #endif // PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE
+  #include "action.h"
+  #include "action_util.h"
+  #include "debug.h"
+  #include "deferred_exec.h"
+  #include "dynamic_macros.h"
+  #include "keymap.h"
+  #include "process_dynamic_macro.h"
 
   bool dynamic_macro_record_end_user(int8_t direction) {
     #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)

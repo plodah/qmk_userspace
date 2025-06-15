@@ -44,42 +44,6 @@
         dprintf("eeconfig_init_user\n");
     }
 
-    void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
-        // data = [ command_id, channel_id, value_id, value_data ]
-        uint8_t *command_id        = &(data[0]);
-        uint8_t *channel_id        = &(data[1]);
-        uint8_t *value_id_and_data = &(data[2]);
-
-        if ( *channel_id == id_custom_channel ) {
-            switch ( *command_id )
-            {
-                case id_custom_set_value:
-                {
-                    ploopyvia_config_set_value(value_id_and_data);
-                    break;
-                }
-                case id_custom_get_value:
-                {
-                    ploopyvia_config_get_value(value_id_and_data);
-                    break;
-                }
-                case id_custom_save:
-                {
-                    ploopyvia_config_save();
-                    break;
-                }
-                default:
-                {
-                    *command_id = id_unhandled;
-                    break;
-                }
-            }
-            return;
-        }
-
-        *command_id = id_unhandled;
-    }
-
     void ploopyvia_config_set_value( uint8_t *data )
     {
         uint8_t *value_id   = &(data[0]);
@@ -340,4 +304,38 @@
         }
     }
 
+    void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
+        // data = [ command_id, channel_id, value_id, value_data ]
+        uint8_t *command_id        = &(data[0]);
+        uint8_t *channel_id        = &(data[1]);
+        uint8_t *value_id_and_data = &(data[2]);
+
+        if ( *channel_id == id_custom_channel ) {
+            switch ( *command_id )
+            {
+                case id_custom_set_value:
+                {
+                    ploopyvia_config_set_value(value_id_and_data);
+                    break;
+                }
+                case id_custom_get_value:
+                {
+                    ploopyvia_config_get_value(value_id_and_data);
+                    break;
+                }
+                case id_custom_save:
+                {
+                    ploopyvia_config_save();
+                    break;
+                }
+                default:
+                {
+                    *command_id = id_unhandled;
+                    break;
+                }
+            }
+            return;
+        }
+        *command_id = id_unhandled;
+    }
 #endif // if defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)

@@ -2,6 +2,11 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "quantum.h" // Include the header that defines keyrecord_t
+#include "combos.h"
+#include "comboflow.h"
+#include "encoder_actions.h"
+#include "repeathold_rgb.h"
+#include "tapdance.h"
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 

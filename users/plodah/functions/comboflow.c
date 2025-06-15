@@ -1,10 +1,10 @@
 #if defined (COMBO_ENABLE) && defined(DEFERRED_EXEC_ENABLE) && defined(COMBOFLOW_ENABLE)
-    #if !defined(COMBOFLOW_TERM)
-        #define COMBOFLOW_TERM 200
-    #endif // COMBOFLOW_TERM
 
+    #include "comboflow.h"
     #include "deferred_exec.h"
-    deferred_token ComboFlowToken = INVALID_DEFERRED_TOKEN;
+    #include "debug.h"
+    #include "process_combo.h"
+
     uint32_t ComboFlow_reenable(uint32_t trigger_time, void *cb_arg) {
         if(!is_combo_enabled()) {
             ComboFlowToken = INVALID_DEFERRED_TOKEN;

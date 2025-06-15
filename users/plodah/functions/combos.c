@@ -1,6 +1,7 @@
 #if defined(COMBO_ENABLE)
     #pragma once
-
+    #include <stdint.h>
+    #include "combos.h"
     #if defined(IS_MOUSE)
 
         const uint16_t PROGMEM pl_combo_ms12[] = {KC_BTN1, KC_BTN2, COMBO_END};

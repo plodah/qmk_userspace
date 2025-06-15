@@ -1,12 +1,6 @@
 #pragma once
 #include "mouse_gesture.h"
 
-void ploopyvia_config_set_value( uint8_t *data );
-void ploopyvia_config_get_value( uint8_t *data );
-void ploopyvia_config_save ( void );
-void values_load(void);
-void values_save(void);
-
 enum via_ploopystuff_value {
     id_ploopystuff_dpi_activepreset = 1,
     id_ploopystuff_dpi_multiplier,

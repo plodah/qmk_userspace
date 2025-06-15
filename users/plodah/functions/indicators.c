@@ -1,10 +1,40 @@
 #if defined(RGB_MATRIX_ENABLE)
   #pragma once
+  #include "rgb.h"
   #include "indicators.h"
 
   #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
     #include "mouse_jiggler.h"
   #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
+
+  #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
+    #pragma once
+
+    bool process_record_typing_indicator(uint16_t keycode, keyrecord_t *record){
+      // Some madness to include layer taps / mod taps
+      // QK_MOD_TAP        = 0x2000,
+      // QK_MOD_TAP_MAX    = 0x3FFF,
+      // QK_LAYER_TAP      = 0x4000,
+      // QK_LAYER_TAP_MAX  = 0x4FFF,
+      if(
+          record->event.pressed && (keycode & 0x00FF) >= KC_A && (keycode & 0x00FF) <= KC_SLASH &&
+          ( IS_QK_BASIC(keycode) || IS_QK_MOD_TAP(keycode) || IS_QK_LAYER_TAP(keycode) )
+      ) {
+        plodah_typingindicator_timer = timer_read();
+        plodah_typingindicator_active = true;
+      }
+      return true;
+    }
+
+    void housekeeping_task_typing_indicator(void){
+      if(plodah_typingindicator_active){
+        if(timer_elapsed(plodah_typingindicator_timer) > PLODAH_TYPINGINDICATOR_DURATION){
+          plodah_typingindicator_active = false;
+        }
+      }
+    }
+  #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
+
 
   bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if (!rgb_matrix_indicators_user()) {
@@ -210,3 +240,4 @@
     return false;
   }
 #endif // RGB_MATRIX_ENABLE
+

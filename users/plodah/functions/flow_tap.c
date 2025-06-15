@@ -1,9 +1,8 @@
-
-#include "action.h"
-#include "action_util.h"
-#include "debug.h"
-#include "quantum_keycodes.h"
 #if defined(FLOW_TAP_TERM)
+    #include "action.h"
+    #include "action_util.h"
+    #include "debug.h"
+    #include "quantum_keycodes.h"
 
     bool is_flow_tap_key_plodah(uint16_t keycode, bool isprev) {
         // The question that the return value answers is

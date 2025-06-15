@@ -1,11 +1,7 @@
-#ifdef OLED_ENABLE
+#if defined(OLED_ENABLE)
   #pragma once
-  #if defined(AUTOCORRECT_ENABLE)
-    char recAcA[15] = "_____";
-    char recAcB[15] = "_____";
-    char recAcC[15] = "_____";
-  #endif // AUTOCORRECT_ENABLE
-
+  #include "oled.h"
+  #include "quantum.h"
   #if defined(LAYER_NAMES)
     char *labels[DYNAMIC_KEYMAP_LAYER_COUNT] = LAYER_NAMES;
   #endif // defined(LAYER_NAMES)
