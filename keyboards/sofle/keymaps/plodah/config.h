@@ -23,6 +23,8 @@
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "oQwer", "oCole", "oFn A", "oFn B", "Mouse", "Tenth" }
 
 #define CHORDAL_HOLD
+#define COMBOFLOW_ENABLE
+#define COMBOFLOW_TERM 110
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 // #define TASKSWITCH_FORCE_NDE

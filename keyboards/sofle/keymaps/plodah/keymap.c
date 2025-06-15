@@ -30,9 +30,9 @@ enum {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWEA] = LAYOUT(
     P_RAGEQ, KC_1,    P_F2,    KC_3,    P_F4,    P_F5,                            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NUHS,
-    KC_BSPC, KC_A,    HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,                          HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  KC_SCLN, KC_QUOT,
-    KC_NUBS, BRM_ZG,  KC_X,    KC_C,    KC_V,    KC_B,    PL_ECPR,       PL_ECPR, KC_N,    KC_M,    KC_COMM, KC_DOT,  BRM_SLG, KC_RSFT,
+    KC_BSPC, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+    KC_TAB,  HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,                          HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  KC_SCLN, KC_QUOT,
+    KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  BRM_BG,  PL_ECPR,       PL_ECPR, BRM_NG,  BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, KC_RSFT,
                       MOUSE,   KC_LALT, KC_LCTL, P_ENTFB, P_SPCFA,       P_SPCFA, P_ENTFB, KC_RCTL, KC_RALT, MOUSE
   ),
 /*
@@ -55,25 +55,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
   [_COLA] = LAYOUT(
-    P_RAGEQ, KC_1,    P_F2,    KC_3,    P_F4,    P_F5,                            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                            KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_NUHS,
+    P_RAGEQ, KC_1,    P_F2,    KC_3,    P_F4,    P_F5,                            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
+    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                            KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
     KC_NUBS, HRM_AG,  HRM_RA,  HRM_SS,  HRM_TC,  HRM_DG,                          HRM_HG,  HRM_NC,  HRM_ES,  HRM_IA,  HRM_OG,  KC_QUOT,
     KC_LSFT, BRM_ZG,  KC_X,    KC_C,    KC_V,    KC_B,    PL_ECPR,       PL_ECPR, KC_K,    KC_M,    KC_COMM, KC_DOT,  BRM_SLG, KC_RSFT,
                       KC_LGUI, KC_LALT, KC_LCTL, P_ENTFB, P_SPCFA,       P_SPCFA, P_ENTFB, KC_RCTL, KC_RALT, KC_RGUI
   ),
 
   [_FNA] = LAYOUT(
-    KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                           KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-    KC_CAPS, _______, _______, _______, _______, KC_F6,                           KC_F7,   _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______,                         _______, _______, _______, _______, _______, _______,
+    KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                           KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,
+    KC_CAPS, _______, _______, _______, _______, KC_F6,                           KC_F7,   _______, _______, _______, _______, KC_DEL,
+    _______, _______, _______, _______, _______, _______,                         _______, _______, _______, _______, _______, KC_NUHS,
     _______, KC_MINS, KC_EQL,  _______, KC_LCBR, KC_LBRC, PL_ECPR,       PL_ECPR, KC_RBRC, KC_RCBR, _______, _______, _______, _______,
                       _______, _______, _______, _______, _______,       _______, _______, _______, _______, KC_APP
   ),
 
   [_FNB] = LAYOUT(
-    KC_BSPC, CM_QVER, CM_QRGB, _______, _______, CM_MSJG,                         CM_MSJG, CM_QLYR, CM_QTAP, QK_MAKE, CM_QFTR, KC_DEL,
-    P_TASK,  _______, KC_HOME, KC_UP,   KC_END,  KC_PGUP,                         KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_PSCR, _______,
-    _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                         KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,
+    KC_BSPC, CM_QVER, CM_QRGB, _______, _______, CM_MSJG,                         CM_MSJG, CM_QLYR, CM_QTAP, QK_MAKE, CM_QFTR, _______,
+    P_TASK,  _______, KC_HOME, KC_UP,   KC_END,  KC_PGUP,                         KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_PSCR, KC_DEL,
+    _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                         KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_PIPE,
     _______, KC_UNDS, KC_PLUS, _______, P_PSTU,  _______, PL_ECPR,       PL_ECPR, _______, _______, _______, _______, _______, _______,
                       GU_TOGG, _______, _______, _______, _______,       _______, _______, _______, _______, GU_ON
   ),
@@ -112,10 +112,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_MOUSE] = LAYOUT(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, KC_SCRL, KC_SCRL, PL_SCRL, PL_SCRL, KC_SCRL,                         KC_SCRL, PL_SCRL, PL_SCRL, KC_SCRL, KC_SCRL, XXXXXXX,
-    XXXXXXX, MS_BTN4, MS_BTN5, MS_BTN2, MS_BTN1, MS_BTN3,                         MS_BTN3, MS_BTN1, MS_BTN2, MS_BTN4, MS_BTN5, XXXXXXX,
-    XXXXXXX, MS_BTN4, MS_BTN5, MS_BTN2, MS_BTN1, MS_BTN3, XXXXXXX,       XXXXXXX, MS_BTN3, MS_BTN1, MS_BTN2, MS_BTN4, MS_BTN5, XXXXXXX,
-                      _______, MS_BTN2, MS_BTN1, _______, _______,       _______, _______, MS_BTN1, MS_BTN2, _______
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, PL_SCRL, MS_BTN2, MS_BTN1, MS_BTN3,                         XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, QK_MAKE, XXXXXXX,
+    XXXXXXX, CM_TTAT, XXXXXXX, MS_BTN4, MS_BTN5, PL_SCRL, _______,       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                      _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
   ),
 
 /*

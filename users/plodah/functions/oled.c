@@ -36,7 +36,7 @@
     char * str;
     char * str2;
     str = malloc(sizeof(char)*25);
-    str2 = malloc(sizeof(char)*10);
+    str2 = malloc(sizeof(char)*11);
     strcpy(str, corrected);
     strcat(str, "          ");
 

@@ -18,11 +18,15 @@
     "modules": [
         "plodah/config_query",
         "plodah/mouse_jiggler",
-        "plodah/task_switch"
+        "plodah/task_switch",
+        "plodah/turbo_fire"
     ],
     "config": {
         "bootmagic": {
             "matrix": [5, 0]
+        },
+        "build": {
+            "lto": false
         },
         "caps_word": {
             "both_shifts_turns_on": true,
