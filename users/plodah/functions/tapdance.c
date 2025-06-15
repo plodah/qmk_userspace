@@ -1,14 +1,8 @@
 #if defined(TAP_DANCE_ENABLE)
   #pragma once
+  #include "tapdance.h"
 
   #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
-
-    typedef struct {
-      uint16_t tap;
-      uint16_t hold;
-      uint16_t held;
-    } tap_dance_tap_hold_t;
-
     void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
       tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
       if (state->pressed) {
@@ -100,7 +94,7 @@
       [TD_F5] = ACTION_TAP_DANCE_TAP_HOLD(KC_5, KC_F5),
       [TD_F11] = ACTION_TAP_DANCE_TAP_HOLD(KC_MINS, KC_F11),
       [TD_F12] = ACTION_TAP_DANCE_TAP_HOLD(KC_EQL, KC_F12),
-    #endif // DYNAMIC_MACRO_ENABLE
+    #endif // PLODAH_TAPDANCE_TAPHOLD_ENABLE
   };
 
   #if defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
