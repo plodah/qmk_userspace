@@ -1,0 +1,1897 @@
+diff --git a/builddefs/common_features.mk b/builddefs/common_features.mk
+index ca60873bec..d5db8fdba1 100644
+--- a/builddefs/common_features.mk
++++ b/builddefs/common_features.mk
+@@ -123,7 +123,7 @@ ifeq ($(strip $(MOUSEKEY_ENABLE)), yes)
+     MOUSE_ENABLE := yes
+ endif
+ 
+-VALID_POINTING_DEVICE_DRIVER_TYPES := adns5050 adns9800 analog_joystick azoteq_iqs5xx cirque_pinnacle_i2c cirque_pinnacle_spi paw3204 pmw3320 pmw3360 pmw3389 pimoroni_trackball custom
++VALID_POINTING_DEVICE_DRIVER_TYPES := adns5050 adns9800 analog_joystick azoteq_iqs5xx cirque_pinnacle_i2c cirque_pinnacle_spi digitizer paw3204 pmw3320 pmw3360 pmw3389 pimoroni_trackball custom
+ ifeq ($(strip $(POINTING_DEVICE_ENABLE)), yes)
+     ifeq ($(filter $(POINTING_DEVICE_DRIVER),$(VALID_POINTING_DEVICE_DRIVER_TYPES)),)
+         $(call CATASTROPHIC_ERROR,Invalid POINTING_DEVICE_DRIVER,POINTING_DEVICE_DRIVER="$(POINTING_DEVICE_DRIVER)" is not a valid pointing device type)
+@@ -133,7 +133,7 @@ ifeq ($(strip $(POINTING_DEVICE_ENABLE)), yes)
+         VPATH += $(QUANTUM_DIR)/pointing_device
+         SRC += $(QUANTUM_DIR)/pointing_device/pointing_device.c
+         SRC += $(QUANTUM_DIR)/pointing_device/pointing_device_auto_mouse.c
+-        ifneq ($(strip $(POINTING_DEVICE_DRIVER)), custom)
++        ifneq ($(POINTING_DEVICE_DRIVER),$(filter $(strip $(POINTING_DEVICE_DRIVER)),custom digitizer))
+             SRC += drivers/sensors/$(strip $(POINTING_DEVICE_DRIVER)).c
+             OPT_DEFS += -DPOINTING_DEVICE_DRIVER_$(strip $(shell echo $(POINTING_DEVICE_DRIVER) | tr '[:lower:]' '[:upper:]'))
+         endif
+@@ -155,6 +155,10 @@ ifeq ($(strip $(POINTING_DEVICE_ENABLE)), yes)
+             SRC += drivers/sensors/cirque_pinnacle.c
+             SRC += drivers/sensors/cirque_pinnacle_gestures.c
+             SRC += $(QUANTUM_DIR)/pointing_device/pointing_device_gestures.c
++        else ifeq ($(strip $(POINTING_DEVICE_DRIVER)), digitizer)
++            ifneq ($(strip $(DIGITIZER_ENABLE)), yes)
++                $(call CATASTROPHIC_ERROR,The digitizer feature must be enabled when the pointing device driver is "digitizer")
++            endif
+         else ifeq ($(strip $(POINTING_DEVICE_DRIVER)), pimoroni_trackball)
+             I2C_DRIVER_REQUIRED = yes
+         else ifneq ($(filter $(strip $(POINTING_DEVICE_DRIVER)),pmw3360 pmw3389),)
+@@ -164,6 +168,26 @@ ifeq ($(strip $(POINTING_DEVICE_ENABLE)), yes)
+     endif
+ endif
+ 
++DIGITIZER_DRIVER ?= none
++VALID_DIGITIZER_DRIVER_TYPES := custom none
++ifeq ($(strip $(DIGITIZER_ENABLE)), yes)
++    ifeq ($(filter $(DIGITIZER_DRIVER),$(VALID_DIGITIZER_DRIVER_TYPES)),)
++        $(call CATASTROPHIC_ERROR,Invalid DIGITIZER_DRIVER,DIGITIZER_DRIVER="$(DIGITIZER_DRIVER)" is not a valid digitizer device type)
++    else
++        OPT_DEFS += -DDIGITIZER_ENABLE
++        SRC += $(QUANTUM_DIR)/digitizer.c
++        SRC += $(QUANTUM_DIR)/digitizer_mouse_fallback.c
++        ifeq ($(filter $(strip $(DIGITIZER_DRIVER)),custom none),)
++            SRC += drivers/sensors/$(strip $(DIGITIZER_DRIVER)).c
++            OPT_DEFS += -DDIGITIZER_DRIVER_$(strip $(shell echo $(DIGITIZER_DRIVER) | tr '[:lower:]' '[:upper:]'))
++        endif
++        OPT_DEFS += -DDIGITIZER_DRIVER_$(strip $(DIGITIZER_DRIVER))
++    endif
++    ifeq ($(DIGITIZER_DRIVER), $(POINTING_DEVICE_DRIVER))
++            $(call CATASTROPHIC_ERROR,The DIGITIZER and POINTING_DEVICE features cannot both use the same driver)
++    endif
++endif
++
+ QUANTUM_PAINTER_ENABLE ?= no
+ ifeq ($(strip $(QUANTUM_PAINTER_ENABLE)), yes)
+     include $(QUANTUM_DIR)/painter/rules.mk
+diff --git a/docs/features/digitizer.md b/docs/features/digitizer.md
+index e524877636..026e26c3a8 100644
+--- a/docs/features/digitizer.md
++++ b/docs/features/digitizer.md
+@@ -1,8 +1,8 @@
+ # Digitizer {#digitizer}
+ 
+-Digitizers allow the mouse cursor to be placed at absolute coordinates, unlike the [Pointing Device](pointing_device) feature which applies relative displacements.
++Digitizers allow the mouse cursor to be placed at absolute coordinates, unlike the [Pointing Device](pointing_device) feature which applies relative displacements. Common digitizer devices include trackpads, touchscreens and drawing tablets.
+ 
+-This feature implements a stylus device with a tip switch and barrel switch (generally equivalent to the primary and secondary mouse buttons respectively). Tip pressure is not currently implemented.
++This feature implements a stylus device with a tip switch and barrel switch (generally equivalent to the primary and secondary mouse buttons respectively). Tip pressure is not currently implemented and a touchpad device with upto 5 finger reports.
+ 
+ ## Usage {#usage}
+ 
+@@ -12,108 +12,84 @@ Add the following to your `rules.mk`:
+ DIGITIZER_ENABLE = yes
+ ```
+ 
+-## Positioning {#positioning}
++## Stylus Positioning {#positioning}
+ 
+-The X and Y coordinates are normalized, meaning their value must be set between 0 and 1. For the X component, the value `0` is the leftmost position, whereas the value `1` is the rightmost position. Similarly for the Y component, `0` is at the top and `1` at the bottom.
++Digitizers report values in logical ranges from `0..DIGITIZER_RESOLUTION_X` and `0..DIGITIZER_RESOLUTION_Y`. The HID descriptor also reports the physical dimensions `DIGITIZER_WIDTH_MM` x `DIGITIZER_HEIGHT_MM` of the sensor to the host so that it can determine what distance has been moved.
++
++If the device uses the stylus report to set the position to `0,0`, the cursor will jump to the lop left hand corner of the screen. The co-ordinate `DIGITIZER_RESOLUTION_X,DIGITIZER_RESOLUTION_Y` will take it to the bottom right of the screen.
+ 
+ ::: tip
+ Since there is no display attached, the OS will likely map these coordinates to the virtual desktop. This may be important to know if you have multiple monitors.
+ :::
+ 
+-## Examples {#examples}
+-
+-This example simply places the cursor in the middle of the screen:
+-
+-```c
+-digitizer_in_range_on();
+-digitizer_set_position(0.5, 0.5);
+-```
+-
+-The "in range" indicator is required to be on for the change in coordinates to be taken. It can then be turned off again to signal the end of the digitizer interaction, but it is not strictly required.
+-
+-You can also modify the digitizer state directly, if you need to change multiple fields in a single report:
+-
+-```c
+-digitizer_state.in_range = true;
+-digitizer_state.dirty = true;
+-digitizer_flush();
+-```
+-
+-`digitizer_state` is a struct of type `digitizer_t`.
+-
+-
+-## API {#api}
+-
+-### `struct digitizer_t` {#api-digitizer-t}
+-
+-Contains the state of the digitizer.
+-
+-#### Members {#api-digitizer-t-members}
+-
+- - `bool in_range`  
+-   Indicates to the host that the contact is within range (ie. close to or in contact with the digitizer surface).
+- - `bool tip`  
+-   The state of the tip switch.
+- - `bool barrel`  
+-   The state of the barrel switch.
+- - `float x`  
+-   The X coordinate of the digitizer contact.
+- - `float y`  
+-   The Y coordinate of the digitizer contact.
+- - `bool dirty`  
+-   Whether the current state needs to be sent to the host.
+-
+----
+-
+-### `void digitizer_flush(void)` {#api-digitizer-flush}
+-
+-Send the digitizer report to the host if it is marked as dirty.
+-
+----
+-
+-### `void digitizer_in_range_on(void)` {#api-digitizer-in-range-on}
+-
+-Assert the "in range" indicator, and flush the report.
+-
+----
+-
+-### `void digitizer_in_range_off(void)` {#api-digitizer-in-range-off}
+-
+-Deassert the "in range" indicator, and flush the report.
+-
+----
+-
+-### `void digitizer_tip_switch_on(void)` {#api-digitizer-tip-switch-on}
+-
+-Assert the tip switch, and flush the report.
+-
+----
+-
+-### `void digitizer_tip_switch_off(void)` {#api-digitizer-tip-switch-off}
+-
+-Deassert the tip switch, and flush the report.
+-
+----
+-
+-### `void digitizer_barrel_switch_on(void)` {#api-digitizer-barrel-switch-on}
+-
+-Assert the barrel switch, and flush the report.
+-
+----
+-
+-### `void digitizer_barrel_switch_off(void)` {#api-digitizer-barrel-switch-off}
+-
+-Deassert the barrel switch, and flush the report.
+-
+----
+-
+-### `void digitizer_set_position(float x, float y)` {#api-digitizer-set-position}
+-
+-Set the absolute X and Y position of the digitizer contact, and flush the report.
+-
+-#### Arguments {#api-digitizer-set-position-arguments}
+-
+- - `float x`  
+-   The X value of the contact position, from 0 to 1.
+- - `float y`  
+-   The Y value of the contact position, from 0 to 1.
++## Finger reports
++The host will interpret finger reports as gestures. Typically:
++- A single finger moving will be interpreted as a relative mouse move
++- A short tap will be interpreted as a left click
++- A short two finger tap will be interpreted as a right click
++- A tap and hold will be interpreted as a drag and drop
++- Two fingers moving will be interpreted as scrolling
++- Two fingers moving apart or together will be interperted as a zoom
++- Two fingers turning, will be interpreted as rotation
++- Thee finger swipes will expose the running applications or swap desktops
++
++## Mouse fallback
++If a host does not support USB trackpads (such as Mac-OS, or some KVMs) the Microsoft PTP specification requires us to fallback to reporting as a mouse. In this mode gesture detection is performed on the device.
++## Common Configuration
++| Setting                                        | Description                                                                                                                      | Default       |
++| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------- |
++| `DIGITIZER_WIDTH_MM`                           | (Optional) Set the physical width of the digitizer device in mm.                                                                 | `100`         |
++| `DIGITIZER_HEIGHT_MM`                          | (Optional) Set the physical height of the digitizer device in mm.                                                                | `100`         |
++| `DIGITIZER_RESOLUTION_X`                       | (Optional) Set the logical maximum X value.                                                                                      | `1920`        |
++| `DIGITIZER_RESOLUTION_Y`                       | (Optional) Set the logical maximum Y value.                                                                                      | `1080`        |
++| `DIGITIZER_HAS_STYLUS`                         | (Optional) Configures whether or not stylus reporting is enabled.                                                                | `true`        |
++| `DIGITIZER_FINGER_COUNT`                       | (Optional) Configures the maximum number of finger contacts we should report. Microsoft PTP devices should have between 3 and 5. | `0`           |
++| `DIGITIZER_CONTACT_COUNT`                      | (Optional) Configures the number of contacts reported by the sensor. This will include stylus, fingers and other types.          | `0`           |
++| `DIGITIZER_TASK_THROTTLE_MS`                   | (Optional) Limits the frequency that the sensor is polled for motion.                                                            | _not defined_ |
++| `DIGITIZER_TOUCH_PAD`                          | (Optional) Causes the HID report to indicate the device is a Touch Pad.                                                          | _not defined_ |
++| `DIGITIZER_MOTION_PIN`                         | (Optional) If supported, will only read from sensor if pin is active.                                                            | _not defined_ |
++| `DIGITIZER_MOTION_PIN_ACTIVE_LOW`              | (Optional) If defined then the motion pin is active-low.                                                                         | _varies_      |
++| `DIGITIZER_REPORT_TAPS_AS_CLICKS`              | (Optional) If defined then tap gestures from mouse fallback will also be reported in the digitizer report.                       | `False`       |
++
++The option `DIGITIZER_REPORT_TAPS_AS_CLICKS` is provided as most hosts do not provide per device configuration for trackpads. If you would like tap to click enabled on your QMK trackpad, but not on your laptops integrated trackpad, you can enable this.
++
++By default when reporting to the host, only the first `DIGITIZER_FINGER_COUNT` contacts will be considered, but additional contacts may be used by firmware to trigger custom behaviours (such as custom gestures).
++
++## Mouse Fallback Configuration
++The mouse fallback gesture detection code can be tweaked with the following parameters. To use mouse fallback the `POINTING_DEVICE_DRIVER` should be set to `digitizer`.
++
++| Setting                                        | Description                                                                                                                      | Default             |
++| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
++| `DIGITIZER_MOUSE_TAP_TIME`                     | (Optional) The timeout in ms before a tap gesture is detected.                                                                   | `200`               |
++| `DIGITIZER_MOUSE_TAP_DISTANCE`                 | (Optional) The maximum distance a contact can move in an axis and still be detected as a tap.                                    | `25`                |
++| `DIGITIZER_SCROLL_DIVISOR`                     | (Optional) A scaling factor that is applied to reduce the speed of scroll reporting.                                             | `10`                |
++| `DIGITIZER_MOUSE_SWIPE_TIME`                   | (Optional) The timeout in ms before a swipe gesture is detected.                                                                 | `500`               |
++| `DIGITIZER_MOUSE_SWIPE_DISTANCE`               | (Optional) Minimum move distance required for a swipe to be detected.                                                            | `300`               |
++| `DIGITIZER_MOUSE_SWIPE_THRESHOLD`              | (Optional) Movements in the alternate axis must be less than this threshold for a swipe to be detected.                          | `100`               |
++| `DIGITIZER_SWIPE_LEFT_KC`                      | (Optional) The keycode to generate when a swipe left gesture is detected                                                         | `QK_MOUSE_BUTTON_3` |
++| `DIGITIZER_SWIPE_RIGHT_KC`                     | (Optional) The keycode to generate when a swipe right gesture is detected                                                        | `QK_MOUSE_BUTTON_4` |
++| `DIGITIZER_SWIPE_UP_KC`                        | (Optional) The keycode to generate when a swipe up gesture is detected                                                           | `KC_LEFT_GUI`       |
++| `DIGITIZER_SWIPE_DOWN_KC`                      | (Optional) The keycode to generate when a swipe down gesture is detected                                                         | `KC_ESC`            |
++
++## Split Keyboard Configuration
++
++The following configuration options are only available when using `SPLIT_DIGITIZER_ENABLE` see [data sync options](split_keyboard#data-sync-options). If using `DIGITIZER_LEFT` or `DIGITIZER_RIGHT` use the common configuration above to configure your pointing device.
++
++It is strongly recommended to put your digitizer device on the master half, as the volume of traffic going over the split link can be significant.
++
++| Setting                              | Description                                                                                           | Default       |
++| ------------------------------------ | ----------------------------------------------------------------------------------------------------- | ------------- |
++| `DIGITIZER_LEFT`                     | Digitizer device on the left side (Required - pick one only)                                          | _not defined_ |
++| `DIGITIZER_RIGHT`                    | Digitizer device on the right side (Required - pick one only)                                         | _not defined_ |
++
++## Callbacks and Functions
++
++| Function                                                   | Description                                                                                                                                                 |
++| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
++| `digitizer_init_kb(void)`                                  | Callback to allow for keyboard level initialization. Useful for additional hardware sensors.                                                                |
++| `digitizer_init_user(void)`                                | Callback to allow for user level initialization Useful for additional hardware sensors.                                                                     |
++| `digitizer_task_kb(digitizer_t *const digitizer_state)`    | Callback that provides the keyboard an opportunity to change the digitizer state whenever we get new digitizer data. Returns true if the state was changed. |
++| `digitizer_task_user(digitizer_t *const digitizer_state)`  | Callback that provides the user an opportunity to change the digitizer state whenever we get new digitizer data. Returns true if the state was changed.     |
++
++## Example
++There is a onekey keymap which demonstrates the digitizer api. It uses the styulus report to draw squares in the middle of the screen.
+diff --git a/keyboards/handwired/onekey/keymaps/digitizer/config.h b/keyboards/handwired/onekey/keymaps/digitizer/config.h
+new file mode 100644
+index 0000000000..a41c6a6e03
+--- /dev/null
++++ b/keyboards/handwired/onekey/keymaps/digitizer/config.h
+@@ -0,0 +1 @@
++#define DIGITIZER_TASK_THROTTLE_MS 1
+diff --git a/keyboards/handwired/onekey/keymaps/digitizer/keymap.c b/keyboards/handwired/onekey/keymaps/digitizer/keymap.c
+index 49fe3d66c8..3572e81b72 100644
+--- a/keyboards/handwired/onekey/keymaps/digitizer/keymap.c
++++ b/keyboards/handwired/onekey/keymaps/digitizer/keymap.c
+@@ -17,42 +17,102 @@
+ #include QMK_KEYBOARD_H
+ 
+ #include <math.h>
++#include "digitizer.h"
+ 
+ enum custom_keycodes {
+     DG_TIP = SAFE_RANGE,
+ };
+ 
+-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+-    LAYOUT_ortho_1x1(DG_TIP)
+-};
++typedef enum {
++    TOP,
++    RIGHT,
++    BOTTOM,
++    LEFT
++} box_edge;
++
++const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {LAYOUT_ortho_1x1(DG_TIP)};
+ 
+ uint32_t timer = 0;
++bool     tip   = 0;
++#define BOX_SIZE (DIGITIZER_RESOLUTION_Y / 2)
++
++bool process_record_user(uint16_t keycode, keyrecord_t *record) {
++    switch (keycode) {
++        case DG_TIP:
++            tip = record->event.pressed;
++            return false;
++    }
++    return true;
++}
+ 
+-void keyboard_post_init_user(void) {
+-    digitizer_in_range_on();
++void digitizer_init_kb() {
++    timer = timer_read32();
+ }
+ 
+-void matrix_scan_user(void) {
+-    if (timer_elapsed32(timer) < 200) {
+-        return;
++bool digitizer_task_kb(digitizer_t *const digitizer_state) {
++    // Libinput suppresses a touch that starts too soon after device enumeration,
++    // so delay our drag event.
++    static bool    startup_wait = true;
++    const uint32_t elapsed      = timer_elapsed32(timer);
++    if (startup_wait && elapsed < 1000) {
++        return false;
++    }
++    startup_wait = false;
++
++    // If the time between events is too great, it is not treated
++    // as a series of taps rather than a continuous movement.
++    if (timer_elapsed32(timer) < 10) {
++        return false;
+     }
+ 
+     timer = timer_read32();
+ 
+-    float x = 0.5 - 0.2 * cos(timer / 250. / 6.28);
+-    float y = 0.5 - 0.2 * sin(timer / 250. / 6.28);
+-    digitizer_set_position(x, y);
+-}
++    static int16_t x    = 0;
++    static int16_t y    = 0;
++    static box_edge edge = 0;
+ 
+-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+-    switch (keycode) {
+-        case DG_TIP:
+-            if (record->event.pressed) {
+-                digitizer_tip_switch_on();
+-            } else {
+-                digitizer_tip_switch_off();
++    switch (edge) {
++        case TOP:
++            x += elapsed;
++            if (x > BOX_SIZE) {
++                y += x % BOX_SIZE;
++                x    = BOX_SIZE;
++                edge = RIGHT;
+             }
+-            return false;
++            break;
++        case RIGHT:
++            y += elapsed;
++            if (y > BOX_SIZE) {
++                x -= y % BOX_SIZE;
++                y    = BOX_SIZE;
++                edge = BOTTOM;
++            }
++            break;
++        case BOTTOM:
++            x -= elapsed;
++            if (x < 0) {
++                y -= x % BOX_SIZE;
++                x    = 0;
++                edge = LEFT;
++            }
++            break;
++        case LEFT:
++            y -= elapsed;
++            if (y < 0) {
++                x += y % BOX_SIZE;
++                y    = 0;
++                edge = TOP;
++            }
++            break;
+     }
++
++    digitizer_state->contacts[0].type = STYLUS;
++    digitizer_state->contacts[0].x    = x + (DIGITIZER_RESOLUTION_X - BOX_SIZE) / 2;
++    digitizer_state->contacts[0].y    = y + (DIGITIZER_RESOLUTION_Y - BOX_SIZE) / 2;
++
++    digitizer_state->contacts[0].tip        = tip;
++    digitizer_state->contacts[0].in_range   = 1;
++    digitizer_state->contacts[0].confidence = 1;
++
+     return true;
+ }
+diff --git a/quantum/digitizer.c b/quantum/digitizer.c
+index f1b926181e..33c1d71d8f 100644
+--- a/quantum/digitizer.c
++++ b/quantum/digitizer.c
+@@ -1,4 +1,5 @@
+-/* Copyright 2021
++/* Copyright 2025 George Norton (@george-norton)
++ * Copyright 2021
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -13,64 +14,291 @@
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+-
+ #include "digitizer.h"
++#include "digitizer_mouse_fallback.h"
++#include "debug.h"
++#include "host.h"
++#include "timer.h"
++#include "gpio.h"
++#include "keyboard.h"
++#include "action.h"
+ 
+-digitizer_t digitizer_state = {
+-    .in_range = false,
+-    .tip      = false,
+-    .barrel   = false,
+-    .x        = 0,
+-    .y        = 0,
+-    .dirty    = false,
+-};
+-
+-void digitizer_flush(void) {
+-    if (digitizer_state.dirty) {
+-        host_digitizer_send(&digitizer_state);
+-        digitizer_state.dirty = false;
+-    }
+-}
++// Digitizers can fallback to reporting as a mouse if the host does not support a digitizer.
++// If the mouse collection is in the same endpoint as the digitizer collection both Windows and
++// Linux will assume it is a fallback collection and will ignore any events it produces after
++// they have sent a feature report indicating they support PTP trackpads. Having them on separate
++// endpoints ensures any mouse events we generate while the host is expecting a digitizer, are processed.
++//
++// The default behaviour, if no shared endpoints are explicity configured is for the mouse to go on its
++// on endpoint and the digitizer to go on the shared endpoint. If both end up on the same endpoint due
++// to user configuration this warning will be generated, and by default warnings are errors - so the
++// build will fail. If we really want both on the same endpoint, DIGITIZER_SHARE_EP_WITH_MOUSE can be
++// defined to suppress the warning.
++#if !defined(DIGITIZER_SHARE_EP_WITH_MOUSE) && defined(DIGITIZER_SHARED_EP) && defined(MOUSE_SHARED_EP) && (defined(MOUSEKEY_ENABLE) || defined(POINTING_DEVICE_ENABLE))
++#    warning "Both the digitizer and mouse events are reported on the shared USB endpoint. Mouse events will be ignored by trackpad compliant hosts."
++#endif
+ 
+-void digitizer_in_range_on(void) {
+-    digitizer_state.in_range = true;
+-    digitizer_state.dirty    = true;
+-    digitizer_flush();
+-}
++#ifdef DIGITIZER_MOTION_PIN
++#    undef DIGITIZER_TASK_THROTTLE_MS
++#endif
++
++#if defined(DIGITIZER_LEFT) || defined(DIGITIZER_RIGHT)
++#    ifndef SPLIT_DIGITIZER_ENABLE
++#        error "Using DIGITIZER_LEFT or DIGITIZER_RIGHT, then SPLIT_DIGITIZER_ENABLE is required but has not been defined"
++#    endif
++#endif
++
++typedef struct {
++    void (*init)(void);
++    digitizer_t (*get_report)(digitizer_t digitizer_report);
++} digitizer_driver_t;
+ 
+-void digitizer_in_range_off(void) {
+-    digitizer_state.in_range = false;
+-    digitizer_state.dirty    = true;
+-    digitizer_flush();
++const digitizer_driver_t digitizer_driver = {};
++
++static digitizer_t digitizer_state = {};
++
++#if defined(SPLIT_DIGITIZER_ENABLE)
++#    if defined(DIGITIZER_LEFT)
++#        define DIGITIZER_THIS_SIDE is_keyboard_left()
++#    elif defined(DIGITIZER_RIGHT)
++#        define DIGITIZER_THIS_SIDE !is_keyboard_left()
++#    endif
++
++digitizer_t shared_digitizer_report = {};
++
++/**
++ * @brief Sets the shared digitizer report used by digitizer device task
++ *
++ * NOTE : Only available when using SPLIT_DIGITIZER_ENABLE
++ *
++ * @param[in] report digitizer_t
++ */
++void digitizer_set_shared_report(digitizer_t report) {
++    shared_digitizer_report = report;
+ }
++#endif // defined(SPLIT_DIGITIZER_ENABLE)
++
++/**
++ * @brief Keyboard level digitizer initialisation function
++ *
++ */
++__attribute__((weak)) void digitizer_init_kb(void) {}
+ 
+-void digitizer_tip_switch_on(void) {
+-    digitizer_state.tip   = true;
+-    digitizer_state.dirty = true;
+-    digitizer_flush();
++/**
++ * @brief User level digitizer initialisation function
++ *
++ */
++__attribute__((weak)) void digitizer_init_user(void) {}
++
++/**
++ * @brief Weak function allowing for user level digitizer state modification
++ *
++ * Takes digitizer_t struct allowing modification at user level then returns digitizer_t.
++ *
++ * @param[in] digitizer_state digitizer_t
++ * @return true if the state has changed
++ */
++__attribute__((weak)) bool digitizer_task_user(digitizer_t *const digitizer_state) {
++    return false;
+ }
+ 
+-void digitizer_tip_switch_off(void) {
+-    digitizer_state.tip   = false;
+-    digitizer_state.dirty = true;
+-    digitizer_flush();
++/**
++ * @brief Weak function allowing for keyboard level digitizer state modification
++ *
++ * Takes digitizer_t struct allowing modification at keyboard level then returns digitizer_t.
++ *
++ * @param[in] digitizer_state digitizer_t
++ * @return true if the state has changed
++ */
++__attribute__((weak)) bool digitizer_task_kb(digitizer_t *const digitizer_state) {
++    return digitizer_task_user(digitizer_state);
+ }
+ 
+-void digitizer_barrel_switch_on(void) {
+-    digitizer_state.barrel = true;
+-    digitizer_state.dirty  = true;
+-    digitizer_flush();
++/**
++ * \brief Initializes the digitizer feature.
++ */
++void digitizer_init(void) {
++#if defined(SPLIT_DIGITIZER_ENABLE)
++    if (!(DIGITIZER_THIS_SIDE)) return;
++#endif
++    if (digitizer_driver.init) {
++        digitizer_driver.init();
++    }
++#ifdef DIGITIZER_MOTION_PIN
++#    ifdef DIGITIZER_MOTION_PIN_ACTIVE_LOW
++    setPinInputHigh(DIGITIZER_MOTION_PIN);
++#    else
++    setPinInput(DIGITIZER_MOTION_PIN);
++#    endif
++#endif
++
++    digitizer_init_kb();
++    digitizer_init_user();
+ }
+ 
+-void digitizer_barrel_switch_off(void) {
+-    digitizer_state.barrel = false;
+-    digitizer_state.dirty  = true;
+-    digitizer_flush();
++#ifdef DIGITIZER_MOTION_PIN
++/**
++ * \brief Checks if the motion pin is active.
++ */
++__attribute__((weak)) bool digitizer_motion_detected(void) {
++#    ifdef DIGITIZER_MOTION_PIN_ACTIVE_LOW
++    return !readPin(DIGITIZER_MOTION_PIN);
++#    else
++    return readPin(DIGITIZER_MOTION_PIN);
++#    endif
+ }
++#endif
++
++/**
++ * \brief Task processing routine for the digitizer feature. This function polls the digitizer hardware
++ * and sends events to the host as required.
++ *
++ * \return true if a new event was sent
++ */
++bool digitizer_task(void) {
++    report_digitizer_t report = {.fingers = {}, .contact_count = 0, .scan_time = 0, .button1 = digitizer_state.button1, .button2 = digitizer_state.button2, .button3 = digitizer_state.button3};
++#if defined(DIGITIZER_HAS_STYLUS)
++    report_digitizer_stylus_t stylus_report  = {};
++    bool                      updated_stylus = false;
++#endif
++#if DIGITIZER_FINGER_COUNT > 0
++    int contacts = 0;
++#endif
++    bool gesture_changed      = false;
++    bool button_state_changed = false;
++
++#if DIGITIZER_TASK_THROTTLE_MS
++    static uint32_t last_exec = 0;
++    if (timer_elapsed32(last_exec) < DIGITIZER_TASK_THROTTLE_MS) {
++        return false;
++    }
++    last_exec = timer_read32();
++#endif
++#if defined(POINTING_DEVICE_DRIVER_digitizer)
++    gesture_changed                          = digitizer_update_gesture_state();
++    static report_digitizer_t last_report    = {0};
++    bool                      report_changed = false;
++#endif
++
++#if defined(DIGITIZER_MOTION_PIN)
++    if (digitizer_motion_detected())
++#endif
++    {
++#if DIGITIZER_FINGER_COUNT > 0
++        int skip_count = 0;
++#endif
++#if defined(SPLIT_DIGITIZER_ENABLE)
++#    if defined(DIGITIZER_LEFT) || defined(DIGITIZER_RIGHT)
++        digitizer_t driver_state = DIGITIZER_THIS_SIDE ? (digitizer_driver.get_report ? digitizer_driver.get_report(digitizer_state) : digitizer_state) : shared_digitizer_report;
++#    else
++#        error "You need to define the side(s) the digitizer is on. DIGITIZER_LEFT / DIGITIZER_RIGHT"
++#    endif
++#else
++        digitizer_t driver_state = digitizer_driver.get_report ? digitizer_driver.get_report(digitizer_state) : digitizer_state;
++#endif
++        // Handle user modification of stylus state. We explicity do not store the user modified
++        // state so we do not pass them back state that they have previously transformed.
++        digitizer_t tmp_state = driver_state;
++        if (digitizer_task_kb(&tmp_state) && digitizer_state.buttons != tmp_state.buttons) {
++            button_state_changed = true;
++            report.button1 |= tmp_state.button1;
++            report.button2 |= tmp_state.button2;
++            report.button3 |= tmp_state.button3;
++        }
++
++        for (int i = 0; i < DIGITIZER_CONTACT_COUNT; i++) {
++            // If this is a finger which is down, or it was on the last scan (but now it is up)..
++#if DIGITIZER_FINGER_COUNT > 0
++            if (i < DIGITIZER_FINGER_COUNT) {
++                const bool    finger_contact = (tmp_state.contacts[i].type == FINGER && tmp_state.contacts[i].tip) || (digitizer_state.contacts[i].type == FINGER && digitizer_state.contacts[i].tip);
++                const uint8_t finger_index   = finger_contact ? report.contact_count : DIGITIZER_FINGER_COUNT - skip_count - 1;
++
++                if (tmp_state.contacts[i].type != UNKNOWN) {
++                    // 'contacts' is the number of current contacts wheras 'report->contact_count' also counts fingers which have
++                    // been removed from the sensor since the last report.
++                    contacts++;
++                }
++                if (finger_contact) {
++                    report.fingers[finger_index].tip = tmp_state.contacts[i].tip;
++                    report.contact_count++;
++                } else {
++                    skip_count++;
++                    report.fingers[finger_index].tip = false;
++                }
++                report.fingers[finger_index].contact_id = i;
++                report.fingers[finger_index].x          = tmp_state.contacts[i].x;
++                report.fingers[finger_index].y          = tmp_state.contacts[i].y;
++                report.fingers[finger_index].confidence = tmp_state.contacts[i].confidence;
++            }
++#endif
++#ifdef DIGITIZER_HAS_STYLUS
++            if (tmp_state.contacts[i].type == STYLUS) {
++                updated_stylus         = true;
++                stylus_report.x        = tmp_state.contacts[i].x;
++                stylus_report.y        = tmp_state.contacts[i].y;
++                stylus_report.tip      = tmp_state.contacts[i].tip;
++                stylus_report.in_range = tmp_state.contacts[i].in_range;
++            } else if (digitizer_state.contacts[i].type == STYLUS) {
++                // Drop the tip, then drop out of range next scan
++                updated_stylus         = true;
++                stylus_report.x        = digitizer_state.contacts[i].x;
++                stylus_report.y        = digitizer_state.contacts[i].y;
++                stylus_report.in_range = false;
++                stylus_report.tip      = false;
++            }
++#endif
++        }
++        digitizer_state = driver_state;
++
++#if defined(POINTING_DEVICE_DRIVER_digitizer)
++        report_changed = true;
++#endif
++    }
++#ifdef DIGITIZER_HAS_STYLUS
++    if (updated_stylus) {
++        host_digitizer_stylus_send(&stylus_report);
++    }
++#endif
++    if (report.contact_count || button_state_changed || gesture_changed) {
++#if defined(POINTING_DEVICE_DRIVER_digitizer)
++        // We may get here because we read a new digitizer report, or because
++        // a timeout on a gesture occured. If a timeout occured use the last known
++        // digitizer state. Otherwise send the new state for processing.
++        if (report_changed) {
++            last_report = report;
++            digitizer_update_mouse_report(&report);
++        } else {
++            digitizer_update_mouse_report(&last_report);
++        }
++        if (!digitizer_send_mouse_reports) {
++#endif
++            if (report.contact_count || button_state_changed) {
++#if DIGITIZER_FINGER_COUNT > 0
++                static uint32_t scan_time     = 0;
++                static int      last_contacts = 0;
++
++                // Reset the scan_time after a period of inactivity (1000ms with no contacts)
++                static uint32_t inactivity_timer = 0;
++                if (last_contacts == 0 && contacts && timer_elapsed32(inactivity_timer) > 1000) {
++                    scan_time = timer_read32();
++                }
++                inactivity_timer = timer_read32();
++                last_contacts    = contacts;
++
++                // Microsoft require we report in 100us ticks.
++                uint32_t scan    = timer_elapsed32(scan_time);
++                report.scan_time = scan * 10;
++#endif
++                host_digitizer_send(&report);
++            }
++#if defined(POINTING_DEVICE_DRIVER_digitizer)
++        }
++#endif
++    }
+ 
+-void digitizer_set_position(float x, float y) {
+-    digitizer_state.x     = x;
+-    digitizer_state.y     = y;
+-    digitizer_state.dirty = true;
+-    digitizer_flush();
++#ifdef DIGITIZER_HAS_STYLUS
++    return report.contact_count > 0 || button_state_changed || updated_stylus;
++#else
++    return report.contact_count > 0 || button_state_changed;
++#endif
+ }
+diff --git a/quantum/digitizer.h b/quantum/digitizer.h
+index 6a9c24ed34..bbd63b9919 100644
+--- a/quantum/digitizer.h
++++ b/quantum/digitizer.h
+@@ -1,4 +1,5 @@
+-/* Copyright 2021
++/* Copyright 2025 George Norton (@george-norton)
++ * Copyright 2021
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -17,6 +18,7 @@
+ #pragma once
+ 
+ #include <stdbool.h>
++#include "report.h"
+ 
+ /**
+  * \file
+@@ -24,61 +26,41 @@
+  * defgroup digitizer HID Digitizer
+  * \{
+  */
++typedef enum { UNKNOWN, FINGER, STYLUS } digitizer_type_t;
+ 
+ typedef struct {
+-    bool  in_range : 1;
+-    bool  tip : 1;
+-    bool  barrel : 1;
+-    float x;
+-    float y;
+-    bool  dirty;
+-} digitizer_t;
+-
+-extern digitizer_t digitizer_state;
+-
+-/**
+- * \brief Send the digitizer report to the host if it is marked as dirty.
+- */
+-void digitizer_flush(void);
+-
+-/**
+- * \brief Assert the "in range" indicator, and flush the report.
+- */
+-void digitizer_in_range_on(void);
+-
+-/**
+- * \brief Deassert the "in range" indicator, and flush the report.
+- */
+-void digitizer_in_range_off(void);
+-
+-/**
+- * \brief Assert the tip switch, and flush the report.
+- */
+-void digitizer_tip_switch_on(void);
++    digitizer_type_t type;
++    uint8_t          tip : 1;
++    uint8_t          in_range : 1;
++    uint8_t          confidence : 1;
++    uint16_t         x;
++    uint16_t         y;
++} digitizer_contact_t;
+ 
+-/**
+- * \brief Deassert the tip switch, and flush the report.
+- */
+-void digitizer_tip_switch_off(void);
+-
+-/**
+- * \brief Assert the barrel switch, and flush the report.
+- */
+-void digitizer_barrel_switch_on(void);
+-
+-/**
+- * \brief Deassert the barrel switch, and flush the report.
+- */
+-void digitizer_barrel_switch_off(void);
++typedef struct {
++    digitizer_contact_t contacts[DIGITIZER_CONTACT_COUNT];
++    union {
++        uint8_t buttons;
++        struct {
++            uint8_t button1 : 1;
++            uint8_t button2 : 1;
++            uint8_t button3 : 1;
++        };
++    };
++} digitizer_t;
+ 
+-/**
+- * \brief Set the absolute X and Y position of the digitizer contact, and flush the report.
+- *
+- * \param x The X value of the contact position, from 0 to 1.
+- * \param y The Y value of the contact position, from 0 to 1.
+- */
+-void digitizer_set_position(float x, float y);
++__attribute__((weak)) void digitizer_init_kb(void);
++__attribute__((weak)) void digitizer_init_user(void);
++__attribute__((weak)) bool digitizer_task_user(digitizer_t *const digitizer_state);
++__attribute__((weak)) bool digitizer_task_kb(digitizer_t *const digitizer_state);
++void                       digitizer_init(void);
++bool                       digitizer_task(void);
+ 
+-void host_digitizer_send(digitizer_t *digitizer);
++#if defined(SPLIT_DIGITIZER_ENABLE)
++void digitizer_set_shared_report(digitizer_t report);
++#    if !defined(DIGITIZER_TASK_THROTTLE_MS)
++#        define DIGITIZER_TASK_THROTTLE_MS 1
++#    endif
++#endif // defined(SPLIT_DIGITIZER_ENABLE)
+ 
+ /** \} */
+diff --git a/quantum/digitizer_driver.h b/quantum/digitizer_driver.h
+new file mode 100644
+index 0000000000..fbde3dd08c
+--- /dev/null
++++ b/quantum/digitizer_driver.h
+@@ -0,0 +1,40 @@
++// Copyright 2025 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#pragma once
++
++// No driver, once more drivers are available, device
++// specific config goes in here.
++#ifndef DIGITIZER_WIDTH_MM
++#    define DIGITIZER_WIDTH_MM 100
++#endif
++#ifndef DIGITIZER_HEIGHT_MM
++#    define DIGITIZER_HEIGHT_MM 100
++#endif
++
++#ifndef DIGITIZER_RESOLUTION_X
++#    define DIGITIZER_RESOLUTION_X 1920
++#endif
++#ifndef DIGITIZER_RESOLUTION_Y
++#    define DIGITIZER_RESOLUTION_Y 1080
++#endif
++
++#ifndef DIGITIZER_HAS_STYLUS
++#    define DIGITIZER_HAS_STYLUS true
++#endif
++
++#ifndef DIGITIZER_FINGER_COUNT
++#    define DIGITIZER_FINGER_COUNT 0
++#endif
++
++#ifndef DIGITIZER_CONTACT_COUNT
++#    define DIGITIZER_CONTACT_COUNT MAX(1, DIGITIZER_FINGER_COUNT)
++#endif
++
++#if DIGITIZER_FINGER_COUNT > 5
++#    error "DIGITIZER_FINGER_COUNT must be <= 5"
++#endif
++
++#if DIGITIZER_FINGER_COUNT > DIGITIZER_CONTACT_COUNT
++#    error "DIGITIZER_FINGER_COUNT must be <= DIGITIZER_CONTACT_COUNT"
++#endif
+diff --git a/quantum/digitizer_mouse_fallback.c b/quantum/digitizer_mouse_fallback.c
+new file mode 100644
+index 0000000000..c1b842a6f2
+--- /dev/null
++++ b/quantum/digitizer_mouse_fallback.c
+@@ -0,0 +1,279 @@
++// Copyright 2025 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#if defined(POINTING_DEVICE_DRIVER_digitizer)
++
++// We can fallback to reporting as a mouse for hosts which do not implement trackpad support.
++
++#    include <stdlib.h>
++#    include "digitizer.h"
++#    include "digitizer_mouse_fallback.h"
++#    include "debug.h"
++#    include "timer.h"
++#    include "action.h"
++
++#    ifndef DIGITIZER_MOUSE_TAP_TIME
++#        define DIGITIZER_MOUSE_TAP_TIME 200
++#    endif
++
++#    ifndef DIGITIZER_MOUSE_TAP_DISTANCE
++#        define DIGITIZER_MOUSE_TAP_DISTANCE 25
++#    endif
++
++#    ifndef DIGITIZER_SCROLL_DIVISOR
++#        define DIGITIZER_SCROLL_DIVISOR 10
++#    endif
++
++#    ifndef DIGITIZER_MOUSE_SWIPE_TIME
++#        define DIGITIZER_MOUSE_SWIPE_TIME 1000
++#    endif
++
++#    ifndef DIGITIZER_MOUSE_SWIPE_DISTANCE
++#        define DIGITIZER_MOUSE_SWIPE_DISTANCE 500
++#    endif
++
++#    ifndef DIGITIZER_MOUSE_SWIPE_THRESHOLD
++#        define DIGITIZER_MOUSE_SWIPE_THRESHOLD 300
++#    endif
++
++#    ifndef DIGITIZER_SWIPE_LEFT_KC
++#        define DIGITIZER_SWIPE_LEFT_KC QK_MOUSE_BUTTON_3
++#    endif
++
++#    ifndef DIGITIZER_SWIPE_RIGHT_KC
++#        define DIGITIZER_SWIPE_RIGHT_KC QK_MOUSE_BUTTON_4
++#    endif
++
++#    ifndef DIGITIZER_SWIPE_UP_KC
++#        define DIGITIZER_SWIPE_UP_KC KC_LEFT_GUI
++#    endif
++
++#    ifndef DIGITIZER_SWIPE_DOWN_KC
++#        define DIGITIZER_SWIPE_DOWN_KC KC_ESC
++#    endif
++
++#    ifdef DIGITIZER_REPORT_TAPS_AS_CLICKS
++bool digitizer_taps_as_clicks = true;
++#    else
++bool digitizer_taps_as_clicks = false;
++#    endif
++
++// This variable indicates that we are sending mouse reports. It will be updated
++// during USB enumeration if the host sends a feature report indicating it supports
++// Microsofts Precision Trackpad protocol. This variable can also be modified by users
++// to force reporting as a mouse or as a digitizer.
++
++// TODO: Feature reports were excluded from the initial PR. This should default
++// to true once they are enabled.
++bool                  digitizer_send_mouse_reports = false;
++static report_mouse_t mouse_report                 = {};
++
++static report_mouse_t digitizer_get_mouse_report(report_mouse_t _mouse_report);
++static uint16_t       digitizer_get_cpi(void);
++static void           digitizer_set_cpi(uint16_t cpi);
++
++const pointing_device_driver_t digitizer_pointing_device_driver = {.init = NULL, .get_report = digitizer_get_mouse_report, .get_cpi = digitizer_get_cpi, .set_cpi = digitizer_set_cpi};
++
++/**
++ * @brief Gets the current digitizer mouse report, the pointing device feature will send this is we
++ * nave fallen back to mouse mode.
++ *
++ * @return report_mouse_t
++ */
++static report_mouse_t digitizer_get_mouse_report(report_mouse_t _mouse_report) {
++    if (digitizer_send_mouse_reports) {
++        report_mouse_t report = mouse_report;
++        // Retain the button state, but drop any motion.
++        memset(&mouse_report, 0, sizeof(report_mouse_t));
++        mouse_report.buttons = report.buttons;
++        return report;
++    }
++    return _mouse_report;
++}
++
++static uint16_t mouse_cpi = 400;
++
++/**
++ * @brief Gets the CPI used by the digitizer mouse fallback feature.
++ *
++ * @return the current CPI value
++ */
++static uint16_t digitizer_get_cpi(void) {
++    return mouse_cpi;
++}
++
++/**
++ * @brief Sets the CPI used by the digitizer mouse fallback feature.
++ *
++ *  @param[in] the new CPI value
++ */
++static void digitizer_set_cpi(uint16_t cpi) {
++    mouse_cpi = cpi;
++}
++
++// The gesture detection state machine will transition between these states.
++typedef enum { None, Down, MoveScroll, Tapped, DoubleTapped, Drag, Swipe, Finished } State;
++
++static State state     = None;
++static int   tap_count = 0;
++
++/**
++ * \brief Signals that a gesture is in progress so digitizer_update_mouse_report should be called,
++ * even if no new digitizer data is available.
++ * @return true if update_mouse_report should run.
++ */
++bool digitizer_update_gesture_state(void) {
++    return tap_count || state != None;
++}
++
++/**
++ * \brief Generate a mouse report from the digitizer report. This function implements
++ * a state machine to detect gestures and handle them.
++ * @param[in] report a new digitizer report
++ */
++void digitizer_update_mouse_report(report_digitizer_t *report) {
++    static int      contact_start_time = 0;
++    static int      contact_start_x    = 0;
++    static int      contact_start_y    = 0;
++    static int      tap_contacts       = 0;
++    static int      last_contacts      = 0;
++    static uint16_t last_x             = 0;
++    static uint16_t last_y             = 0;
++    const uint16_t  x                  = report->fingers[0].x * (DIGITIZER_RESOLUTION_X / DIGITIZER_WIDTH_MM) / mouse_cpi;
++    const uint16_t  y                  = report->fingers[0].y * (DIGITIZER_RESOLUTION_Y / DIGITIZER_HEIGHT_MM) / mouse_cpi;
++    const uint32_t  duration           = timer_elapsed32(contact_start_time);
++    int             contacts           = 0;
++
++    memset(&mouse_report, 0, sizeof(report_mouse_t));
++
++    for (int i = 0; i < DIGITIZER_FINGER_COUNT; i++) {
++        if (report->fingers[i].tip) {
++            contacts++;
++        }
++    }
++    switch (state) {
++        case None: {
++            if (contacts != 0) {
++                state              = Down;
++                contact_start_time = timer_read32();
++                contact_start_x    = x;
++                contact_start_y    = y;
++                tap_contacts       = contacts;
++            }
++            break;
++        }
++        case Down: {
++            const uint16_t distance_x = abs(contact_start_x - x);
++            const uint16_t distance_y = abs(contact_start_y - y);
++            tap_contacts              = MAX(contacts, tap_contacts);
++
++            if (contacts == 0) {
++                state              = Tapped;
++                contact_start_time = timer_read32();
++            } else if (contacts >= 3) {
++                state = Swipe;
++            } else if (duration > DIGITIZER_MOUSE_TAP_TIME || distance_x > DIGITIZER_MOUSE_TAP_DISTANCE || distance_y > DIGITIZER_MOUSE_TAP_DISTANCE) {
++                state = MoveScroll;
++            }
++            break;
++        }
++        case Drag:
++        case MoveScroll: {
++            if (contacts == 0) {
++                state = None;
++            } else if (contacts == 1) {
++                mouse_report.x = x - last_x;
++                mouse_report.y = y - last_y;
++            } else if (contacts == 3 && duration < DIGITIZER_MOUSE_SWIPE_TIME) {
++                state = Swipe;
++            } else {
++                static int carry_h = 0;
++                static int carry_v = 0;
++                const int  h       = x - last_x + carry_h;
++                const int  v       = y - last_y + carry_v;
++
++                carry_h = h % DIGITIZER_SCROLL_DIVISOR;
++                carry_v = v % DIGITIZER_SCROLL_DIVISOR;
++
++                mouse_report.h = h / DIGITIZER_SCROLL_DIVISOR;
++                mouse_report.v = v / DIGITIZER_SCROLL_DIVISOR;
++            }
++            break;
++        }
++        case DoubleTapped:
++        case Tapped: {
++            tap_contacts = MAX(contacts, tap_contacts);
++            if (contacts == 0 && last_contacts != contacts) {
++                tap_count++;
++                state              = DoubleTapped;
++                contact_start_time = timer_read32();
++            } else if (duration > DIGITIZER_MOUSE_TAP_TIME) {
++                if (contacts > 0 && state == Tapped) {
++                    state = Drag;
++                } else {
++                    tap_count++;
++                    state = Finished;
++                }
++            }
++            break;
++        }
++        case Swipe: {
++            const int32_t distance_x = x - contact_start_x;
++            const int32_t distance_y = y - contact_start_y;
++            if (contacts == 0) {
++                state = None;
++            } else if (duration > DIGITIZER_MOUSE_SWIPE_TIME) {
++                state = MoveScroll;
++            } else if (digitizer_send_mouse_reports) {
++                if (distance_x > DIGITIZER_MOUSE_SWIPE_DISTANCE && abs(distance_y) < DIGITIZER_MOUSE_SWIPE_THRESHOLD) {
++                    // Swipe right
++                    tap_code(DIGITIZER_SWIPE_RIGHT_KC);
++                    state = Finished;
++                } else if (distance_x < -DIGITIZER_MOUSE_SWIPE_DISTANCE && abs(distance_y) < DIGITIZER_MOUSE_SWIPE_THRESHOLD) {
++                    // Swipe left
++                    tap_code(DIGITIZER_SWIPE_LEFT_KC);
++                    state = Finished;
++                } else if (distance_y > DIGITIZER_MOUSE_SWIPE_DISTANCE && abs(distance_x) < DIGITIZER_MOUSE_SWIPE_THRESHOLD) {
++                    // Swipe down
++                    tap_code(DIGITIZER_SWIPE_DOWN_KC);
++                    state = Finished;
++                } else if (distance_y < -DIGITIZER_MOUSE_SWIPE_DISTANCE && abs(distance_x) < DIGITIZER_MOUSE_SWIPE_THRESHOLD) {
++                    // Swipe up
++                    tap_code(DIGITIZER_SWIPE_UP_KC);
++                    state = Finished;
++                }
++            }
++            break;
++        }
++        case Finished: {
++            if (contacts == 0) {
++                state = None;
++            }
++            break;
++        }
++    }
++    static bool tap = false;
++    if (tap_count) {
++        tap = !tap;
++        if (!tap) {
++            tap_count--;
++        }
++    }
++    const bool button_pressed = tap || (state == Drag);
++    if (report->button1 || (tap_contacts == 1 && button_pressed)) {
++        mouse_report.buttons |= 0x1;
++        if (digitizer_taps_as_clicks) report->button1 = 1;
++    }
++    if (report->button2 || (tap_contacts == 2 && button_pressed)) {
++        mouse_report.buttons |= 0x2;
++        if (digitizer_taps_as_clicks) report->button2 = 1;
++    }
++    if (report->button3 || (tap_contacts == 3 && button_pressed)) {
++        mouse_report.buttons |= 0x4;
++        if (digitizer_taps_as_clicks) report->button3 = 1;
++    }
++    last_contacts = contacts;
++    last_x        = x;
++    last_y        = y;
++}
++#endif
+diff --git a/quantum/digitizer_mouse_fallback.h b/quantum/digitizer_mouse_fallback.h
+new file mode 100644
+index 0000000000..4d8f2390c6
+--- /dev/null
++++ b/quantum/digitizer_mouse_fallback.h
+@@ -0,0 +1,12 @@
++// Copyright 2025 George Norton (@george-norton)
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++#if defined(POINTING_DEVICE_DRIVER_digitizer)
++#    include "pointing_device.h"
++
++const pointing_device_driver_t digitizer_pointing_device_driver;
++extern bool                    digitizer_send_mouse_reports;
++
++__attribute__((weak)) void digitizer_update_mouse_report(report_digitizer_t *report);
++__attribute__((weak)) bool digitizer_update_gesture_state(void);
++#endif
+diff --git a/quantum/keyboard.c b/quantum/keyboard.c
+index c1a6d444a5..25252d1167 100644
+--- a/quantum/keyboard.c
++++ b/quantum/keyboard.c
+@@ -86,6 +86,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #ifdef POINTING_DEVICE_ENABLE
+ #    include "pointing_device.h"
+ #endif
++#ifdef DIGITIZER_ENABLE
++#    include "digitizer.h"
++#endif
+ #ifdef MIDI_ENABLE
+ #    include "process_midi.h"
+ #endif
+@@ -191,11 +194,23 @@ void last_pointing_device_activity_trigger(void) {
+     last_pointing_device_modification_time = last_input_modification_time = sync_timer_read32();
+ }
+ 
+-void set_activity_timestamps(uint32_t matrix_timestamp, uint32_t encoder_timestamp, uint32_t pointing_device_timestamp) {
++static uint32_t last_digitizer_modification_time = 0;
++uint32_t        last_digitizer_activity_time(void) {
++    return last_digitizer_modification_time;
++}
++uint32_t last_digitizer_activity_elapsed(void) {
++    return sync_timer_elapsed32(last_digitizer_modification_time);
++}
++void last_digitizer_activity_trigger(void) {
++    last_digitizer_modification_time = last_input_modification_time = sync_timer_read32();
++}
++
++void set_activity_timestamps(uint32_t matrix_timestamp, uint32_t encoder_timestamp, uint32_t pointing_device_timestamp, uint32_t digitizer_timestamp) {
+     last_matrix_modification_time          = matrix_timestamp;
+     last_encoder_modification_time         = encoder_timestamp;
+     last_pointing_device_modification_time = pointing_device_timestamp;
+-    last_input_modification_time           = MAX(matrix_timestamp, MAX(encoder_timestamp, pointing_device_timestamp));
++    last_digitizer_modification_time       = digitizer_timestamp;
++    last_input_modification_time           = MAX(matrix_timestamp, MAX(encoder_timestamp, MAX(pointing_device_timestamp, digitizer_timestamp)));
+ }
+ 
+ // Only enable this if console is enabled to print to
+@@ -528,6 +543,10 @@ void keyboard_init(void) {
+ #ifdef SPLIT_KEYBOARD
+     split_post_init();
+ #endif
++#ifdef DIGITIZER_ENABLE
++    // init before pointing device
++    digitizer_init();
++#endif
+ #ifdef POINTING_DEVICE_ENABLE
+     // init after split init
+     pointing_device_init();
+@@ -755,6 +774,14 @@ void keyboard_task(void) {
+     }
+ #endif
+ 
++#ifdef DIGITIZER_ENABLE
++    // The digitizer may be a pointing device driver, so update its state before the pointing device
++    if (digitizer_task()) {
++        last_digitizer_activity_trigger();
++        activity_has_occurred = true;
++    }
++#endif
++
+ #ifdef POINTING_DEVICE_ENABLE
+     if (pointing_device_task()) {
+         last_pointing_device_activity_trigger();
+diff --git a/quantum/keyboard.h b/quantum/keyboard.h
+index 0f39fde682..bd8adf7dd9 100644
+--- a/quantum/keyboard.h
++++ b/quantum/keyboard.h
+@@ -133,9 +133,12 @@ uint32_t last_encoder_activity_time(void);    // Timestamp of the last encoder a
+ uint32_t last_encoder_activity_elapsed(void); // Number of milliseconds since the last encoder activity
+ 
+ uint32_t last_pointing_device_activity_time(void);    // Timestamp of the last pointing device activity
+-uint32_t last_pointing_device_activity_elapsed(void); // Number of milliseconds since the last  pointing device activity
++uint32_t last_pointing_device_activity_elapsed(void); // Number of milliseconds since the last pointing device activity
+ 
+-void set_activity_timestamps(uint32_t matrix_timestamp, uint32_t encoder_timestamp, uint32_t pointing_device_timestamp); // Set the timestamps of the last matrix and encoder activity
++uint32_t last_digitizer_activity_time(void);    // Timestamp of the last digitizer activity
++uint32_t last_digitizer_activity_elapsed(void); // Number of milliseconds since the last digitizer activity
++
++void set_activity_timestamps(uint32_t matrix_timestamp, uint32_t encoder_timestamp, uint32_t pointing_device_timestamp, uint32_t digitizer_timestamp); // Set the timestamps of the last matrix and encoder activity
+ 
+ uint32_t get_matrix_scan_rate(void);
+ 
+diff --git a/quantum/pointing_device/pointing_device.c b/quantum/pointing_device/pointing_device.c
+index 564c2d294c..83d392757f 100644
+--- a/quantum/pointing_device/pointing_device.c
++++ b/quantum/pointing_device/pointing_device.c
+@@ -179,7 +179,9 @@ __attribute__((weak)) void pointing_device_init(void) {
+     if ((POINTING_DEVICE_THIS_SIDE))
+ #endif
+     {
+-        pointing_device_driver->init();
++        if (pointing_device_driver->init) {
++            pointing_device_driver->init();
++        }
+ #ifdef POINTING_DEVICE_MOTION_PIN
+ #    ifdef POINTING_DEVICE_MOTION_PIN_ACTIVE_LOW
+         gpio_set_pin_input_high(POINTING_DEVICE_MOTION_PIN);
+@@ -293,7 +295,6 @@ __attribute__((weak)) bool pointing_device_task(void) {
+ #    endif
+     {
+ #endif
+-
+ #if defined(SPLIT_POINTING_ENABLE)
+ #    if defined(POINTING_DEVICE_COMBINED)
+         static uint8_t old_buttons = 0;
+diff --git a/quantum/pointing_device/pointing_device.h b/quantum/pointing_device/pointing_device.h
+index e7a0819ed9..89d0d1074c 100644
+--- a/quantum/pointing_device/pointing_device.h
++++ b/quantum/pointing_device/pointing_device.h
+@@ -53,6 +53,8 @@ typedef struct {
+ #elif defined(POINTING_DEVICE_DRIVER_cirque_pinnacle_i2c) || defined(POINTING_DEVICE_DRIVER_cirque_pinnacle_spi)
+ #    include "drivers/sensors/cirque_pinnacle.h"
+ #    include "pointing_device_gestures.h"
++#elif defined(POINTING_DEVICE_DRIVER_digitizer)
++#    include "digitizer_mouse_fallback.h"
+ #elif defined(POINTING_DEVICE_DRIVER_paw3204)
+ #    include "drivers/sensors/paw3204.h"
+ #    define POINTING_DEVICE_MOTION_PIN_ACTIVE_LOW
+diff --git a/quantum/quantum.c b/quantum/quantum.c
+index 0bb6ee0a91..38e0303477 100644
+--- a/quantum/quantum.c
++++ b/quantum/quantum.c
+@@ -593,6 +593,10 @@ void suspend_power_down_quantum(void) {
+     // run to ensure scanning occurs while suspended
+     pointing_device_task();
+ #    endif
++#    if defined(DIGITIZER_ENABLE)
++    // run to ensure scanning occurs while suspended
++    digitizer_task();
++#    endif
+ #endif
+ }
+ 
+diff --git a/quantum/split_common/transaction_id_define.h b/quantum/split_common/transaction_id_define.h
+index 694737868a..2e8908279e 100644
+--- a/quantum/split_common/transaction_id_define.h
++++ b/quantum/split_common/transaction_id_define.h
+@@ -87,6 +87,11 @@ enum serial_transaction_id {
+     PUT_POINTING_CPI,
+ #endif // defined(POINTING_DEVICE_ENABLE) && defined(SPLIT_POINTING_ENABLE)
+ 
++#if defined(DIGITIZER_ENABLE) && defined(SPLIT_DIGITIZER_ENABLE)
++    GET_DIGITIZER_CHECKSUM,
++    GET_DIGITIZER_DATA,
++#endif // defined(DIGITIZER_ENABLE) && defined(SPLIT_DIGITIZER_ENABLE)
++
+ #if defined(SPLIT_WATCHDOG_ENABLE)
+     PUT_WATCHDOG,
+ #endif // defined(SPLIT_WATCHDOG_ENABLE)
+diff --git a/quantum/split_common/transactions.c b/quantum/split_common/transactions.c
+index f66b2ad89f..647e6de4b4 100644
+--- a/quantum/split_common/transactions.c
++++ b/quantum/split_common/transactions.c
+@@ -785,6 +785,69 @@ static void pointing_handlers_slave(matrix_row_t master_matrix[], matrix_row_t s
+ 
+ #endif // defined(POINTING_DEVICE_ENABLE) && defined(SPLIT_POINTING_ENABLE)
+ 
++////////////////////////////////////////////////////
++// DIGITIZER
++
++#if defined(DIGITIZER_ENABLE) && defined(SPLIT_DIGITIZER_ENABLE)
++
++static bool digitizer_handlers_master(matrix_row_t master_matrix[], matrix_row_t slave_matrix[]) {
++#    if defined(DIGITIZER_LEFT)
++    if (is_keyboard_left()) {
++        return true;
++    }
++#    elif defined(DIGITIZER_RIGHT)
++    if (!is_keyboard_left()) {
++        return true;
++    }
++#    endif
++    static uint32_t last_update = 0;
++    digitizer_t     temp_state;
++    bool            okay = read_if_checksum_mismatch(GET_DIGITIZER_CHECKSUM, GET_DIGITIZER_DATA, &last_update, &temp_state, &split_shmem->digitizer.report, sizeof(temp_state));
++    if (okay) digitizer_set_shared_report(temp_state);
++    return okay;
++}
++
++static void digitizer_handlers_slave(matrix_row_t master_matrix[], matrix_row_t slave_matrix[]) {
++#    if defined(DIGITIZER_LEFT)
++    if (!is_keyboard_left()) {
++        return;
++    }
++#    elif defined(DIGITIZER_RIGHT)
++    if (is_keyboard_left()) {
++        return;
++    }
++#    endif
++#    if (DIGITIZER_TASK_THROTTLE_MS > 0)
++    static uint32_t last_exec = 0;
++    if (timer_elapsed32(last_exec) < DIGITIZER_TASK_THROTTLE_MS) {
++        return;
++    }
++    last_exec = timer_read32();
++#    endif
++
++    split_slave_digitizer_sync_t digitizer = {};
++    digitizer.report                       = digitizer_get_state();
++
++    // Now update the checksum given that the digitizer report has been written to
++    digitizer.checksum = crc8(&digitizer.report, sizeof(digitizer_t));
++
++    split_shared_memory_lock();
++    memcpy(&split_shmem->digitizer, &digitizer, sizeof(split_slave_digitizer_sync_t));
++    split_shared_memory_unlock();
++}
++
++#    define TRANSACTIONS_DIGITIZER_MASTER() TRANSACTION_HANDLER_MASTER(digitizer)
++#    define TRANSACTIONS_DIGITIZER_SLAVE() TRANSACTION_HANDLER_SLAVE(digitizer)
++#    define TRANSACTIONS_DIGITIZER_REGISTRATIONS [GET_DIGITIZER_CHECKSUM] = trans_target2initiator_initializer(digitizer.checksum), [GET_DIGITIZER_DATA] = trans_target2initiator_initializer(digitizer.report),
++
++#else // defined(POINTING_DEVICE_ENABLE) && defined(SPLIT_POINTING_ENABLE)
++
++#    define TRANSACTIONS_DIGITIZER_MASTER()
++#    define TRANSACTIONS_DIGITIZER_SLAVE()
++#    define TRANSACTIONS_DIGITIZER_REGISTRATIONS
++
++#endif // defined(POINTING_DEVICE_ENABLE) && defined(SPLIT_POINTING_ENABLE)
++
+ ////////////////////////////////////////////////////
+ // WATCHDOG
+ 
+@@ -865,11 +928,12 @@ static bool activity_handlers_master(matrix_row_t master_matrix[], matrix_row_t
+     activity_sync.matrix_timestamp          = last_matrix_activity_time();
+     activity_sync.encoder_timestamp         = last_encoder_activity_time();
+     activity_sync.pointing_device_timestamp = last_pointing_device_activity_time();
++    activity_sync.digitizer_timestamp       = last_digitizer_activity_time();
+     return send_if_data_mismatch(PUT_ACTIVITY, &last_update, &activity_sync, &split_shmem->activity_sync, sizeof(activity_sync));
+ }
+ 
+ static void activity_handlers_slave(matrix_row_t master_matrix[], matrix_row_t slave_matrix[]) {
+-    set_activity_timestamps(split_shmem->activity_sync.matrix_timestamp, split_shmem->activity_sync.encoder_timestamp, split_shmem->activity_sync.pointing_device_timestamp);
++    set_activity_timestamps(split_shmem->activity_sync.matrix_timestamp, split_shmem->activity_sync.encoder_timestamp, split_shmem->activity_sync.pointing_device_timestamp, split_shmem->activity_sync.digitizer_timestamp);
+ }
+ 
+ // clang-format off
+@@ -940,6 +1004,7 @@ split_transaction_desc_t split_transaction_table[NUM_TOTAL_TRANSACTIONS] = {
+     TRANSACTIONS_OLED_REGISTRATIONS
+     TRANSACTIONS_ST7565_REGISTRATIONS
+     TRANSACTIONS_POINTING_REGISTRATIONS
++    TRANSACTIONS_DIGITIZER_REGISTRATIONS
+     TRANSACTIONS_WATCHDOG_REGISTRATIONS
+     TRANSACTIONS_HAPTIC_REGISTRATIONS
+     TRANSACTIONS_ACTIVITY_REGISTRATIONS
+@@ -970,6 +1035,7 @@ bool transactions_master(matrix_row_t master_matrix[], matrix_row_t slave_matrix
+     TRANSACTIONS_OLED_MASTER();
+     TRANSACTIONS_ST7565_MASTER();
+     TRANSACTIONS_POINTING_MASTER();
++    TRANSACTIONS_DIGITIZER_MASTER();
+     TRANSACTIONS_WATCHDOG_MASTER();
+     TRANSACTIONS_HAPTIC_MASTER();
+     TRANSACTIONS_ACTIVITY_MASTER();
+@@ -993,6 +1059,7 @@ void transactions_slave(matrix_row_t master_matrix[], matrix_row_t slave_matrix[
+     TRANSACTIONS_OLED_SLAVE();
+     TRANSACTIONS_ST7565_SLAVE();
+     TRANSACTIONS_POINTING_SLAVE();
++    TRANSACTIONS_DIGITIZER_SLAVE();
+     TRANSACTIONS_WATCHDOG_SLAVE();
+     TRANSACTIONS_HAPTIC_SLAVE();
+     TRANSACTIONS_ACTIVITY_SLAVE();
+diff --git a/quantum/split_common/transport.h b/quantum/split_common/transport.h
+index fbd87ca312..82dcdbf41d 100644
+--- a/quantum/split_common/transport.h
++++ b/quantum/split_common/transport.h
+@@ -115,6 +115,14 @@ typedef struct _split_slave_pointing_sync_t {
+ } split_slave_pointing_sync_t;
+ #endif // defined(POINTING_DEVICE_ENABLE) && defined(SPLIT_POINTING_ENABLE)
+ 
++#if defined(DIGITIZER_ENABLE) && defined(SPLIT_DIGITIZER_ENABLE)
++#    include "digitizer.h"
++typedef struct _split_digitizer_sync_t {
++    uint8_t     checksum;
++    digitizer_t report;
++} split_slave_digitizer_sync_t;
++#endif // defined(DIGITIZER_ENABLE) && defined(SPLIT_DIGITIZER_ENABLE)
++
+ #if defined(HAPTIC_ENABLE) && defined(SPLIT_HAPTIC_ENABLE)
+ #    include "haptic.h"
+ typedef struct _split_slave_haptic_sync_t {
+@@ -129,6 +137,7 @@ typedef struct _split_slave_activity_sync_t {
+     uint32_t matrix_timestamp;
+     uint32_t encoder_timestamp;
+     uint32_t pointing_device_timestamp;
++    uint32_t digitizer_timestamp;
+ } split_slave_activity_sync_t;
+ #endif // defined(SPLIT_ACTIVITY_ENABLE)
+ 
+@@ -210,6 +219,10 @@ typedef struct _split_shared_memory_t {
+     split_slave_pointing_sync_t pointing;
+ #endif // defined(POINTING_DEVICE_ENABLE) && defined(SPLIT_POINTING_ENABLE)
+ 
++#if defined(DIGITIZER_ENABLE) && defined(SPLIT_DIGITIZER_ENABLE)
++    split_slave_digitizer_sync_t digitizer;
++#endif // defined(DIGITIZER_ENABLE) && defined(SPLIT_DIGITIZER_ENABLE)
++
+ #if defined(SPLIT_WATCHDOG_ENABLE)
+     bool watchdog_pinged;
+ #endif // defined(SPLIT_WATCHDOG_ENABLE)
+diff --git a/tmk_core/protocol.mk b/tmk_core/protocol.mk
+index 81520c1bc8..be55b2872f 100644
+--- a/tmk_core/protocol.mk
++++ b/tmk_core/protocol.mk
+@@ -5,7 +5,17 @@ SRC +=	\
+ 	$(PROTOCOL_DIR)/usb_util.c \
+ 
+ SHARED_EP_ENABLE = no
+-MOUSE_SHARED_EP ?= yes
++# Ideally if both the digitizer and mouse are enabled, we
++# would like to have them on different endpoints. If they
++# are on the same endpoint, PTP compliant hosts will ignore
++# all mouse events once they have sent the input mode feature
++# report.
++ifeq ($(strip $(DIGITIZER_ENABLE)), yes)
++    MOUSE_SHARED_EP ?= no
++    DIGITIZER_SHARED_EP ?= yes
++else
++    MOUSE_SHARED_EP ?= yes
++endif
+ ifeq ($(strip $(KEYBOARD_SHARED_EP)), yes)
+     OPT_DEFS += -DKEYBOARD_SHARED_EP
+     SHARED_EP_ENABLE = yes
+@@ -13,6 +23,14 @@ ifeq ($(strip $(KEYBOARD_SHARED_EP)), yes)
+     # you can't share kbd without sharing mouse;
+     # that would be a very unexpected use case anyway
+     MOUSE_SHARED_EP = yes
++    DIGITIZER_SHARED_EP = yes
++endif
++
++ifeq ($(strip $(MOUSE_SHARED_EP)), yes)
++    # With the current usb_descriptor.c code,
++    # you can't share kbd without sharing mouse;
++    # that would be a very unexpected use case anyway
++    DIGITIZER_SHARED_EP = yes
+ endif
+ 
+ ifeq ($(strip $(MOUSE_ENABLE)), yes)
+@@ -71,14 +89,9 @@ ifeq ($(strip $(JOYSTICK_ENABLE)), yes)
+     endif
+ endif
+ 
+-ifeq ($(strip $(DIGITIZER_SHARED_EP)), yes)
+-    OPT_DEFS += -DDIGITIZER_SHARED_EP
+-    SHARED_EP_ENABLE = yes
+-endif
+-
+ ifeq ($(strip $(DIGITIZER_ENABLE)), yes)
+     OPT_DEFS += -DDIGITIZER_ENABLE
+-    ifeq ($(strip $(SHARED_EP_ENABLE)), yes)
++    ifeq ($(strip $(DIGITIZER_SHARED_EP)), yes)
+         OPT_DEFS += -DDIGITIZER_SHARED_EP
+         SHARED_EP_ENABLE = yes
+     endif
+diff --git a/tmk_core/protocol/chibios/usb_main.c b/tmk_core/protocol/chibios/usb_main.c
+index f9d7f5c4d6..fc06a8c7d8 100644
+--- a/tmk_core/protocol/chibios/usb_main.c
++++ b/tmk_core/protocol/chibios/usb_main.c
+@@ -501,6 +501,12 @@ void send_digitizer(report_digitizer_t *report) {
+ #endif
+ }
+ 
++void send_digitizer_stylus(report_digitizer_stylus_t *report) {
++#ifdef DIGITIZER_ENABLE
++    send_report(USB_ENDPOINT_IN_DIGITIZER, report, sizeof(report_digitizer_stylus_t));
++#endif
++}
++
+ /* ---------------------------------------------------------
+  *                   Console functions
+  * ---------------------------------------------------------
+diff --git a/tmk_core/protocol/host.c b/tmk_core/protocol/host.c
+index 4874d7c1d3..e8b6fc4405 100644
+--- a/tmk_core/protocol/host.c
++++ b/tmk_core/protocol/host.c
+@@ -271,24 +271,19 @@ void host_joystick_send(joystick_t *joystick) {
+ __attribute__((weak)) void send_joystick(report_joystick_t *report) {}
+ 
+ #ifdef DIGITIZER_ENABLE
+-void host_digitizer_send(digitizer_t *digitizer) {
+-    report_digitizer_t report = {
+-#    ifdef DIGITIZER_SHARED_EP
+-        .report_id = REPORT_ID_DIGITIZER,
+-#    endif
+-        .in_range = digitizer->in_range,
+-        .tip      = digitizer->tip,
+-        .barrel   = digitizer->barrel,
+-        .x        = (uint16_t)(digitizer->x * 0x7FFF),
+-        .y        = (uint16_t)(digitizer->y * 0x7FFF),
+-    };
++void host_digitizer_send(report_digitizer_t *report) {
++    report->report_id = REPORT_ID_DIGITIZER;
++    send_digitizer(report);
++}
++__attribute__((weak)) void send_digitizer(report_digitizer_t *report) {}
+ 
+-    send_digitizer(&report);
++void host_digitizer_stylus_send(report_digitizer_stylus_t *report) {
++    report->report_id = REPORT_ID_DIGITIZER_STYLUS;
++    send_digitizer_stylus(report);
+ }
++__attribute__((weak)) void send_digitizer_stylus(report_digitizer_stylus_t *report) {}
+ #endif
+ 
+-__attribute__((weak)) void send_digitizer(report_digitizer_t *report) {}
+-
+ #ifdef PROGRAMMABLE_BUTTON_ENABLE
+ void host_programmable_button_send(uint32_t data) {
+     report_programmable_button_t report = {
+diff --git a/tmk_core/protocol/host.h b/tmk_core/protocol/host.h
+index a0b1e73dcc..6f3a12bc1b 100644
+--- a/tmk_core/protocol/host.h
++++ b/tmk_core/protocol/host.h
+@@ -38,6 +38,8 @@ led_t   host_keyboard_led_state(void);
+ void    host_keyboard_send(report_keyboard_t *report);
+ void    host_nkro_send(report_nkro_t *report);
+ void    host_mouse_send(report_mouse_t *report);
++void    host_digitizer_send(report_digitizer_t *report);
++void    host_digitizer_stylus_send(report_digitizer_stylus_t *report);
+ void    host_system_send(uint16_t usage);
+ void    host_consumer_send(uint16_t usage);
+ void    host_programmable_button_send(uint32_t data);
+diff --git a/tmk_core/protocol/host_driver.h b/tmk_core/protocol/host_driver.h
+index c2835aaa99..4094233c38 100644
+--- a/tmk_core/protocol/host_driver.h
++++ b/tmk_core/protocol/host_driver.h
+@@ -36,4 +36,5 @@ typedef struct {
+ 
+ void send_joystick(report_joystick_t *report);
+ void send_digitizer(report_digitizer_t *report);
++void send_digitizer_stylus(report_digitizer_stylus_t *report);
+ void send_programmable_button(report_programmable_button_t *report);
+diff --git a/tmk_core/protocol/report.h b/tmk_core/protocol/report.h
+index 9053b0bb3f..bd0e334fe0 100644
+--- a/tmk_core/protocol/report.h
++++ b/tmk_core/protocol/report.h
+@@ -26,6 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #    include "joystick.h"
+ #endif
+ 
++#ifdef DIGITIZER_ENABLE
++#    include "digitizer_driver.h"
++#endif
++
+ // clang-format off
+ 
+ /* HID report IDs */
+@@ -39,7 +43,8 @@ enum hid_report_ids {
+     REPORT_ID_NKRO,
+     REPORT_ID_JOYSTICK,
+     REPORT_ID_DIGITIZER,
+-    REPORT_ID_COUNT = REPORT_ID_DIGITIZER
++    REPORT_ID_DIGITIZER_STYLUS,
++    REPORT_ID_COUNT = REPORT_ID_DIGITIZER_STYLUS
+ };
+ 
+ #define IS_VALID_REPORT_ID(id) ((id) >= REPORT_ID_ALL && (id) <= REPORT_ID_COUNT)
+@@ -229,15 +234,36 @@ typedef struct {
+ } PACKED report_mouse_t;
+ 
+ typedef struct {
+-#ifdef DIGITIZER_SHARED_EP
+-    uint8_t report_id;
+-#endif
+-    bool     in_range : 1;
+-    bool     tip : 1;
+-    bool     barrel : 1;
++    uint8_t  report_id;
++    uint8_t  in_range : 1;
++    uint8_t  tip : 1;
++    uint8_t  barrel : 1;
+     uint8_t  reserved : 5;
+     uint16_t x;
+     uint16_t y;
++} PACKED report_digitizer_stylus_t;
++
++typedef struct {
++    uint8_t  confidence : 1;
++    uint8_t  tip : 1;
++    uint8_t  reserved : 6;
++    uint8_t  contact_id : 3;
++    uint8_t  reserved2 : 5;
++    uint16_t x;
++    uint16_t y;
++} PACKED digitizer_finger_report_t;
++
++typedef struct {
++    uint8_t report_id;
++#ifdef DIGITIZER_FINGER_COUNT
++    digitizer_finger_report_t fingers[DIGITIZER_FINGER_COUNT];
++#endif
++    uint16_t scan_time;
++    uint8_t  contact_count : 4;
++    uint8_t  button1 : 1;
++    uint8_t  button2 : 1;
++    uint8_t  button3 : 1;
++    uint8_t  reserved2 : 1;
+ } PACKED report_digitizer_t;
+ 
+ #if JOYSTICK_AXIS_RESOLUTION > 8
+diff --git a/tmk_core/protocol/usb_descriptor.c b/tmk_core/protocol/usb_descriptor.c
+index ceab9eef9a..d6875ddddb 100644
+--- a/tmk_core/protocol/usb_descriptor.c
++++ b/tmk_core/protocol/usb_descriptor.c
+@@ -318,12 +318,11 @@ const USB_Descriptor_HIDReport_Datatype_t PROGMEM DigitizerReport[] = {
+ const USB_Descriptor_HIDReport_Datatype_t PROGMEM SharedReport[] = {
+ #        define SHARED_REPORT_STARTED
+ #    endif
++#    ifdef DIGITIZER_HAS_STYLUS
+     HID_RI_USAGE_PAGE(8, 0x0D),            // Digitizers
+-    HID_RI_USAGE(8, 0x01),                 // Digitizer
++    HID_RI_USAGE(8, 0x02),                 // Pen
+     HID_RI_COLLECTION(8, 0x01),            // Application
+-#    ifdef DIGITIZER_SHARED_EP
+-        HID_RI_REPORT_ID(8, REPORT_ID_DIGITIZER),
+-#    endif
++        HID_RI_REPORT_ID(8, REPORT_ID_DIGITIZER_STYLUS),
+         HID_RI_USAGE(8, 0x20),             // Stylus
+         HID_RI_COLLECTION(8, 0x00),        // Physical
+             // In Range, Tip Switch & Barrel Switch (3 bits)
+@@ -341,16 +340,130 @@ const USB_Descriptor_HIDReport_Datatype_t PROGMEM SharedReport[] = {
+ 
+             // X/Y Position (4 bytes)
+             HID_RI_USAGE_PAGE(8, 0x01),    // Generic Desktop
++            HID_RI_PUSH(0),
++            HID_RI_LOGICAL_MINIMUM(8, 0x0),
++            HID_RI_LOGICAL_MAXIMUM(16, DIGITIZER_RESOLUTION_X),
++            HID_RI_REPORT_SIZE(8, 16),
++            HID_RI_UNIT_EXPONENT(8, 0x0E), // -2
++            HID_RI_UNIT(8, 0x11),          // CM, English Linear
+             HID_RI_USAGE(8, 0x30),         // X
++            HID_RI_PHYSICAL_MINIMUM(8, 0x0),
++            HID_RI_PHYSICAL_MAXIMUM(16, (DIGITIZER_WIDTH_MM * 10)),
++            HID_RI_REPORT_COUNT(8, 0x01),
++            HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
++            HID_RI_LOGICAL_MAXIMUM(16, DIGITIZER_RESOLUTION_Y),
++            HID_RI_PHYSICAL_MAXIMUM(16, (DIGITIZER_HEIGHT_MM * 10)),
+             HID_RI_USAGE(8, 0x31),         // Y
+-            HID_RI_LOGICAL_MAXIMUM(16, 0x7FFF),
+-            HID_RI_REPORT_COUNT(8, 0x02),
+-            HID_RI_REPORT_SIZE(8, 0x10),
+-            HID_RI_UNIT(8, 0x13),          // Inch, English Linear
+-            HID_RI_UNIT_EXPONENT(8, 0x0E), // -2
+             HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
++            HID_RI_POP(0),
+         HID_RI_END_COLLECTION(0),
+     HID_RI_END_COLLECTION(0),
++#    endif
++
++#    if DIGITIZER_FINGER_COUNT > 0
++    HID_RI_USAGE_PAGE(8, 0x0D),            // Digitizers
++    HID_RI_USAGE(8, 0x05),                 // Touchpad
++    HID_RI_COLLECTION(8, 0x01),            // Application
++        HID_RI_REPORT_ID(8, REPORT_ID_DIGITIZER),
++// The digitizer finger report is large and repetitive, so it has been moved into a macro
++#        define DIGITIZER_FINGER_REPORT                                              \
++        HID_RI_USAGE_PAGE(8, 0x0D),        /*  Digitizers */                     \
++        HID_RI_USAGE(8, 0x22),             /*  Finger */                         \
++        HID_RI_COLLECTION(8, 0x00),        /*  Physical */                       \
++            HID_RI_PUSH(0),                                                      \
++            HID_RI_LOGICAL_MINIMUM(8, 0x00),                                     \
++            HID_RI_LOGICAL_MAXIMUM(8, 0x01),                                     \
++            /*  Tip Switch, Confidence (2 bits) */                               \
++            HID_RI_USAGE(8, 0x47),         /*  Confidence */                     \
++            HID_RI_USAGE(8, 0x42),         /*  Tip Switch */                     \
++            HID_RI_REPORT_COUNT(8, 0x02),                                        \
++            HID_RI_REPORT_SIZE(8, 0x01),                                         \
++            HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE), \
++                                                                                 \
++            /*  Padding (6 bits) */                                              \
++            HID_RI_REPORT_SIZE(8, 0x01),                                         \
++            HID_RI_REPORT_COUNT(8, 0x06),                                        \
++            HID_RI_INPUT(8, HID_IOF_CONSTANT),                                   \
++                                                                                 \
++            /*  Contact identifier (3 bits) */                                   \
++            HID_RI_REPORT_COUNT(8, 0x01),                                        \
++            HID_RI_REPORT_SIZE(8, 0x03),                                         \
++            HID_RI_LOGICAL_MAXIMUM(8, 0x05),                                     \
++            HID_RI_USAGE(8, 0x51),         /*  Contact identifier */             \
++            HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE), \
++                                                                                 \
++            /*  Padding (5 bits) */                                              \
++            HID_RI_REPORT_SIZE(8, 0x01),                                         \
++            HID_RI_REPORT_COUNT(8, 0x05),                                        \
++            HID_RI_INPUT(8, HID_IOF_CONSTANT),                                   \
++                                                                                 \
++            /*  X/Y Position (4 bytes) */                                        \
++            HID_RI_USAGE_PAGE(8, 0x01),    /*  Generic Desktop */                \
++            HID_RI_LOGICAL_MINIMUM(8, 0x0),                                      \
++            HID_RI_LOGICAL_MAXIMUM(16, DIGITIZER_RESOLUTION_X),                  \
++            HID_RI_REPORT_SIZE(8, 16),                                           \
++            HID_RI_UNIT_EXPONENT(8, 0x0E), /*  -2 */                             \
++            HID_RI_UNIT(8, 0x11),          /*  CM, English Linear */             \
++            HID_RI_USAGE(8, 0x30),         /*  X */                              \
++            HID_RI_PHYSICAL_MINIMUM(8, 0x0),                                     \
++            HID_RI_PHYSICAL_MAXIMUM(16, (DIGITIZER_WIDTH_MM * 10)),              \
++            HID_RI_REPORT_COUNT(8, 0x01),                                        \
++            HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE), \
++            HID_RI_LOGICAL_MAXIMUM(16, DIGITIZER_RESOLUTION_Y),                  \
++            HID_RI_PHYSICAL_MAXIMUM(16, (DIGITIZER_HEIGHT_MM * 10)),             \
++            HID_RI_USAGE(8, 0x31),         /*  Y */                              \
++            HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE), \
++            HID_RI_POP(0),                                                       \
++        HID_RI_END_COLLECTION(0)
++        DIGITIZER_FINGER_REPORT,
++#    endif
++#    if DIGITIZER_FINGER_COUNT > 1
++        DIGITIZER_FINGER_REPORT,
++#    endif
++#    if DIGITIZER_FINGER_COUNT > 2
++        DIGITIZER_FINGER_REPORT,
++#    endif
++#    if DIGITIZER_FINGER_COUNT > 3
++        DIGITIZER_FINGER_REPORT,
++#    endif
++#    if DIGITIZER_FINGER_COUNT > 4
++        DIGITIZER_FINGER_REPORT,
++#    endif
++#    if DIGITIZER_FINGER_COUNT > 0
++        HID_RI_PUSH(0),
++        HID_RI_UNIT_EXPONENT(8, 0x0C),  // -4
++        HID_RI_UNIT(16, 0x1001),        // Seconds, SI Linear
++        HID_RI_USAGE_PAGE(8, 0x0D),    // Digitizers
++        HID_RI_USAGE(8, 0x56),         // Scan Time
++        HID_RI_PHYSICAL_MINIMUM(0),
++        HID_RI_LOGICAL_MINIMUM(0),
++        HID_RI_PHYSICAL_MAXIMUM(32, 65535),
++        HID_RI_LOGICAL_MAXIMUM(32, 65535),
++        HID_RI_REPORT_SIZE(8, 16),
++        HID_RI_REPORT_COUNT(8, 0x01),
++        HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
++        HID_RI_USAGE(8, 0x54),         // Contact count
++        HID_RI_LOGICAL_MAXIMUM(8, 5),
++        HID_RI_REPORT_COUNT(8, 0x01),
++        HID_RI_REPORT_SIZE(8, 0x04),
++        HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
++
++        // Buttons
++        HID_RI_USAGE_PAGE(8, 0x09),    // Buttons
++        HID_RI_USAGE(8, 0x01),         // Button 1
++        HID_RI_USAGE(8, 0x02),         // Button 2
++        HID_RI_USAGE(8, 0x03),         // Button 3
++        HID_RI_LOGICAL_MAXIMUM(8, 1),
++        HID_RI_REPORT_SIZE(8, 1),
++        HID_RI_REPORT_COUNT(8, 3),
++        HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
++
++        // Padding (1 bits)
++        HID_RI_REPORT_SIZE(8, 0x01),
++        HID_RI_REPORT_COUNT(8, 0x01),
++        HID_RI_INPUT(8, HID_IOF_CONSTANT),
++    HID_RI_END_COLLECTION(0),
++#    endif
+ #    ifndef DIGITIZER_SHARED_EP
+ };
+ #    endif
+diff --git a/tmk_core/protocol/usb_descriptor.h b/tmk_core/protocol/usb_descriptor.h
+index 1de8c5ec88..3935cd6fc3 100644
+--- a/tmk_core/protocol/usb_descriptor.h
++++ b/tmk_core/protocol/usb_descriptor.h
+@@ -284,7 +284,11 @@ enum usb_endpoints {
+ #endif
+ 
+ #define KEYBOARD_EPSIZE 8
+-#define SHARED_EPSIZE 32
++#if defined(DIGITIZER_ENABLE) && defined(DIGITIZER_SHARED_EP)
++#    define SHARED_EPSIZE 64
++#else
++#    define SHARED_EPSIZE 32
++#endif
+ #define MOUSE_EPSIZE 16
+ #define RAW_EPSIZE 32
+ #define CONSOLE_EPSIZE 32
+@@ -292,6 +296,6 @@ enum usb_endpoints {
+ #define CDC_NOTIFICATION_EPSIZE 8
+ #define CDC_EPSIZE 16
+ #define JOYSTICK_EPSIZE 8
+-#define DIGITIZER_EPSIZE 8
++#define DIGITIZER_EPSIZE 64
+ 
+ uint16_t get_usb_descriptor(const uint16_t wValue, const uint16_t wIndex, const uint16_t wLength, const void** const DescriptorAddress);
+diff --git a/tmk_core/protocol/usb_descriptor_common.h b/tmk_core/protocol/usb_descriptor_common.h
+index f782d83fbc..a1dba288ba 100644
+--- a/tmk_core/protocol/usb_descriptor_common.h
++++ b/tmk_core/protocol/usb_descriptor_common.h
+@@ -51,4 +51,4 @@
+ #    else
+ #        define POINTING_DEVICE_HIRES_SCROLL_EXPONENT 0
+ #    endif
+-#endif
+\ No newline at end of file
++#endif
