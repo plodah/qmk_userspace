@@ -55,6 +55,7 @@
             "mousekey": true,
             "oled": true,
             "os_detection": false,
+            "repeat_key": true,
             "rgblight": true,
             "rgb_matrix": false,
             "space_cadet": false,
