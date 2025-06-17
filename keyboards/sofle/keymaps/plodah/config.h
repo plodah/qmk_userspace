@@ -20,7 +20,7 @@
 // #define CM_QRGB_DISABLED
 #define KC_PL_SCRL
 
-#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "oQwer", "oCole", "oFn A", "oFn B", "Mouse", "Tenth" }
+#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "_10__" }
 
 #define CHORDAL_HOLD
 #define COMBOFLOW_ENABLE
@@ -28,7 +28,7 @@
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 // #define TASKSWITCH_FORCE_NDE
-#define PLODAH_BORING_LAYER _O_QWEA
+#define PLODAH_BORING_LAYER _O_QWERTY
 
 #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
   // #define MSJIGGLER_NOINTRO
