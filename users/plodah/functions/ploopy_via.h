@@ -60,15 +60,15 @@ static via_ploopystuff_config ploopyvia_config_default = {
     .gesture_action_v           = GESTURE_ACTION_NOTHING,
     .combos_enabled             = false,
     #if defined(BETTER_DRAGSCROLL_INVERT_H)
-      .dragscroll_invert_h      = true,
+        .dragscroll_invert_h      = true,
     #else // BETTER_DRAGSCROLL_INVERT_H
-      .dragscroll_invert_h      = false,
+        .dragscroll_invert_h      = false,
     #endif // BETTER_DRAGSCROLL_INVERT_H
 
     #if defined(BETTER_DRAGSCROLL_INVERT_V)
-      .dragscroll_invert_v      = true,
+        .dragscroll_invert_v      = true,
     #else // BETTER_DRAGSCROLL_INVERT_V
-      .dragscroll_invert_v      = false,
+        .dragscroll_invert_v      = false,
     #endif // BETTER_DRA
 
     .dragscroll_divisor_h       = 4 * BETTER_DRAGSCROLL_DIVISOR_H,
