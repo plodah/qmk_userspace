@@ -21,24 +21,15 @@
 // #define CM_QRGB_DISABLED
 #define KC_PL_SCRL
 
-#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "oQwer", "oCole", "oFn A", "oFn B", "Mouse", "Tenth" }
+#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "_10__" }
 
 #define CHORDAL_HOLD
+#define COMBOFLOW_ENABLE
+#define COMBOFLOW_TERM 110
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 // #define TASKSWITCH_FORCE_NDE
-
-#define PLODAH_BORING_LAYER _O_QWEA
-
-#ifdef QUICK_TAP_TERM
-  #undef QUICK_TAP_TERM
-#endif
-#define QUICK_TAP_TERM 60
-
-#ifdef FLOW_TAP_TERM
-  #undef FLOW_TAP_TERM
-#endif
-#define FLOW_TAP_TERM 150
+#define PLODAH_BORING_LAYER _O_QWERTY
 
 #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
   // #define MSJIGGLER_NOINTRO
@@ -52,6 +43,21 @@
 #if defined(TAP_DANCE_ENABLE)
   #define PLODAH_TAPDANCE_TAPHOLD_ENABLE
 #endif // TAP_DANCE_ENABLE
+
+#ifdef COMBO_ENABLE
+  #define PLODAH_HRM_COMBOS
+  #define PLODAH_BRM_COMBOS
+#endif
+
+#ifdef QUICK_TAP_TERM
+  #undef QUICK_TAP_TERM
+#endif
+#define QUICK_TAP_TERM 60
+
+#ifdef FLOW_TAP_TERM
+  #undef FLOW_TAP_TERM
+#endif
+#define FLOW_TAP_TERM 150
 
 #ifdef RGBLIGHT_ENABLE
   #include "configs/rgblight-effects-all.h"

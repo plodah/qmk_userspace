@@ -2,7 +2,7 @@
     "version": 1,
     "notes": "Hello",
     "author": "Plodah",
-    "documentation": "qmk compile -kb sofle -km plodah",
+    "documentation": "qmk compile -kb sofle -km plodaho",
     "keyboard": "sofle",
     "keymap": "plodah",
     "converter": "rp2040_ce",
@@ -18,9 +18,16 @@
     "modules": [
         "plodah/config_query",
         "plodah/mouse_jiggler",
-        "plodah/task_switch"
+        "plodah/task_switch",
+        "plodah/turbo_fire"
     ],
     "config": {
+        "bootmagic": {
+            "matrix": [5, 0]
+        },
+        "build": {
+            "lto": false
+        },
         "caps_word": {
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": true,
