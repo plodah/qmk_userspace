@@ -1,5 +1,6 @@
-#ifdef RGB_MATRIX_ENABLE
+#pragma once
 
+#ifdef RGB_MATRIX_ENABLE
 //-- RGB SETTINGS
   #ifdef RGB_MATRIX_DEFAULT_MODE
     #undef RGB_MATRIX_DEFAULT_MODE

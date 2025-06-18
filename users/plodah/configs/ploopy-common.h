@@ -1,3 +1,4 @@
+#pragma once
 
 #define IS_MOUSE
 #define BETTER_DRAGSCROLL

@@ -1,5 +1,4 @@
 #if defined(AUTOCORRECT_ENABLE)
-    #pragma once
     #include "functions/autocorrect.h"
     #include "functions/oled.h"
     #include <stdint.h>
@@ -67,7 +66,7 @@
                     autoCorrectIndToken = defer_exec(PLODAH_AUTOCORRECT_INDICATOR_DURATION, plodah_autocorrect_indicator_on_DE, NULL);
                 }
                 else{
-                autoCorrectIndToken = INVALID_DEFERRED_TOKEN;
+                    autoCorrectIndToken = INVALID_DEFERRED_TOKEN;
                 }
             #else // PLODAH_AUTOCORRECT_IND_MODE_DE
                 autocorrect_indicator_on = false;

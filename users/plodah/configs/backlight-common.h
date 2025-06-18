@@ -1,3 +1,4 @@
+#pragma once
 #ifdef BACKLIGHT_ENABLE
   #ifdef BACKLIGHT_LEVELS
     #undef BACKLIGHT_LEVELS

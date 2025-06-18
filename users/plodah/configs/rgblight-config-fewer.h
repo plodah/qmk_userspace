@@ -1,4 +1,4 @@
-// # RGBLIGHT:033 H:109 S:254 V:216 SP:107
+#pragma once
 
 #if defined(RGBLIGHT_DEFAULT_MODE)
   #undef RGBLIGHT_DEFAULT_MODE

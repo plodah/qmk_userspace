@@ -1,5 +1,6 @@
 #if defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE)
     #pragma once
+
     #if defined(RGB_MATRIX_ENABLE)
     #include "rgb_matrix.h"
     #endif // RGB_MATRIX_ENABLE

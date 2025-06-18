@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef RGBLIGHT_ENABLE
 
   #ifdef RGBLIGHT_EFFECT_STATIC_LIGHT

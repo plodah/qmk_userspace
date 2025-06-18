@@ -1,5 +1,6 @@
 #if defined(PLODAH_REPEATHOLD_RGB) && (defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE))
     #pragma once
+
     #include <stdbool.h>
     #include <stdint.h>
     #include <stdbool.h>

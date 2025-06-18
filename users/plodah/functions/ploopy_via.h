@@ -1,4 +1,5 @@
 #pragma once
+
 #include "mouse_gesture.h"
 
 enum via_ploopystuff_value {

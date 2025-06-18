@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef RGB_MATRIX_ENABLE
 
   #ifdef ENABLE_RGB_MATRIX_ALPHAS_MODS
