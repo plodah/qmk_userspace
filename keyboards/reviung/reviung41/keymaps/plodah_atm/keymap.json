@@ -49,7 +49,8 @@
             "space_cadet": false,
             "tap_dance": true,
             "tri_layer": false,
-            "via": false
+            "via": false,
+            "wpm": false
         },
         "keyboard_name": "reviung41 | plodahatm"
     }

@@ -39,12 +39,14 @@
             "mousekey": true,
             "oled": false,
             "os_detection": false,
+            "repeat_key": true,
             "rgblight": false,
             "rgb_matrix": true,
             "space_cadet": false,
             "tap_dance": false,
             "tri_layer": false,
-            "via": true
+            "via": true,
+            "wpm": false
         },
         "keyboard_name": "Winry315 | plodah",
         "matrix": {

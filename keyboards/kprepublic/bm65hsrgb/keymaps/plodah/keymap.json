@@ -44,12 +44,14 @@
             "mousekey": true,
             "oled": false,
             "os_detection": false,
+            "repeat_key": false,
             "rgblight": true,
             "rgb_matrix": true,
             "space_cadet": false,
             "tap_dance": true,
             "tri_layer": false,
-            "via": true
+            "via": true,
+            "wpm": false
         },
         "manufacturer": "KPRepublic",
         "keyboard_name": "BM65 ANSI | plodah"

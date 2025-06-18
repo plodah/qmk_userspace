@@ -61,7 +61,8 @@
             "space_cadet": false,
             "tap_dance": true,
             "tri_layer": true,
-            "via": true
+            "via": true,
+            "wpm": false
         },
         "keyboard_name": "Sofle | plodah"
     }

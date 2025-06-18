@@ -47,12 +47,14 @@
             "mousekey": true,
             "oled": false,
             "os_detection": false,
+            "repeat_key": false,
             "rgblight": false,
             "rgb_matrix": false,
             "space_cadet": false,
             "tap_dance": false,
             "tri_layer": false,
-            "via": true
+            "via": true,
+            "wpm": false
         },
         "manufacturer": "YMDK",
         "keyboard_name": "yd60mq | plodah_jpn",

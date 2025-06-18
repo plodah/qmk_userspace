@@ -55,12 +55,14 @@
             "mousekey": true,
             "oled": true,
             "os_detection": false,
+            "repeat_key": true,
             "rgblight": true,
             "rgb_matrix": false,
             "space_cadet": false,
             "tap_dance": true,
             "tri_layer": true,
-            "via": true
+            "via": true,
+            "wpm": false
         },
         "keyboard_name": "Sofle | plodaho"
     }
