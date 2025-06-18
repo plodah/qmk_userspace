@@ -132,14 +132,15 @@
         // ##########################################
         // ##              BOTTOM ROW              ##
         // ##########################################
-
-        const uint16_t PROGMEM pl_combo_lsz[]   = {KC_LSFT, KC_Z,                   COMBO_END};
-        const uint16_t PROGMEM pl_combo_bsz[]   = {KC_NUBS, KC_Z,                  COMBO_END};
-        const uint16_t PROGMEM pl_combo_zx[]    = {KC_Z,    KC_X,                   COMBO_END};
-        const uint16_t PROGMEM pl_combo_xc[]    = {KC_X,    KC_C,                   COMBO_END};
-        const uint16_t PROGMEM pl_combo_cv[]    = {KC_C,    KC_V,                   COMBO_END};
-        const uint16_t PROGMEM pl_combo_zxc[]   = {KC_Z,    KC_X,   KC_C,           COMBO_END};
-        const uint16_t PROGMEM pl_combo_xcv[]   = {KC_X,    KC_C,   KC_V,           COMBO_END};
+        #if !defined(PLODAH_COMBOS_LIMITED) && !defined(PLODAH_BRM_COMBOS)
+            const uint16_t PROGMEM pl_combo_lsz[]   = {KC_LSFT, KC_Z,                   COMBO_END};
+            const uint16_t PROGMEM pl_combo_bsz[]   = {KC_NUBS, KC_Z,                  COMBO_END};
+            const uint16_t PROGMEM pl_combo_zx[]    = {KC_Z,    KC_X,                   COMBO_END};
+            const uint16_t PROGMEM pl_combo_xc[]    = {KC_X,    KC_C,                   COMBO_END};
+            const uint16_t PROGMEM pl_combo_cv[]    = {KC_C,    KC_V,                   COMBO_END};
+            const uint16_t PROGMEM pl_combo_zxc[]   = {KC_Z,    KC_X,   KC_C,           COMBO_END};
+            const uint16_t PROGMEM pl_combo_xcv[]   = {KC_X,    KC_C,   KC_V,           COMBO_END};
+        #endif // !defined(PLODAH_COMBOS_LIMITED) && !defined(PLODAH_BRM_COMBOS)
         #if ! defined(PLODAH_COMBOS_LIMITED)
             const uint16_t PROGMEM pl_combo_vb[]     = {KC_V,    KC_B,                    COMBO_END};
         #endif // ! defined(PLODAH_COMBOS_LIMITED)
@@ -153,8 +154,8 @@
             const uint16_t PROGMEM pl_combo_xc_brm[]      = {BRM_XA,  BRM_CS,  COMBO_END};
             const uint16_t PROGMEM pl_combo_cv_brm[]      = {BRM_CS,  BRM_VC,  COMBO_END};
             const uint16_t PROGMEM pl_combo_vb_brm[]      = {BRM_VC,  BRM_BG,  COMBO_END};
+
             #if defined(PLODAH_BRM_COMBOS_EXCESSIVE)
-            // #if ! (defined(PLODAH_COMBOS_LIMITED) || defined(PLODAH_COMBOS_BRM_LIMITED))
                 const uint16_t PROGMEM pl_combo_zx_brm2[]     = {KC_Z,    BRM_XA,  COMBO_END};
                 const uint16_t PROGMEM pl_combo_zx_brm3[]     = {BRM_ZG,  KC_X,    COMBO_END};
                 const uint16_t PROGMEM pl_combo_xc_brm2[]     = {KC_X,    BRM_CS,  COMBO_END};
@@ -178,7 +179,6 @@
 
                 const uint16_t PROGMEM pl_combo_vb_brm2[]     = {KC_V,    BRM_BG,  COMBO_END};
                 const uint16_t PROGMEM pl_combo_vb_brm3[]     = {BRM_VC,  KC_B,    COMBO_END};
-            // #endif // ! (defined(PLODAH_COMBOS_LIMITED) || defined(PLODAH_COMBOS_BRM_LIMITED))
             #endif // defined(PLODAH_BRM_COMBOS_EXCESSIVE)
         #endif // defined(PLODAH_BRM_COMBOS)
 
@@ -204,18 +204,18 @@
             const uint16_t PROGMEM pl_combo_cad_hbrm3[]    = {BRM_CS, KC_A, HRM_DS, COMBO_END};
         #endif // defined(PLODAH_HRM_COMBOS_EXCESSIVE) && defined(PLODAH_BRM_COMBOS_EXCESSIVE)
 
-        #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
+        #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && ! defined(PLODAH_COMBOS_LIMITED)
             const uint16_t PROGMEM pl_combo_mj[] = {KC_M , KC_J, COMBO_END};
-            #if defined(PLODAH_HRM_COMBOS)
+            #if defined(PLODAH_HRM_COMBOS_EXCESSIVE)
                 const uint16_t PROGMEM pl_combo_mj_hrm[] = {KC_M , HRM_JC, COMBO_END};
-            #endif // PLODAH_HRM_COMBOS
-            #if defined(PLODAH_BRM_COMBOS)
+            #endif // PLODAH_HRM_COMBOS_EXCESSIVE
+            #if defined(PLODAH_BRM_COMBOS_EXCESSIVE)
                 const uint16_t PROGMEM pl_combo_mj_brm[] = {BRM_MC , KC_C, COMBO_END};
-            #endif // PLODAH_BRM_COMBOS
+            #endif // PLODAH_BRM_COMBOS_EXCESSIVE
             #if defined(PLODAH_HRM_COMBOS) && defined(PLODAH_BRM_COMBOS)
                 const uint16_t PROGMEM pl_combo_mj_hbrm[] = {BRM_MC , HRM_JC, COMBO_END};
             #endif // defined(PLODAH_HRM_COMBOS) && defined(PLODAH_BRM_COMBOS)
-        #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
+        #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE && ! defined(PLODAH_COMBOS_LIMITED)
 
         #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
             const uint16_t PROGMEM pl_combo_escq[] = {KC_ESC , KC_Q , COMBO_END};
@@ -341,13 +341,16 @@
             // ##              BOTTOM ROW              ##
             // ##########################################
 
-            COMBO(pl_combo_lsz,   C(KC_Z)    ),
-            COMBO(pl_combo_bsz,   C(KC_Z)    ),
-            COMBO(pl_combo_zx,    C(KC_X)    ),
-            COMBO(pl_combo_xc,    C(KC_C)    ),
-            COMBO(pl_combo_cv,    C(KC_V)    ),
-            COMBO(pl_combo_zxc,   C(S(KC_C)) ),
-            COMBO(pl_combo_xcv,   C(S(KC_V)) ),
+            #if !defined(PLODAH_COMBOS_LIMITED) && !defined(PLODAH_BRM_COMBOS)
+                COMBO(pl_combo_lsz,   C(KC_Z)    ),
+                COMBO(pl_combo_bsz,   C(KC_Z)    ),
+                COMBO(pl_combo_zx,    C(KC_X)    ),
+                COMBO(pl_combo_xc,    C(KC_C)    ),
+                COMBO(pl_combo_cv,    C(KC_V)    ),
+                COMBO(pl_combo_zxc,   C(S(KC_C)) ),
+                COMBO(pl_combo_xcv,   C(S(KC_V)) ),
+            #endif // !defined(PLODAH_COMBOS_LIMITED) && !defined(PLODAH_BRM_COMBOS)
+
             #if ! defined(PLODAH_COMBOS_LIMITED)
                 COMBO(pl_combo_vb,    C(KC_B)    ),
             #endif // ! defined(PLODAH_COMBOS_LIMITED)
@@ -413,18 +416,18 @@
                 COMBO(pl_combo_cad_hbrm3,     LCA(KC_DEL)),
             #endif // defined(PLODAH_HRM_COMBOS_EXCESSIVE) && defined(PLODAH_BRM_COMBOS_EXCESSIVE)
 
-            #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
+            #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && ! defined(PLODAH_COMBOS_LIMITED)
                 COMBO(pl_combo_mj,     CM_MSJG),
-                #if defined(PLODAH_HRM_COMBOS)
+                #if defined(PLODAH_HRM_COMBOS_EXCESSIVE)
                     COMBO(pl_combo_mj_hrm, CM_MSJG),
-                #endif // PLODAH_HRM_COMBOS
-                #if defined(PLODAH_BRM_COMBOS)
+                #endif // PLODAH_HRM_COMBOS_EXCESSIVE
+                #if defined(PLODAH_BRM_COMBOS_EXCESSIVE)
                     COMBO(pl_combo_mj_brm, CM_MSJG),
-                #endif // PLODAH_BRM_COMBOS
+                #endif // PLODAH_BRM_COMBOS_EXCESSIVE
                 #if defined(PLODAH_HRM_COMBOS) && defined(PLODAH_BRM_COMBOS)
                     COMBO(pl_combo_mj_hbrm, CM_MSJG),
                 #endif // defined(PLODAH_HRM_COMBOS) && defined(PLODAH_BRM_COMBOS)
-            #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
+            #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && ! defined(PLODAH_COMBOS_LIMITED)
 
             #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
                 COMBO(pl_combo_escq,    CM_TSKP),
