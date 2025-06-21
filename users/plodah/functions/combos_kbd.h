@@ -158,12 +158,18 @@ const uint16_t PROGMEM pl_combo_cad[]    = {KC_C,     KC_A,     KC_D,         CO
 #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
     const uint16_t PROGMEM pl_combo_escq[] = {KC_ESC , KC_Q , COMBO_END};
     const uint16_t PROGMEM pl_combo_escw[] = {KC_ESC , KC_W , COMBO_END};
+
+    const uint16_t PROGMEM pl_combo_tabq[] = {KC_TAB , KC_Q , COMBO_END};
+    const uint16_t PROGMEM pl_combo_tabw[] = {KC_TAB , KC_W , COMBO_END};
+
+    const uint16_t PROGMEM pl_combo_bsctlq[] = {P_BSCTL , KC_Q , COMBO_END};
+    const uint16_t PROGMEM pl_combo_bsctlw[] = {P_BSCTL , KC_W , COMBO_END};
+
     #if defined(TAP_DANCE_ENABLE)
         const uint16_t PROGMEM pl_combo_ragq[] = {P_RAGEQ, KC_Q , COMBO_END};
         const uint16_t PROGMEM pl_combo_ragw[] = {P_RAGEQ, KC_W , COMBO_END};
     #endif // defined(TAP_DANCE_ENABLE)
-    const uint16_t PROGMEM pl_combo_tabq[] = {KC_TAB , KC_Q , COMBO_END};
-    const uint16_t PROGMEM pl_combo_tabw[] = {KC_TAB , KC_W , COMBO_END};
+
 #endif // COMMUNITY_MODULE_TASK_SWITCH_ENABLE
 
 #if defined(LEADER_ENABLE)
@@ -376,6 +382,8 @@ combo_t key_combos[] = {
         #endif // defined(TAP_DANCE_ENABLE)
         COMBO(pl_combo_tabq,    CM_TSKP),
         COMBO(pl_combo_tabw,    CM_TSKN),
+        COMBO(pl_combo_bsctlq,    CM_TSKP),
+        COMBO(pl_combo_bsctlw,    CM_TSKN),
     #endif // COMMUNITY_MODULE_TASK_SWITCH_ENABLE
 
     #if defined(LEADER_ENABLE)

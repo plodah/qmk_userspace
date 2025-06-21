@@ -38,6 +38,7 @@
 
 // ModTaps
 #define P_DOTAL MT(MOD_RALT,KC_PDOT)
+#define P_BSCTL LCTL_T(KC_BSPC)
 #define P_SLSFT RSFT_T(KC_SLSH)
 #define P_APPAL RALT_T(KC_APP)
 #define P_RSFTB RSFT_T(KC_BSPC)
