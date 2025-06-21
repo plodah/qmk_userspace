@@ -2,7 +2,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "quantum.h" // Include the header that defines keyrecord_t
-#include "combos.h"
 #include "comboflow.h"
 #include "encoder_actions.h"
 #include "repeathold_rgb.h"
