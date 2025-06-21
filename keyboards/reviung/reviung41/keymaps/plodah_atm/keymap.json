@@ -48,7 +48,7 @@
             "rgb_matrix": false,
             "space_cadet": false,
             "tap_dance": true,
-            "tri_layer": false,
+            "tri_layer": true,
             "via": false,
             "wpm": false
         },

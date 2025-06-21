@@ -16,8 +16,8 @@
 #include QMK_KEYBOARD_H
 
 enum layer_names {
-    _QWEA,
-    _COLA,
+    _QWERTY,
+    _COLEMAK,
     _FNA,
     _FNB,
     _FNC,
@@ -37,14 +37,14 @@ enum {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QWEA] = LAYOUT(
+    [_QWERTY] = LAYOUT(
         P_RAGEQ, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-        KC_TAB,  HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,           HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  KC_SCLN, KC_QUOT,
+        KC_TAB,  HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,           HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  HRM_CG, KC_QUOT,
         KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  BRM_BG,           BRM_NG,  BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, QK_REP,
                                             P_HOMFC, P_ENTFB, P_SPCFA, P_ENTFB, P_ENDFC
     ),
 
-    [_COLA] = LAYOUT(
+    [_COLEMAK] = LAYOUT(
         P_RAGEQ, KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,             KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
         KC_TAB,  HRM_AG,  HRM_RA,  HRM_SS,  HRM_TC,  HRM_DG,           HRM_HG,  HRM_NC,  HRM_ES,  HRM_IA,  HRM_OG,  KC_QUOT,
         KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  BRM_BG,           BRM_KG,  BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, QK_REP,
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FNC] = LAYOUT(
         KC_CAPS, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),          S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), CM_MSJG,
         KC_VOLU, XXXXXXX, PL_SCRL, MS_BTN2, MS_BTN1, MS_BTN3,          XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, QK_MAKE, KC_VOLU,
-        KC_VOLD, _______, XXXXXXX, MS_BTN4, MS_BTN5, PL_SCRL,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
+        KC_VOLD, XXXXXXX, XXXXXXX, MS_BTN4, MS_BTN5, PL_SCRL,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
                                             _______, _______, _______, _______, _______
     ),
 
