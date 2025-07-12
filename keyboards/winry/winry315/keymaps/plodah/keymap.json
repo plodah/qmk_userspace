@@ -45,6 +45,8 @@
             "space_cadet": false,
             "tap_dance": false,
             "tri_layer": false,
+            "unicode": true,
+            "unicode_common": true,
             "via": true,
             "wpm": false
         },
