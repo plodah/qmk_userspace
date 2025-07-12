@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "documentation": "qmk compile -kb crkbd -km plodah",
+    "keyboard": "crkbd",
+    "keymap": "plodah",
+    "converter": "rp2040_ce",
+    "keycodes": [
+        { "key": "PL_DMAC1" },
+        { "key": "PL_DMAC2" },
+        { "key": "PL_SCRL" }
+    ],
+    "modules": [
+        "plodah/config_query",
+        "plodah/mouse_jiggler",
+        "plodah/task_switch",
+        "plodah/turbo_fire"
+    ],
+    "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
+        "split": {
+            "bootmagic": {
+                "matrix": [4, 0]
+            },
+            "transport": {
+                "sync": {
+                    "layer_state": true,
+                    "modifiers": true
+                },
+                "watchdog": true,
+                "watchdog_timeout": 3500
+            },
+            "usb_detect" :{
+                "enabled": true,
+                "timeout": 3000
+            }
+        },
+        "caps_word": {
+            "both_shifts_turns_on": true,
+            "double_tap_shift_turns_on": true,
+            "idle_timeout": 1200,
+            "invert_on_shift": true
+        },
+        "dynamic_keymap": {
+            "layer_count": 10
+        },
+        "features": {
+            "auto_shift": false,
+            "autocorrect": true,
+            "backlight": false,
+            "bootmagic": true,
+            "caps_word": true,
+            "combo": true,
+            "command": false,
+            "console": true,
+            "deferred_exec": true,
+            "dynamic_macro": true,
+            "dynamic_tapping_term": true,
+            "encoder_map": false,
+            "extrakey": true,
+            "leader": true,
+            "mousekey": true,
+            "oled": true,
+            "os_detection": false,
+            "repeat_key": true,
+            "rgblight": false,
+            "rgb_matrix": true,
+            "space_cadet": false,
+            "tap_dance": true,
+            "tri_layer": true,
+            "via": true,
+            "wpm": false
+        },
+        "keyboard_name": "crkbd | plodah"
+    }
+}
