@@ -56,10 +56,13 @@ git push
 ```
 ## Working with Diffs
 ```sh
-#create a diff
+# create a diff of uncommitted changes
+git diff --output /path/to/diff.txt
+
+# create a diff between branches
 git diff master sourcebranch --output /path/to/diff.txt
 
-## apply a Diff
+# apply a Diff
 git apply /path/to/diff.txt
 ```
 
@@ -114,7 +117,6 @@ update-branch() {
             sleep 3
             git add .
             git commit --all --message "$msg"
-            
         done
 
         # git diff $src --stat
