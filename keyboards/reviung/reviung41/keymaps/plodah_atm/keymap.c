@@ -29,11 +29,11 @@ enum layer_names {
 
 enum {
     TD_ESC_RAGEQUIT,
-    TD_F2,
-    TD_F4,
-    TD_F5,
-    TD_F11,
-    TD_F12,
+    // TD_F2,
+    // TD_F4,
+    // TD_F5,
+    // TD_F11,
+    // TD_F12,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
