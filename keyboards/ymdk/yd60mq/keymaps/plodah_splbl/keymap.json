@@ -8,8 +8,8 @@
     "layout": "LAYOUT_all",
     "modules": [
         "plodah/config_query",
-        "plodah/task_switch",
-        "plodah/mouse_jiggler"
+        "plodah/mouse_jiggler",
+        "plodah/task_switch"
     ],
     "config": {
         "backlight": {
@@ -35,7 +35,7 @@
             "invert_on_shift": true
         },
         "combo": {
-            "term": 25
+            "term": 35
         },
         "dynamic_keymap": {
             "layer_count": 5
