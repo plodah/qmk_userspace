@@ -1,8 +1,8 @@
 #pragma once
 
 // #define CM_QFTR_DISABLED
-// #define CM_QLYR_DISABLED
-// #define CM_QTAP_DISABLED
+#define CM_QLYR_DISABLED
+#define CM_QTAP_DISABLED
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
 
@@ -33,7 +33,8 @@
 
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
-  #include "configs/rgblight-effects-none.h"
+  #include "configs/rgblight-effects-few.h"
+  #include "configs/rgblight-config.h"
 #endif // RGBLIGHT_ENABLE
 
 #include "plodah.h"
