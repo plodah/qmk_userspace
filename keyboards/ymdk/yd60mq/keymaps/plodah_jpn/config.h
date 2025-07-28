@@ -33,7 +33,8 @@
 
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
-  #include "configs/rgblight-effects-none.h"
+  #include "configs/rgblight-effects-few.h"
+  #include "configs/rgblight-config.h"
 #endif // RGBLIGHT_ENABLE
 
 #include "plodah.h"
