@@ -129,35 +129,3 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   }
    return state;
 }
-
-char chordal_hold_handedness(keypos_t key) {
-    char answer='*';
-    switch(key.row){
-        case 0:
-        case 1:
-        case 2:
-            answer='L';
-            break;
-        case 3:
-        case 4:
-        case 5:
-            answer='R';
-            break;
-        case 6:
-            switch(key.col){
-                case 0:
-                case 1:
-                    answer='L';
-                    break;
-                case 2:
-                    answer='*';
-                    break;
-                case 3:
-                case 4:
-                    answer='R';
-                    break;
-            }
-    }
-    dprintf("CH Hand %u:%u %c\n", key.row, key.col, answer);
-    return answer;
-}
