@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT,KC_X,   KC_V,   KC_B,   LT(2,KC_SPC),LCTL(KC_S)
     ),
         [_EDIT2] = LAYOUT(
-        KC_ESC, KC_Q,   KC_BTN3,KC_INS, KC_ENT, KC_DEL,
+        KC_ESC, KC_Q,   MS_BTN3,KC_INS, KC_ENT, KC_DEL,
         KC_LCTL,KC_LBRC,KC_RBRC,KC_PGDN,KC_PGUP,LCTL(KC_Y),
         KC_LSFT,TO(3),  RGB_TOG,TO(0),  _______,KC_NO
     ),
