@@ -43,7 +43,7 @@ enum {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-        KC_BTN1, KC_BTN3, P_MS4FA, KC_BTN2, P_MS5FB
+        MS_BTN1, MS_BTN3, P_MS4FA, MS_BTN2, P_MS5FB
     ),
     [_FNA] = LAYOUT(
         _______, DPI_CONFIG, _______, PL_TSKP, PL_TSKN

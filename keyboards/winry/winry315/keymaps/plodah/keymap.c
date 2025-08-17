@@ -32,10 +32,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         P_COPY,  P_PAST,  P_PSTU,  P_PSTM,  MO(9)
     ),
     [_MOUSE] = LAYOUT_all(
-                 KC_BTN1, KC_BTN1, KC_BTN2,
-        KC_BTN1, KC_BTN1, KC_MS_U, KC_BTN2, KC_BTN2,
-        KC_BTN1, KC_MS_L, KC_BTN1, KC_MS_R, KC_BTN2,
-        KC_BTN1, KC_BTN1, KC_MS_D, KC_BTN2, LT(9, KC_BTN2)
+                 MS_BTN1, MS_BTN1, MS_BTN2,
+        MS_BTN1, MS_BTN1, MS_UP,   MS_BTN2, MS_BTN2,
+        MS_BTN1, MS_LEFT, MS_BTN1, MS_RGHT, MS_BTN2,
+        MS_BTN1, MS_BTN1, MS_DOWN, MS_BTN2, LT(9, MS_BTN2)
     ),
     [_NUMPAD] = LAYOUT_all(
                  _______, KC_ENT,  KC_TAB,
@@ -61,10 +61,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MC_5,    MC_6,    MC_7,    MC_8,    CM_QFTR,
         CM_QRGB, CM_QVER, QK_MAKE, CM_MSJG, MO(9)),
     [_CLICKER] = LAYOUT_all(
-                 KC_BTN2, KC_BTN2, KC_BTN2,
-        KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1,
-        KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1,
-        KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, LT(9, KC_BTN1)
+                 MS_BTN2, MS_BTN2, MS_BTN2,
+        MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1,
+        MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1,
+        MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1, LT(9, MS_BTN1)
     ),
     [_EMPTY] = LAYOUT_all(
                  _______, _______, _______,

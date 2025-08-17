@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_SUPP] = LAYOUT_iso_53(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  PL_ECPR,
         KC_DEL,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_BSPC, KC_DEL,
-        _______, _______, _______, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, KC_BTN1, _______, _______, _______, KC_VOLU,
+        _______, _______, _______, MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1, _______, _______, _______, KC_VOLU,
         _______, _______, P_FNA,                              KC_SPC,                    _______, _______, P_TMGR,  KC_HOME, KC_VOLD, KC_END
     ),
 	[_FNA] = LAYOUT_iso_53(
