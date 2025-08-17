@@ -43,7 +43,7 @@
 #define FLOW_TAP_TERM 150
 
 
-#include "configs/backlight-common.h"
+#include "configs/backlight-config.h"
 #define SPLIT_LED_STATE_ENABLE
 
 #include "plodah.h"

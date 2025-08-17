@@ -15,7 +15,7 @@
     "config": {
         "backlight": {
             "breathing": false,
-            "breathing_period": 5,
+            "breathing_period": 6,
             "default": {
                 "on": true,
                 "breathing": false,
