@@ -1,3 +1,28 @@
+diff --git a/keyboards/ploopyco/madromys/info.json b/keyboards/ploopyco/madromys/info.json
+index b5e74d3bc2..019745fd7a 100644
+--- a/keyboards/ploopyco/madromys/info.json
++++ b/keyboards/ploopyco/madromys/info.json
+@@ -7,7 +7,6 @@
+     "bootloader": "rp2040",
+     "usb": {
+         "vid": "0x5043",
+-        "pid": "0x5C47",
+         "max_power": 100
+     },
+     "features": {
+diff --git a/keyboards/ploopyco/madromys/rev1_001/keyboard.json b/keyboards/ploopyco/madromys/rev1_001/keyboard.json
+index 5cb4ee3938..37775dccc0 100644
+--- a/keyboards/ploopyco/madromys/rev1_001/keyboard.json
++++ b/keyboards/ploopyco/madromys/rev1_001/keyboard.json
+@@ -1,6 +1,7 @@
+ {
+     "usb": {
+-        "device_version": "1.0.0"
++        "device_version": "1.0.0",
++        "pid": "0x5C47"
+     },
+     "diode_direction": "COL2ROW",
+     "matrix_pins": {
 diff --git a/keyboards/ploopyco/madromys/rev1_001_8button/config.h b/keyboards/ploopyco/madromys/rev1_001_8button/config.h
 new file mode 100644
 index 0000000000..4da14a17a0
