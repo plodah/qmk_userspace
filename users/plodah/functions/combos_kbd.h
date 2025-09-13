@@ -70,7 +70,7 @@
 // ##########################################
 // ##              BOTTOM ROW              ##
 // ##########################################
-#if !defined(PLODAH_COMBOS_LIMITED) && !defined(PLODAH_BRM_COMBOS)
+#if !defined(PLODAH_COMBOS_LIMITED)
     const uint16_t PROGMEM pl_combo_lsz[]   = {KC_LSFT, KC_Z,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_bsz[]   = {KC_NUBS, KC_Z,                  COMBO_END};
     const uint16_t PROGMEM pl_combo_zx[]    = {KC_Z,    KC_X,                   COMBO_END};
@@ -78,7 +78,7 @@
     const uint16_t PROGMEM pl_combo_cv[]    = {KC_C,    KC_V,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_zxc[]   = {KC_Z,    KC_X,   KC_C,           COMBO_END};
     const uint16_t PROGMEM pl_combo_xcv[]   = {KC_X,    KC_C,   KC_V,           COMBO_END};
-#endif // !defined(PLODAH_COMBOS_LIMITED) && !defined(PLODAH_BRM_COMBOS)
+#endif // !defined(PLODAH_COMBOS_LIMITED)
 #if ! defined(PLODAH_COMBOS_LIMITED)
     const uint16_t PROGMEM pl_combo_vb[]     = {KC_V,    KC_B,                    COMBO_END};
 #endif // ! defined(PLODAH_COMBOS_LIMITED)

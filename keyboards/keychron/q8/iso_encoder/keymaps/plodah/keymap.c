@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         P_RAGEQ, KC_1,    P_F2,    KC_3,    P_F4,    P_F5,             KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    P_F11,   P_F12,   KC_BSPC, PL_ECPR,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,          KC_END,
         P_BSPFB, HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,           HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  HRM_CG,  KC_QUOT, KC_NUHS, KC_ENT,  KC_HOME,
-        KC_LSFT, KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, KC_UP,
+        KC_LSFT, KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  BRM_BG,  BRM_BG,  BRM_NG,  BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, KC_RSFT, KC_UP,
         KC_LCTL, KC_LWIN,          KC_LALT,          P_SPCFA, P_APPFB, P_APPFB,          P_SPCFA,          KC_RALT,          KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_QWEB] = LAYOUT_iso_70(
