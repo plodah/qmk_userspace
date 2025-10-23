@@ -3,6 +3,7 @@
 // ##########################################
 // ##                TOP ROW               ##
 // ##########################################
+#include "configs/customkeys.h"
 #if ! defined(PLODAH_COMBOS_LIMITED)
     const uint16_t PROGMEM pl_combo_0bsp[]   = {KC_0,     KC_BSPC,                COMBO_END};
     const uint16_t PROGMEM pl_combo_eqbsp[]  = {KC_EQL,   KC_BSPC,                COMBO_END};
@@ -29,6 +30,7 @@
     const uint16_t PROGMEM pl_combo_fg[]     = {KC_F,     KC_G,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_gh[]     = {KC_G,     KC_H,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_hj[]     = {KC_H,     KC_J,                   COMBO_END};
+    const uint16_t PROGMEM pl_combo_kl[]     = {KC_K,     KC_L,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_mk[]     = {KC_M,     KC_K,                   COMBO_END};
 
     #if defined(PLODAH_HRM_COMBOS)
@@ -42,6 +44,7 @@
         const uint16_t PROGMEM pl_combo_fg_hrm[]      = {HRM_FC,  HRM_GG, COMBO_END};
         const uint16_t PROGMEM pl_combo_gh_hrm[]      = {HRM_GG,  HRM_HG, COMBO_END};
         const uint16_t PROGMEM pl_combo_hj_hrm[]      = {HRM_HG,  HRM_JC, COMBO_END};
+        const uint16_t PROGMEM pl_combo_kl_hrm[]      = {HRM_KS,  HRM_LA, COMBO_END};
 
         const uint16_t PROGMEM pl_combo_mk_hrm[]      = {BRM_MC,  HRM_KS, COMBO_END};
         const uint16_t PROGMEM pl_combo_mk_hrm2[]     = {KC_M,    HRM_KS, COMBO_END};
@@ -61,6 +64,8 @@
             const uint16_t PROGMEM pl_combo_gh_hrm3[]     = {HRM_GG,  KC_H,   COMBO_END};
             const uint16_t PROGMEM pl_combo_hj_hrm2[]     = {KC_H,    HRM_JC, COMBO_END};
             const uint16_t PROGMEM pl_combo_hj_hrm3[]     = {HRM_HG,  KC_J,   COMBO_END};
+            const uint16_t PROGMEM pl_combo_kl_hrm2[]     = {KC_K,    HRM_LA, COMBO_END};
+            const uint16_t PROGMEM pl_combo_kl_hrm3[]     = {HRM_KS,  KC_L,   COMBO_END};
             // const uint16_t PROGMEM pl_combo_dk_hrm[]      = {HRM_DS,  HRM_KS, COMBO_END};
             const uint16_t PROGMEM pl_combo_mk_hrm3[]     = {BRM_MC,  KC_K,   COMBO_END};
         #endif // PLODAH_HRM_COMBOS_EXCESSIVE
@@ -243,6 +248,7 @@ combo_t key_combos[] = {
         COMBO(pl_combo_fg,    C(KC_G)    ),
         COMBO(pl_combo_gh,    C(KC_H)    ),
         COMBO(pl_combo_hj,    C(KC_J)    ),
+        COMBO(pl_combo_kl,    C(KC_L)    ),
         COMBO(pl_combo_mk,    QK_MAKE    ),
 
         #if defined(PLODAH_HRM_COMBOS)
@@ -256,6 +262,7 @@ combo_t key_combos[] = {
             COMBO(pl_combo_fg_hrm,      C(KC_G)),
             COMBO(pl_combo_gh_hrm,      C(KC_H)),
             COMBO(pl_combo_hj_hrm,      C(KC_J)),
+            COMBO(pl_combo_kl_hrm,      C(KC_L)),
 
             COMBO(pl_combo_mk_hrm,      QK_MAKE),
             COMBO(pl_combo_mk_hrm2,     QK_MAKE),
@@ -275,6 +282,8 @@ combo_t key_combos[] = {
                 COMBO(pl_combo_gh_hrm3,     C(KC_H)),
                 COMBO(pl_combo_hj_hrm2,     C(KC_J)),
                 COMBO(pl_combo_hj_hrm3,     C(KC_J)),
+                COMBO(pl_combo_kl_hrm2,     C(KC_L)),
+                COMBO(pl_combo_kl_hrm3,     C(KC_L)),
                 // COMBO(pl_combo_dk_hrm,      CW_TOGG),
                 COMBO(pl_combo_mk3_hrm,     QK_MAKE),
             #endif // PLODAH_HRM_COMBOS_EXCESSIVE
