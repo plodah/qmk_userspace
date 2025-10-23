@@ -9,6 +9,7 @@
     "modules": [
         "plodah/config_query",
         "plodah/mouse_jiggler",
+        "plodah/rgb_helpers",
         "plodah/task_switch"
     ],
     "config": {

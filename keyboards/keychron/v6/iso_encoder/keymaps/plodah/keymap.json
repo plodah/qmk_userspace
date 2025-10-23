@@ -7,7 +7,9 @@
     "keymap": "plodah",
     "layout": "LAYOUT_iso_110",
     "modules": [
+        "plodah/autocorrect_rgbflash",
         "plodah/config_query",
+        "plodah/rgb_helpers",
         "plodah/task_switch"
     ],
     "config": {

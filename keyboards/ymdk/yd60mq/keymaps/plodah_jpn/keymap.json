@@ -7,8 +7,10 @@
     "keymap": "plodah_jpn",
     "layout": "LAYOUT_all",
     "modules": [
+        "plodah/autocorrect_rgbflash",
         "plodah/config_query",
         "plodah/mouse_jiggler",
+        "plodah/rgb_helpers",
         "plodah/task_switch"
     ],
     "config": {

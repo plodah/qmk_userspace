@@ -24,7 +24,6 @@
 #include "functions/oled.c" // required by autocorrect
 #include "functions/ploopy_via.c"
 #include "functions/repeathold_rgb.c"
-#include "functions/rgb.c" // required by autocorrect, process_record
 #include "functions/tapdance.c"
 
 

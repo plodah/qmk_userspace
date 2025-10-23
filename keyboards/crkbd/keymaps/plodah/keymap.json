@@ -12,8 +12,10 @@
         { "key": "PL_SCRL" }
     ],
     "modules": [
+        "plodah/autocorrect_rgbflash",
         "plodah/config_query",
         "plodah/mouse_jiggler",
+        "plodah/rgb_helpers",
         "plodah/task_switch",
         "plodah/turbo_fire"
     ],

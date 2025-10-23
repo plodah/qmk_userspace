@@ -9,7 +9,9 @@
         { "key": "PL_SCRL" }
     ],
     "modules": [
+        "plodah/autocorrect_rgbflash",
         "plodah/mouse_jiggler",
+        "plodah/rgb_helpers",
         "plodah/task_switch"
     ],
     "config": {

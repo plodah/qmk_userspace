@@ -8,6 +8,7 @@
     "layout": "LAYOUT_65_ansi_blocker",
     "modules": [
         "plodah/config_query",
+        "plodah/rgb_helpers",
         "plodah/task_switch"
     ],
     "config": {

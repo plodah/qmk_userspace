@@ -7,6 +7,7 @@
     "keymap": "plodah",
     "layout": "LAYOUT_tkl_f13_iso",
     "modules": [
+        "plodah/autocorrect_rgbflash",
         "plodah/config_query",
         "plodah/task_switch"
     ],
