@@ -105,3 +105,5 @@ static via_ploopystuff_config ploopyvia_config_default = {
     .sniper_b_dpi               = 200,
     .dragscroll_straighten_sensitivity = 0,
 };
+
+void keyboard_post_init_user_viamenus(void);
