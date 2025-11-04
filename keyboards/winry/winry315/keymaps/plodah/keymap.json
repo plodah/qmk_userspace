@@ -7,7 +7,6 @@
     "keyboard": "winry/winry315",
     "keymap": "winry315_plodah",
     "modules": [
-        "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",
         "plodah/task_switch"

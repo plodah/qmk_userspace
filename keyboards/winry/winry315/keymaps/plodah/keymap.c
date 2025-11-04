@@ -53,13 +53,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  RM_PREV, RM_TOGG, RM_NEXT,
         RM_NEXT, RM_VALU, RM_HUEU, RM_SATU, RM_SPDU,
         RM_PREV, RM_VALD, RM_HUED, RM_SATD, RM_SPDD,
-        CM_QRGB, _______, _______, _______, MO(9)
+        _______, _______, _______, _______, MO(9)
     ),
     [_MACROS] = LAYOUT_all(
                  MC_14,   KC_NO,   MC_15,
         MC_0,    MC_1,    MC_2,    MC_3,    MC_4,
-        MC_5,    MC_6,    MC_7,    MC_8,    CM_QFTR,
-        CM_QRGB, CM_QVER, QK_MAKE, CM_MSJG, MO(9)),
+        MC_5,    MC_6,    MC_7,    MC_8,    _______,
+        _______, _______, QK_MAKE, CM_MSJG, MO(9)),
     [_CLICKER] = LAYOUT_all(
                  MS_BTN2, MS_BTN2, MS_BTN2,
         MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1, MS_BTN1,
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  _______, _______, _______,
         DF(0),   DF(1),   DF(2),   DF(3),   DF(4),
         DF(5),   DF(6),   DF(7),   DF(8),   DF(9),
-        CM_MSJG, KC_NUM,  _______, CM_QFTR, MO(9)
+        CM_MSJG, KC_NUM,  _______, _______, MO(9)
     )
 };
 
