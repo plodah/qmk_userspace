@@ -8,8 +8,10 @@
     #endif // OLED_UPDATE_INTERVAL
 
     #if defined(AUTOCORRECT_ENABLE)
-        char recAcA[15] = "__________";
-        char recAcB[15] = "__________";
-        char recAcC[15] = "__________";
+        bool apply_autocorrect_oled(uint8_t backspaces, const char *str, char *typo, char *correct);
+        void keyboard_post_init_user_oled(void);
+        char recAcA[15];
+        char recAcB[15];
+        char recAcC[15];
     #endif // AUTOCORRECT_ENABLE
 #endif // defined(OLED_ENABLE)

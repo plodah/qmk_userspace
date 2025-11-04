@@ -1,7 +1,8 @@
 #if defined(OLED_ENABLE)
     #pragma once
+    #include QMK_KEYBOARD_H
     #include "oled.h"
-    #include "quantum.h"
+
     #if defined(LAYER_NAMES)
         char *labels[DYNAMIC_KEYMAP_LAYER_COUNT] = LAYER_NAMES;
     #endif // defined(LAYER_NAMES)
@@ -24,25 +25,51 @@
 
     static void mods_display ( void ) {
         oled_write_P(PSTR("C"), (get_mods() & MOD_MASK_CTRL));
+        oled_write_P(PSTR("S"), (get_mods() & MOD_MASK_SHIFT));
         oled_write_P(PSTR("A"), (get_mods() & MOD_MASK_ALT));
         oled_write_P(PSTR("G"), (get_mods() & MOD_MASK_GUI));
-        oled_write_P(PSTR("S"), (get_mods() & MOD_MASK_SHIFT));
         oled_write_P(PSTR(" "), false);
     }
 
-    const char *autocorrect_display( char* corrected ) {
-        char * str;
-        char * str2;
-        str = malloc(sizeof(char)*25);
-        str2 = malloc(sizeof(char)*11);
-        strcpy(str, corrected);
-        strcat(str, "          ");
 
-        strncpy(str2, str + 0, 10);
-        str2[10] = '\0';
-        return str2;
-        // oled_write_P(PSTR(autocorrect_display(recAcA)), false);
-    }
+    #if defined(AUTOCORRECT_ENABLE)
+
+        const char *autocorrect_display_row( char* typo ) {
+            char* str;
+            char* str2;
+
+            str = malloc(sizeof(char)*25);
+            str2 = malloc(sizeof(char)*11);
+            strcpy(str, typo);
+            strcat(str, "          ");
+
+            strncpy(str2, str + 0, 10);
+            str2[10] = '\0';
+            return str2;
+            // oled_write_P(PSTR(autocorrect_display_row(recAcA)), false);
+        }
+
+        void autocorrect_display(void) {
+            oled_write_P(PSTR("\n"), false);
+            oled_write_P(PSTR(autocorrect_display_row(recAcA)), false);
+            oled_write_P(PSTR(autocorrect_display_row(recAcB)), false);
+            oled_write_P(PSTR(autocorrect_display_row(recAcC)), false);
+        }
+
+        bool apply_autocorrect_oled(uint8_t backspaces, const char *str, char *typo, char *correct) {
+            dprintf("corrected: %s \n", typo);
+            strcpy(recAcC, recAcB);
+            strcpy(recAcB, recAcA);
+            strcpy(recAcA, typo);
+            return true;
+        }
+
+        void keyboard_post_init_user_oled(void) {
+            strcpy(recAcA, "__________");
+            strcpy(recAcB, "__________");
+            strcpy(recAcC, "__________");
+        }
+    #endif // defined(AUTOCORRECT_ENABLE)
 
     static void render_sma_logo( bool invert ) {
         static const char PROGMEM sma_logo[] = {
@@ -61,10 +88,7 @@
             mods_display();
             layer_display(layer_state);
             #if defined(AUTOCORRECT_ENABLE)
-                oled_write_P(PSTR("\n"), false);
-                oled_write_P(PSTR(autocorrect_display(recAcA)), false);
-                oled_write_P(PSTR(autocorrect_display(recAcB)), false);
-                oled_write_P(PSTR(autocorrect_display(recAcC)), false);
+              autocorrect_display();
             #endif // AUTOCORRECT_ENABLE
             return false;
         }
