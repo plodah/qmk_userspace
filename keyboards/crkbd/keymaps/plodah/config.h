@@ -102,4 +102,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGB_MATRIX_ENABLE
 
+#if defined(TRI_LAYER_ENABLE)
+  #define TRI_LAYER_UNSTRICT
+#endif // TRI_LAYER_ENABLE
+
 #include "plodah.h"

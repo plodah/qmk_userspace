@@ -108,10 +108,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _FNA, _FNB, _FNC);
-}
-
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_QWERTY] =   { ENCODER_CCW_CW(PL_ECCC, PL_ECCW), ENCODER_CCW_CW(PL_ECCC, PL_ECCW) },

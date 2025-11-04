@@ -42,6 +42,9 @@
 #endif
 #define FLOW_TAP_TERM 150
 
+#if defined(TRI_LAYER_ENABLE)
+  #define TRI_LAYER_UNSTRICT
+#endif // TRI_LAYER_ENABLE
 
 #include "configs/backlight-config.h"
 #define SPLIT_LED_STATE_ENABLE

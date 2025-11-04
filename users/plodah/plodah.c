@@ -26,5 +26,4 @@
 #include "functions/ploopy_via.c"
 #include "functions/repeathold_rgb.c"
 #include "functions/tapdance.c"
-
-
+#include "functions/tri_layer.c"

@@ -48,6 +48,10 @@
   #define PLODAH_DYNAMIC_MACRO_KCS_ENABLE
 #endif // DYNAMIC_MACRO_ENABLE
 
+#if defined(TRI_LAYER_ENABLE)
+  #define TRI_LAYER_UNSTRICT
+#endif // TRI_LAYER_ENABLE
+
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
   #include "configs/rgblight-effects-all.h"
