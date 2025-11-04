@@ -3,6 +3,7 @@
 #include "quantum.h"
 
 #include "functions/0_housekeeping_task_user.c"
+#include "functions/0_keyboard_post_init_user.c"
 #include "functions/0_pointing_device_task_user.c"
 #include "functions/0_process_record_user.c"
 
