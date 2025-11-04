@@ -9,17 +9,23 @@
         if(!is_combo_enabled()) {
             ComboFlowToken = INVALID_DEFERRED_TOKEN;
             combo_enable();
-            dprintf("COMBOFLOW re-enable\n");
+            #if defined(COMBOFLOW_DEBUG)
+              dprintf("COMBOFLOW re-enable\n");
+            #endif // defined(COMBOFLOW_DEBUG)
         }
         else{
-            dprintf("COMBOFLOW re-en...FAIL\n");
+            #if defined(COMBOFLOW_DEBUG)
+              dprintf("COMBOFLOW re-en...FAIL\n");
+            #endif // defined(COMBOFLOW_DEBUG)
         }
         return 0;
     }
 
     bool process_record_comboflow(uint16_t keycode, keyrecord_t *record) {
         if(IS_COMBOEVENT(record->event)){
-            dprintf("COMBOFLOW leave it");
+            #if defined(COMBOFLOW_DEBUG)
+              dprintf("COMBOFLOW leave it");
+            #endif // defined(COMBOFLOW_DEBUG)
             if(ComboFlowToken != INVALID_DEFERRED_TOKEN){
                 cancel_deferred_exec(ComboFlowToken);
             }
@@ -29,11 +35,15 @@
         }
         else if(is_combo_enabled()) {
             combo_disable();
-            dprintf("COMBOFLOW disable\n");
+            #if defined(COMBOFLOW_DEBUG)
+              dprintf("COMBOFLOW disable\n");
+            #endif // defined(COMBOFLOW_DEBUG)
             ComboFlowToken = defer_exec(COMBOFLOW_TERM, ComboFlow_reenable, NULL);
         }
         else if(ComboFlowToken != INVALID_DEFERRED_TOKEN){
-            dprintf("COMBOFLOW EXTEND\n");
+            #if defined(COMBOFLOW_DEBUG)
+              dprintf("COMBOFLOW EXTEND\n");
+            #endif // defined(COMBOFLOW_DEBUG)
             extend_deferred_exec(ComboFlowToken, COMBOFLOW_TERM);
         }
         return true;
