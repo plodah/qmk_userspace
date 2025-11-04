@@ -146,7 +146,7 @@
                     break;
                 case PL_ECPR & 0xff:
                 default:
-                    tap_code16(C(KC_F4));
+                    tap_code16(C(KC_W));
                     break;
             }
         }
