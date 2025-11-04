@@ -19,6 +19,7 @@
 #include "functions/encoder_actions.c"
 #include "functions/flow_tap.c"
 #include "functions/indicators.c" // last pls
+#include "functions/key_override.c"
 #include "functions/leader.c"
 #include "functions/led_update_user.c"
 #include "functions/mouse_gesture.c"
