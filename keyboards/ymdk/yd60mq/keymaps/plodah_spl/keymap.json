@@ -7,6 +7,7 @@
     "keymap": "plodah_spl",
     "layout": "LAYOUT_all",
     "modules": [
+        "plodah/comboflow",
         "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/task_switch"

@@ -13,6 +13,7 @@
     ],
     "modules": [
         "plodah/autocorrect_rgbflash",
+        "plodah/comboflow",
         "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",

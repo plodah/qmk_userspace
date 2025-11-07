@@ -23,8 +23,7 @@
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "_10__" }
 
 #define CHORDAL_HOLD
-#define COMBOFLOW_ENABLE
-#define COMBOFLOW_TERM 110
+#define COMBOFLOW_TERM 100
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 // #define TASKSWITCH_FORCE_NDE

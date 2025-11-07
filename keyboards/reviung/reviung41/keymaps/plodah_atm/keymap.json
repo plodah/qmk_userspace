@@ -10,6 +10,7 @@
     ],
     "modules": [
         "plodah/autocorrect_rgbflash",
+        "plodah/comboflow",
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",
         "plodah/task_switch"

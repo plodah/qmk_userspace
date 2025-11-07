@@ -9,6 +9,7 @@
         { "key": "PL_SCRL" }
     ],
     "modules": [
+        "plodah/comboflow",
         "plodah/mouse_jiggler",
         "plodah/task_switch"
     ],

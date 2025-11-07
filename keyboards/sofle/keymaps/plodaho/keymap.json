@@ -16,6 +16,7 @@
     ],
     "layout": "LAYOUT",
     "modules": [
+        "plodah/comboflow",
         "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",

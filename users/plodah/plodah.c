@@ -11,7 +11,6 @@
 #include "functions/better_dragscroll.c"
 #include "functions/caps_word.c"
 #include "functions/chordal_hold.c"
-#include "functions/comboflow.c"
 #include "functions/combos.c"
 #include "functions/debug.c"
 #include "functions/dipswitch.c"

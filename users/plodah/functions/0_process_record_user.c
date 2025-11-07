@@ -2,7 +2,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "quantum.h" // Include the header that defines keyrecord_t
-#include "comboflow.h"
 #include "encoder_actions.h"
 #include "repeathold_rgb.h"
 #include "tapdance.h"
@@ -12,10 +11,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
     process_record_typing_indicator(keycode, record);
   #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
-
-  #if defined (COMBO_ENABLE) && defined(DEFERRED_EXEC_ENABLE) && defined(COMBOFLOW_ENABLE)
-    process_record_comboflow(keycode, record);
-  #endif // defined(DEFERRED_EXEC_ENABLE) && defined(COMBOFLOW_ENABLE)
 
   #if defined(BETTER_DRAGSCROLL)
     process_record_better_dragscroll(keycode, record);

@@ -34,8 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define TURBO_FIRE_KEY_A MS_BTN1
 #define CHORDAL_HOLD
-#define COMBOFLOW_ENABLE
-#define COMBOFLOW_TERM 110
+#define COMBOFLOW_TERM 100
 
 #define PLODAH_BORING_LAYER _BASE
 
