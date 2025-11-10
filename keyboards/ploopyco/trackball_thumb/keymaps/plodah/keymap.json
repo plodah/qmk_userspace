@@ -42,6 +42,7 @@
             "mousekey": true,
             "oled": false,
             "os_detection": false,
+            "pointing_device": true,
             "repeat_key": false,
             "rgblight": false,
             "rgb_matrix": false,

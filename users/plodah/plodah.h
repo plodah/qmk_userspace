@@ -4,7 +4,7 @@
 #include "configs/customkeys.h"
 
 #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)  && (! defined(TASKSWITCH_DELAY))
-  #define TASKSWITCH_DELAY 750
+  #define TASKSWITCH_DELAY 600
 #endif // defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)  && (! defined(TASKSWITCH_DELAY))
 
 // #define PLODAH_REPEATHOLD_RGB

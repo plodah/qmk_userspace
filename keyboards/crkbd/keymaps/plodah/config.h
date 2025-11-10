@@ -19,8 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
-
-#pragma once
+#define OLED_DISPLAY_64X128
 
 // #define CM_QFTR_DISABLED
 // #define CM_QLYR_DISABLED
@@ -95,6 +94,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif // DYNAMIC_MACRO_ENABLE
 
 #ifdef RGB_MATRIX_ENABLE
+  #define RGB_MATRIX_DEFAULT_VAL 42
   #include "configs/rgbmatrix-effects-many.h"
   #include "configs/rgbmatrix-config.h"
   #define PLODAH_REPEATHOLD_RGB
