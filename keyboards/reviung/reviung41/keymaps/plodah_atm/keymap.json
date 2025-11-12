@@ -5,9 +5,6 @@
     "documentation": "qmk compile -kb reviung/reviung41 -km plodah",
     "keyboard": "reviung/reviung41",
     "keymap": "plodah",
-    "keycodes": [
-        { "key": "PL_SCRL" }
-    ],
     "modules": [
         "plodah/autocorrect_rgbflash",
         "plodah/comboflow",

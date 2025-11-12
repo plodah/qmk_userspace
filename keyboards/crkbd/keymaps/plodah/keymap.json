@@ -8,8 +8,7 @@
     "converter": "rp2040_ce",
     "keycodes": [
         { "key": "PL_DMAC1" },
-        { "key": "PL_DMAC2" },
-        { "key": "PL_SCRL" }
+        { "key": "PL_DMAC2" }
     ],
     "modules": [
         "plodah/autocorrect_rgbflash",

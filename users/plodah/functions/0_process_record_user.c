@@ -44,12 +44,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
 
-    #if defined(KC_PL_SCRL)
-      case PL_SCRL:
-        tap_code(KC_SCRL);
-        return false;
-    #endif // defined(KC_PL_SCRL)
-
     #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(PLOOPY_VIAMENUS)
       case PL_MSJG:
         // jiggler_toggle();

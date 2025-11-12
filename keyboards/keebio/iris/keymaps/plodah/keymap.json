@@ -5,9 +5,6 @@
     "documentation": "qmk compile -kb keebio/iris/rev2 -km plodah",
     "keyboard": "keebio/iris/rev2",
     "keymap": "plodah",
-    "keycodes": [
-        { "key": "PL_SCRL" }
-    ],
     "modules": [
         "plodah/comboflow",
         "plodah/mouse_jiggler",

@@ -14,7 +14,6 @@ enum keymap_keycodes {
     PL_ECCC = QK_USER_0,
     PL_ECCW,
     PL_ECPR,
-    PL_SCRL,
 };
 */
 

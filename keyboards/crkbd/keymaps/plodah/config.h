@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define CM_QTAP_DISABLED
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
-#define KC_PL_SCRL
 
 // #define TASKSWITCH_FORCE_NDE
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE

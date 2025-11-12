@@ -7,7 +7,6 @@
 #define CM_QTAP_DISABLED
 #define CM_QVER_DISABLED
 #define CM_QRGB_DISABLED
-#define KC_PL_SCRL
 
 #define CHORDAL_HOLD
 

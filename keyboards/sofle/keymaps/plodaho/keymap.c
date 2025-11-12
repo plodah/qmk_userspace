@@ -59,8 +59,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FNC] = LAYOUT(
     XXXXXXX, CM_QVER, CM_QRGB, XXXXXXX, XXXXXXX, CM_MSJG,                         CM_MSJG, CM_QLYR, CM_QTAP, QK_MAKE, CM_QFTR, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, PL_SCRL, MS_BTN2, MS_BTN1, MS_BTN3,                         XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, QK_MAKE, XXXXXXX,
-    XXXXXXX, CM_TTAT, XXXXXXX, MS_BTN4, MS_BTN5, PL_SCRL, _______,       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, KC_LSCR, MS_BTN2, MS_BTN1, MS_BTN3,                         XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, QK_MAKE, XXXXXXX,
+    XXXXXXX, CM_TTAT, XXXXXXX, MS_BTN4, MS_BTN5, KC_LSCR, _______,       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                       _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
   ),
 

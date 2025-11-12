@@ -18,7 +18,6 @@
 // #define CM_QTAP_DISABLED
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
-#define KC_PL_SCRL
 
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "_10__" }
 
