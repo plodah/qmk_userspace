@@ -20,12 +20,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
 #define OLED_DISPLAY_64X128
+#define MASTER_RIGHT
 
 // #define CM_QFTR_DISABLED
 // #define CM_QLYR_DISABLED
 // #define CM_QTAP_DISABLED
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
+
+#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "Lower", "Raise", "Adjust" }
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_LED_STATE_ENABLE
+#define SPLIT_MODS_ENABLE
+#define SPLIT_OLED_ENABLE
 
 // #define TASKSWITCH_FORCE_NDE
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
@@ -47,7 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 #define FLOW_TAP_TERM 100
 
-#define CAPS_LOCK_LED_INDEX 25
+#define CAPS_LOCK_LED_INDEX 24
 #define PLODAH_CAPS_INDIC_HSV HSV_MAGENTA
 
 #define PLODAH_MODS_INDIC_LCTL_INDEX 11
@@ -67,17 +74,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define PLODAH_LAYER_INDIC_BG_HSV HSV_ORANGE
 
 #ifdef DYNAMIC_MACRO_ENABLE
-  #define PLODAH_DMAC_INDIC_INDEX 51
+  #define PLODAH_DMAC_INDIC_INDEX 26
   #define PLODAH_DMAC_INDIC_HSV HSV_RED
 #endif
 
-#define PLODAH_TYPINGINDICATOR_RGBINDEX 52
+#define PLODAH_TYPINGINDICATOR_RGBINDEX 25
 #define PLODAH_TYPINGINDICATOR_HSV 240, 84, 255
 #define PLODAH_TYPINGINDICATOR_DURATION 600
 
 #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
   // #define MSJIGGLER_NOINTRO
   // #define MSJIGGLER_INTRO_TIMEOUT 1200
+  // #define MSJIGGLER_PATTERN 1
+  // #define MSJIGGLER_AUTOSTOP
+  #define MSJIGGLER_INDICATOR_RGBINDEX 26
+  #define MSJIGGLER_INDICATOR_HSV 0x0B, 0xFF, 0xFF
 #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
 
 #if defined(TAP_DANCE_ENABLE)

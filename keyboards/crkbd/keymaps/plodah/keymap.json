@@ -73,6 +73,7 @@
             "rgblight": false,
             "rgb_matrix": true,
             "space_cadet": false,
+            "swap_hands": true,
             "tap_dance": true,
             "tri_layer": true,
             "via": true,
