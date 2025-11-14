@@ -30,9 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define TASKSWITCH_FORCE_NDE
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
 
-#define TURBO_FIRE_KEY_A MS_BTN1
 #define CHORDAL_HOLD
 #define COMBOFLOW_TERM 100
+#define LOCKING_SUPPORT_ENABLE
+#define TURBO_FIRE_KEY_A MS_BTN1
 
 #define PLODAH_BORING_LAYER _BASE
 
