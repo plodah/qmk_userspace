@@ -1,6 +1,5 @@
 #pragma once
 
-#define MASTER_RIGHT
 #define ENCODER_DIRECTION_FLIP
 
 #ifdef ENCODER_RESOLUTION
@@ -21,6 +20,14 @@
 
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "_10__" }
 
+#define EE_HANDS
+#define MASTER_RIGHT
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_LED_STATE_ENABLE
+#define SPLIT_MODS_ENABLE
+#define SPLIT_OLED_ENABLE
+#define SPLIT_WATCHDOG_ENABLE
+
 #define CHORDAL_HOLD
 #define COMBOFLOW_TERM 100
 #define LOCKING_SUPPORT_ENABLE
@@ -34,8 +41,8 @@
   // #define MSJIGGLER_INTRO_TIMEOUT 1200
   // #define MSJIGGLER_PATTERN 1
   // #define MSJIGGLER_AUTOSTOP
-  #define MSJIGGLER_INDICATOR_RGBINDEX 43
-  #define MSJIGGLER_INDICATOR_HSV 0x0B, 0xFF, 0xFF
+  // #define MSJIGGLER_INDICATOR_RGBINDEX 43
+  // #define MSJIGGLER_INDICATOR_HSV 0x0B, 0xFF, 0xFF
 #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
 
 #if defined(TAP_DANCE_ENABLE)

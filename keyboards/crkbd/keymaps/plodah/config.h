@@ -18,9 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+
+#if !defined(OLED_FONT_H)
+  #undef OLED_FONT_H
+#endif // OLED_FONT_H
+#define OLED_FONT_H "glcdfont.c"
 #define OLED_DISPLAY_64X128
-#define MASTER_RIGHT
 
 // #define CM_QFTR_DISABLED
 // #define CM_QLYR_DISABLED
@@ -28,11 +31,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
 
-#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "Lower", "Raise", "Adjust" }
+#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "Adjust" }
+
+#define MASTER_RIGHT
 #define SPLIT_LAYER_STATE_ENABLE
 #define SPLIT_LED_STATE_ENABLE
 #define SPLIT_MODS_ENABLE
 #define SPLIT_OLED_ENABLE
+#define NO_USB_STARTUP_CHECK
+#define SPLIT_WATCHDOG_ENABLE
+#define SPLIT_WATCHDOG_TIMEOUT 2100
+#define SPLIT_USB_DETECT
+#define SPLIT_USB_TIMEOUT 2000
+#define SPLIT_USB_TIMEOUT_POLL 10
 
 // #define TASKSWITCH_FORCE_NDE
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
@@ -42,7 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LOCKING_SUPPORT_ENABLE
 #define TURBO_FIRE_KEY_A MS_BTN1
 
-#define PLODAH_BORING_LAYER _BASE
+#define PLODAH_BORING_LAYER _O_QWERTY
 
 #ifdef QUICK_TAP_TERM
   #undef QUICK_TAP_TERM

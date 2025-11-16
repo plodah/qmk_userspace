@@ -36,12 +36,19 @@
 #define RAISE MO(_RAISE)
 #define ADJUST MO(_ADJUST)
 
+#define QWERTY  PDF(_QWERTY)
+#define COLEMAK PDF(_COLEMAK)
+#define O_QWERT PDF(_O_QWERTY)
+#define O_COLEM PDF(_O_COLEMAK)
+
 // ModTaps
 #define P_DOTAL MT(MOD_RALT,KC_PDOT)
 #define P_BSCTL LCTL_T(KC_BSPC)
 #define P_SLSFT RSFT_T(KC_SLSH)
 #define P_APPAL RALT_T(KC_APP)
 #define P_RSFTB RSFT_T(KC_BSPC)
+#define P_RSFEN RSFT_T(KC_ENT)
+#define P_RSFSP RSFT_T(KC_ENT)
 
 // GENERAL SHORTCUTS
 #define P_SALL C(KC_A)

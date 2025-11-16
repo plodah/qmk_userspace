@@ -2,8 +2,8 @@
     "version": 1,
     "notes": "Hello",
     "author": "Plodah",
-    "documentation": "qmk compile -kb crkbd -km plodah",
-    "keyboard": "crkbd",
+    "documentation": "qmk compile -kb crkbd/rev1 -km plodah",
+    "keyboard": "crkbd/rev1",
     "keymap": "plodah",
     "converter": "rp2040_ce",
     "keycodes": [
