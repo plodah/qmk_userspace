@@ -106,11 +106,10 @@
         if ( is_keyboard_master() ){
             #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
                 oled_write_P(logo_10x5, true);
-                // render_qmk_logo_10x5(false);
             #else
                 oled_write_P(logo_5x5, true);
-                // render_qmk_logo_5x5(true);
-            #endif //
+            #endif // OLED_DISPLAY_128X64 || OLED_DISPLAY_64X128
+
             oled_locks_display();
             oled_mods_display();
             oled_layer_display();
@@ -122,12 +121,10 @@
         else {
             #if defined(SPLIT_LED_STATE_ENABLE) || defined(SPLIT_MODS_ENABLE) || defined(SPLIT_LAYER_STATE_ENABLE)
                 #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
-                    oled_write_P(logo_10x5, true);
-                    // render_qmk_logo_10x5(false);
+                    oled_write_P(logo_10x5, false);
                 #else
-                    oled_write_P(logo_5x5, true);
-                    // render_qmk_logo_5x5(true);
-                #endif //
+                    oled_write_P(logo_5x5, false);
+                #endif // OLED_DISPLAY_128X64 || OLED_DISPLAY_64X128
 
                 #if defined(SPLIT_LED_STATE_ENABLE)
                     oled_locks_display();
@@ -144,17 +141,14 @@
                 oled_write_P(PSTR("\n\n"), false);
                 #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
                     oled_write_P(dual_logo_10x5, true);
-                    // render_qmk_logo_10x5(false);
                 #else
                     oled_write_P(logo_5x5, true);
-                    // render_qmk_logo_5x5(true);
-                #endif //
-
+                #endif // OLED_DISPLAY_128X64 || OLED_DISPLAY_64X128
 
                 return false;
             #else
-              return true;
-            #endif //
+                return true;
+            #endif // SPLIT_LED_STATE_ENABLE || SPLIT_MODS_ENABLE || SPLIT_LAYER_STATE_ENABLE
         }
     }
 
