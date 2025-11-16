@@ -53,6 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LOCKING_SUPPORT_ENABLE
 #define TURBO_FIRE_KEY_A MS_BTN1
 
+#define PLODAH_DUAL_TRI_LAYER
 #define PLODAH_BORING_LAYER _O_QWERTY
 
 #ifdef QUICK_TAP_TERM
