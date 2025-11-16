@@ -33,7 +33,6 @@
 
 
     #if defined(AUTOCORRECT_ENABLE)
-
         const char *autocorrect_display_row( char* typo ) {
             char* str;
             char* str2;
@@ -97,4 +96,22 @@
         }
     }
 
+    void oled_render_boot(bool bootloader) {
+        oled_clear();
+        for (int i = 0; i < 16; i++) {
+            oled_set_cursor(0, i);
+            if (bootloader) {
+                oled_write_P(PSTR("Awaiting New Firmware "), false);
+            } else {
+                oled_write_P(PSTR("Rebooting "), false);
+            }
+        }
+
+        oled_render_dirty(true);
+    }
+
+    bool shutdown_oled(bool jump_to_bootloader) {
+        oled_render_boot(jump_to_bootloader);
+        return true;
+    }
 #endif // defined(OLED_ENABLE)
