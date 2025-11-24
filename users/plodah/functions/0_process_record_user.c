@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include "quantum.h" // Include the header that defines keyrecord_t
 #include "encoder_actions.h"
+#include "oled.h"
 #include "repeathold_rgb.h"
 #include "tapdance.h"
 
@@ -15,6 +16,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #if defined(BETTER_DRAGSCROLL)
     process_record_better_dragscroll(keycode, record);
   #endif // defined(BETTER_DRAGSCROLL)
+
+  #if defined(OLED_ENABLE)
+    process_record_oled(keycode, record);
+  #endif // defined(OLED_ENABLE)
 
   #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
     process_record_msGesture();

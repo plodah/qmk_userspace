@@ -7,6 +7,8 @@
         #define OLED_UPDATE_INTERVAL 125
     #endif // OLED_UPDATE_INTERVAL
 
+    bool process_record_oled(uint16_t keycode, keyrecord_t *record);
+
     #if defined(AUTOCORRECT_ENABLE)
         bool apply_autocorrect_oled(uint8_t backspaces, const char *str, char *typo, char *correct);
         void keyboard_post_init_user_oled(void);
