@@ -1,8 +1,19 @@
 #pragma once
 
+#if !defined(OLED_FONT_H)
+  #undef OLED_FONT_H
+#endif // OLED_FONT_H
+#define OLED_FONT_H "glcdfont.c"
+#define OLED_DISPLAY_64X128
+
+#define MASTER_RIGHT
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_LED_STATE_ENABLE
+#define SPLIT_MODS_ENABLE
+#define SPLIT_OLED_ENABLE
+
 #define MASTER_RIGHT
 #define ENCODER_DIRECTION_FLIP
-#define OLED_DISPLAY_64X128
 
 #ifdef ENCODER_RESOLUTION
   #undef ENCODER_RESOLUTION

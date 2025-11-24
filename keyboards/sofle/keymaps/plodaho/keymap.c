@@ -123,9 +123,14 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 
+
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    if (is_keyboard_master()) {
-        return OLED_ROTATION_270;
-    }
+    #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+        return OLED_ROTATION_0;
+    #else
+        if (is_keyboard_master()) {
+            return OLED_ROTATION_270;
+        }
+    #endif // defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
     return rotation;
 }
