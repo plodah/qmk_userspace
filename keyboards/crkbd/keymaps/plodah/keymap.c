@@ -113,7 +113,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
         return OLED_ROTATION_0;

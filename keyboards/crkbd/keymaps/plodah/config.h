@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-
 #if !defined(OLED_FONT_H)
   #undef OLED_FONT_H
 #endif // OLED_FONT_H
