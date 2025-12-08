@@ -100,6 +100,7 @@
   #if defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
     bool process_record_tapdance_taphold(uint16_t keycode, keyrecord_t *record) {
       tap_dance_action_t *action;
+      tap_dance_state_t* state;
       switch (keycode) {
       // list all tap dance keycodes with tap-hold configurations
         case TD(TD_F2):
@@ -107,8 +108,9 @@
         case TD(TD_F5):
         case TD(TD_F11):
         case TD(TD_F12):
-          action = &tap_dance_actions[QK_TAP_DANCE_GET_INDEX(keycode)];
-          if (!record->event.pressed && action->state.count && !action->state.finished) {
+          action = tap_dance_get(QK_TAP_DANCE_GET_INDEX(keycode));
+          state = tap_dance_get_state(QK_TAP_DANCE_GET_INDEX(keycode));
+          if (!record->event.pressed && state->count && !state->finished) {
             tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
             tap_code16(tap_hold->tap);
           }

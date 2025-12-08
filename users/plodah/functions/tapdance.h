@@ -1,5 +1,8 @@
 #pragma once
 
+#include "process_tap_dance.h"
+#include "keymap_introspection.h"
+
 #if defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
     typedef struct {
         uint16_t tap;
