@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "documentation": "qmk compile -kb flehrad/bigswitch -km rgbstrip",
+    "keyboard": "flehrad/bigswitch",
+    "keymap": "rgbstrip",
+    "config": {
+        "features": {
+            "bootmagic": true,
+            "rgblight": true,
+            "via": true
+        },
+        "keyboard_name": "bigswitch | rgbstrip",
+        "rgblight": {
+            "led_count": 25
+        },
+        "ws2812": {
+            "pin": "F4"
+        }
+    }
+}
