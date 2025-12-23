@@ -54,6 +54,11 @@
             "via": false,
             "wpm": false
         },
-        "keyboard_name": "reviung41 | plodahatm"
+        "keyboard_name": "reviung41 | plodahatm",
+        "usb": {
+            "shared_endpoint": {
+                "keyboard": true
+            }
+        }
     }
 }

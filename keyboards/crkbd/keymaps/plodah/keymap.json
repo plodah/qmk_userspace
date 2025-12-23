@@ -79,6 +79,11 @@
             "via": true,
             "wpm": false
         },
-        "keyboard_name": "crkbd | plodah"
+        "keyboard_name": "crkbd | plodah",
+        "usb": {
+            "shared_endpoint": {
+                "keyboard": true
+            }
+        }
     }
 }

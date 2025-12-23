@@ -135,6 +135,11 @@
             "permissive_hold": true,
             "term": 180,
             "toggle": 3
+        },
+        "usb": {
+            "shared_endpoint": {
+                "keyboard": true
+            }
         }
     }
 }

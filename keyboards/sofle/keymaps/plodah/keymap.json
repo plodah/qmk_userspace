@@ -68,6 +68,11 @@
             "via": true,
             "wpm": false
         },
-        "keyboard_name": "Sofle | plodah"
+        "keyboard_name": "Sofle | plodah",
+        "usb": {
+            "shared_endpoint": {
+                "keyboard": true
+            }
+        }
     }
 }
