@@ -69,6 +69,7 @@
             "oled": true,
             "os_detection": false,
             "pointing_device": false,
+            "quantum_painter": false,
             "repeat_key": true,
             "rgblight": false,
             "rgb_matrix": true,
@@ -76,6 +77,8 @@
             "swap_hands": true,
             "tap_dance": true,
             "tri_layer": true,
+            "unicode": false,
+            "unicode_common": false,
             "via": true,
             "wpm": false
         },
