@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "notes": "Hello",
+    "author": "Plodah",
+    "documentation": "qmk compile -kb crkbd/rev1 -km plodah",
+    "keyboard": "dasky/reverb",
+    "keymap": "plodah",
+    "keycodes": [
+        { "key": "PL_DMAC1" },
+        { "key": "PL_DMAC2" }
+    ],
+    "modules": [
+        "plodah/autocorrect_rgbflash",
+        "plodah/comboflow",
+        "plodah/config_query",
+        "plodah/mouse_jiggler",
+        "plodah/rgb_helpers",
+        "plodah/task_switch",
+        "plodah/turbo_fire"
+    ],
+    "config": {
+        "bootmagic": {
+            "matrix": [0, 0]
+        },
+        "caps_word": {
+            "both_shifts_turns_on": true,
+            "double_tap_shift_turns_on": true,
+            "idle_timeout": 1200,
+            "invert_on_shift": true
+        },
+        "dynamic_keymap": {
+            "layer_count": 10
+        },
+        "features": {
+            "auto_shift": false,
+            "autocorrect": true,
+            "backlight": false,
+            "bootmagic": true,
+            "caps_word": true,
+            "combo": true,
+            "command": false,
+            "console": true,
+            "deferred_exec": true,
+            "dynamic_macro": true,
+            "dynamic_tapping_term": true,
+            "encoder_map": false,
+            "extrakey": true,
+            "key_override": false,
+            "leader": true,
+            "mousekey": true,
+            "oled": true,
+            "os_detection": false,
+            "pointing_device": false,
+            "quantum_painter": true,
+            "repeat_key": true,
+            "rgblight": false,
+            "rgb_matrix": true,
+            "space_cadet": false,
+            "swap_hands": true,
+            "tap_dance": true,
+            "tri_layer": true,
+            "unicode": false,
+            "unicode_common": false,
+            "via": true,
+            "wpm": true
+        },
+        "keyboard_name": "crkbd | plodah",
+        "usb": {
+            "shared_endpoint": {
+                "keyboard": true
+            }
+        }
+    }
+
+}
