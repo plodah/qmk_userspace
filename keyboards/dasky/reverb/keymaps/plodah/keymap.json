@@ -2,7 +2,7 @@
     "version": 1,
     "notes": "Hello",
     "author": "Plodah",
-    "documentation": "qmk compile -kb crkbd/rev1 -km plodah",
+    "documentation": "qmk compile -kb dasky/reverb -km plodah",
     "keyboard": "dasky/reverb",
     "keymap": "plodah",
     "keycodes": [
@@ -64,7 +64,7 @@
             "via": true,
             "wpm": true
         },
-        "keyboard_name": "crkbd | plodah",
+        "keyboard_name": "dasky/reverb | plodah",
         "usb": {
             "shared_endpoint": {
                 "keyboard": true
