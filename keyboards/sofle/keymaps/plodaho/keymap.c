@@ -27,17 +27,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
     P_RAGEQ, KC_1,    P_F2,    KC_3,    P_F4,    P_F5,                            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
     P_BSCTL, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_TAB,  HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,                          HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  HRM_CG, KC_QUOT,
+    KC_TAB,  HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,                          HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  HRM_CG,  KC_QUOT,
     KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  BRM_BG,  PL_ECPR,       PL_ECPR, BRM_NG,  BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, QK_REP,
                       P_HOMFC, KC_LALT, KC_LCTL, P_ENTFB, P_SPCFA,       P_SPCFA, P_ENTFB, KC_RCTL, KC_RALT, P_ENDFC
   ),
 
   [_COLEMAK] = LAYOUT(
     P_RAGEQ, KC_1,    P_F2,    KC_3,    P_F4,    P_F5,                            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                            KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-    KC_NUBS, HRM_AG,  HRM_RA,  HRM_SS,  HRM_TC,  HRM_DG,                          HRM_HG,  HRM_NC,  HRM_ES,  HRM_IA,  HRM_OG,  KC_QUOT,
-    KC_LSFT, BRM_ZG,  KC_X,    KC_C,    KC_V,    KC_B,    PL_ECPR,       PL_ECPR, KC_K,    KC_M,    KC_COMM, KC_DOT,  BRM_SLG, QK_REP,
-                      KC_LGUI, KC_LALT, KC_LCTL, P_ENTFB, P_SPCFA,       P_SPCFA, P_ENTFB, KC_RCTL, KC_RALT, KC_RGUI
+    P_BSCTL, KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                            KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
+    KC_TAB,  HRM_AG,  HRM_RA,  HRM_SS,  HRM_TC,  HRM_DG,                          HRM_HG,  HRM_NC,  HRM_ES,  HRM_IA,  HRM_OG,  KC_QUOT,
+    KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  BRM_BG,  PL_ECPR,       PL_ECPR, BRM_KG,  BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, QK_REP,
+                      P_HOMFC, KC_LALT, KC_LCTL, P_ENTFB, P_SPCFA,       P_SPCFA, P_ENTFB, KC_RCTL, KC_RALT, P_ENDFC
   ),
 
   [_FNA] = LAYOUT(

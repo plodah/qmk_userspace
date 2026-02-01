@@ -24,7 +24,14 @@
                 return true;
                 break;
             case HRM_FC:
+            case HRM_JC:
+            case BRM_VC:
+            case BRM_MC:
                 if (other_keycode == KC_S || other_keycode == HRM_SA) {
+                    dprintf("chordal Ctrl S\n");
+                    return true;
+                }
+                if (other_keycode == KC_W) {
                     dprintf("chordal Ctrl S\n");
                     return true;
                 }
@@ -32,6 +39,11 @@
             case HRM_AG:
             case HRM_GG:
             case HRM_HG:
+            case HRM_CG:
+            case BRM_ZG:
+            case BRM_BG:
+            case BRM_NG:
+            case BRM_SLG:
                 if (other_keycode == KC_E) {
                     dprintf("chordal Gui E\n");
                     return true;
@@ -45,7 +57,17 @@
                     return true;
                 }
                 break;
-        } 
+            case HRM_SA:
+            case HRM_LA:
+            case BRM_XA:
+            case BRM_DOA:
+                break;
+            case HRM_DS:
+            case HRM_KS:
+            case BRM_CS:
+            case BRM_COS:
+                break;
+        }
         dprintf("chordal default\n");
         return get_chordal_hold_default(tap_hold_record, other_record);
     }
