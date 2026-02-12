@@ -3,4 +3,5 @@
 
 #pragma once
 
+#define VIA_INSECURE
 #define DYNAMIC_KEYMAP_LAYER_COUNT 8

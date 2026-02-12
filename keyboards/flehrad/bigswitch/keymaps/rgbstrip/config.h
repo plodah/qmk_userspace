@@ -1,4 +1,5 @@
 #pragma once
+#define VIA_INSECURE
 
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
