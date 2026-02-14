@@ -38,7 +38,7 @@
             apply_autocorrect_oled(backspaces, str, typo, correct);
         #endif // defined(OLED_ENABLE)
 
-        #if defined(COMMUNITY_MODULE_AUTOCORRECT_RGBFLASH_ENABLD)
+        #if defined(COMMUNITY_MODULE_AUTOCORRECT_RGBFLASH_ENABLE)
             apply_autocorrect_autocorrect_rgbflash(backspaces, str, typo, correct);
         #endif // COMMUNITY_MODULE_AUTOCORRECT_RGBFLASH_ENABLE
         return true;
