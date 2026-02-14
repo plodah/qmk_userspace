@@ -9,6 +9,7 @@
     "modules": [
         "plodah/config_query",
         "plodah/rgb_helpers",
+        "plodah/rgb_repeathold",
         "plodah/task_switch"
     ],
     "config": {

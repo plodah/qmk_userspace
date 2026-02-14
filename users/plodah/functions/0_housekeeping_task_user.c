@@ -2,7 +2,6 @@
     #pragma once
 
     #include "dynamic_macros.h"
-    #include "repeathold_rgb.h"
     #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
         #include "indicators.h"
     #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
@@ -17,9 +16,6 @@
         #if defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT) && !defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)
             housekeeping_task_plodah_dynamic_macro();
         #endif // defined(DYNAMIC_MACRO_ENABLE) && defined(PLODAH_DYNAMIC_MACRO_TIMEOUT)
-        #if defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
-            housekeeping_task_repeathold_rgb();
-        #endif // defined(PLODAH_REPEATHOLD_RGB) && defined(RGB_MATRIX_ENABLE)
     }
 
 #endif // ( defined(AUTOCORRECT_ENABLE) && defined(RGB_MATRIX_ENABLE) ) || (defined(PLODAH_TYPINGINDICATOR_RGBINDEX))

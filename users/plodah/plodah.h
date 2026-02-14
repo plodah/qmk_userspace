@@ -7,11 +7,6 @@
   #define TASKSWITCH_DELAY 600
 #endif // defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)  && (! defined(TASKSWITCH_DELAY))
 
-// #define PLODAH_REPEATHOLD_RGB
-#if defined(PLODAH_REPEATHOLD_RGB) && (! defined(PLODAH_REPEATHOLD_RATE))
-  #define PLODAH_REPEATHOLD_RATE 125
-#endif // defined(PLODAH_REPEATHOLD_RGB) && (! defined(PLODAH_REPEATHOLD_RATE))
-
 #if defined(COMBO_ENABLE) && (! defined(COMBO_TERM))
   #define COMBO_STRICT_TIMER
   #define COMBO_TERM 25

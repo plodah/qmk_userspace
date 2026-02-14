@@ -99,7 +99,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define RGB_MATRIX_DEFAULT_VAL 42
   #include "configs/rgbmatrix-effects-many.h"
   #include "configs/rgbmatrix-config.h"
-  #define PLODAH_REPEATHOLD_RGB
   // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGB_MATRIX_ENABLE
 

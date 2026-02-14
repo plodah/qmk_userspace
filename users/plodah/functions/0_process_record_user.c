@@ -4,7 +4,6 @@
 #include "quantum.h" // Include the header that defines keyrecord_t
 #include "encoder_actions.h"
 #include "oled.h"
-#include "repeathold_rgb.h"
 #include "tapdance.h"
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -42,10 +41,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     }
   #endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
-
-  #if defined(PLODAH_REPEATHOLD_RGB) && (defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE))
-    process_record_repeathold_rgb(keycode, record);
-  #endif // defined(PLODAH_REPEATHOLD_RGB) && (defined(RGB_MATRIX_ENABLE) || defined(RGBLIGHT_ENABLE))
 
   switch (keycode) {
 

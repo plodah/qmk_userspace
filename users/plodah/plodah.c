@@ -24,7 +24,6 @@
 #include "functions/mouse_gesture.c"
 #include "functions/oled.c" // required by autocorrect
 #include "functions/ploopy_via.c"
-#include "functions/repeathold_rgb.c"
 #include "functions/shutdown.c"
 #include "functions/tapdance.c"
 #include "functions/tri_layer.c"

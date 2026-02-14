@@ -15,8 +15,10 @@
         "plodah/config_query",
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",
+        "plodah/rgb_repeathold",
         "plodah/task_switch",
-        "plodah/turbo_fire"
+        "plodah/turbo_fire",
+        "plodah/morse_code"
     ],
     "config": {
         "bootmagic": {

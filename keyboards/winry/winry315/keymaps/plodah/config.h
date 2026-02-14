@@ -26,7 +26,6 @@
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
   #include "configs/rgbmatrix-effects-none.h"
-  #define PLODAH_REPEATHOLD_RGB
   // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGB_MATRIX_ENABLE
 
