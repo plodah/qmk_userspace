@@ -123,23 +123,22 @@
 
     #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX)
         RGB msjigrgb = hsv_to_rgb( rgbhelpers_limit_ind( rgb_matrix_get_hsv(), MSJIGGLER_INDICATOR_HSV, PLODAH_INDICATOR_MINVAL ) );
-
         if(!rgb_matrix_get_flags()){
           rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
         }
         #if !defined(MSJIGGLER_NOINTRO)
-        RGB msjigintrorgb = hsv_to_rgb( rgbhelpers_limit_ind( rgb_matrix_get_hsv(), MSJIGGLER_INDICATOR_INTRO_HSV, PLODAH_INDICATOR_MINVAL ) );
+            RGB msjigintrorgb = hsv_to_rgb( rgbhelpers_limit_ind( rgb_matrix_get_hsv(), MSJIGGLER_INDICATOR_INTRO_HSV, PLODAH_INDICATOR_MINVAL ) );
         #endif // !defined(MSJIGGLER_NOINTRO)
         switch(jiggler_get_state()){
             #if !defined(MSJIGGLER_NOINTRO)
                 case 2:
                     rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigintrorgb.r, msjigintrorgb.g, msjigintrorgb.b);
+
                     break;
             #endif // !defined(MSJIGGLER_NOINTRO)
             case 1:
                 rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
                 break;
-
         }
     #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX)
 
