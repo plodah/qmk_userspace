@@ -67,7 +67,7 @@
                 break;
 
             case id_ploopystuff_msjiggler_enabled:
-                if( (msJigMainToken != INVALID_DEFERRED_TOKEN) ^ (*value_data) ) {
+                if( jiggler_get_state() ^ (*value_data) ) {
                     // ^ is an XOR, buddy
                     jiggler_toggle();
                     dprintf("msjiggler_enabled\n");
@@ -197,7 +197,7 @@
                 break;
 
             case id_ploopystuff_msjiggler_enabled:
-                if(msJigMainToken != INVALID_DEFERRED_TOKEN){
+                if(jiggler_get_state()){
                     dprintf("msjiggler_enabled true \n");
                     *value_data = true;
                 }

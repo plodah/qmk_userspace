@@ -127,15 +127,19 @@
         if(!rgb_matrix_get_flags()){
           rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, RGB_OFF);
         }
-      #if !defined(MSJIGGLER_NOINTRO)
+        #if !defined(MSJIGGLER_NOINTRO)
         RGB msjigintrorgb = hsv_to_rgb( rgbhelpers_limit_ind( rgb_matrix_get_hsv(), MSJIGGLER_INDICATOR_INTRO_HSV, PLODAH_INDICATOR_MINVAL ) );
-        if(msJigIntroToken != INVALID_DEFERRED_TOKEN){
-          rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigintrorgb.r, msjigintrorgb.g, msjigintrorgb.b);
-        }
-        else
-      #endif // !defined(MSJIGGLER_NOINTRO)
-        if(msJigMainToken != INVALID_DEFERRED_TOKEN){
-          rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
+        #endif // !defined(MSJIGGLER_NOINTRO)
+        switch(jiggler_get_state()){
+            #if !defined(MSJIGGLER_NOINTRO)
+                case 2:
+                    rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigintrorgb.r, msjigintrorgb.g, msjigintrorgb.b);
+                    break;
+            #endif // !defined(MSJIGGLER_NOINTRO)
+            case 1:
+                rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigrgb.r, msjigrgb.g, msjigrgb.b);
+                break;
+
         }
     #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(MSJIGGLER_INDICATOR_RGBINDEX)
 
