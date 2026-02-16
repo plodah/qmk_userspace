@@ -42,9 +42,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FNA] = LAYOUT(
     KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,            KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-    _______, _______, _______, _______, _______, KC_F6,            KC_F7,   _______, _______, _______, _______, KC_DEL,
-    KC_BSPC, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, KC_NUHS,
-    _______, KC_MINS, KC_EQL,  _______, KC_LCBR, KC_LBRC,          KC_RBRC, KC_RCBR, _______, _______, _______, QK_AREP,
+    RM_TOGG, RM_NEXT, RM_VALU, RM_HUEU, RM_SATU, KC_F6,            KC_F7,   RM_SPDU, _______, _______, _______, KC_DEL,
+    KC_BSPC, RM_PREV, RM_VALD, RM_HUED, RM_SATD, _______,          _______, RM_SPDD, _______, _______, _______, KC_NUHS,
+    _______, KC_MINS, KC_EQL,  _______, KC_LCBR, KC_LBRC,          KC_RBRC, KC_RCBR, _______, CM_MORT, CM_MORH, CM_MORS,
                                _______, _______, _______,          _______, _______, KC_APP
   ),
 

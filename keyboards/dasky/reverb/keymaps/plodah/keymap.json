@@ -13,6 +13,7 @@
         "plodah/autocorrect_rgbflash",
         "plodah/comboflow",
         "plodah/config_query",
+        "plodah/morse_code",
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",
         "plodah/rgb_repeathold",
