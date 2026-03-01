@@ -10,6 +10,7 @@
 
     const uint16_t PROGMEM pl_combo_qwop[]   = {KC_Q,     KC_W,   KC_O,   KC_P,   COMBO_END};
     const uint16_t PROGMEM pl_combo_wr[]     = {KC_W,     KC_R,                   COMBO_END};
+    const uint16_t PROGMEM pl_combo_wt[]     = {KC_W,     KC_T,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_et[]     = {KC_E,     KC_T,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_ert[]    = {KC_E,     KC_R,   KC_T,           COMBO_END};
     const uint16_t PROGMEM pl_combo_ip[]     = {KC_I,     KC_P,                   COMBO_END};
@@ -228,6 +229,7 @@ combo_t key_combos[] = {
 
         COMBO(pl_combo_qwop,  QK_BOOT    ),
         COMBO(pl_combo_wr,    C(KC_F5)   ),
+        COMBO(pl_combo_wt,    C(KC_W)    ),
         COMBO(pl_combo_et,    C(KC_T)    ),
         COMBO(pl_combo_ert,   C(S(KC_T)) ),
         COMBO(pl_combo_ip,    KC_PSCR    ),
