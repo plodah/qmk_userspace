@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif // OLED_FONT_H
 #define OLED_FONT_H "glcdfont.c"
 #define OLED_DISPLAY_64X128
+#define AUTOCORRECT_OLED_DISPLAY_LENGTH 10
 
 // #define CM_QFTR_DISABLED
 // #define CM_QLYR_DISABLED
