@@ -21,12 +21,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 enum layers {
     _QWERTY,
-    _COLEMAK,
+    _COLEMK,
     _FNA,
     _FNB,
     _FNC,
-    _O_QWERTY,
-    _O_COLEMAK,
+    _O_QWER,
+    _O_COLE,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             P_HOMFC, P_ENTFB, P_SPCFA,     P_SPCFA, P_ENTFB, P_ENDFC
     ),
 
-    [_COLEMAK] = LAYOUT(
+    [_COLEMK] = LAYOUT(
         P_RAGEQ, KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                          KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
         KC_TAB,  HRM_AG,  HRM_RA,  HRM_SS,  HRM_TC,  HRM_DG,                        HRM_HG,  HRM_NC,  HRM_ES,  HRM_IA,  HRM_OG,  KC_QUOT,
         KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  BRM_BG,                        BRM_KG,  BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, QK_REP,
@@ -77,14 +77,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             _______, _______, _______,     _______, _______, _______
     ),
 
-    [_O_QWERTY] = LAYOUT_split_3x6_3(
+    [_O_QWER] = LAYOUT_split_3x6_3(
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                          KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, P_RAGEQ,
                                             KC_LGUI, LOWER,   KC_SPC,      KC_ENT,  RAISE,   KC_RALT
     ),
 
-    [_O_COLEMAK] = LAYOUT_split_3x6_3(
+    [_O_COLE] = LAYOUT_split_3x6_3(
         KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                          KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
         KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                          KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                          KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, P_RAGEQ,

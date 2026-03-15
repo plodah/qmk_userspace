@@ -37,9 +37,9 @@
 #define ADJUST MO(_ADJUST)
 
 #define QWERTY  PDF(_QWERTY)
-#define COLEMAK PDF(_COLEMAK)
-#define O_QWERT PDF(_O_QWERTY)
-#define O_COLEM PDF(_O_COLEMAK)
+#define COLEMAK PDF(_COLEMK)
+#define O_QWERT PDF(_O_QWER)
+#define O_COLEM PDF(_O_COLE)
 
 // ModTaps
 #define P_DOTAL MT(MOD_RALT,KC_PDOT)

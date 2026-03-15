@@ -88,54 +88,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_BASE] = {
-        ENCODER_CCW_CW( P_RTAB, P_PTAB),
-        ENCODER_CCW_CW(KC_VOLD, KC_VOLU),
-        ENCODER_CCW_CW(CM_TSKP, CM_TSKN)
+        ENCODER_CCW_CW( P_RTAB,  P_PTAB  ),
+        ENCODER_CCW_CW( KC_VOLD, KC_VOLU ),
+        ENCODER_CCW_CW( CM_TSKP, CM_TSKN )
     },
     [_MOUSE] = {
-        ENCODER_CCW_CW( _______, _______),
-        ENCODER_CCW_CW(_______, _______),
-        ENCODER_CCW_CW(_______, _______)
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ )
     },
     [_NUMPAD] = {
-        ENCODER_CCW_CW( _______, _______),
-        ENCODER_CCW_CW(_______, _______),
-        ENCODER_CCW_CW(_______, _______)
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ )
     },
     [_OBS] = {
-        ENCODER_CCW_CW( _______, _______),
-        ENCODER_CCW_CW(_______, _______),
-        ENCODER_CCW_CW(_______, _______)
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ )
     },
     [_RGB] = {
-        ENCODER_CCW_CW( RM_HUED, RM_HUEU),
-        ENCODER_CCW_CW(RM_VALD, RM_VALU),
-        ENCODER_CCW_CW(RM_SATD, RM_SATU)
+        ENCODER_CCW_CW( RM_HUED, RM_HUEU ),
+        ENCODER_CCW_CW( RM_VALD, RM_VALU ),
+        ENCODER_CCW_CW( RM_SATD, RM_SATU )
     },
     [_MACROS] = {
-        ENCODER_CCW_CW( _______, _______),
-        ENCODER_CCW_CW(_______, _______),
-        ENCODER_CCW_CW(_______, _______)
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ )
     },
     [_CLICKER] = {
-        ENCODER_CCW_CW( _______, _______),
-        ENCODER_CCW_CW(_______, _______),
-        ENCODER_CCW_CW(_______, _______)
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ )
     },
     [_EMPTY] = {
-        ENCODER_CCW_CW( _______, _______),
-        ENCODER_CCW_CW(_______, _______),
-        ENCODER_CCW_CW(_______, _______)
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ )
     },
     [_EMPTY2] = {
-        ENCODER_CCW_CW( _______, _______),
-        ENCODER_CCW_CW(_______, _______),
-        ENCODER_CCW_CW(_______, _______)
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ )
     },
     [_FUNC] = {
-        ENCODER_CCW_CW( _______, _______),
-        ENCODER_CCW_CW(_______, _______),
-        ENCODER_CCW_CW(_______, _______)
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ ),
+        ENCODER_CCW_CW( _______, _______ )
     }
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)

@@ -4,12 +4,12 @@
 
 enum layers {
     _QWERTY,
-    _COLEMAK,
+    _COLEMK,
     _FNA,
     _FNB,
     _FNC,
-    _O_QWERTY,
-    _O_COLEMAK,
+    _O_QWER,
+    _O_COLE,
     _LOWER,
     _RAISE,
 };
@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       P_HOMFC, KC_LALT, KC_LCTL, P_ENTFB, P_SPCFA,       P_SPCFA, P_ENTFB, KC_RCTL, KC_RALT, P_ENDFC
   ),
 
-  [_COLEMAK] = LAYOUT(
+  [_COLEMK] = LAYOUT(
     P_RAGEQ, KC_1,    P_F2,    KC_3,    P_F4,    P_F5,                            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
     P_BSCTL, KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                            KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
     KC_TAB,  HRM_AG,  HRM_RA,  HRM_SS,  HRM_TC,  HRM_DG,                          HRM_HG,  HRM_NC,  HRM_ES,  HRM_IA,  HRM_OG,  KC_QUOT,
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
   ),
 
-  [_O_QWERTY] = LAYOUT(
+  [_O_QWER] = LAYOUT(
     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
     P_RAGEQ, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                            KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       KC_LGUI, KC_LALT, KC_LCTL, LOWER,   KC_ENT,        KC_SPC,  RAISE,   KC_RCTL, KC_RALT, KC_RGUI
   ),
 
-  [_O_COLEMAK] = LAYOUT(
+  [_O_COLE] = LAYOUT(
     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
     KC_ESC,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                            KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
     KC_TAB,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                            KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
@@ -110,16 +110,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_QWERTY] =   { ENCODER_CCW_CW(PL_ECCC, PL_ECCW), ENCODER_CCW_CW(PL_ECCC, PL_ECCW) },
-    [_COLEMAK] =   { ENCODER_CCW_CW(PL_ECCC, PL_ECCW), ENCODER_CCW_CW(PL_ECCC, PL_ECCW) },
-    [_FNA] =    { ENCODER_CCW_CW(PL_ECCC, PL_ECCW), ENCODER_CCW_CW(PL_ECCC, PL_ECCW) },
-    [_FNB] =    { ENCODER_CCW_CW(PL_ECCC, PL_ECCW), ENCODER_CCW_CW(PL_ECCC, PL_ECCW) },
-    [_FNC] =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLU),    ENCODER_CCW_CW(MS_WHLU, MS_WHLU) },
+    [_QWERTY]   = { ENCODER_CCW_CW(PL_ECCC, PL_ECCW),   ENCODER_CCW_CW(PL_ECCC, PL_ECCW) },
+    [_COLEMK]   = { ENCODER_CCW_CW(PL_ECCC, PL_ECCW),   ENCODER_CCW_CW(PL_ECCC, PL_ECCW) },
+    [_FNA]      = { ENCODER_CCW_CW(PL_ECCC, PL_ECCW),   ENCODER_CCW_CW(PL_ECCC, PL_ECCW) },
+    [_FNB]      = { ENCODER_CCW_CW(PL_ECCC, PL_ECCW),   ENCODER_CCW_CW(PL_ECCC, PL_ECCW) },
+    [_FNC]      = { ENCODER_CCW_CW(MS_WHLU, MS_WHLU),   ENCODER_CCW_CW(MS_WHLU, MS_WHLU) },
 
-    [_O_QWERTY] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU),    ENCODER_CCW_CW(KC_PGDN, KC_PGUP) },
-    [_O_COLEMAK] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU),    ENCODER_CCW_CW(KC_PGDN, KC_PGUP) },
-    [_LOWER] =  { ENCODER_CCW_CW(RM_HUED, RM_HUEU),    ENCODER_CCW_CW(RM_SATD, RM_SATU) },
-    [_RAISE] =  { ENCODER_CCW_CW(RM_VALD, RM_VALU),    ENCODER_CCW_CW(RM_PREV, RM_NEXT) },
+    [_O_QWER]   = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU),   ENCODER_CCW_CW(KC_PGDN, KC_PGUP) },
+    [_O_COLE]   = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU),   ENCODER_CCW_CW(KC_PGDN, KC_PGUP) },
+    [_LOWER]    = { ENCODER_CCW_CW(RM_HUED, RM_HUEU),   ENCODER_CCW_CW(RM_SATD, RM_SATU) },
+    [_RAISE]    = { ENCODER_CCW_CW(RM_VALD, RM_VALU),   ENCODER_CCW_CW(RM_PREV, RM_NEXT) },
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 
