@@ -85,6 +85,9 @@
             "wpm": false
         },
         "keyboard_name": "crkbd | plodah",
+        "locking": {
+            "enabled": true
+        },
         "tapping": {
             "chordal_hold": true,
             "flow_tap_term": 100

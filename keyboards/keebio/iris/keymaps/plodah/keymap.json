@@ -67,6 +67,9 @@
             "wpm": false
         },
         "keyboard_name": "Iris rev2 | plodah",
+        "locking": {
+            "enabled": true
+        },
         "matrix": {
           "debounce": 20
         },

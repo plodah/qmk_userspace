@@ -73,6 +73,9 @@
             "wpm": false
         },
         "keyboard_name": "Sofle | plodaho",
+        "locking": {
+            "enabled": true
+        },
         "tapping": {
             "chordal_hold": true,
             "flow_tap_term": 150
