@@ -68,6 +68,10 @@
             "wpm": false
         },
         "keyboard_name": "reviung41 | plodah",
+        "tapping": {
+            "chordal_hold": true,
+            "flow_tap_term": 100
+        },
         "usb": {
             "shared_endpoint": {
                 "keyboard": true

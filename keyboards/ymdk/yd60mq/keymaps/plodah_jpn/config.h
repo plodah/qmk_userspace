@@ -6,7 +6,6 @@
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
 
-#define CHORDAL_HOLD
 #define CHORDAL_HOLD_HANDEDNESS_YD60MQ
 #define COMBOFLOW_TERM 100
 
@@ -16,11 +15,6 @@
   #undef QUICK_TAP_TERM
 #endif
 #define QUICK_TAP_TERM 60
-
-#ifdef FLOW_TAP_TERM
-  #undef FLOW_TAP_TERM
-#endif
-#define FLOW_TAP_TERM 100
 
 #if defined(TAP_DANCE_ENABLE)
   #define PLODAH_TAPDANCE_TAPHOLD_ENABLE

@@ -8,7 +8,6 @@
 #define CM_QVER_DISABLED
 #define CM_QRGB_DISABLED
 
-#define CHORDAL_HOLD
 #define LOCKING_SUPPORT_ENABLE
 
 #define PLODAH_BORING_LAYER _QWEB
@@ -35,11 +34,6 @@
   #undef QUICK_TAP_TERM
 #endif
 #define QUICK_TAP_TERM 60
-
-#ifdef FLOW_TAP_TERM
-  #undef FLOW_TAP_TERM
-#endif
-#define FLOW_TAP_TERM 150
 
 #if defined(TRI_LAYER_ENABLE)
   #define TRI_LAYER_UNSTRICT

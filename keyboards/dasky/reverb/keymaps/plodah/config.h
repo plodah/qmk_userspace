@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define TASKSWITCH_FORCE_NDE
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
 
-#define CHORDAL_HOLD
 #define COMBOFLOW_TERM 100
 #define LOCKING_SUPPORT_ENABLE
 #define TURBO_FIRE_KEY_A MS_BTN1
@@ -39,11 +38,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #undef QUICK_TAP_TERM
 #endif
 #define QUICK_TAP_TERM 60
-
-#ifdef FLOW_TAP_TERM
-  #undef FLOW_TAP_TERM
-#endif
-#define FLOW_TAP_TERM 100
 
 #define CAPS_LOCK_LED_INDEX 17
 #define PLODAH_CAPS_INDIC_HSV HSV_MAGENTA

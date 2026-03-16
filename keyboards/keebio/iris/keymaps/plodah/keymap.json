@@ -73,6 +73,10 @@
         "qmk": {
             "tap_keycode_delay": 8
         },
+        "tapping": {
+            "chordal_hold": true,
+            "flow_tap_term": 150
+        },
         "usb": {
             "shared_endpoint": {
                 "keyboard": true

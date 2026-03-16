@@ -33,7 +33,6 @@
 
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "_10__" }
 
-#define CHORDAL_HOLD
 #define COMBOFLOW_TERM 100
 #define LOCKING_SUPPORT_ENABLE
 
@@ -63,11 +62,6 @@
   #undef QUICK_TAP_TERM
 #endif
 #define QUICK_TAP_TERM 60
-
-#ifdef FLOW_TAP_TERM
-  #undef FLOW_TAP_TERM
-#endif
-#define FLOW_TAP_TERM 150
 
 #ifdef RGBLIGHT_ENABLE
   #include "configs/rgblight-effects-all.h"

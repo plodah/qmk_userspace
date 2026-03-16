@@ -11,8 +11,6 @@
   #define PLODAH_BRM_COMBOS
 #endif
 
-#define CHORDAL_HOLD
-
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #define PLODAH_BORING_LAYER 1
 
@@ -20,11 +18,6 @@
   #undef QUICK_TAP_TERM
 #endif
 #define QUICK_TAP_TERM 60
-
-#ifdef FLOW_TAP_TERM
-  #undef FLOW_TAP_TERM
-#endif
-#define FLOW_TAP_TERM 150
 
 #define PLODAH_CAPS_INDIC_HSV 240, 84, 255
 

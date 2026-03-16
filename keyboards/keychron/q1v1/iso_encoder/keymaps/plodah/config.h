@@ -12,19 +12,12 @@
   #define PLODAH_COMBOS_LIMITED
 #endif
 
-#define CHORDAL_HOLD
-
 #define PLODAH_BORING_LAYER 1
 /*
 #ifdef QUICK_TAP_TERM
   #undef QUICK_TAP_TERM
 #endif
 #define QUICK_TAP_TERM 60
-
-#ifdef FLOW_TAP_TERM
-  #undef FLOW_TAP_TERM
-#endif
-#define FLOW_TAP_TERM 150
 */
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 #define TASKSWITCH_FORCE_NDE

@@ -60,6 +60,10 @@
             "wpm": false
         },
         "keyboard_name": "reviung41 | plodahatm",
+        "tapping": {
+            "chordal_hold": true,
+            "flow_tap_term": 150
+        },
         "usb": {
             "shared_endpoint": {
                 "keyboard": true

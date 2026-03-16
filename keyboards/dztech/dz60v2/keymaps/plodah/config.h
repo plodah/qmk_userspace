@@ -13,19 +13,12 @@
   #define PLODAH_BRM_COMBOS
 #endif
 
-#define CHORDAL_HOLD
-
 #define PLODAH_BORING_LAYER _QWEB
 
 #ifdef QUICK_TAP_TERM
   #undef QUICK_TAP_TERM
 #endif
 #define QUICK_TAP_TERM 60
-
-#ifdef FLOW_TAP_TERM
-  #undef FLOW_TAP_TERM
-#endif
-#define FLOW_TAP_TERM 150
 
 #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
   // #define MSJIGGLER_NOINTRO

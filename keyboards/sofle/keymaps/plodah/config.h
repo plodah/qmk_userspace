@@ -28,7 +28,6 @@
 #define SPLIT_OLED_ENABLE
 #define SPLIT_WATCHDOG_ENABLE
 
-#define CHORDAL_HOLD
 #define COMBOFLOW_TERM 100
 #define LOCKING_SUPPORT_ENABLE
 
@@ -58,11 +57,6 @@
   #undef QUICK_TAP_TERM
 #endif
 #define QUICK_TAP_TERM 60
-
-#ifdef FLOW_TAP_TERM
-  #undef FLOW_TAP_TERM
-#endif
-#define FLOW_TAP_TERM 150
 
 #if defined(DYNAMIC_MACRO_ENABLE)
   #define PLODAH_DYNAMIC_MACRO_KCS_ENABLE

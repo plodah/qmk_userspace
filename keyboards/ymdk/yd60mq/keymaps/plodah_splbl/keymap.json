@@ -85,7 +85,9 @@
         "tapping": {
             "permissive_hold": true,
             "term": 180,
-            "toggle": 3
+            "toggle": 3,
+            "chordal_hold": true,
+            "flow_tap_term": 100
         },
         "usb": {
             "shared_endpoint": {
