@@ -2,21 +2,20 @@
     #pragma once
     #include "oled.h"
 
-    #if defined(LAYER_NAMES)
-        char *labels[DYNAMIC_KEYMAP_LAYER_COUNT] = LAYER_NAMES;
-    #endif // defined(LAYER_NAMES)
 
     void oled_layer_display ( uint8_t startrow ) {
         oled_set_cursor(0, startrow);
         oled_write_P(PSTR("L:"), false);
         oled_write_P(get_u8_str(get_highest_layer(layer_state|default_layer_state), ' '), false);
         #if defined(LAYER_NAMES)
+            char *labels[DYNAMIC_KEYMAP_LAYER_COUNT] = LAYER_NAMES;
             oled_set_cursor(0, startrow+1);
             #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
                 oled_write_P(PSTR("          "), false);
             #else
                 oled_write_P(PSTR("     "), false );
             #endif // defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+            oled_set_cursor(0, startrow+1);
             oled_write_P(labels[get_highest_layer(layer_state|default_layer_state)], false);
         #endif // defined(LAYER_NAMES)
     }
@@ -291,7 +290,7 @@
 
             oled_layer_display(13);
             #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
-                oled_hand_display(13, 8);
+                oled_hand_display(13, 9);
             #else
                 oled_hand_display(5, 4);
             #endif
@@ -338,7 +337,7 @@
                 #endif // SPLIT_LAYER_STATE_ENABLE
 
                 #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
-                    oled_hand_display(13, 8);
+                    oled_hand_display(13, 9);
                 #else
                     oled_hand_display(5, 4);
                 #endif
