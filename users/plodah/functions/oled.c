@@ -2,6 +2,9 @@
     #pragma once
     #include "oled.h"
 
+    #if !defined(AUTOCORRECT_OLED_DISPLAY_COUNT)
+        #define AUTOCORRECT_OLED_DISPLAY_COUNT 3
+    #endif // AUTOCORRECT_OLED_DISPLAY_COUNT
     #if defined(LAYER_NAMES)
         char *labels[DYNAMIC_KEYMAP_LAYER_COUNT] = LAYER_NAMES;
     #endif // defined(LAYER_NAMES)
@@ -11,8 +14,11 @@
         oled_write_P(PSTR("L:"), false);
         oled_write_P(get_u8_str(get_highest_layer(layer_state|default_layer_state), ' '), false);
         #if defined(LAYER_NAMES)
+            oled_set_cursor(0, startrow+1);
             #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
-                oled_set_cursor(0, startrow+1);
+                oled_write_P(PSTR("          "), false);
+            #else
+                oled_write_P(PSTR("     "), false );
             #endif // defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
             oled_write_P(labels[get_highest_layer(layer_state|default_layer_state)], false);
         #endif // defined(LAYER_NAMES)
@@ -59,6 +65,41 @@
         #endif // defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
         oled_write_P(PSTR("G"), (get_mods() & MOD_MASK_GUI));
     }
+
+    void oled_hand_display (uint8_t startrow, uint8_t startcol ) {
+        oled_set_cursor(startcol, startrow);
+        bool isSwapped = false;
+        #ifdef SWAP_HANDS_ENABLE
+            isSwapped = is_swap_hands_on();
+        #endif // SWAP_HANDS_ENABLE
+
+        #if defined( SPLIT_KEYBOARD)
+            bool isLeft;
+            isLeft = is_keyboard_master() ^ isSwapped;
+            #if defined(MASTER_RIGHT)
+                isLeft = !isLeft;
+            #endif //MASTER_RIGHT
+            if(isLeft) {
+                oled_write_P(PSTR("L"), isSwapped);
+            } else {
+                oled_write_P(PSTR("R"), isSwapped);
+            }
+        #else
+            oled_write_P(PSTR("-"), isSwapped);
+        #endif
+    }
+
+    #if defined( COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE )
+    #include "mouse_jiggler.h"
+    void oled_jiggler_display (uint8_t startrow, uint8_t startcol ) {
+        oled_set_cursor (startcol, startrow);
+        if(jiggler_get_state()){
+            oled_write("J", true);
+        } else {
+            oled_write("-", false);
+        }
+    }
+    #endif // defined( COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE )
 
     char     oled_keylog_key_name = ' ';
     uint16_t oled_keylog_last_keycode;
@@ -120,23 +161,26 @@
             #else
                 uint8_t rowsPerWord = 2;
             #endif // defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
-            //oled_write(PSTR(autocorrect_display_row(recAcA)), false);
-            //oled_write(PSTR(autocorrect_display_row(recAcB)), false);
-            //oled_write(PSTR(autocorrect_display_row(recAcC)), false);
+
             oled_set_cursor(0, startrow);
             oled_write("          ",false);
             oled_set_cursor(0, startrow);
-            oled_write(PSTR(recAcA),false);
+            oled_write(recAcA,false);
+            #if AUTOCORRECT_OLED_DISPLAY_COUNT >= 2
             oled_set_cursor(0, startrow + 1*rowsPerWord);
             oled_write("          ",false);
             oled_set_cursor(0, startrow + 1*rowsPerWord);
-            oled_write(PSTR(recAcB),false);
+            oled_write(recAcB,false);
+            #endif // #if AUTOCORRECT_OLED_DISPLAY_COUNT >= 2
+            #if AUTOCORRECT_OLED_DISPLAY_COUNT >= 3
             oled_set_cursor(0, startrow + 2*rowsPerWord);
             oled_write("          ",false);
             oled_set_cursor(0, startrow + 2*rowsPerWord);
-            oled_write(PSTR(recAcC),false);
-            // dprintf("a:%s b:%s c:%s \n", PSTR(autocorrect_display_row(recAcA)),
-            //    PSTR(autocorrect_display_row(recAcB)), PSTR(autocorrect_display_row(recAcC)));
+            oled_write(recAcC,false);
+            #endif // #if AUTOCORRECT_OLED_DISPLAY_COUNT >= 2
+
+            // dprintf("a:%s b:%s c:%s \n", autocorrect_display_row(recAcA),
+            // autocorrect_display_row(recAcB), autocorrect_display_row(recAcC));
         }
 
         bool apply_autocorrect_oled(uint8_t backspaces, const char *str, char *typo, char *correct) {
@@ -145,12 +189,12 @@
             memcpy(strtemp, "              ", AUTOCORRECT_OLED_DISPLAY_LENGTH);
 
             memcpy(recAcC, recAcB, AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            //recAcC[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
+            // recAcC[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
             memcpy(recAcB, recAcA, AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            //recAcB[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
+            // recAcB[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
             memcpy(recAcA, strtemp, AUTOCORRECT_OLED_DISPLAY_LENGTH);
             memcpy(recAcA, typo,   AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            //recAcA[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
+            // recAcA[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
             return true;
         }
 
@@ -167,6 +211,68 @@
         }
     #endif // defined(AUTOCORRECT_ENABLE)
 
+    #if defined(OS_DETECTION_ENABLE)
+        #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+            static char *os_names[] = {
+                [OS_UNSURE]  = "Unknown",
+                [OS_LINUX]   = "Linux",
+                [OS_WINDOWS] = "Windows",
+                [OS_MACOS]   = "MacOS",
+                [OS_IOS]     = "iOS",
+            };
+        #else
+            static char *os_names[] = {
+                [OS_UNSURE]  = "dk",
+                [OS_LINUX]   = "LX",
+                [OS_WINDOWS] = "WN",
+                [OS_MACOS]   = "MC",
+                [OS_IOS]     = "IO",
+            };
+        #endif // OLED_DISPLAY_128x64
+
+        void oled_os_display ( uint8_t startrow ) {
+            oled_set_cursor(0, startrow);
+            if( is_keyboard_master() ){
+                oled_write_P(PSTR("OS:"), false);
+                oled_write_P(os_names[detected_host_os()], true);
+            }
+            else{
+                #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+                    oled_write_P("OS: n/a", false);
+                #else
+                    oled_write_P("OS:xx", false);
+                #endif // #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+            }
+        }
+
+    #endif // OS_DETECTION_ENABLE
+
+    #if defined(WPM_ENABLE)
+        void oled_wpm_display ( uint8_t startrow ) {
+            oled_set_cursor(0, startrow);
+            #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+                oled_write_P(PSTR("WPM: "), false);
+            #else
+                oled_write_P(PSTR("W:"), false);
+            #endif // OLED_DISPLAY_128X64
+            oled_write_P(get_u8_str(get_current_wpm(), ' '), false);
+
+        }
+    #endif // WPM_ENABLE
+
+    #if defined(DEBUG_MATRIX_SCAN_RATE)
+        void oled_matrix_scan_rate_display ( uint8_t startrow ) {
+            oled_set_cursor(0, startrow);
+            #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+                oled_write_P(PSTR("Scan:"), false);
+            //#else
+            //    oled_write_P(PSTR(""), false);
+            #endif // OLED_DISPLAY_128X64
+            oled_write_P(get_u16_str(get_matrix_scan_rate(), ' '), false);
+
+        }
+    #endif // DEBUG_MATRIX_SCAN_RATE
+
     __attribute__((weak)) bool oled_task_user(void) {
         if ( is_keyboard_master() ){
             #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
@@ -176,12 +282,39 @@
             #endif // OLED_DISPLAY_128X64 || OLED_DISPLAY_64X128
 
             oled_locks_display(4);
+
             oled_mods_display(5);
             #if defined(AUTOCORRECT_ENABLE)
                 oled_autocorrect_display(7);
             #endif // AUTOCORRECT_ENABLE
 
-            oled_layer_display(14);
+            #if defined(DEBUG_MATRIX_SCAN_RATE)
+                oled_matrix_scan_rate_display(11);
+            #endif // DEBUG_MATRIX_SCAN_RATE
+
+            #if defined (COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
+                #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+                    oled_jiggler_display(4, 9);
+                #else // if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+                    oled_jiggler_display(11,0);
+                #endif // OLED_DISPLAY_128X64
+            #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
+
+            #if defined(WPM_ENABLE)
+                oled_wpm_display(12);
+            #endif // WPM_ENABLE
+
+            oled_layer_display(13);
+            #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+                oled_hand_display(13, 8);
+            #else
+                oled_hand_display(5, 4);
+            #endif
+
+            #if defined(OS_DETECTION_ENABLE)
+                oled_os_display(15);
+            #endif // OS_DETECTION_ENABLE
+
             return false;
         }
         else {
@@ -200,16 +333,34 @@
                     oled_mods_display(5);
                 #endif // SPLIT_MODS_ENABLE
 
+                oled_set_cursor(0, 7);
                 #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
-                    oled_set_cursor(0, 7);
                     oled_write_P(dual_logo_10x5, false);
                 #else
                     oled_write_P(logo_5x5, true);
                 #endif // OLED_DISPLAY_128X64 || OLED_DISPLAY_64X128
 
+                #if defined(DEBUG_MATRIX_SCAN_RATE)
+                    oled_matrix_scan_rate_display(11);
+                #endif // DEBUG_MATRIX_SCAN_RATE
+
+                #if defined(WPM_ENABLE)
+                    oled_wpm_display(12);
+                #endif // WPM_ENABLE
+
                 #if defined(SPLIT_LAYER_STATE_ENABLE)
-                    oled_layer_display(14);
+                    oled_layer_display(13);
                 #endif // SPLIT_LAYER_STATE_ENABLE
+
+                #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
+                    oled_hand_display(13, 8);
+                #else
+                    oled_hand_display(5, 4);
+                #endif
+
+                #if defined(OS_DETECTION_ENABLE)
+                    oled_os_display(15);
+                #endif // OS_DETECTION_ENABLE
 
                 return false;
             #else
