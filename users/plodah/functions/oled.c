@@ -2,9 +2,6 @@
     #pragma once
     #include "oled.h"
 
-    #if !defined(AUTOCORRECT_OLED_DISPLAY_COUNT)
-        #define AUTOCORRECT_OLED_DISPLAY_COUNT 3
-    #endif // AUTOCORRECT_OLED_DISPLAY_COUNT
     #if defined(LAYER_NAMES)
         char *labels[DYNAMIC_KEYMAP_LAYER_COUNT] = LAYER_NAMES;
     #endif // defined(LAYER_NAMES)
@@ -162,52 +159,40 @@
                 uint8_t rowsPerWord = 2;
             #endif // defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
 
-            oled_set_cursor(0, startrow);
-            oled_write("          ",false);
-            oled_set_cursor(0, startrow);
-            oled_write(recAcA,false);
-            #if AUTOCORRECT_OLED_DISPLAY_COUNT >= 2
-            oled_set_cursor(0, startrow + 1*rowsPerWord);
-            oled_write("          ",false);
-            oled_set_cursor(0, startrow + 1*rowsPerWord);
-            oled_write(recAcB,false);
-            #endif // #if AUTOCORRECT_OLED_DISPLAY_COUNT >= 2
-            #if AUTOCORRECT_OLED_DISPLAY_COUNT >= 3
-            oled_set_cursor(0, startrow + 2*rowsPerWord);
-            oled_write("          ",false);
-            oled_set_cursor(0, startrow + 2*rowsPerWord);
-            oled_write(recAcC,false);
-            #endif // #if AUTOCORRECT_OLED_DISPLAY_COUNT >= 2
+            // I should make this a loop later.
 
-            // dprintf("a:%s b:%s c:%s \n", autocorrect_display_row(recAcA),
-            // autocorrect_display_row(recAcB), autocorrect_display_row(recAcC));
+            for(int8_t i = 0; i < AUTOCORRECT_OLED_DISPLAY_COUNT; i++){
+                oled_set_cursor(0, startrow + i*rowsPerWord);
+                oled_write("          ",false);
+                oled_set_cursor(0, startrow + i*rowsPerWord);
+                oled_write(recAc[i], false);
+            }
         }
 
         bool apply_autocorrect_oled(uint8_t backspaces, const char *str, char *typo, char *correct) {
             dprintf("corrected: %s \n", typo);
             char strtemp[AUTOCORRECT_OLED_DISPLAY_LENGTH];
             memcpy(strtemp, "              ", AUTOCORRECT_OLED_DISPLAY_LENGTH);
-
-            memcpy(recAcC, recAcB, AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            // recAcC[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
-            memcpy(recAcB, recAcA, AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            // recAcB[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
-            memcpy(recAcA, strtemp, AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            memcpy(recAcA, typo,   AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            // recAcA[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
+            int8_t j;
+            for(int8_t i = 0; i < AUTOCORRECT_OLED_DISPLAY_COUNT; i++){
+                j = AUTOCORRECT_OLED_DISPLAY_COUNT - 1 - i;
+                if(j==0){
+                    memcpy(recAc[j], strtemp, AUTOCORRECT_OLED_DISPLAY_LENGTH);
+                    memcpy(recAc[j], typo, AUTOCORRECT_OLED_DISPLAY_LENGTH);
+                }
+                else{
+                    memcpy(recAc[j], recAc[j-1], AUTOCORRECT_OLED_DISPLAY_LENGTH);
+                }
+            }
             return true;
         }
 
         void keyboard_post_init_user_oled(void) {
             char strtemp[AUTOCORRECT_OLED_DISPLAY_LENGTH];
             memcpy(strtemp, "______________", AUTOCORRECT_OLED_DISPLAY_LENGTH);
-
-            memcpy(recAcA, strtemp, AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            //recAcA[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
-            memcpy(recAcB, strtemp, AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            //recAcB[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
-            memcpy(recAcC, strtemp, AUTOCORRECT_OLED_DISPLAY_LENGTH);
-            //recAcC[AUTOCORRECT_OLED_DISPLAY_LENGTH] = '\0';
+            for(int8_t i = 0; i < AUTOCORRECT_OLED_DISPLAY_COUNT; i++){
+                memcpy(recAc[i], strtemp, AUTOCORRECT_OLED_DISPLAY_LENGTH);
+            }
         }
     #endif // defined(AUTOCORRECT_ENABLE)
 

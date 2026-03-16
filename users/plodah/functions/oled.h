@@ -10,14 +10,15 @@
     bool process_record_oled(uint16_t keycode, keyrecord_t *record);
 
     #if defined(AUTOCORRECT_ENABLE)
+        #if !defined(AUTOCORRECT_OLED_DISPLAY_COUNT)
+            #define AUTOCORRECT_OLED_DISPLAY_COUNT 3
+        #endif // AUTOCORRECT_OLED_DISPLAY_COUNT
         #if !defined(AUTOCORRECT_OLED_DISPLAY_LENGTH)
             #define AUTOCORRECT_OLED_DISPLAY_LENGTH 5
         #endif
         bool apply_autocorrect_oled(uint8_t backspaces, const char *str, char *typo, char *correct);
         void keyboard_post_init_user_oled(void);
-        char recAcA[15];
-        char recAcB[15];
-        char recAcC[15];
+        char recAc[AUTOCORRECT_OLED_DISPLAY_COUNT][15];
     #endif // AUTOCORRECT_ENABLE
 
 
