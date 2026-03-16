@@ -25,22 +25,8 @@
         "bootmagic": {
             "matrix": [0, 0]
         },
-        "split": {
-            "bootmagic": {
-                "matrix": [4, 0]
-            },
-            "transport": {
-                "sync": {
-                    "layer_state": true,
-                    "modifiers": true
-                },
-                "watchdog": true,
-                "watchdog_timeout": 3500
-            },
-            "usb_detect" :{
-                "enabled": true,
-                "timeout": 3000
-            }
+        "build": {
+            "lto": false
         },
         "caps_word": {
             "both_shifts_turns_on": true,
@@ -69,7 +55,7 @@
             "leader": true,
             "mousekey": true,
             "oled": true,
-            "os_detection": false,
+            "os_detection": true,
             "pointing_device": false,
             "quantum_painter": false,
             "repeat_key": true,
@@ -82,11 +68,32 @@
             "unicode": false,
             "unicode_common": false,
             "via": true,
-            "wpm": false
+            "wpm": true
         },
         "keyboard_name": "crkbd | plodah",
         "locking": {
             "enabled": true
+        },
+        "split": {
+            "bootmagic": {
+                "matrix": [4, 0]
+            },
+            "transport": {
+                "sync": {
+                    "indicators": true,
+                    "layer_state": true,
+                    "modifiers": true,
+                    "oled": true,
+                    "wpm": true
+                },
+                "watchdog": true,
+                "watchdog_timeout": 5000
+            },
+            "usb_detect" :{
+                "enabled": true,
+                "polling_interval": 100,
+                "timeout": 2500
+            }
         },
         "tapping": {
             "chordal_hold": true,

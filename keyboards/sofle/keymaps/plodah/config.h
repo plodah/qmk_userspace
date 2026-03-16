@@ -1,5 +1,10 @@
 #pragma once
 
+#if !defined(DEBUG_MATRIX_SCAN_RATE)
+#define DEBUG_MATRIX_SCAN_RATE
+#endif // DEBUG_MATRIX_SCAN_RATE
+
+#define MASTER_RIGHT
 #define ENCODER_DIRECTION_FLIP
 
 #ifdef ENCODER_RESOLUTION
@@ -21,12 +26,6 @@
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "_10__" }
 
 #define EE_HANDS
-#define MASTER_RIGHT
-#define SPLIT_LAYER_STATE_ENABLE
-#define SPLIT_LED_STATE_ENABLE
-#define SPLIT_MODS_ENABLE
-#define SPLIT_OLED_ENABLE
-#define SPLIT_WATCHDOG_ENABLE
 
 #define COMBOFLOW_TERM 100
 

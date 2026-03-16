@@ -17,6 +17,7 @@
     "modules": [
         "plodah/comboflow",
         "plodah/config_query",
+        "plodah/morse_code",
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",
         "plodah/rgb_repeathold",
@@ -57,7 +58,7 @@
             "leader": true,
             "mousekey": true,
             "oled": true,
-            "os_detection": false,
+            "os_detection": true,
             "pointing_device": false,
             "quantum_painter": false,
             "repeat_key": true,
@@ -70,11 +71,29 @@
             "unicode": false,
             "unicode_common": false,
             "via": true,
-            "wpm": false
+            "wpm": true
         },
         "keyboard_name": "Sofle | plodah",
         "locking": {
             "enabled": true
+        },
+        "split": {
+            "transport": {
+                "sync": {
+                    "indicators": true,
+                    "layer_state": true,
+                    "modifiers": true,
+                    "oled": true,
+                    "wpm": true
+                },
+                "watchdog": true,
+                "watchdog_timeout": 5000
+            },
+            "usb_detect" :{
+                "enabled": true,
+                "polling_interval": 100,
+                "timeout": 2500
+            }
         },
         "tapping": {
             "chordal_hold": true,

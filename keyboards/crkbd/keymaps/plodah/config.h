@@ -17,6 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #pragma once
+#if !defined(DEBUG_MATRIX_SCAN_RATE)
+#define DEBUG_MATRIX_SCAN_RATE
+#endif // DEBUG_MATRIX_SCAN_RATE
 
 #if !defined(OLED_FONT_H)
   #undef OLED_FONT_H
@@ -24,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define OLED_FONT_H "glcdfont.c"
 #define OLED_DISPLAY_64X128
 #define AUTOCORRECT_OLED_DISPLAY_LENGTH 10
+#define NO_USB_STARTUP_CHECK
+#define MASTER_RIGHT
 
 // #define CM_QFTR_DISABLED
 // #define CM_QLYR_DISABLED
@@ -32,18 +37,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define CM_QRGB_DISABLED
 
 #define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "Adjust" }
-
-#define MASTER_RIGHT
-#define SPLIT_LAYER_STATE_ENABLE
-#define SPLIT_LED_STATE_ENABLE
-#define SPLIT_MODS_ENABLE
-#define SPLIT_OLED_ENABLE
-#define NO_USB_STARTUP_CHECK
-#define SPLIT_WATCHDOG_ENABLE
-#define SPLIT_WATCHDOG_TIMEOUT 5000
-#define SPLIT_USB_DETECT
-#define SPLIT_USB_TIMEOUT 2500
-#define SPLIT_USB_TIMEOUT_POLL 100
 
 // #define TASKSWITCH_FORCE_NDE
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE

@@ -1,5 +1,9 @@
 #pragma once
 
+#if !defined(DEBUG_MATRIX_SCAN_RATE)
+#define DEBUG_MATRIX_SCAN_RATE
+#endif // DEBUG_MATRIX_SCAN_RATE
+
 #if !defined(OLED_FONT_H)
   #undef OLED_FONT_H
 #endif // OLED_FONT_H
@@ -73,11 +77,6 @@
 #include "configs/rgbmatrix-config.h"
   // #define PLODAH_REPEATHOLD_RATE 100
 #endif // RGB_MATRIX_ENABLE
-
-#ifdef COMBO_ENABLE
-  #define PLODAH_HRM_COMBOS
-  #define PLODAH_BRM_COMBOS
-#endif
 
 #if defined(DYNAMIC_MACRO_ENABLE)
   #define PLODAH_DYNAMIC_MACRO_KCS_ENABLE
