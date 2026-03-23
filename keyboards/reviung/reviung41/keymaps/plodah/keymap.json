@@ -68,8 +68,11 @@
             "wpm": false
         },
         "keyboard_name": "reviung41 | plodah",
-        "locking": {
-            "enabled": true
+        "qmk":{
+            "locking": {
+                "enabled": true
+            },
+            "tap_keycode_delay": 8
         },
         "tapping": {
             "chordal_hold": true,

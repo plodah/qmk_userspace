@@ -74,8 +74,11 @@
             "wpm": true
         },
         "keyboard_name": "Sofle | plodah",
-        "locking": {
-            "enabled": true
+        "qmk":{
+            "locking": {
+                "enabled": true
+            },
+            "tap_keycode_delay": 8
         },
         "split": {
             "transport": {
