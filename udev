@@ -1,26 +1,92 @@
-#KEYCHRON
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+########################################
+##   /etc/udev/rules.d/52-via.rules   ##
+########################################
+##                                    ##
+##   use lower case hex letters.      ##
+##   because apparently that matters  ##
+##                                    ##
+##   for changes to take effect:      ##
+##     sudo udevadm trigger           ##
+##                                    ##
+########################################
 
-#keebio/iris/rev2
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="CB10", ATTRS{idProduct}=="2256", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+# The generic "allow everything" Via rule
+# KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666", TAG+="uaccess", TAG+="udev-acl"
 
-#KP Republic
-#KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="XXXX", ATTRS{idProduct}=="XXXX", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+########################################
 
-#ploopyco/madromys
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="5c47", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-#ploopyco/mouse/rev1_002
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="4d6f", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-#ploopyco/trackball_mini
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="1eab", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-#ploopyco/trackball_thumb
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="5c46", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+# Atmel Corp. atmega32u4 DFU bootloader 03eb 2ff4
+ACTION!="remove", SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", MODE="0660", GROUP="users", TAG+="uaccess"
 
-#winry/winry315
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="f1f1", ATTRS{idProduct}=="0315", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+########################################
+# crkbd/rev1 4653 0001
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="0001", MODE="0660", GROUP="users", TAG+="uaccess"
 
-#xiudi/xd60/rev3
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="7844", ATTRS{idProduct}=="6363", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+# dasky/reverb 8181 0001
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="8181", ATTRS{idProduct}=="0001", MODE="0660", GROUP="users", TAG+="uaccess"
 
-#ymdk/yd60mq
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="594d", ATTRS{idProduct}=="604d", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+# dztech/dz60v2  2261 445a
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2261", ATTRS{idProduct}=="445a", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# flehrad/bigswitch (rgb strip) b195 1209
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="b195", ATTRS{idProduct}=="1209", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# keebio/iris/rev2 cb10 2256
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="cb10", ATTRS{idProduct}=="2256", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# Keychron ALL 3434
+# ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# keychron/q1v1/iso_encoder 3434 0103
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0103", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# keychron/q8/iso_encoder 3434 0183
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0183", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# keychron/v2/iso_encoder 3434 0323
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0323", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# keychron/v6/iso_encoder 3434 0363
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0363", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ploopyco ALL 5043
+# ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ploopyco/knob 5043:63c3
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="63c3", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ploopyco/mouse 5043 4d6f
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="4d6f", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ploopyco/madromys 5043 5c47
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="5c47", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ploopyco/madromys/rev1_001_8button 5043 5c48
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="5c48", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ploopyco/trackball 5043 5442
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="5442", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ploopyco/trackball_mini 5043 1eab
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="1eab", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ploopyco/trackball_nano 5043 54a3
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="54a3", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ploopyco/trackball_thumb 5043 5c46
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5043", ATTRS{idProduct}=="5c46", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# reviung/reviung41 7807 dccb
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="7807", ATTRS{idProduct}=="dccb", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# sofle fc32 0287
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# winry/winry315 f1f1 0315
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="f1f1", ATTRS{idProduct}=="0315", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# xiudi/xd60/rev3 7844 6363
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="7844", ATTRS{idProduct}=="6363", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# ymdk/yd60mq/12led 594d 604d
+ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="594d", ATTRS{idProduct}=="604d", MODE="0660", GROUP="users", TAG+="uaccess"
