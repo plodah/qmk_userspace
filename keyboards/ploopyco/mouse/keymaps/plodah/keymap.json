@@ -20,6 +20,7 @@
         "combo": {
             "term": 35
         },
+        "debounce": 20,
         "dynamic_keymap":{
             "layer_count": 4
         },
@@ -58,9 +59,6 @@
         },
         "manufacturer": "Ploopy",
         "keyboard_name": "Mouse | plodah",
-        "matrix": {
-          "debounce": 20
-        },
         "qmk": {
             "tap_keycode_delay": 8
         },

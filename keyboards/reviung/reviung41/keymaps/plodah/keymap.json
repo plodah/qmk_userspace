@@ -27,10 +27,14 @@
         },
         "caps_word": {
             "both_shifts_turns_on": true,
-            "double_tap_shift_turns_on": true,
-            "idle_timeout": 1200,
+            "double_tap_shift_turns_on": false,
+            "idle_timeout": 800,
             "invert_on_shift": true
         },
+        "combo": {
+            "term": 35
+        },
+        "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 10
         },
@@ -68,6 +72,10 @@
             "wpm": false
         },
         "keyboard_name": "reviung41 | plodah",
+        "leader_key": {
+            "timeout": 200,
+            "timing": true
+        },
         "qmk":{
             "locking": {
                 "enabled": true
@@ -76,7 +84,11 @@
         },
         "tapping": {
             "chordal_hold": true,
-            "flow_tap_term": 100
+            "flow_tap_term": 100,
+            "permissive_hold": false,
+            "speculative_hold": true,
+            "term": 180,
+            "toggle": 3
         },
         "usb": {
             "shared_endpoint": {

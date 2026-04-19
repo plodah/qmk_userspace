@@ -19,6 +19,7 @@
         "combo": {
             "term": 35
         },
+        "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 10
         },
@@ -56,9 +57,6 @@
             "wpm": false
         },
         "keyboard_name": "Winry315 | plodah",
-        "matrix": {
-          "debounce": 20
-        },
         "rgb_matrix": {
             "animations": {
                 "alphas_mods": false,
@@ -129,7 +127,9 @@
             "tap_keycode_delay": 8
         },
         "tapping": {
-            "permissive_hold": true,
+            "chordal_hold": false,
+            "permissive_hold": false,
+            "speculative_hold": false,
             "term": 180,
             "toggle": 3
         },

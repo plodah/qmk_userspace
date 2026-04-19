@@ -19,12 +19,13 @@
         "caps_word": {
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": false,
-            "idle_timeout": 1200,
+            "idle_timeout": 800,
             "invert_on_shift": true
         },
         "combo": {
             "term": 35
         },
+        "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 4
         },
@@ -62,6 +63,16 @@
             "wpm": false
         },
         "manufacturer": "KPRepublic",
-        "keyboard_name": "BM65 ISO | plodah"
+        "keyboard_name": "BM65 ISO | plodah",
+        "qmk": {
+            "tap_keycode_delay": 8
+        },
+        "tapping": {
+            "chordal_hold": true,
+            "permissive_hold": false,
+            "speculative_hold": false,
+            "term": 180,
+            "toggle": 3
+        }
     }
 }

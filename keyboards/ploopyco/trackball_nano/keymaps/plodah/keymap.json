@@ -17,6 +17,7 @@
         "build": {
             "lto": true
         },
+        "debounce": 20,
         "features": {
             "auto_shift": false,
             "autocorrect": false,

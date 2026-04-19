@@ -21,12 +21,13 @@
         "caps_word": {
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": false,
-            "idle_timeout": 1200,
+            "idle_timeout": 800,
             "invert_on_shift": true
         },
         "combo": {
             "term": 35
         },
+        "debounce": 10,
         "dynamic_keymap": {
             "layer_count": 4
         },
@@ -65,18 +66,16 @@
         },
         "manufacturer": "Keychron",
         "keyboard_name": "Q8 ISO Enc | plodah",
-        "matrix": {
-          "debounce": 20
-        },
         "qmk": {
             "tap_keycode_delay": 8
         },
         "tapping": {
             "chordal_hold": true,
-            "permissive_hold": true,
+            "flow_tap_term": 100,
+            "permissive_hold": false,
+            "speculative_hold": true,
             "term": 180,
-            "toggle": 3,
-            "flow_tap_term": 100
+            "toggle": 3
         },
         "usb": {
             "shared_endpoint": {

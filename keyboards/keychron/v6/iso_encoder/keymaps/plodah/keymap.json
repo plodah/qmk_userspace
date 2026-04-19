@@ -20,12 +20,13 @@
         "caps_word": {
             "both_shifts_turns_on": true,
             "double_tap_shift_turns_on": false,
-            "idle_timeout": 1200,
+            "idle_timeout": 800,
             "invert_on_shift": true
         },
         "combo": {
             "term": 35
         },
+        "debounce": 10,
         "dynamic_keymap": {
             "layer_count": 5
         },
@@ -64,9 +65,6 @@
         },
         "manufacturer": "Keychron",
         "keyboard_name": "V6 ISO Enc | plodah",
-        "matrix": {
-          "debounce": 20
-        },
         "rgb_matrix": {
             "animations": {
                 "alphas_mods": false,
@@ -137,11 +135,12 @@
             "tap_keycode_delay": 8
         },
         "tapping": {
-            "permissive_hold": true,
-            "term": 180,
-            "toggle": 3,
             "chordal_hold": true,
-            "flow_tap_term": 150
+            "flow_tap_term": 100,
+            "permissive_hold": false,
+            "speculative_hold": true,
+            "term": 180,
+            "toggle": 3
         },
         "usb": {
             "shared_endpoint": {

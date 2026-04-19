@@ -26,10 +26,11 @@
         },
         "caps_word": {
             "both_shifts_turns_on": true,
-            "double_tap_shift_turns_on": true,
-            "idle_timeout": 1200,
+            "double_tap_shift_turns_on": false,
+            "idle_timeout": 800,
             "invert_on_shift": true
         },
+        "debounce": 20,
         "dynamic_keymap": {
             "layer_count": 5
         },
@@ -67,9 +68,6 @@
             "wpm": false
         },
         "keyboard_name": "Iris rev2 | plodah",
-        "matrix": {
-          "debounce": 20
-        },
         "qmk": {
             "locking": {
                 "enabled": true
@@ -78,7 +76,9 @@
         },
         "tapping": {
             "chordal_hold": true,
-            "flow_tap_term": 150
+            "flow_tap_term": 150,
+            "term": 200,
+            "toggle": 3
         },
         "usb": {
             "shared_endpoint": {
