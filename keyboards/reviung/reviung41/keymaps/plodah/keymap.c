@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FNA] = LAYOUT(
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,             KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
+        KC_GRV,  KC_1,    P_F2,    KC_3,    P_F4,    P_F5,             KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
         KC_BSPC, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,            KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS,
         _______, KC_MINS, KC_EQL,  _______, KC_LCBR, KC_LBRC,          KC_RBRC, KC_RCBR, _______, CM_MORT, CM_MORH, CM_MORS,
                                             _______, _______, _______, _______, KC_APP
@@ -62,16 +62,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FNB] = LAYOUT(
         _______, _______, KC_HOME, KC_UP,   KC_END,  KC_PGUP,          KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_PSCR, KC_ESC,
         KC_DEL,  _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_PIPE,
-        _______, KC_UNDS, KC_PLUS, SH_TOGG, _______, _______,          _______, _______, SH_TOGG, _______, _______, QK_AREP,
+        _______, KC_UNDS, KC_PLUS, SH_TOGG, KC_LNUM, KC_LCAP,          KC_LCAP, KC_LNUM, SH_TOGG, _______, _______, QK_AREP,
                                             _______, _______, _______, _______, KC_APP
     ),
 
+    [_FNC] = LAYOUT(
+        KC_CAPS, XXXXXXX, XXXXXXX, KC_LCAP, KC_LNUM, KC_LSCR,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, CM_MSJG,
+        KC_VOLU, XXXXXXX, KC_LSCR, MS_BTN2, MS_BTN1, MS_BTN3,          XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, QK_MAKE, KC_VOLU,
+        KC_VOLD, CM_TTAT, XXXXXXX, MS_BTN4, MS_BTN5, KC_LSCR,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
+                                            _______, _______, _______, _______, _______
+    ),
+
+    /*
     [_FNC] = LAYOUT(
         KC_CAPS, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),          S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), CM_MSJG,
         KC_VOLU, XXXXXXX, KC_LSCR, MS_BTN2, MS_BTN1, MS_BTN3,          XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, QK_MAKE, KC_VOLU,
         KC_VOLD, CM_TTAT, XXXXXXX, MS_BTN4, MS_BTN5, KC_LSCR,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
                                             _______, _______, _______, _______, _______
     ),
+    */
 
     [_O_QWER] = LAYOUT(
         P_RAGEQ, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,

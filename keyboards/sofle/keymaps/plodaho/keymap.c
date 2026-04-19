@@ -52,13 +52,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______,                         _______, _______, _______, _______, _______, KC_DEL,
     P_TASK,  _______, KC_HOME, KC_UP,   KC_END,  KC_PGUP,                         KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_PSCR, KC_DEL,
     _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                         KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_PIPE,
-    _______, KC_UNDS, KC_PLUS, _______, P_PSTU,  _______, PL_ECPR,       PL_ECPR, _______, _______, _______, _______, _______, _______,
+    _______, KC_UNDS, KC_PLUS, SH_TOGG, KC_LNUM, KC_LCAP, PL_ECPR,       PL_ECPR, KC_LCAP, KC_LNUM, SH_TOGG, _______, _______, _______,
                       GU_TOGG, _______, _______, _______, _______,       _______, _______, _______, _______, GU_ON
   ),
 
   [_FNC] = LAYOUT(
     XXXXXXX, CM_QVER, CM_QRGB, XXXXXXX, XXXXXXX, CM_MSJG,                         CM_MSJG, CM_QLYR, CM_QTAP, QK_MAKE, CM_QFTR, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, KC_LCAP, KC_LNUM, KC_LSCR,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, KC_LSCR, MS_BTN2, MS_BTN1, MS_BTN3,                         XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, QK_MAKE, XXXXXXX,
     XXXXXXX, CM_TTAT, XXXXXXX, MS_BTN4, MS_BTN5, KC_LSCR, _______,       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                       _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______

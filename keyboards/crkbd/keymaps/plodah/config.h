@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define OLED_FONT_H "glcdfont.c"
 #define OLED_DISPLAY_64X128
 #define AUTOCORRECT_OLED_DISPLAY_LENGTH 10
+#define AUTOCORRECT_OLED_DISPLAY_COUNT 4
 #define NO_USB_STARTUP_CHECK
 #define MASTER_RIGHT
 
