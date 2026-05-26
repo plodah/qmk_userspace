@@ -17,7 +17,7 @@
             }
             else{
                 if(detected_host_os() == OS_WINDOWS){
-                    register_mods(MOD_MASK_GUI);
+                    //register_mods(MOD_MASK_GUI);
                     return true;
                 }
                 else{
