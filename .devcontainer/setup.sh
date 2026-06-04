@@ -20,20 +20,13 @@ git submodule update --init --recursive
 git config --global --add safe.directory /workspaces/qmk_qmk_firmware
 cd /workspaces/qmk_qmk_firmware
 git submodule update --init --recursive
+git remote add vial https://github.com/vial-kb/vial-qmk.git
+git remote add keychron https://github.com/Keychron/qmk_firmware.git
+git remote update
 
 [ -d /workspaces/plodah_qmk_firmware ] || git clone https://github.com/plodah/qmk_firmware.git -b mybuilds-2026-03-08 /workspaces/plodah_qmk_firmware
 git config --global --add safe.directory /workspaces/plodah_qmk_firmware
 cd /workspaces/plodah_qmk_firmware
-git submodule update --init --recursive
-
-[ -d /workspaces/vial_qmk_firmware ] || git clone https://github.com/vial-kb/vial-qmk.git -b vial /workspaces/vial_qmk_firmware
-git config --global --add safe.directory /workspaces/vial_qmk_firmware
-cd /workspaces/vial_qmk_firmware
-git submodule update --init --recursive
-
-[ -d /workspaces/keychron_qmk_firmware ] || git clone https://github.com/Keychron/qmk_firmware.git -b wireless_playground /workspaces/keychron_qmk_firmware
-git config --global --add safe.directory /workspaces/keychron_qmk_firmware
-cd /workspaces/keychron_qmk_firmware
 git submodule update --init --recursive
 
 ### Via Stuff

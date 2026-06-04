@@ -13,14 +13,6 @@
             "path": "../../qmk_qmk_firmware"
         },
         {
-            "name": "Vial Firmware",
-            "path": "../../vial_qmk_firmware"
-        },
-        {
-            "name": "Keychron Firmware",
-            "path": "../../keychron_qmk_firmware"
-        },
-        {
             "name": "Via Userspace",
             "path": "../../via_userspace"
         },
