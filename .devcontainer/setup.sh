@@ -36,6 +36,11 @@ git config --global --add safe.directory /workspaces/via_userspace
 [ -d /workspaces/via_keyboards ] || git clone https://github.com/the-via/keyboards.git -b master /workspaces/via_keyboards
 git config --global --add safe.directory /workspaces/via_keyboards
 
+[ -d /workspaces/via_userspace ] || git clone https://github.com/plodah/ploopy_viamenus.git -b main /workspaces/ploopy_viamenus
+git config --global --add safe.directory /workspaces/ploopy_viamenus
+cd /workspaces/ploopy_viamenus
+git submodule update --init --recursive
+
 ### qmk configs
 cd $userspacePath
 qmk config user.qmk_home=/workspaces/plodah_qmk_firmware
