@@ -28,6 +28,13 @@ enum via_ploopystuff_value {
 };
 
 typedef struct {
+    uint16_t tap;
+    uint16_t hold;
+    uint16_t taptap;
+    uint16_t taphold;
+} via_ploopyconfig_tapdance_t;
+
+typedef struct {
     uint8_t  dpi_multiplier; // Value stored *20 to allow fraction in uint8
     bool     pointer_invert_h;
     bool     pointer_invert_v;
@@ -48,6 +55,10 @@ typedef struct {
     uint16_t sniper_a_dpi;
     uint16_t sniper_b_dpi;
     uint8_t  dragscroll_straighten_sensitivity;
+    // via_ploopyconfig_tapdance_t tapdance0;
+    // via_ploopyconfig_tapdance_t tapdance1;
+    // via_ploopyconfig_tapdance_t tapdance2;
+    // via_ploopyconfig_tapdance_t tapdance3;
 } via_ploopystuff_config;
 
 via_ploopystuff_config ploopyvia_config;
