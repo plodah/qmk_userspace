@@ -52,7 +52,7 @@
             "dynamic_tapping_term": true,
             "encoder_map": false,
             "extrakey": true,
-            "key_override": false,
+            "key_override": true,
             "leader": true,
             "mousekey": true,
             "oled": false,
