@@ -29,3 +29,7 @@
   #undef RGBLIGHT_DEFAULT_ON
 #endif // RGBLIGHT_DEFAULT_ON
 #define RGBLIGHT_DEFAULT_ON true
+
+#if !defined(RGBLIGHT_SLEEP)
+  #define RGBLIGHT_SLEEP
+#endif // RGBLIGHT_SLEEP
