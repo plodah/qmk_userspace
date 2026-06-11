@@ -1,12 +1,14 @@
 #if defined(OLED_ENABLE)
     #pragma once
     #if !defined(OLED_TIMEOUT)
-        #define OLED_TIMEOUT 300000
+        #define OLED_TIMEOUT (5 * 60 * 1000) // 5 minutes
     #endif // OLED_TIMEOUT
     #if !defined(OLED_UPDATE_INTERVAL)
         #define OLED_UPDATE_INTERVAL 125
     #endif // OLED_UPDATE_INTERVAL
 
+    bool is_oled_enabled;
+    void housekeeping_task_oled(void);
     bool process_record_oled(uint16_t keycode, keyrecord_t *record);
 
     #if defined(AUTOCORRECT_ENABLE)

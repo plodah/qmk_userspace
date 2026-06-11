@@ -2,7 +2,15 @@
     #pragma once
     #include "oled.h"
 
-
+    void housekeeping_task_oled ( void ) {
+        if (last_input_activity_elapsed() < OLED_TIMEOUT) {
+            is_oled_enabled = true;
+        }
+        else {
+            is_oled_enabled = false;
+        }
+    }
+    
     void oled_layer_display ( uint8_t startrow ) {
         oled_set_cursor(0, startrow);
         oled_write_P(PSTR("L:"), false);
@@ -258,6 +266,17 @@
     #endif // DEBUG_MATRIX_SCAN_RATE
 
     __attribute__((weak)) bool oled_task_user(void) {
+        
+        // Other stuff in oled_task_user() prevents OLED idle timer from working.
+        // So it is re-implemented here.
+        #ifndef OLED_DISABLE_TIMEOUT
+            if ( !is_oled_enabled ) {
+                oled_off();
+                return false;
+            }
+        #endif
+        oled_on();
+
         if ( is_keyboard_master() ){
             #if defined(OLED_DISPLAY_128X64) || defined(OLED_DISPLAY_64X128)
                 oled_write_P(logo_10x5, false);
