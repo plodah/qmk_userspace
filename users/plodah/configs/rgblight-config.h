@@ -33,3 +33,8 @@
 #if !defined(RGBLIGHT_SLEEP)
   #define RGBLIGHT_SLEEP
 #endif // RGBLIGHT_SLEEP
+
+#if !defined(RGBLIGHT_TIMEOUT)
+  #define RGBLIGHT_TIMEOUT
+#endif // RGBLIGHT_TIMEOUT
+#define RGBLIGHT_TIMEOUT (10 * 60 * 1000)
