@@ -18,6 +18,7 @@
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",
         "plodah/rgb_repeathold",
+        "plodah/rgblight_timeout",
         "plodah/task_switch",
         "plodah/turbo_fire"
     ],
