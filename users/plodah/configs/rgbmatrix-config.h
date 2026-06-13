@@ -34,7 +34,7 @@
   #if defined(RGB_MATRIX_TIMEOUT)
     #undef RGB_MATRIX_TIMEOUT
   #endif
-  #define RGB_MATRIX_TIMEOUT 270000
+  #define RGB_MATRIX_TIMEOUT (270 * 1000)
 
   #if defined(RGB_MATRIX_KEYRELEASES)
     #undef RGB_MATRIX_KEYRELEASES

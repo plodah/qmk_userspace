@@ -11,6 +11,7 @@
         { "key": "PL_DMAC2" }
     ],
     "modules": [
+        "drashna/kvm_helper",
         "plodah/autocorrect_rgbflash",
         "plodah/comboflow",
         "plodah/config_query",
