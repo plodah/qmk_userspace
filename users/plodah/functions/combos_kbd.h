@@ -129,10 +129,10 @@
 const uint16_t PROGMEM pl_combo_volud[] = {KC_VOLU, KC_VOLD,                COMBO_END};
 const uint16_t PROGMEM pl_combo_cad[]    = {KC_C,     KC_A,     KC_D,         COMBO_END};
 
-#if defined(PLODAH_HRM_COMBOS) && !defined(PLODAH_BRM_COMBOS)
+#if defined(PLODAH_HRM_COMBOS) && (!defined(PLODAH_BRM_COMBOS)) || defined(PLODAH_HRM_COMBOS_EXCESSIVE) 
     const uint16_t PROGMEM pl_combo_cad_hrm[]    = {KC_C,  HRM_AG, HRM_DS, COMBO_END};
 #endif // defined(PLODAH_HRM_COMBOS)
-#if defined(PLODAH_BRM_COMBOS) && !defined(PLODAH_HRM_COMBOS)
+#if (defined(PLODAH_BRM_COMBOS) && !defined(PLODAH_HRM_COMBOS)) || defined(PLODAH_BRM_COMBOS_EXCESSIVE) 
     const uint16_t PROGMEM pl_combo_cad_brm[]    = {BRM_CS, KC_A, KC_D, COMBO_END};
 #endif // defined(PLODAH_BRM_COMBOS)
 #if defined(PLODAH_HRM_COMBOS) && defined(PLODAH_BRM_COMBOS)
@@ -287,7 +287,7 @@ combo_t key_combos[] = {
                 COMBO(pl_combo_kl_hrm2,     C(KC_L)),
                 COMBO(pl_combo_kl_hrm3,     C(KC_L)),
                 // COMBO(pl_combo_dk_hrm,      CW_TOGG),
-                COMBO(pl_combo_mk3_hrm,     QK_MAKE),
+                COMBO(pl_combo_mk_hrm3,     QK_MAKE),
             #endif // PLODAH_HRM_COMBOS_EXCESSIVE
         #endif // defined(PLODAH_HRM_COMBOS)
     #endif // !defined(PLODAH_COMBOS_LIMITED)
@@ -352,10 +352,10 @@ combo_t key_combos[] = {
     COMBO(pl_combo_volud, KC_MUTE ),
     COMBO(pl_combo_cad,   LCA(KC_DEL)),
 
-    #if defined(PLODAH_HRM_COMBOS) && !defined(PLODAH_BRM_COMBOS)
+    #if defined(PLODAH_HRM_COMBOS) && (!defined(PLODAH_BRM_COMBOS)) || defined(PLODAH_HRM_COMBOS_EXCESSIVE) 
         COMBO(pl_combo_cad_hrm,     LCA(KC_DEL)),
     #endif // defined(PLODAH_HRM_COMBOS)
-    #if defined(PLODAH_BRM_COMBOS) && !defined(PLODAH_HRM_COMBOS)
+    #if (defined(PLODAH_BRM_COMBOS) && !defined(PLODAH_HRM_COMBOS)) || defined(PLODAH_BRM_COMBOS_EXCESSIVE) 
         COMBO(pl_combo_cad_brm,     LCA(KC_DEL)),
     #endif // defined(PLODAH_BRM_COMBOS)
     #if defined(PLODAH_HRM_COMBOS) && defined(PLODAH_BRM_COMBOS)

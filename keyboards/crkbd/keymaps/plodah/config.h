@@ -97,6 +97,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef COMBO_ENABLE
   #define PLODAH_HRM_COMBOS
   #define PLODAH_BRM_COMBOS
+  #define PLODAH_HRM_COMBOS_EXCESSIVE
+  #define PLODAH_BRM_COMBOS_EXCESSIVE
 #endif
 
 #if defined(DYNAMIC_MACRO_ENABLE)
