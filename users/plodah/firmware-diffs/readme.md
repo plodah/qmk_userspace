@@ -125,7 +125,7 @@ update-branch() {
 }
 
 qmk cd
-diffpath="../plodah_qmk_userspace/users/plodah/firmware-diffs"
+diffpath="../qmk_userspace/users/plodah/firmware-diffs"
 update-branch "develop" "mydevbuilds-$(date +%Y-%m-%d)" $diffpath n
 update-branch "master" "mybuilds-$(date +%Y-%m-%d)" $diffpath n
 ```
