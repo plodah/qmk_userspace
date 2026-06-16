@@ -54,7 +54,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define QUICK_TAP_TERM 60
 
 #define CAPS_LOCK_LED_INDEX 24
-#define PLODAH_CAPS_INDIC_HSV HSV_MAGENTA
+#define PLODAH_CAPS_INDIC_HSV HSV_RED
+#define NUM_LOCK_LED_INDEX 6
+#define NUM_LOCK_LED_INVERT
+#define PLODAH_NUML_INDIC_HSV HSV_RED
+#define SCR_LOCK_LED_INDEX 13
+#define PLODAH_SCRL_INDIC_HSV HSV_RED
 
 #define PLODAH_MODS_INDIC_LCTL_INDEX 11
 #define PLODAH_MODS_INDIC_LGUI_INDEX 22

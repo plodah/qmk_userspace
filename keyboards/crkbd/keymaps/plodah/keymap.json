@@ -92,8 +92,11 @@
             },
             "transport": {
                 "sync": {
+                    "activity": true,
+                    "detected_os": true,
                     "indicators": true,
                     "layer_state": true,
+                    "matrix_state": true,
                     "modifiers": true,
                     "oled": true,
                     "wpm": true
