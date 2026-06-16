@@ -31,10 +31,10 @@
     #define RGB_MATRIX_SLEEP
   #endif
 
-  #if defined(RGB_MATRIX_TIMEOUT)
-    #undef RGB_MATRIX_TIMEOUT
+  #if ! defined(RGB_MATRIX_TIMEOUT)
+    #define RGB_MATRIX_TIMEOUT (270 * 1000)
   #endif
-  #define RGB_MATRIX_TIMEOUT (270 * 1000)
+  
 
   #if defined(RGB_MATRIX_KEYRELEASES)
     #undef RGB_MATRIX_KEYRELEASES

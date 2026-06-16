@@ -62,6 +62,7 @@
 
 /* ------- RGB MATRIX ------- */
 #ifdef RGB_MATRIX_ENABLE
+  #define RGB_MATRIX_TIMEOUT 270000
   #include "configs/rgbmatrix-effects-fewer.h"
   #include "configs/rgbmatrix-config.h"
   // #define PLODAH_REPEATHOLD_RATE 100
