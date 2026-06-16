@@ -24,7 +24,7 @@ git remote add vial https://github.com/vial-kb/vial-qmk.git
 git remote add keychron https://github.com/Keychron/qmk_firmware.git
 git remote update
 
-[ -d /workspaces/plodah_qmk_firmware ] || git clone https://github.com/plodah/qmk_firmware.git -b mybuilds-2026-03-08 /workspaces/plodah_qmk_firmware
+[ -d /workspaces/plodah_qmk_firmware ] || git clone https://github.com/plodah/qmk_firmware.git -b mybuilds-2026-06-15 /workspaces/plodah_qmk_firmware
 git config --global --add safe.directory /workspaces/plodah_qmk_firmware
 cd /workspaces/plodah_qmk_firmware
 git submodule update --init --recursive
