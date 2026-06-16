@@ -8,7 +8,6 @@
 
   #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
     #pragma once
-
     bool process_record_typing_indicator(uint16_t keycode, keyrecord_t *record){
       // Some madness to include layer taps / mod taps
       // QK_MOD_TAP        = 0x2000,
@@ -34,7 +33,6 @@
     }
   #endif // PLODAH_TYPINGINDICATOR_RGBINDEX
 
-
   bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if (!rgb_matrix_indicators_user()) {
       return false;
@@ -44,7 +42,12 @@
 
   bool rgb_matrix_indicators_user(void) {
     #if defined(CAPS_LOCK_LED_INDEX)
-      if (host_keyboard_led_state().caps_lock){
+      if (
+        #if defined CAPS_LOCK_LED_INVERT
+        !
+        #endif
+        host_keyboard_led_state().caps_lock
+      ){
         RGB capsrgb = hsv_to_rgb( rgbhelpers_limit_ind( rgb_matrix_get_hsv(), PLODAH_CAPS_INDIC_HSV, PLODAH_INDICATOR_MINVAL ) );
         rgb_matrix_set_color(CAPS_LOCK_LED_INDEX, capsrgb.r, capsrgb.g, capsrgb.b);
       }
@@ -54,8 +57,42 @@
         }
       }
     #endif // CAPS_LOCK_LED_INDEX
-    #if defined(PLODAH_LAYER_INDIC_INDEX1) || defined(PLODAH_LAYER_INDIC_INDEXES)
 
+    #if defined(NUM_LOCK_LED_INDEX)
+      if (
+        #if defined NUM_LOCK_LED_INVERT
+        !
+        #endif
+        host_keyboard_led_state().num_lock
+      ){
+        RGB numlrgb = hsv_to_rgb( rgbhelpers_limit_ind( rgb_matrix_get_hsv(), PLODAH_NUML_INDIC_HSV, PLODAH_INDICATOR_MINVAL ) );
+        rgb_matrix_set_color(NUM_LOCK_LED_INDEX, numlrgb.r, numlrgb.g, numlrgb.b);
+      }
+      else {
+        if (!rgb_matrix_get_flags()) {
+          rgb_matrix_set_color(NUM_LOCK_LED_INDEX, RGB_OFF);
+        }
+      }
+    #endif // NUM_LOCK_LED_INDEX
+
+    #if defined(SCR_LOCK_LED_INDEX)
+      if (
+        #if defined CAPS_LOCK_LED_INVERT
+        !
+        #endif
+        host_keyboard_led_state().scroll_lock
+      ){
+        RGB scrlrgb = hsv_to_rgb( rgbhelpers_limit_ind( rgb_matrix_get_hsv(), PLODAH_SCRL_INDIC_HSV, PLODAH_INDICATOR_MINVAL ) );
+        rgb_matrix_set_color(SCR_LOCK_LED_INDEX, scrlrgb.r, scrlrgb.g, scrlrgb.b);
+      }
+      else {
+        if (!rgb_matrix_get_flags()) {
+          rgb_matrix_set_color(SCR_LOCK_LED_INDEX, RGB_OFF);
+        }
+      }
+    #endif // SCR_LOCK_LED_INDEX
+
+    #if defined(PLODAH_LAYER_INDIC_INDEX1) || defined(PLODAH_LAYER_INDIC_INDEXES)
       #if defined(PLODAH_LAYER_INDIC_INDEXES)
         uint8_t layer_ind[] = PLODAH_LAYER_INDIC_INDEXES;
       #endif // PLODAH_LAYER_INDIC_INDEXES
@@ -133,7 +170,6 @@
             #if !defined(MSJIGGLER_NOINTRO)
                 case 2:
                     rgb_matrix_set_color(MSJIGGLER_INDICATOR_RGBINDEX, msjigintrorgb.r, msjigintrorgb.g, msjigintrorgb.b);
-
                     break;
             #endif // !defined(MSJIGGLER_NOINTRO)
             case 1:
@@ -242,4 +278,3 @@
     return false;
   }
 #endif // RGB_MATRIX_ENABLE
-
