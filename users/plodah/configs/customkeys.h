@@ -2,10 +2,19 @@
 
 // TAPDANCES
 #ifdef TAP_DANCE_ENABLE
-  #define P_RAGEQ TD(TD_ESC_RAGEQUIT)
-  #define P_F2 TD(TD_F2)
-  #define P_F4 TD(TD_F4)
-  #define P_F5 TD(TD_F5)
+  #if defined (PLODAH_BORING_LAYER)
+    #define P_RAGEQ TD(TD_ESC_RAGEQUIT)
+  #endif
+  #define P_F1  TD(TD_F1)
+  #define P_F2  TD(TD_F2)
+  #define P_F3  TD(TD_F3)
+  #define P_F4  TD(TD_F4)
+  #define P_F5  TD(TD_F5)
+  #define P_F6  TD(TD_F6)
+  #define P_F7  TD(TD_F7)
+  #define P_F8  TD(TD_F8)
+  #define P_F9  TD(TD_F9)
+  #define P_F10 TD(TD_F10)
   #define P_F11 TD(TD_F11)
   #define P_F12 TD(TD_F12)
 #else // TAP_DANCE_ENABLE
@@ -16,6 +25,9 @@
   #define P_F11 KC_MINS
   #define P_F12 KC_EQL
 #endif // TAP_DANCE_ENABLE
+#if !defined(P_RAGEQ)
+    #define P_RAGEQ KC_ESC
+#endif // P_RAGEQ
 
 // "Function" KEYS
 #define P_SPCFA LT(_FNA, KC_SPC)
