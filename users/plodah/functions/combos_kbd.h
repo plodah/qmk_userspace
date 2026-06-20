@@ -33,6 +33,10 @@
     const uint16_t PROGMEM pl_combo_hj[]     = {KC_H,     KC_J,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_kl[]     = {KC_K,     KC_L,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_mk[]     = {KC_M,     KC_K,                   COMBO_END};
+    #if defined(SWAP_HANDS_ENABLE)
+        const uint16_t PROGMEM pl_combo_swp[]    = {KC_S,     KC_W,     KC_P,         COMBO_END};
+        const uint16_t PROGMEM pl_combo_swpr[]   = {KC_L,     KC_O,     KC_Q,         COMBO_END};
+    #endif // SWAP_HANDS_ENABLE
 
     #if defined(PLODAH_HRM_COMBOS)
         const uint16_t PROGMEM pl_combo_capa_hrm[]    = {P_BSPFA, HRM_AG, COMBO_END};
@@ -49,9 +53,13 @@
 
         const uint16_t PROGMEM pl_combo_mk_hrm[]      = {BRM_MC,  HRM_KS, COMBO_END};
         const uint16_t PROGMEM pl_combo_mk_hrm2[]     = {KC_M,    HRM_KS, COMBO_END};
+        #if defined(SWAP_HANDS_ENABLE)
+            const uint16_t PROGMEM pl_combo_swp_hrm[]    = {HRM_SA, KC_W, KC_P, COMBO_END};
+            const uint16_t PROGMEM pl_combo_swpr_hrm[]   = {HRM_LA, KC_O, KC_Q, COMBO_END};
+            const uint16_t PROGMEM pl_combo_bsz_hrm2[]    = {P_BSSH, BRM_ZG, COMBO_END};
+        #endif // SWAP_HANDS_ENABLE
 
         const uint16_t PROGMEM pl_combo_bsz_hrm[]     = {KC_NUBS, BRM_ZG, COMBO_END};
-        const uint16_t PROGMEM pl_combo_bsz2_hrm[]    = {KC_LSFT, BRM_ZG, COMBO_END};
 
         #if defined(PLODAH_HRM_COMBOS_EXCESSIVE)
             const uint16_t PROGMEM pl_combo_bspa_hrm[]    = {KC_BSPC, HRM_AG, COMBO_END};
@@ -78,7 +86,7 @@
 // ##########################################
 #if !defined(PLODAH_COMBOS_LIMITED)
     const uint16_t PROGMEM pl_combo_lsz[]   = {KC_LSFT, KC_Z,                   COMBO_END};
-    const uint16_t PROGMEM pl_combo_bsz[]   = {KC_NUBS, KC_Z,                  COMBO_END};
+    const uint16_t PROGMEM pl_combo_bsz[]   = {KC_NUBS, KC_Z,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_zx[]    = {KC_Z,    KC_X,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_xc[]    = {KC_X,    KC_C,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_cv[]    = {KC_C,    KC_V,                   COMBO_END};
@@ -100,6 +108,9 @@
     const uint16_t PROGMEM pl_combo_vb_brm[]      = {BRM_VC,  BRM_BG,  COMBO_END};
 
     #if defined(PLODAH_BRM_COMBOS_EXCESSIVE)
+        #if defined(SWAP_HANDS_ENABLE)
+        const uint16_t PROGMEM pl_combo_bsz_hrm3[]    = {P_BSSH, KC_Z, COMBO_END};
+        #endif // SWAP_HANDS_ENABLE    
         const uint16_t PROGMEM pl_combo_zx_brm2[]     = {KC_Z,    BRM_XA,  COMBO_END};
         const uint16_t PROGMEM pl_combo_zx_brm3[]     = {BRM_ZG,  KC_X,    COMBO_END};
         const uint16_t PROGMEM pl_combo_xc_brm2[]     = {KC_X,    BRM_CS,  COMBO_END};
@@ -252,6 +263,10 @@ combo_t key_combos[] = {
         COMBO(pl_combo_hj,    C(KC_J)    ),
         COMBO(pl_combo_kl,    C(KC_L)    ),
         COMBO(pl_combo_mk,    QK_MAKE    ),
+        #if defined(SWAP_HANDS_ENABLE)
+            COMBO(pl_combo_swp,    SH_TOGG),
+            COMBO(pl_combo_swpr,   SH_TOGG),
+        #endif // SWAP_HANDS_ENABLE
 
         #if defined(PLODAH_HRM_COMBOS)
             COMBO(pl_combo_capa_hrm,    C(KC_A)),
@@ -268,9 +283,12 @@ combo_t key_combos[] = {
 
             COMBO(pl_combo_mk_hrm,      QK_MAKE),
             COMBO(pl_combo_mk_hrm2,     QK_MAKE),
-
+            #if defined(SWAP_HANDS_ENABLE)
+                COMBO(pl_combo_swp_hrm,    SH_TOGG),
+                COMBO(pl_combo_swpr_hrm,   SH_TOGG),
+                COMBO(pl_combo_bsz_hrm2,    C(KC_Z)),
+            #endif // SWAP_HANDS_ENABLE
             COMBO(pl_combo_bsz_hrm,     C(KC_Z)),
-            COMBO(pl_combo_bsz2_hrm,    C(KC_Z)),
 
             #if defined(PLODAH_HRM_COMBOS_EXCESSIVE)
                 COMBO(pl_combo_bspa_hrm,    C(KC_A)),
@@ -322,6 +340,9 @@ combo_t key_combos[] = {
 
         #if defined(PLODAH_HRM_COMBOS_EXCESSIVE)
         // #if ! (defined(PLODAH_COMBOS_LIMITED) || defined(PLODAH_COMBOS_BRM_LIMITED))
+            #if defined(SWAP_HANDS_ENABLE)
+                COMBO(pl_combo_bsz_hrm3,    C(KC_Z)),
+            #endif // SWAP_HANDS_ENABLE    
             COMBO(pl_combo_zx_brm2,     C(KC_X)),
             COMBO(pl_combo_zx_brm3,     C(KC_X)),
             COMBO(pl_combo_xc_brm2,     C(KC_C)),

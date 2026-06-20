@@ -61,6 +61,11 @@
 #define P_RSFTB RSFT_T(KC_BSPC)
 #define P_RSFEN RSFT_T(KC_ENT)
 #define P_RSFSP RSFT_T(KC_ENT)
+#if defined(SWAP_HANDS_ENABLE)
+    #define P_BSSH SH_T(KC_NUBS)
+#else 
+    #define P_BSSH KC_NUBS
+#endif // defined(SWAP_HANDS_ENABLE)
 
 // GENERAL SHORTCUTS
 #define P_SALL C(KC_A)
