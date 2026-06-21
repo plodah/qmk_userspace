@@ -22,6 +22,11 @@
     const uint16_t PROGMEM pl_combo_bspa[]   = {KC_BSPC,  KC_A,                   COMBO_END};
 #endif // ! defined(PLODAH_COMBOS_LIMITED)
 
+#if defined(PLODAH_COMBOS_COLEMAK)
+    const uint16_t PROGMEM pl_combo_qwr[]    = {KC_Q,     KC_W,   KC_R,           COMBO_END};
+    const uint16_t PROGMEM pl_combo_qwf[]    = {KC_Q,     KC_W,   KC_F,           COMBO_END};
+#endif // (PLODAH_COMBOS_COLEMAK)
+
 // ##########################################
 // ##               HOME ROW               ##
 // ##########################################
@@ -228,6 +233,11 @@ const uint16_t PROGMEM pl_combo_cad[]    = {KC_C,     KC_A,     KC_D,         CO
     #endif // defined(PLODAH_HRM_COMBOS) && defined(PLODAH_BRM_COMBOS)
 #endif // defined(CONSOLE_ENABLE)
 
+#if defined(PLODAH_COMBOS_F67)
+    const uint16_t PROGMEM pl_combo_f4f5[] = {KC_F4 , KC_F5 , COMBO_END};
+    const uint16_t PROGMEM pl_combo_f8f9[] = {KC_F8 , KC_F9 , COMBO_END};
+#endif // PLODAH_COMBOS_F67
+
 combo_t key_combos[] = {
 
     // ##########################################
@@ -251,6 +261,11 @@ combo_t key_combos[] = {
         COMBO(pl_combo_taba,  C(KC_A)    ),
         COMBO(pl_combo_bspa,  C(KC_A)    ),
     #endif // ! defined(PLODAH_COMBOS_LIMITED)
+
+    #if defined(PLODAH_COMBOS_COLEMAK)
+        COMBO(pl_combo_qwr,   COLEMAK    ),
+        COMBO(pl_combo_qwf,   QWERTY     ),
+    #endif // PLODAH_COMBOS_COLEMAK
 
     // ##########################################
     // ##               HOME ROW               ##
@@ -456,4 +471,9 @@ combo_t key_combos[] = {
             COMBO(pl_combo_db_hbrm,    DB_TOGG),
         #endif // defined(PLODAH_HRM_COMBOS) && defined(PLODAH_BRM_COMBOS)
     #endif // defined(CONSOLE_ENABLE)
+
+    #if defined(PLODAH_COMBOS_F67)
+        COMBO(pl_combo_f4f5, KC_F6),
+        COMBO(pl_combo_f8f9, KC_F7),
+    #endif // PLODAH_COMBOS_F67
 };
