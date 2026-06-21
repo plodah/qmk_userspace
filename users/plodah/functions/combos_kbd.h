@@ -97,9 +97,13 @@
     const uint16_t PROGMEM pl_combo_cv[]    = {KC_C,    KC_V,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_zxc[]   = {KC_Z,    KC_X,   KC_C,           COMBO_END};
     const uint16_t PROGMEM pl_combo_xcv[]   = {KC_X,    KC_C,   KC_V,           COMBO_END};
-#endif // !defined(PLODAH_COMBOS_LIMITED)
-#if ! defined(PLODAH_COMBOS_LIMITED)
     const uint16_t PROGMEM pl_combo_vb[]     = {KC_V,    KC_B,                    COMBO_END};
+
+    #if defined(COMMUNITY_MODULE_MORSE_CODE_ENABLE)
+        const uint16_t PROGMEM pl_combo_nm[] = {KC_N , KC_M , COMBO_END};
+        const uint16_t PROGMEM pl_combo_mdot[] = {KC_M , KC_DOT , COMBO_END};
+        const uint16_t PROGMEM pl_combo_mslsh[] = {KC_M , KC_SLSH , COMBO_END};
+    #endif // COMMUNITY_MODULE_MORSE_CODE_ENABLE
 #endif // ! defined(PLODAH_COMBOS_LIMITED)
 
 #if defined(PLODAH_BRM_COMBOS)
@@ -111,6 +115,12 @@
     const uint16_t PROGMEM pl_combo_xc_brm[]      = {BRM_XA,  BRM_CS,  COMBO_END};
     const uint16_t PROGMEM pl_combo_cv_brm[]      = {BRM_CS,  BRM_VC,  COMBO_END};
     const uint16_t PROGMEM pl_combo_vb_brm[]      = {BRM_VC,  BRM_BG,  COMBO_END};
+
+    #if defined(COMMUNITY_MODULE_MORSE_CODE_ENABLE)
+        const uint16_t PROGMEM pl_combo_nm_hrm[] = {BRM_NG , BRM_MC , COMBO_END};
+        const uint16_t PROGMEM pl_combo_mdot_hrm[] = {BRM_MC , BRM_DOA , COMBO_END};
+        const uint16_t PROGMEM pl_combo_mslsh_hrm[] = {BRM_MC , BRM_SLG , COMBO_END};
+    #endif // COMMUNITY_MODULE_MORSE_CODE_ENABLE
 
     #if defined(PLODAH_BRM_COMBOS_EXCESSIVE)
         #if defined(SWAP_HANDS_ENABLE)
@@ -139,7 +149,17 @@
 
         const uint16_t PROGMEM pl_combo_vb_brm2[]     = {KC_V,    BRM_BG,  COMBO_END};
         const uint16_t PROGMEM pl_combo_vb_brm3[]     = {BRM_VC,  KC_B,    COMBO_END};
+
+        #if defined(COMMUNITY_MODULE_MORSE_CODE_ENABLE)
+            const uint16_t PROGMEM pl_combo_nm_hrm2[] = {BRM_NG , KC_M , COMBO_END};
+            const uint16_t PROGMEM pl_combo_mdot_hrm2[] = {BRM_MC , KC_DOT , COMBO_END};
+            const uint16_t PROGMEM pl_combo_mslsh_hrm2[] = {BRM_MC , KC_SLSH , COMBO_END};
+            const uint16_t PROGMEM pl_combo_nm_hrm3[] = {KC_N , BRM_MC , COMBO_END};
+            const uint16_t PROGMEM pl_combo_mdot_hrm3[] = {KC_M , BRM_DOA , COMBO_END};
+            const uint16_t PROGMEM pl_combo_mslsh_hrm3[] = {KC_M , BRM_SLG , COMBO_END};
+        #endif // COMMUNITY_MODULE_MORSE_CODE_ENABLE
     #endif // defined(PLODAH_BRM_COMBOS_EXCESSIVE)
+
 #endif // defined(PLODAH_BRM_COMBOS)
 
 const uint16_t PROGMEM pl_combo_volud[] = {KC_VOLU, KC_VOLD,                COMBO_END};
@@ -329,7 +349,7 @@ combo_t key_combos[] = {
     // ##              BOTTOM ROW              ##
     // ##########################################
 
-    #if !defined(PLODAH_COMBOS_LIMITED) && !defined(PLODAH_BRM_COMBOS)
+    #if !defined(PLODAH_COMBOS_LIMITED) 
         COMBO(pl_combo_lsz,   C(KC_Z)    ),
         COMBO(pl_combo_bsz,   C(KC_Z)    ),
         COMBO(pl_combo_zx,    C(KC_X)    ),
@@ -337,10 +357,12 @@ combo_t key_combos[] = {
         COMBO(pl_combo_cv,    C(KC_V)    ),
         COMBO(pl_combo_zxc,   C(S(KC_C)) ),
         COMBO(pl_combo_xcv,   C(S(KC_V)) ),
-    #endif // !defined(PLODAH_COMBOS_LIMITED) && !defined(PLODAH_BRM_COMBOS)
-
-    #if ! defined(PLODAH_COMBOS_LIMITED)
         COMBO(pl_combo_vb,    C(KC_B)    ),
+        #if defined(COMMUNITY_MODULE_MORSE_CODE_ENABLE)
+            COMBO(pl_combo_nm,    CM_MORS ),
+            COMBO(pl_combo_mdot,  CM_MORT ),
+            COMBO(pl_combo_mslsh, CM_MORH ),
+        #endif // COMMUNITY_MODULE_MORSE_CODE_ENABLE
     #endif // ! defined(PLODAH_COMBOS_LIMITED)
 
     #if defined(PLODAH_BRM_COMBOS)
@@ -352,6 +374,12 @@ combo_t key_combos[] = {
         COMBO(pl_combo_xc_brm,      C(KC_C)),
         COMBO(pl_combo_cv_brm,      C(KC_V)),
         COMBO(pl_combo_vb_brm,      C(KC_B)),
+
+        #if defined(COMMUNITY_MODULE_MORSE_CODE_ENABLE)
+            COMBO(pl_combo_nm_hrm,    CM_MORS ),
+            COMBO(pl_combo_mdot_hrm,  CM_MORT ),
+            COMBO(pl_combo_mslsh_hrm, CM_MORH ),
+        #endif // COMMUNITY_MODULE_MORSE_CODE_ENABLE
 
         #if defined(PLODAH_HRM_COMBOS_EXCESSIVE)
         // #if ! (defined(PLODAH_COMBOS_LIMITED) || defined(PLODAH_COMBOS_BRM_LIMITED))
@@ -381,6 +409,16 @@ combo_t key_combos[] = {
 
             COMBO(pl_combo_vb_brm2,     C(KC_B)),
             COMBO(pl_combo_vb_brm3,     C(KC_B)),
+
+        #if defined(COMMUNITY_MODULE_MORSE_CODE_ENABLE)
+            COMBO(pl_combo_nm_hrm2,    CM_MORS ),
+            COMBO(pl_combo_mdot_hrm2,  CM_MORT ),
+            COMBO(pl_combo_mslsh_hrm2, CM_MORH ),
+            COMBO(pl_combo_nm_hrm3,    CM_MORS ),
+            COMBO(pl_combo_mdot_hrm3,  CM_MORT ),
+            COMBO(pl_combo_mslsh_hrm3, CM_MORH ),
+        #endif // COMMUNITY_MODULE_MORSE_CODE_ENABLE
+
         // #endif // ! (defined(PLODAH_COMBOS_LIMITED) || defined(PLODAH_COMBOS_BRM_LIMITED))
         #endif // defined(PLODAH_HRM_COMBOS_EXCESSIVE)
     #endif // defined(PLODAH_BRM_COMBOS)
