@@ -10,9 +10,6 @@
     #endif // defined(OLED_ENABLE)
 
     void housekeeping_task_user(void) {
-        #if defined(COMMUNITY_MODULE_AUTOCORRECT_RGBFLASH_ENABLE) && (!defined(AUTOCORRECT_RGBFLASH_MODE_DE))
-            housekeeping_task_autocorrect_rgbflash();
-        #endif // AUTOCORRECT_ENABLE && RGB_MATRIX_ENABLE
         #if defined(PLODAH_TYPINGINDICATOR_RGBINDEX)
             housekeeping_task_typing_indicator();
         #endif // PLODAH_TYPINGINDICATOR_RGBINDEX

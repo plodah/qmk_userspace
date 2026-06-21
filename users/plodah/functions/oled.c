@@ -94,15 +94,15 @@
     }
 
     #if defined( COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE )
-    #include "mouse_jiggler.h"
-    void oled_jiggler_display (uint8_t startrow, uint8_t startcol ) {
-        oled_set_cursor (startcol, startrow);
-        if(jiggler_get_state()){
-            oled_write("J", true);
-        } else {
-            oled_write("-", false);
+        #include "mouse_jiggler.h"
+        void oled_jiggler_display (uint8_t startrow, uint8_t startcol ) {
+            oled_set_cursor (startcol, startrow);
+            if(jiggler_get_state()){
+                oled_write("J", true);
+            } else {
+                oled_write("-", false);
+            }
         }
-    }
     #endif // defined( COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE )
 
     char     oled_keylog_key_name = ' ';
