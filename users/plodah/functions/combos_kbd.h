@@ -154,6 +154,7 @@ const uint16_t PROGMEM pl_combo_cad[]    = {KC_C,     KC_A,     KC_D,         CO
     const uint16_t PROGMEM pl_combo_cad_hrm2[]    = {KC_C,  KC_A,   HRM_DS, COMBO_END};
     const uint16_t PROGMEM pl_combo_cad_hrm3[]    = {KC_C,  HRM_AG, KC_D,   COMBO_END};
 #endif // defined(PLODAH_HRM_COMBOS_EXCESSIVE) && defined(PLODAH_BRM_COMBOS_EXCESSIVE)
+
 #if defined(PLODAH_HRM_COMBOS_EXCESSIVE) && defined(PLODAH_BRM_COMBOS_EXCESSIVE)
     const uint16_t PROGMEM pl_combo_cad_hbrm2[]    = {BRM_CS, HRM_AG, KC_D, COMBO_END};
     const uint16_t PROGMEM pl_combo_cad_hbrm3[]    = {BRM_CS, KC_A, HRM_DS, COMBO_END};
@@ -186,7 +187,6 @@ const uint16_t PROGMEM pl_combo_cad[]    = {KC_C,     KC_A,     KC_D,         CO
         const uint16_t PROGMEM pl_combo_ragq[] = {P_RAGEQ, KC_Q , COMBO_END};
         const uint16_t PROGMEM pl_combo_ragw[] = {P_RAGEQ, KC_W , COMBO_END};
     #endif // defined(TAP_DANCE_ENABLE)
-
 #endif // COMMUNITY_MODULE_TASK_SWITCH_ENABLE
 
 #if defined(LEADER_ENABLE)
@@ -205,11 +205,11 @@ const uint16_t PROGMEM pl_combo_cad[]    = {KC_C,     KC_A,     KC_D,         CO
 #endif // defined(LEADER_ENABLE)
 
 #if defined(DYNAMIC_MACRO_ENABLE)
-    const uint16_t PROGMEM pl_combo_12[]  = {KC_1 , KC_2, COMBO_END};
-    const uint16_t PROGMEM pl_combo_13[]  = {KC_1 , KC_3, COMBO_END};
-    const uint16_t PROGMEM pl_combo_qw[]  = {KC_Q , KC_W, COMBO_END};
-    const uint16_t PROGMEM pl_combo_qe[]  = {KC_Q , KC_E, COMBO_END};
-    const uint16_t PROGMEM pl_combo_3e[]  = {KC_3 , KC_E, COMBO_END};
+    const uint16_t PROGMEM pl_combo_12[] = {KC_1 , KC_2, COMBO_END};
+    const uint16_t PROGMEM pl_combo_13[] = {KC_1 , KC_3, COMBO_END};
+    const uint16_t PROGMEM pl_combo_qw[] = {KC_Q , KC_W, COMBO_END};
+    const uint16_t PROGMEM pl_combo_qe[] = {KC_Q , KC_E, COMBO_END};
+    const uint16_t PROGMEM pl_combo_3e[] = {KC_3 , KC_E, COMBO_END};
     #if defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
         const uint16_t PROGMEM pl_combo_1F2[] = {KC_1 , TD(TD_F2), COMBO_END};
     #endif // defined(PLODAH_TAPDANCE_TAPHOLD_ENABLE)
