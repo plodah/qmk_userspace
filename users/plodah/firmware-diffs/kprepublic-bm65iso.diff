@@ -36,7 +36,7 @@ new file mode 100644
 index 0000000000..b84160d5a6
 --- /dev/null
 +++ b/keyboards/kprepublic/bm65hsrgb_iso/rev2/keyboard.json
-@@ -0,0 +1,260 @@
+@@ -0,0 +1,259 @@
 +{
 +    "manufacturer": "KP Republic",
 +    "keyboard_name": "bm65rgb",
