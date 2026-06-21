@@ -5,6 +5,7 @@
 #include "encoder_actions.h"
 #include "oled.h"
 #include "tapdance.h"
+#include "tri_layer.h"
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
@@ -35,6 +36,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
     if ( ! process_record_encoder_actions(keycode, record) ) { return false; }
   #endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
+
+  #if defined(TRI_LAYER_ENABLE) && defined(TRI_LAYER_UNSTRICT)
+    if ( ! process_record_tri_layer(keycode, record) ) { return false; }
+  #endif // TRI_LAYER_ENABLE
 
   switch (keycode) {
     #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(PLOOPY_VIAMENUS)
