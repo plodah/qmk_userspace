@@ -18,6 +18,7 @@
         "plodah/morse_code",
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",
+        "plodah/rgb_indicators",
         "plodah/rgb_repeathold",
         "plodah/task_switch",
         "plodah/turbo_fire"
