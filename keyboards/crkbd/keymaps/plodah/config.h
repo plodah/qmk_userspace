@@ -37,7 +37,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
 
-#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "Adjust" }
+#define LAYER_NAMES { "Qwerty", "Colemak", "G_Qwerty", "Symbols ", "Nav", "Mouse", "RGB", "dunno?" }
+#define _FNA _SYM
+#define _FNB _NAV
+#define _FNC _MSE
+#define _FND _RGB
 
 // #define TASKSWITCH_FORCE_NDE
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
@@ -45,8 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBOFLOW_TERM 100
 #define TURBO_FIRE_KEY_A MS_BTN1
 
-#define PLODAH_DUAL_TRI_LAYER
-#define PLODAH_BORING_LAYER _O_QWER
+#define PLODAH_BORING_LAYER _G_QWERTY
 
 #ifdef QUICK_TAP_TERM
   #undef QUICK_TAP_TERM
@@ -100,6 +103,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif // TAP_DANCE_ENABLE
 
 #ifdef COMBO_ENABLE
+  #define PLODAH_COMBOS_COLEMAK  
+  #define PLODAH_COMBOS_F67
   #define PLODAH_HRM_COMBOS
   #define PLODAH_BRM_COMBOS
   #define PLODAH_HRM_COMBOS_EXCESSIVE
@@ -114,11 +119,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define RGB_MATRIX_DEFAULT_VAL 42
   #include "configs/rgbmatrix-effects-many.h"
   #include "configs/rgbmatrix-config.h"
-  // #define PLODAH_REPEATHOLD_RATE 100
+  #define PLODAH_REPEATHOLD_RATE 125
 #endif // RGB_MATRIX_ENABLE
 
 #if defined(TRI_LAYER_ENABLE)
   #define TRI_LAYER_UNSTRICT
+  #define PLODAH_BCD_TRI_LAYER
 #endif // TRI_LAYER_ENABLE
 
 #include "plodah.h"
