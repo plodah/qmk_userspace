@@ -50,7 +50,6 @@
     return true;
   }
 
-
   #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
     bool process_record_plodah_dynamic_macros( uint16_t keycode, keyrecord_t *record ) {
       /*
@@ -61,10 +60,10 @@
         QK_DYNAMIC_MACRO_PLAY_2 = 0x7C57,
       */
       switch(keycode){
-        case PL_DMAC1 ... PL_DMAC2:
+        case PL_DMC1 ... PL_DMC2:
           if(!record->event.pressed){
             uint16_t fwkeycode = QK_DYNAMIC_MACRO_PLAY_1;
-            if( keycode == PL_DMAC2 ) {
+            if( keycode == PL_DMC2 ) {
               fwkeycode ++;
             }
             if( get_mods() & MOD_MASK_CA ) {

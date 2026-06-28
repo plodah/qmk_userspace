@@ -8,8 +8,8 @@ enum layers {
 };
 
 enum keymap_keycodes {
-    PL_DMAC1 = QK_USER_0,
-    PL_DMAC2,
+    PL_DMC1 = QK_USER_0,
+    PL_DMC2,
     PL_ECCC,
     PL_ECCW,
     PL_ECPR,

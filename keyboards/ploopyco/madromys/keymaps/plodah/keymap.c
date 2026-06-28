@@ -11,9 +11,9 @@ enum keymap_keycodes {
     KB_DRAG_SCROLL,
     BETTER_DRAG_SCROLL_MOMENTARY,
     BETTER_DRAG_SCROLL_TOGGLE,
-    PL_MSJG,
-    PL_TSKN,
-    PL_TSKP,
+    CM_MSJG,
+    CM_TSKN,
+    CM_TSKP,
     BETTER_DRAG_SCROLL_SNIPER_A_MOMENTARY,
     BETTER_DRAG_SCROLL_SNIPER_A_TOGGLE,
     BETTER_DRAG_SCROLL_SNIPER_B_MOMENTARY,
@@ -43,11 +43,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MS_BTN1,                   TD(TD_DRAGSCROLL)
     ),
     [_FNA] = LAYOUT(
-        _______, PL_TSKP, PL_TSKN, _______,
+        _______, CM_TSKP, CM_TSKN, _______,
         DPI_CONFIG,                P_DRGTG
     ),
     [_FNB] = LAYOUT(
         P_DRGVL, _______, _______, P_SNTGA,
-        PL_MSJG,                   P_DRGTG
+        CM_MSJG,                   P_DRGTG
     )
 };
