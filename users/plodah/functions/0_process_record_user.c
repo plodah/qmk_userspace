@@ -13,6 +13,12 @@
 #if defined(PLODAH_DYNAMIC_MACRO_KCS_ENABLE)
   #include "dynamic_macros.h"
 #endif // defined(PLODAH_DYNAMIC_MACRO_KCS_ENABLE)
+ #if defined(BETTER_DRAGSCROLL)
+  #include "better_dragscroll.h"
+#endif // defined(BETTER_DRAGSCROLL)
+  #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
+  #include "mouse_gesture.h"
+#endif // defined(PLODAH_MSGESTURE_ENABLE)
 
 #include "tri_layer.h"
 
