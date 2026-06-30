@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if defined(LEADER_ENABLE)
     #if defined(COMMUNITY_MODULE_CONFIG_QUERY_ENABLE)
         #include "config_query.h"

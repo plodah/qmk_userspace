@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #ifdef CONSOLE_ENABLE
     #include "debug.h"
     void keyboard_post_init_user_debug(void) {

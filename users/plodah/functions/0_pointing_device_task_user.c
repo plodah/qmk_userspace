@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
     #include "mouse_gesture.h"
 #endif // defined(PLODAH_MSGESTURE_ENABLE)

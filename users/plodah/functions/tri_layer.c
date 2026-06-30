@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if defined(TRI_LAYER_ENABLE) && defined(TRI_LAYER_UNSTRICT)
 
     layer_state_t direct_layer_state;

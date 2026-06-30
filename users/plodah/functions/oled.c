@@ -1,5 +1,7 @@
+#include QMK_KEYBOARD_H
 #if defined(OLED_ENABLE)
     #include "oled.h"
+    #include "oled_imgs.h"
 
     void housekeeping_task_oled ( void ) {
         if (last_input_activity_elapsed() < OLED_TIMEOUT) {

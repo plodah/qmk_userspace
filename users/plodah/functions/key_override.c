@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if defined(KEY_OVERRIDE_ENABLE)
     const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
     #if defined(OS_DETECTION_ENABLE)

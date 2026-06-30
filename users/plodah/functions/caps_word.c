@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if defined(CAPS_WORD_ENABLE)
     #include "caps_word.h"
     #include "action_layer.h"

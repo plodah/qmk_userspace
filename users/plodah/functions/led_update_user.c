@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if defined(BETTER_DRAGSCROLL)
     #include "functions/better_dragscroll.h"
 #endif // defined(BETTER_DRAGSCROLL)

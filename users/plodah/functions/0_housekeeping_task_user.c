@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if defined(DYNAMIC_MACRO_ENABLE)
     #include "dynamic_macros.h"
 #endif // defined(DYNAMIC_MACRO_ENABLE)

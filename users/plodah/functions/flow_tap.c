@@ -1,6 +1,5 @@
+#include QMK_KEYBOARD_H
 #if defined(FLOW_TAP_TERM)
-    #include "action.h"
-    #include "action_util.h"
     #include "debug.h"
 
     bool is_flow_tap_key_plodah(uint16_t keycode, bool isprev) {

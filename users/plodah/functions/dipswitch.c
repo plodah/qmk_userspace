@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if PLODAH_BORING_LAYER > 0 && defined(DIP_SWITCH_ENABLE)
     bool dip_switch_update_user(uint8_t index, bool active) {
         if (index == 0) {

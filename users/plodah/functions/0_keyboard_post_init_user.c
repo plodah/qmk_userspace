@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if defined(CONSOLE_ENABLE)
     #include "debug.h"
 #endif // defined(CONSOLE_ENABLE)

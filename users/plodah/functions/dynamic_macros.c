@@ -1,11 +1,18 @@
 #if defined(DYNAMIC_MACRO_ENABLE)
-  #include "action.h"
-  #include "action_util.h"
+  #include QMK_KEYBOARD_H
   #include "debug.h"
   #include "deferred_exec.h"
   #include "dynamic_macros.h"
-  #include "keymap.h"
   #include "process_dynamic_macro.h"
+
+  bool is_dynamic_macro_recording = false;
+  #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)
+    // #pragma message("Deferred Exec Dynamic Macro Timeout")
+    deferred_token dynamicMacroToken = INVALID_DEFERRED_TOKEN;
+  #else
+    // #pragma message("Non-DE Dynamic Macro Timeout")
+    uint16_t dynamic_macro_timer;
+  #endif // PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE
 
   bool dynamic_macro_record_end_user(int8_t direction) {
     #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)

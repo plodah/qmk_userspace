@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #if defined(COMBO_ENABLE)
     #if defined(IS_MOUSE)
         #include "combos_mse.h"
