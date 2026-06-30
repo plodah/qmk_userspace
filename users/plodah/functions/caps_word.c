@@ -1,5 +1,4 @@
 #if defined(CAPS_WORD_ENABLE)
-    #pragma once
     #include "caps_word.h"
     #include "action_layer.h"
     #include "debug.h"

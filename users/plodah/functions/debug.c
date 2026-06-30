@@ -1,5 +1,4 @@
 #ifdef CONSOLE_ENABLE
-    #pragma once
     #include "debug.h"
     void keyboard_post_init_user_debug(void) {
         debug_enable = true;

@@ -1,5 +1,4 @@
-#pragma once
-#include "shutdown.h"
+#include "oled.h"
 
 #if defined(OLED_ENABLE)
     bool shutdown_user(bool jump_to_bootloader) {

@@ -1,7 +1,5 @@
 #if defined(VIA_ENABLE) && defined(PLOOPY_VIAMENUS)
-    #pragma once
-
-    // #include QMK_KEYBOARD_H
+    #include QMK_KEYBOARD_H
     #include "better_dragscroll.h"
     #include "via.h"
     #include "mouse_jiggler.h"

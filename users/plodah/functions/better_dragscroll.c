@@ -18,9 +18,6 @@
  */
 
  #if defined(BETTER_DRAGSCROLL)
-    #include <stdbool.h>
-    #include <stdio.h>
-    #include "quantum.h"
     #include "better_dragscroll.h"
     #include "ploopy_via.h"
 

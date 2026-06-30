@@ -1,6 +1,5 @@
 #if defined(TAP_DANCE_ENABLE)
-  #pragma once
-  #include "quantum.h"
+  #include QMK_KEYBOARD_H
   #include "tapdance.h"
   #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
     void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {

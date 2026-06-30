@@ -1,16 +1,10 @@
 #if defined(LEADER_ENABLE)
-    #pragma once
-
     #if defined(COMMUNITY_MODULE_CONFIG_QUERY_ENABLE)
         #include "config_query.h"
     #endif // COMMUNITY_MODULE_CONFIG_QUERY_ENABLE
     #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
         #include "mouse_jiggler.h"
     #endif // COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE
-
-    void leader_start_user(void) {
-
-    }
 
     void leader_end_user(void) {
         if ( leader_sequence_three_keys(KC_Q, KC_M, KC_K) ) {

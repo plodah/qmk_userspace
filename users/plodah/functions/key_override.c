@@ -58,5 +58,4 @@
             &close_window_override_BRM,
         #endif // defined(OS_DETECTION_ENABLE)
     };
-
 #endif // defined(KEY_OVERRIDE_ENABLE)

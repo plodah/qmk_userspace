@@ -1,8 +1,7 @@
+#include QMK_KEYBOARD_H
 #if defined(PLODAH_KNOB_ENHANCEMENTS_ENABLE)
-    #pragma once
     #include "action_layer.h"
     #include "action_util.h"
-    #include "quantum.h"
     #if defined(RGB_MATRIX_ENABLE)
         #include "rgb_matrix.h"
     #endif // RGB_MATRIX_ENABLE

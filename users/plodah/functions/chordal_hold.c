@@ -1,10 +1,6 @@
 #ifdef CHORDAL_HOLD
-    #pragma once
-    #include <stdbool.h>
-    #include <stdint.h>
-    #include "action.h"
-    #include "action_tapping.h"
-    #include "debug.h"
+    #include QMK_KEYBOARD_H
+    #include "chordal_hold.h"
 
     bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
         uint16_t other_keycode, keyrecord_t* other_record) {

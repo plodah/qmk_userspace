@@ -1,6 +1,8 @@
 #if defined(DYNAMIC_MACRO_ENABLE)
     #pragma once
     #include "deferred_exec.h"
+    #include QMK_KEYBOARD_H
+
     #if (defined(RGB_MATRIX_ENABLE) && defined(PLODAH_DMAC_INDIC_INDEX)) || (defined(PLODAH_DYNAMIC_MACRO_TIMEOUT))
         bool is_dynamic_macro_recording = false;
     #endif // (defined(RGB_MATRIX_ENABLE) && defined(PLODAH_DMAC_INDIC_INDEX)) || (defined(PLODAH_DYNAMIC_MACRO_TIMEOUT))

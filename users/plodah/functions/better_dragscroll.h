@@ -1,10 +1,6 @@
 #if defined(BETTER_DRAGSCROLL)
     #pragma once
 
-    #include <stdbool.h>
-    #include <stdio.h>
-    #include "quantum.h"
-
     #if !defined(BETTER_DRAGSCROLL_DIVISOR_H)
         #define BETTER_DRAGSCROLL_DIVISOR_H 4
     #endif

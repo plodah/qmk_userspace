@@ -1,5 +1,4 @@
 #if defined(DYNAMIC_MACRO_ENABLE)
-  #pragma once
   #include "action.h"
   #include "action_util.h"
   #include "debug.h"

@@ -1,5 +1,4 @@
 #if defined(OLED_ENABLE)
-    #pragma once
     #include "oled.h"
 
     void housekeeping_task_oled ( void ) {
