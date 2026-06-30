@@ -7,8 +7,6 @@
     "keymap": "plodah",
     "converter": "rp2040_ce",
     "keycodes": [
-        { "key": "PL_DMC1" },
-        { "key": "PL_DMC2" },
         { "key": "PL_ECCC" },
         { "key": "PL_ECCW" },
         { "key": "PL_ECPR" }

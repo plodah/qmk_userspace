@@ -13,16 +13,6 @@ enum layers {
     _FUNC
 };
 
-/*
-enum keymap_keycodes {
-    // PL_DMC1,
-    // PL_DMC2,
-    PL_ECCC = QK_USER_0,
-    PL_ECCW,
-    PL_ECPR,
-};
-*/
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_all(
                  P_XTAB,  KC_MUTE, P_XWIN,

@@ -7,16 +7,6 @@ enum layers {
     _FNB,
 };
 
-/*
-enum keymap_keycodes {
-    // PL_DMC1,
-    // PL_DMC2,
-    PL_ECCC = QK_USER_0,
-    PL_ECCW,
-    PL_ECPR,
-};
-*/
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWEA] = LAYOUT_60_iso_split_bs_rshift(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, XXXXXXX,

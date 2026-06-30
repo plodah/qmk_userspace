@@ -84,10 +84,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define PLODAH_BRM_COMBOS
 #endif
 
-#if defined(DYNAMIC_MACRO_ENABLE)
-  #define PLODAH_DYNAMIC_MACRO_KCS_ENABLE
-#endif // DYNAMIC_MACRO_ENABLE
-
 #ifdef RGB_MATRIX_ENABLE
   #define RGB_MATRIX_DEFAULT_VAL 42
   #include "configs/rgbmatrix-effects-many.h"

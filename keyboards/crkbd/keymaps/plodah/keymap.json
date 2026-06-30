@@ -6,10 +6,6 @@
     "keyboard": "crkbd/rev1",
     "keymap": "plodah",
     "converter": "rp2040_ce",
-    "keycodes": [
-        { "key": "PL_DMC1" },
-        { "key": "PL_DMC2" }
-    ],
     "modules": [
         "drashna/kvm_helper",
         "plodah/autocorrect_rgbflash",

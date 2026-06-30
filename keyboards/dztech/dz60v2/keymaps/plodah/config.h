@@ -29,10 +29,6 @@
   #define PLODAH_TAPDANCE_TAPHOLD_ENABLE
 #endif // TAP_DANCE_ENABLE
 
-#if defined(DYNAMIC_MACRO_ENABLE)
-  #define PLODAH_DYNAMIC_MACRO_KCS_ENABLE
-#endif // DYNAMIC_MACRO_ENABLE
-
 /* ------- RGB LIGHTING ------- */
 #ifdef RGBLIGHT_ENABLE
   #include "configs/rgblight-effects-few.h"

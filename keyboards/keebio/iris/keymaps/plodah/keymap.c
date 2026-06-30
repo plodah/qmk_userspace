@@ -8,16 +8,6 @@ enum sofle_layers {
     _FNC,
 };
 
-/*
-enum keymap_keycodes {
-    // PL_DMC1 = QK_USER_0,
-    // PL_DMC2,
-    // PL_ECCC,
-    // PL_ECCW,
-    // PL_ECPR
-};
-*/
-
 enum {
     TD_ESC_RAGEQUIT,
     TD_F2,

@@ -25,10 +25,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     process_record_msGesture();
   #endif // defined(PLODAH_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
 
-  #ifdef PLODAH_DYNAMIC_MACRO_KCS_ENABLE
-    if ( ! process_record_plodah_dynamic_macros(keycode, record) ) { return false; }
-  #endif // PLODAH_DYNAMIC_MACRO_KCS_ENABLE
-
   #ifdef PLODAH_TAPDANCE_TAPHOLD_ENABLE
     if ( ! process_record_tapdance_taphold(keycode, record) ) { return false; }
   #endif // PLODAH_TAPDANCE_TAPHOLD_ENABLE
@@ -40,24 +36,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #if defined(TRI_LAYER_ENABLE) && defined(TRI_LAYER_UNSTRICT)
     if ( ! process_record_tri_layer(keycode, record) ) { return false; }
   #endif // TRI_LAYER_ENABLE
-
-  switch (keycode) {
-    #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE) && defined(PLOOPY_VIAMENUS)
-      case PL_MSJG:
-        // jiggler_toggle();
-        process_record_mouse_jiggler(COMMUNITY_MODULE_MOUSE_JIGGLER_TOGGLE, record);
-        return false;
-    #endif // defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
-
-    #if defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE) && defined(PLOOPY_VIAMENUS)
-      case PL_TSKN:
-        process_record_task_switch(COMMUNITY_MODULE_TASK_SWITCH_NEXT, record);
-        return false;
-      case PL_TSKP:
-        process_record_task_switch(COMMUNITY_MODULE_TASK_SWITCH_PREVIOUS, record);
-        return false;
-    #endif // defined(COMMUNITY_MODULE_TASK_SWITCH_ENABLE)
-  }
 
   return true;
 }

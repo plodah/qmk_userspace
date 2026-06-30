@@ -6,10 +6,6 @@
     "keyboard": "reviung/reviung41",
     "keymap": "plodah",
     "converter": "rp2040_ce",
-    "keycodes": [
-        { "key": "PL_DMC1" },
-        { "key": "PL_DMC2" }
-    ],
     "modules": [
         "plodah/autocorrect_rgbflash",
         "plodah/comboflow",

@@ -18,10 +18,6 @@
         uint16_t dynamic_macro_timer;
     #endif // PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE
 
-    #if defined(PLODAH_DYNAMIC_MACRO_KCS_ENABLE)
-        bool process_record_plodah_dynamic_macros( uint16_t keycode, keyrecord_t *record );
-    #endif // PLODAH_DYNAMIC_MACRO_KCS_ENABLE
-
     #if defined(PLODAH_DYNAMIC_MACRO_TIMEOUT) && !defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)
         void housekeeping_task_plodah_dynamic_macro(void);
     #endif // defined(PLODAH_DYNAMIC_MACRO_TIMEOUT) && !defined(PLODAH_DYNAMIC_MACRO_TIMEOUT_MODE_DE)
