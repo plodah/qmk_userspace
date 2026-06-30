@@ -78,7 +78,7 @@
         },
         "keyboard_name": "Sofle | plodah",
         "leader_key": {
-            "timeout": 200,
+            "timeout": 240,
             "timing": true
         },
         "qmk":{

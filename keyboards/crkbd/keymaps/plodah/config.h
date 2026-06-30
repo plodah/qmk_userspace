@@ -103,7 +103,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif // TAP_DANCE_ENABLE
 
 #ifdef COMBO_ENABLE
-  #define PLODAH_COMBOS_COLEMAK  
+  #define PLODAH_COMBOS_COLEMAK
   #define PLODAH_COMBOS_F67
   #define PLODAH_HRM_COMBOS
   #define PLODAH_BRM_COMBOS
