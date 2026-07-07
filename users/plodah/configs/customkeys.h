@@ -57,6 +57,7 @@
 #define COLEMAK PDF(_COLEMK)
 #define O_QWERT PDF(_O_QWER)
 #define O_COLEM PDF(_O_COLE)
+#define G_QWERT PDF(_G_QWERTY)
 
 // ModTaps
 #define P_DOTAL MT(MOD_RALT,KC_PDOT)

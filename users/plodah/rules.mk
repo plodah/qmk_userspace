@@ -2,7 +2,8 @@ INTROSPECTION_KEYMAP_C = plodah.c
 RGB_MATRIX_CUSTOM_USER = yes
 
 SRC += functions/0_housekeeping_task_user.c
-#SRC += functions/0_keyboard_post_init_user.c
+# SRC += functions/0_keyboard_post_init_user.c
+# SRC += functions/0_layer_state_set_user.c
 SRC += functions/0_pointing_device_task_user.c
 SRC += functions/0_process_record_user.c
 

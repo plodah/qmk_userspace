@@ -47,7 +47,7 @@
         layer_state_t mask_adj = (layer_state_t)1 << _ADJUST;
         bool dualtri_enabled = false;
     #endif // PLODAH_DUAL_TRI_LAYER
-    layer_state_t layer_state_set_user(layer_state_t state) {
+    layer_state_t layer_state_set_tri_layer(layer_state_t state) {
         newstate = state|direct_layer_state;
         #if defined(PLODAH_BCD_TRI_LAYER)
             if((direct_layer_state & mask_fnb_fnc) == mask_fnb_fnc){

@@ -11,7 +11,8 @@
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",
         "plodah/rgb_repeathold",
-        "plodah/task_switch"
+        "plodah/task_switch",
+        "getreuer/socd_cleaner"
     ],
     "config": {
         "bootmagic": {
