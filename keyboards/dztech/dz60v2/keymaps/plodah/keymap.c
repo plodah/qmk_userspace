@@ -49,8 +49,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FNB] = LAYOUT_60_b_iso(
         KC_GRV,  MC_1,    MC_2,    MC_3,    MC_4,    MC_5,    MC_6,    MC_7,    MC_8,    MC_9,    MC_10,   CM_MSJG, QK_MAKE, XXXXXXX, KC_DEL,
-        BL_TOGG, BL_BRTG, BL_UP,   _______, _______, _______, _______, _______, _______, _______, KC_PSCR, _______, _______,
-        KC_CAPS, BL_BRTG, BL_DOWN, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        BL_TOGG, BL_BRTG, BL_UP,   _______, _______, KC_BRIU, _______, _______, _______, _______, KC_PSCR, _______, _______,
+        KC_CAPS, BL_BRTG, BL_DOWN, _______, _______, KC_BRID, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, QWERTY,  COLEMAK, G_QWERT, _______, P_PSTU,  _______, NK_TOGG, _______, _______, _______, _______,          KC_VOLU, _______,
         _______, GU_TOGG, _______,          KC_SPC,           KC_SPC,           KC_SPC,           KC_APP,  _______, KC_HOME, KC_VOLD, KC_END
     ),
