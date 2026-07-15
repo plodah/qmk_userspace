@@ -103,7 +103,7 @@
             },
             "usb_detect" :{
                 "enabled": true,
-                "polling_interval": 100,
+                "polling_interval": 5,
                 "timeout": 2500
             }
         },

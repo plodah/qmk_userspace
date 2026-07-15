@@ -10,7 +10,7 @@
 #define OLED_FONT_H "glcdfont.c"
 #define OLED_DISPLAY_64X128
 #define AUTOCORRECT_OLED_DISPLAY_LENGTH 10
-
+#define AUTOCORRECT_OLED_DISPLAY_COUNT 3
 #define MASTER_RIGHT
 #define ENCODER_DIRECTION_FLIP
 
@@ -30,13 +30,19 @@
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
 
-#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "_10__" }
+#define LAYER_NAMES { "Qwerty", "Colemak", "Gamer", "Symbols ", "Nav", "Mouse", "RGB", "dunno?" }
+#define _FNA _SYM
+#define _FNB _NAV
+#define _FNC _MSE
+#define _FND _RGB
+
+#define EE_HANDS
 
 #define COMBOFLOW_TERM 100
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 // #define TASKSWITCH_FORCE_NDE
-#define PLODAH_BORING_LAYER _O_QWER
+#define PLODAH_BORING_LAYER _G_QWERTY
 
 #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
   // #define MSJIGGLER_NOINTRO
@@ -75,6 +81,7 @@
 
 #if defined(TRI_LAYER_ENABLE)
   #define TRI_LAYER_UNSTRICT
+  #define PLODAH_BCD_TRI_LAYER
 #endif // TRI_LAYER_ENABLE
 
 #include "plodah.h"

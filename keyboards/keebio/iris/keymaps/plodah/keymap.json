@@ -74,6 +74,20 @@
             },
             "tap_keycode_delay": 8
         },
+        "split": {
+            "transport": {
+                "sync": {
+                    "activity": true
+                },
+                "watchdog": true,
+                "watchdog_timeout": 5000
+            },
+            "usb_detect" :{
+                "enabled": true,
+                "polling_interval": 5,
+                "timeout": 2500
+            }
+        },
         "tapping": {
             "chordal_hold": true,
             "flow_tap_term": 150,

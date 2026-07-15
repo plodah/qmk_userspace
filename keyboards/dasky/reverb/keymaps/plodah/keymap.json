@@ -56,7 +56,7 @@
             "leader": true,
             "mousekey": true,
             "oled": true,
-            "os_detection": false,
+            "os_detection": true,
             "pointing_device": false,
             "quantum_painter": true,
             "repeat_key": true,

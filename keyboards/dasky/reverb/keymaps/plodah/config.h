@@ -27,11 +27,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define TASKSWITCH_FORCE_NDE
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
 
+#define LAYER_NAMES { "Qwerty", "Colemak", "Gamer", "Symbols ", "Nav", "Mouse", "RGB", "dunno?" }
+#define _FNA _SYM
+#define _FNB _NAV
+#define _FNC _MSE
+#define _FND _RGB
+
 #define COMBOFLOW_TERM 100
 #define TURBO_FIRE_KEY_A MS_BTN1
 
-#define PLODAH_DUAL_TRI_LAYER
-#define PLODAH_BORING_LAYER _O_QWER
+#define PLODAH_BORING_LAYER _G_QWERTY
 
 #ifdef QUICK_TAP_TERM
   #undef QUICK_TAP_TERM
@@ -93,6 +98,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #if defined(TRI_LAYER_ENABLE)
   #define TRI_LAYER_UNSTRICT
+  #define PLODAH_BCD_TRI_LAYER
 #endif // TRI_LAYER_ENABLE
 
 #include "plodah.h"

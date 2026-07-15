@@ -25,7 +25,11 @@
 // #define CM_QVER_DISABLED
 // #define CM_QRGB_DISABLED
 
-#define LAYER_NAMES { "Qwert", "Colem", "Fn A ", "Fn B ", "Fn C ", "oQwer", "oCole", "Lower", "Raise", "_10__" }
+#define LAYER_NAMES { "Qwerty", "Colemak", "Gamer", "Symbols ", "Nav", "Mouse", "RGB", "dunno?" }
+#define _FNA _SYM
+#define _FNB _NAV
+#define _FNC _MSE
+#define _FND _RGB
 
 #define EE_HANDS
 
@@ -33,7 +37,7 @@
 
 #define PLODAH_KNOB_ENHANCEMENTS_ENABLE
 // #define TASKSWITCH_FORCE_NDE
-#define PLODAH_BORING_LAYER _O_QWER
+#define PLODAH_BORING_LAYER _G_QWERTY
 
 #if defined(COMMUNITY_MODULE_MOUSE_JIGGLER_ENABLE)
   // #define MSJIGGLER_NOINTRO
@@ -58,8 +62,21 @@
 #endif
 #define QUICK_TAP_TERM 60
 
+#ifdef RGBLIGHT_ENABLE
+  #include "configs/rgblight-effects-all.h"
+  #include "configs/rgblight-config.h"
+  // #define PLODAH_REPEATHOLD_RATE 100
+#endif // RGBLIGHT_ENABLE
+
+#ifdef RGB_MATRIX_ENABLE
+#include "configs/rgbmatrix-effects-few.h"
+#include "configs/rgbmatrix-config.h"
+  // #define PLODAH_REPEATHOLD_RATE 100
+#endif // RGB_MATRIX_ENABLE
+
 #if defined(TRI_LAYER_ENABLE)
   #define TRI_LAYER_UNSTRICT
+  #define PLODAH_BCD_TRI_LAYER
 #endif // TRI_LAYER_ENABLE
 
 #include "plodah.h"
