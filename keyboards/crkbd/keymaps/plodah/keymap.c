@@ -70,12 +70,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NAV] = LAYOUT(
         KC_CAPS, XXXXXXX, KC_HOME, KC_UP,   KC_END,  KC_PGUP,                       KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_PSCR, KC_ESC,
         KC_VOLU, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                       KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, KC_VOLU,
-        KC_VOLD, KC_UNDS, KC_PLUS, XXXXXXX, KC_LNUM, KC_LCAP,                       KC_LCAP, KC_LNUM, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
+        KC_VOLD, KC_UNDS, KC_PLUS, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
                                             _______, _______, _______,     _______, _______, _______
     ),
 
     [_MSE] = LAYOUT(
-        XXXXXXX, XXXXXXX, KC_INT2, KC_LCAP, XXXXXXX, CM_MSJG,                       CM_MSJG, XXXXXXX, KC_LCAP, KC_INT2, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, KC_INT2, KC_LCAP, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, CM_MSJG,
         XXXXXXX, KC_LNUM, KC_LSCR, MS_BTN2, MS_BTN1, MS_BTN3,                       MS_BTN3, MS_BTN1, MS_BTN2, KC_LSCR, KC_LNUM, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, MS_BTN4, MS_BTN5, KC_LSCR,                       KC_LSCR, MS_BTN4, MS_BTN5, XXXXXXX, XXXXXXX, XXXXXXX,
                                             _______, _______, _______,     _______, _______, _______

@@ -8,6 +8,10 @@
 #define VIA_INSECURE
 
 #define CHORDAL_HOLD_HANDEDNESS_REVIUNG41
+#define _FNA _SYM
+#define _FNB _NAV
+#define _FNC _MSE
+#define _FND _RGB
 
 // #define TASKSWITCH_FORCE_NDE
 // #define PLODAH_DYNAMIC_MACRO_FORCE_NDE
@@ -16,8 +20,7 @@
 
 #define COMBOFLOW_TERM 100
 
-#define PLODAH_DUAL_TRI_LAYER
-#define PLODAH_BORING_LAYER _O_QWER
+#define PLODAH_BORING_LAYER _G_QWERTY
 
 #ifdef QUICK_TAP_TERM
   #undef QUICK_TAP_TERM
@@ -40,6 +43,7 @@
 
 #if defined(TRI_LAYER_ENABLE)
   #define TRI_LAYER_UNSTRICT
+  #define PLODAH_BCD_TRI_LAYER
 #endif // TRI_LAYER_ENABLE
 
 /* ------- RGB LIGHTING ------- */

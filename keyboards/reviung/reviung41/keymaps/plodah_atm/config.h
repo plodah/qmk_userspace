@@ -7,6 +7,10 @@
 #define CM_QRGB_DISABLED
 
 #define CHORDAL_HOLD_HANDEDNESS_REVIUNG41
+#define _FNA _SYM
+#define _FNB _NAV
+#define _FNC _MSE
+#define _FND _RGB
 
 // #define PLODAH_BORING_LAYER _BASE
 #define TASKSWITCH_FORCE_NDE
@@ -35,6 +39,7 @@
 
 #if defined(TRI_LAYER_ENABLE)
   #define TRI_LAYER_UNSTRICT
+  #define PLODAH_BCD_TRI_LAYER
 #endif // TRI_LAYER_ENABLE
 
 /* ------- RGB LIGHTING ------- */

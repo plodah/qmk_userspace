@@ -56,7 +56,7 @@
             "rgb_matrix": false,
             "space_cadet": false,
             "swap_hands": false,
-            "tap_dance": true,
+            "tap_dance": false,
             "tri_layer": true,
             "unicode": false,
             "unicode_common": false,
