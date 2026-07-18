@@ -1,0 +1,68 @@
+diff --git a/.github/workflows/deploy-to-cloudflare.yml b/.github/workflows/deploy-to-cloudflare.yml
+index 141eae3..0f9100f 100644
+--- a/.github/workflows/deploy-to-cloudflare.yml
++++ b/.github/workflows/deploy-to-cloudflare.yml
+@@ -1,7 +1,7 @@
+ on:
+   push:
+     branches:
+-      - main
++      - via_plodah_uk
+   repository_dispatch:
+     types: [definition_update]
+   workflow_dispatch:
+@@ -17,7 +17,7 @@ jobs:
+         uses: actions/checkout@v4
+       - uses: oven-sh/setup-bun@v2
+       - name: Install
+-        run: bun install --frozen-lockfile
++        run: bun install
+       - name: Refresh Deps
+         run: bun run refresh-kbs
+       - name: Build
+@@ -27,5 +27,5 @@ jobs:
+         with:
+           apiToken: ${{ secrets.CLOUDFLARE_ACCOUNT_TOKEN }}
+           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+-          command: pages deploy dist --project-name=app
++          command: pages deploy dist --project-name=via-app
+           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+diff --git a/package-lock.json b/package-lock.json
+index 71df548..a54b997 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -39,7 +39,7 @@
+         "styled-components": "^6.0.0-beta.5",
+         "three": "^0.169.0",
+         "use-resize-observer": "^9.1.0",
+-        "via-keyboards": "github:the-via/keyboards",
++        "via-keyboards": "github:plodah/via-keyboards#via_plodah_uk",
+         "wouter": "^2.10.0"
+       },
+       "devDependencies": {
+diff --git a/package.json b/package.json
+index 3abe80d..c94b222 100644
+--- a/package.json
++++ b/package.json
+@@ -51,7 +51,7 @@
+     "styled-components": "^6.0.0-beta.5",
+     "three": "^0.169.0",
+     "use-resize-observer": "^9.1.0",
+-    "via-keyboards": "github:the-via/keyboards",
++    "via-keyboards": "github:plodah/via-keyboards#via_plodah_uk",
+     "wouter": "^2.10.0"
+   },
+   "devDependencies": {
+diff --git a/vite.config.ts b/vite.config.ts
+index f8e28af..9f5f628 100644
+--- a/vite.config.ts
++++ b/vite.config.ts
+@@ -1,7 +1,6 @@
+-import {defineConfig} from 'vite';
+ import react from '@vitejs/plugin-react';
+ import path from 'path';
+-import {splitVendorChunkPlugin} from 'vite';
++import { defineConfig, splitVendorChunkPlugin } from 'vite';
+ import {createHtmlPlugin} from 'vite-plugin-html';
+ import fs from 'fs';
+ 
