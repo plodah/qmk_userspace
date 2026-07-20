@@ -1,5 +1,41 @@
 #include QMK_KEYBOARD_H
-#if defined(TRI_LAYER_ENABLE) && defined(TRI_LAYER_UNSTRICT)
+#if defined(TRI_LAYER_ENABLE) && ( defined(PLODAH_TRILAYER_SETONE) || defined(PLODAH_TRILAYER_SETTWO) || defined(PLODAH_TRILAYER_SETTHR) )
+
+    #ifdef PLODAH_TRILAYER_SETONE
+        #ifndef PLODAH_TRILAYER_SETONE_A
+            #define PLODAH_TRILAYER_SETONE_A 1
+        #endif
+        #ifndef PLODAH_TRILAYER_SETONE_B
+            #define PLODAH_TRILAYER_SETONE_B 2
+        #endif
+        #ifndef PLODAH_TRILAYER_SETONE_C
+            #define PLODAH_TRILAYER_SETONE_C 3
+        #endif
+    #endif // PLODAH_TRILAYER_SETONE
+
+    #ifdef PLODAH_TRILAYER_SETTWO
+        #ifndef PLODAH_TRILAYER_SETTWO_A
+            #define PLODAH_TRILAYER_SETTWO_A 2
+        #endif
+        #ifndef PLODAH_TRILAYER_SETTWO_B
+            #define PLODAH_TRILAYER_SETTWO_B 3
+        #endif
+        #ifndef PLODAH_TRILAYER_SETTWO_C
+            #define PLODAH_TRILAYER_SETTWO_C 4
+        #endif
+    #endif // PLODAH_TRILAYER_SETTWO
+
+    #ifdef PLODAH_TRILAYER_SETTHR
+        #ifndef PLODAH_TRILAYER_SETTHR_A
+            #define PLODAH_TRILAYER_SETTHR_A 3
+        #endif
+        #ifndef PLODAH_TRILAYER_SETTHR_B
+            #define PLODAH_TRILAYER_SETTHR_B 4
+        #endif
+        #ifndef PLODAH_TRILAYER_SETTHR_C
+            #define PLODAH_TRILAYER_SETTHR_C 5
+        #endif
+    #endif // PLODAH_TRILAYER_SETTHR
 
     layer_state_t direct_layer_state;
     bool process_record_tri_layer(uint16_t keycode, keyrecord_t *record) {
@@ -32,60 +68,66 @@
     }
 
     layer_state_t newstate;
-    layer_state_t mask_fna_fnb = ((layer_state_t)1 << _FNA) | ((layer_state_t)1 << _FNB);
-    layer_state_t mask_fnc = (layer_state_t)1 << _FNC;
-    bool abc_enabled = false;    
+    #if defined(PLODAH_TRILAYER_SETONE)
+        layer_state_t mask_setoneab = ((layer_state_t)1 << PLODAH_TRILAYER_SETONE_A) | ((layer_state_t)1 << PLODAH_TRILAYER_SETONE_B);
+        layer_state_t mask_setonec = (layer_state_t)1 << PLODAH_TRILAYER_SETONE_C;
+        bool setone_enabled = false;
+    #endif // PLODAH_TRILAYER_SETONE
 
-    #if defined(PLODAH_BCD_TRI_LAYER)
-        layer_state_t mask_fnb_fnc = ((layer_state_t)1 << _FNB) | ((layer_state_t)1 << _FNC);
-        layer_state_t mask_fnd = (layer_state_t)1 << _FND;
-        bool bcd_enabled = false;
-    #endif // PLODAH_BCD_TRI_LAYER
+    #if defined(PLODAH_TRILAYER_SETTWO)
+        layer_state_t mask_settwoab = ((layer_state_t)1 << PLODAH_TRILAYER_SETTWO_A) | ((layer_state_t)1 << PLODAH_TRILAYER_SETTWO_B);
+        layer_state_t mask_settwoc = (layer_state_t)1 << PLODAH_TRILAYER_SETTWO_C;
+        bool settwo_enabled = false;
+    #endif // PLODAH_TRILAYER_SETTWO
 
-    #if defined(PLODAH_DUAL_TRI_LAYER)
-        layer_state_t mask_raise_lower = ((layer_state_t)1 << _RAISE) | ((layer_state_t)1 << _LOWER);
-        layer_state_t mask_adj = (layer_state_t)1 << _ADJUST;
-        bool dualtri_enabled = false;
-    #endif // PLODAH_DUAL_TRI_LAYER
+    #if defined(PLODAH_TRILAYER_SETTHR)
+        layer_state_t mask_setthrab = ((layer_state_t)1 << PLODAH_TRILAYER_SETTHR_A) | ((layer_state_t)1 << PLODAH_TRILAYER_SETTHR_B);
+        layer_state_t mask_setthrc = (layer_state_t)1 << PLODAH_TRILAYER_SETTHR_C;
+        bool setthr_enabled = false;
+    #endif // PLODAH_TRILAYER_SETTHR
+    
     layer_state_t layer_state_set_tri_layer(layer_state_t state) {
         newstate = state|direct_layer_state;
-        #if defined(PLODAH_BCD_TRI_LAYER)
-            if((direct_layer_state & mask_fnb_fnc) == mask_fnb_fnc){
-                dprintf("TRI_LAYER FND on \n");
-                newstate = newstate | mask_fnd;
-                bcd_enabled = true;
+        #if defined(PLODAH_TRILAYER_SETONE)
+            if((direct_layer_state & mask_setoneab) == mask_setoneab){
+                dprintf("TRILAYER_SETONE on \n");
+                newstate = newstate | mask_setonec;
+                setone_enabled = true;
             }
-            if(bcd_enabled && (direct_layer_state & mask_fnb_fnc) != mask_fnb_fnc){
-                dprintf("TRI_LAYER FND off \n");
-                newstate = newstate & ~mask_fnd;
-                bcd_enabled = false;
+            if(setone_enabled && (direct_layer_state & mask_setoneab) != mask_setoneab){
+                dprintf("TRILAYER_SETONE off \n");
+                newstate = newstate & ~mask_setonec;
+                setone_enabled = false;
             }
-        #endif // PLODAH_BCD_TRI_LAYER
+        #endif // PLODAH_TRILAYER_SETONE
 
-        if( (direct_layer_state & mask_fna_fnb) == mask_fna_fnb){
-            dprintf("TRI_LAYER FNC on \n");
-            newstate = newstate | mask_fnc;
-            abc_enabled = true;
-        }
-        else if(abc_enabled){
-            dprintf("TRI_LAYER FNC off \n");
-            newstate = newstate & ~mask_fnc;
-            abc_enabled = false;
-        }
+        #if defined(PLODAH_TRILAYER_SETTWO)
+            if((direct_layer_state & mask_settwoab) == mask_settwoab){
+                dprintf("TRILAYER_SETTWO on \n");
+                newstate = newstate | mask_settwoc;
+                settwo_enabled = true;
+            }
+            if(settwo_enabled && (direct_layer_state & mask_settwoab) != mask_settwoab){
+                dprintf("TRILAYER_SETTWO off \n");
+                newstate = newstate & ~mask_settwoc;
+                settwo_enabled = false;
+            }
+        #endif // PLODAH_TRILAYER_SETTWO
 
-        #if defined(PLODAH_DUAL_TRI_LAYER)
-            if((direct_layer_state & mask_raise_lower) == mask_raise_lower){
-                dprintf("TRI_LAYER ADJUST on \n");
-                newstate = newstate | mask_adj;
-                dualtri_enabled = true;
+        #if defined(PLODAH_TRILAYER_SETTHR)
+            if((direct_layer_state & mask_setthrab) == mask_setthrab){
+                dprintf("TRILAYER_SETTHR on \n");
+                newstate = newstate | mask_setthrc;
+                setthr_enabled = true;
             }
-            else if(dualtri_enabled){
-                dprintf("TRI_LAYER ADJUST off \n");
-                newstate = newstate & ~mask_adj;
-                dualtri_enabled = false;
+            if(setthr_enabled && (direct_layer_state & mask_setthrab) != mask_setthrab){
+                dprintf("TRILAYER_SETTHR off \n");
+                newstate = newstate & ~mask_setthrc;
+                setthr_enabled = false;
             }
-        #endif // PLODAH_DUAL_TRI_LAYER
+        #endif // PLODAH_TRILAYER_SETTHR
+
         return newstate;
     }
-#endif // defined(TRI_LAYER_ENABLE) && defined(TRI_LAYER_UNSTRICT)
+#endif // defined(TRI_LAYER_ENABLE) && ( defined(PLODAH_TRILAYER_SETONE) || defined(PLODAH_TRILAYER_SETTWO) || defined(PLODAH_TRILAYER_SETTHR) )
 

@@ -31,12 +31,6 @@
 // #define CM_QRGB_DISABLED
 
 #define LAYER_NAMES { "Qwerty", "Colemak", "Gamer", "Symbols ", "Nav", "Mouse", "RGB", "dunno?" }
-#define _FNA _SYM
-#define _FNB _NAV
-#define _FNC _MSE
-#define _FND _RGB
-
-#define EE_HANDS
 
 #define COMBOFLOW_TERM 100
 
@@ -80,8 +74,14 @@
 #endif // RGB_MATRIX_ENABLE
 
 #if defined(TRI_LAYER_ENABLE)
-  #define TRI_LAYER_UNSTRICT
-  #define PLODAH_BCD_TRI_LAYER
+  #define PLODAH_TRILAYER_SETONE
+  #define PLODAH_TRILAYER_SETONE_A _SYM
+  #define PLODAH_TRILAYER_SETONE_B _NAV
+  #define PLODAH_TRILAYER_SETONE_C _MSE
+  #define PLODAH_TRILAYER_SETTWO
+  #define PLODAH_TRILAYER_SETTWO_A _NAV
+  #define PLODAH_TRILAYER_SETTWO_B _MSE
+  #define PLODAH_TRILAYER_SETTWO_C _RGB
 #endif // TRI_LAYER_ENABLE
 
 #include "plodah.h"

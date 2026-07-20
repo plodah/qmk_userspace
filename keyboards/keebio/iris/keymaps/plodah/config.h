@@ -22,10 +22,6 @@
   #define PLODAH_TAPDANCE_TAPHOLD_ENABLE
 #endif // TAP_DANCE_ENABLE
 
-#define _FNA _SYM
-#define _FNB _NAV
-#define _FNC _MSE
-
 #ifdef COMBO_ENABLE
   #define PLODAH_HRM_COMBOS
   #define PLODAH_BRM_COMBOS
@@ -38,7 +34,10 @@
 #define QUICK_TAP_TERM 60
 
 #if defined(TRI_LAYER_ENABLE)
-  #define TRI_LAYER_UNSTRICT
+  #define PLODAH_TRILAYER_SETONE
+  #define PLODAH_TRILAYER_SETONE_A _SYM
+  #define PLODAH_TRILAYER_SETONE_B _NAV
+  #define PLODAH_TRILAYER_SETONE_C _MSE
 #endif // TRI_LAYER_ENABLE
 
 #include "configs/backlight-config.h"

@@ -48,7 +48,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if ( ! process_record_encoder_actions(keycode, record) ) { return false; }
   #endif  // PLODAH_KNOB_ENHANCEMENTS_ENABLE
 
-  #if defined(TRI_LAYER_ENABLE) && defined(TRI_LAYER_UNSTRICT)
+  #if defined(TRI_LAYER_ENABLE) && ( defined(PLODAH_TRILAYER_SETONE) || defined(PLODAH_TRILAYER_SETTWO) || defined(PLODAH_TRILAYER_SETTHR) )
     if ( ! process_record_tri_layer(keycode, record) ) { return false; }
   #endif // TRI_LAYER_ENABLE
 

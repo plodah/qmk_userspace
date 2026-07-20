@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     P_BSCTL, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_TAB,  HRM_AG,  HRM_SA,  HRM_DS,  HRM_FC,  HRM_GG,                          HRM_HG,  HRM_JC,  HRM_KS,  HRM_LA,  HRM_CG,  KC_QUOT,
     KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  BRM_BG,  PL_ECPR,       PL_ECPR, BRM_NG,  BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, QK_REP,
-                      P_HOMFC, KC_LALT, KC_LCTL, P_ENTNA, P_SPCSY,       P_SPCSY, P_ENTNA, KC_RCTL, KC_RALT, P_ENDFC
+                      P_HOMMS, KC_LALT, KC_LCTL, P_ENTNA, P_SPCSY,       P_SPCSY, P_ENTNA, KC_RCTL, KC_RALT, P_ENDMS
   ),
 
   [_COLEMK] = LAYOUT(
@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     P_BSCTL, KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                            KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
     KC_TAB,  HRM_AG,  HRM_RA,  HRM_SS,  HRM_TC,  HRM_DG,                          HRM_HG,  HRM_NC,  HRM_ES,  HRM_IA,  HRM_OG,  KC_QUOT,
     KC_NUBS, BRM_ZG,  BRM_XA,  BRM_CS,  BRM_VC,  BRM_BG,  PL_ECPR,       PL_ECPR, BRM_KG,  BRM_MC,  BRM_COS, BRM_DOA, BRM_SLG, QK_REP,
-                      P_HOMFC, KC_LALT, KC_LCTL, P_ENTNA, P_SPCSY,       P_SPCSY, P_ENTNA, KC_RCTL, KC_RALT, P_ENDFC
+                      P_HOMMS, KC_LALT, KC_LCTL, P_ENTNA, P_SPCSY,       P_SPCSY, P_ENTNA, KC_RCTL, KC_RALT, P_ENDMS
   ),
 
   [_G_QWERTY] = LAYOUT(

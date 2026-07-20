@@ -15,8 +15,12 @@
     const uint16_t PROGMEM pl_combo_ert[]    = {KC_E,     KC_R,   KC_T,           COMBO_END};
     const uint16_t PROGMEM pl_combo_ip[]     = {KC_I,     KC_P,                   COMBO_END};
 
-    const uint16_t PROGMEM pl_combo_capa[]   = {P_BSPFA,  KC_A,                   COMBO_END};
-    const uint16_t PROGMEM pl_combo_capa2[]  = {P_BSPFB,  KC_A,                   COMBO_END};
+    #if defined(_FNA)
+      const uint16_t PROGMEM pl_combo_capa[]   = {P_BSPFA,  KC_A,                   COMBO_END};
+    #endif // defined(_FNA)
+    #if defined(_FNB)
+      const uint16_t PROGMEM pl_combo_capa2[]  = {P_BSPFB,  KC_A,                   COMBO_END};
+    #endif // defined(_FNB)
     const uint16_t PROGMEM pl_combo_capa3[]  = {KC_NUBS,  KC_A,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_taba[]   = {KC_TAB,   KC_A,                   COMBO_END};
     const uint16_t PROGMEM pl_combo_bspa[]   = {KC_BSPC,  KC_A,                   COMBO_END};
@@ -44,8 +48,12 @@
     #endif // SWAP_HANDS_ENABLE
 
     #if defined(PLODAH_HRM_COMBOS)
+        #if defined(_FNA)
         const uint16_t PROGMEM pl_combo_capa_hrm[]    = {P_BSPFA, HRM_AG, COMBO_END};
+        #endif
+        #if defined(_FNB)
         const uint16_t PROGMEM pl_combo_capa_hrm2[]   = {P_BSPFB, HRM_AG, COMBO_END};
+        #endif
         const uint16_t PROGMEM pl_combo_capa_hrm3[]   = {KC_NUBS, HRM_AG, COMBO_END};
         const uint16_t PROGMEM pl_combo_taba_hrm[]    = {KC_TAB,  HRM_AG, COMBO_END};
 
@@ -275,8 +283,12 @@ combo_t key_combos[] = {
         COMBO(pl_combo_ert,   C(S(KC_T)) ),
         COMBO(pl_combo_ip,    KC_PSCR    ),
 
+        #if defined(_FNA)
         COMBO(pl_combo_capa,  C(KC_A)    ),
+        #endif
+        #if defined(_FNB)
         COMBO(pl_combo_capa2, C(KC_A)    ),
+        #endif
         COMBO(pl_combo_capa3, C(KC_A)    ),
         COMBO(pl_combo_taba,  C(KC_A)    ),
         COMBO(pl_combo_bspa,  C(KC_A)    ),
@@ -304,8 +316,12 @@ combo_t key_combos[] = {
         #endif // SWAP_HANDS_ENABLE
 
         #if defined(PLODAH_HRM_COMBOS)
+            #if defined(_FNA)
             COMBO(pl_combo_capa_hrm,    C(KC_A)),
+            #endif
+            #if defined(_FNB)
             COMBO(pl_combo_capa_hrm2,   C(KC_A)),
+            #endif
             COMBO(pl_combo_capa_hrm3,   C(KC_A)),
             COMBO(pl_combo_taba_hrm,    C(KC_A)),
 
