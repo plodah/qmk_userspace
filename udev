@@ -18,7 +18,14 @@
 # Atmel Corp. atmega32u4 DFU bootloader 03eb 2ff4
 ACTION!="remove", SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", MODE="0660", GROUP="users", TAG+="uaccess"
 
+# STM DFU bootloader 0483 df11
+ACTION!="remove", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0660", GROUP="users", TAG+="uaccess"
+
+# Caterina (arduino) bootloader 2341 0037
+ACTION!="remove", SUBSYSTEM=="usb", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0037", MODE="0660", GROUP="users", TAG+="uaccess"
+
 ########################################
+
 # crkbd/rev1 4653 0001
 ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="4653", ATTRS{idProduct}=="0001", MODE="0660", GROUP="users", TAG+="uaccess"
 
