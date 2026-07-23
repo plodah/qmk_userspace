@@ -101,12 +101,12 @@
                     "wpm": true
                 },
                 "watchdog": true,
-                "watchdog_timeout": 5000
+                "watchdog_timeout": 6000
             },
             "usb_detect" :{
                 "enabled": true,
-                "polling_interval": 5,
-                "timeout": 2500
+                "polling_interval": 10,
+                "timeout": 5000
             }
         },
         "tapping": {
