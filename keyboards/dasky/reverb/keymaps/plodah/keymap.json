@@ -10,16 +10,17 @@
         { "key": "PL_DMC2" }
     ],
     "modules": [
+        "drashna/kvm_helper",
         "plodah/autocorrect_rgbflash",
         "plodah/comboflow",
         "plodah/config_query",
         "plodah/morse_code",
         "plodah/mouse_jiggler",
         "plodah/rgb_helpers",
+        "plodah/rgb_indicators",
         "plodah/rgb_repeathold",
         "plodah/task_switch",
-        "plodah/turbo_fire",
-        "plodah/morse_code"
+        "plodah/turbo_fire"
     ],
     "config": {
         "bootmagic": {
