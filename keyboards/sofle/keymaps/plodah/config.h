@@ -1,5 +1,5 @@
 #pragma once
-
+#define DYNAMIC_KEYMAP_MACRO_COUNT 40
 #if !defined(DEBUG_MATRIX_SCAN_RATE)
 #define DEBUG_MATRIX_SCAN_RATE
 #endif // DEBUG_MATRIX_SCAN_RATE
