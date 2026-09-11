@@ -32,14 +32,14 @@ jobs:
       - name: Checkout Userspace
         uses: actions/checkout@v6
         with:
-          token: ${{ forgejo.token }}
+          #token: ${{ forgejo.token }}
           submodules: recursive
 
       - name: Checkout QMK Firmware
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         if: ${{ hashFiles('qmk_firmware/requirements.txt') == '' }}
         with:
-          token: ${{ forgejo.token }}
+          #token: ${{ forgejo.token }}
           path: qmk_firmware
           repository: ${{ inputs.qmk_repo || 'plodah/qmk_firmware' }}
           ref: ${{ inputs.qmk_ref || 'master' }}
