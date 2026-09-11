@@ -32,14 +32,14 @@ jobs:
       - name: Checkout Userspace
         uses: actions/checkout@v6
         with:
-          token: ${{ github.token }}
+          token: ${{ forgejo.token }}
           submodules: recursive
 
       - name: Checkout QMK Firmware
         uses: actions/checkout@v6
         if: ${{ hashFiles('qmk_firmware/requirements.txt') == '' }}
         with:
-          token: ${{ github.token }}
+          token: ${{ forgejo.token }}
           path: qmk_firmware
           repository: ${{ inputs.qmk_repo || 'plodah/qmk_firmware' }}
           ref: ${{ inputs.qmk_ref || 'master' }}
@@ -54,8 +54,8 @@ jobs:
       - name: Configure QMK CLI
         run: |
           qmk config userspace_compile.parallel=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || getconf _NPROCESSORS_ONLN 2>/dev/null)
-          qmk config user.qmk_home=$GITHUB_WORKSPACE/qmk_firmware
-          qmk config user.overlay_dir=$GITHUB_WORKSPACE
+          qmk config user.qmk_home=$FORGEJO_WORKSPACE/qmk_firmware
+          qmk config user.overlay_dir=$FORGEJO_WORKSPACE
 
       - name: Validate userspace
         run: |
@@ -73,9 +73,9 @@ jobs:
           fi
           qmk userspace-compile -e DUMP_CI_METADATA=yes $EXTRA_ARGS || touch .failed
           # Generate the step summary markdown
-          ./qmk_firmware/util/ci/generate_failure_markdown.sh > $GITHUB_STEP_SUMMARY || true
+          ./qmk_firmware/util/ci/generate_failure_markdown.sh > $FORGEJO_STEP_SUMMARY || true
           # Truncate to a maximum of 1MB to deal with GitHub workflow limit
-          truncate --size='<960K' $GITHUB_STEP_SUMMARY || true
+          truncate --size='<960K' $FORGEJO_STEP_SUMMARY || true
           # Exit with failure if the compilation stage failed
           [ ! -f .failed ] || exit 1
 

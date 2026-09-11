@@ -32,13 +32,13 @@ jobs:
       - name: Delete release
         run: gh release delete ${{ inputs.release_name || 'latest' }} --cleanup-tag || true
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          FORGEJO_TOKEN: ${{ forgejo.token }}
 
       - name: Generate Release
         uses: softprops/action-gh-release@v3
         if: always() && !cancelled()
         with:
-          token: ${{ github.token }}
+          token: ${{ forgejo.token }}
           name: Latest QMK Firmware
           tag_name: ${{ inputs.release_name || 'latest' }}
           fail_on_unmatched_files: false
