@@ -18,3 +18,4 @@ jobs:
     uses: ./.forgejo/workflows/qmk_userspace_publish.yml
     if: forgejo.ref == 'refs/heads/main' && always() && !cancelled()
     needs: build
+      release_name: automatic-build

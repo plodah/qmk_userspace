@@ -38,7 +38,7 @@ jobs:
         if: always() && !cancelled()
         with:
           direction: upload
-          #token: ${{ forgejo.token }}
+          token: ${{ forgejo.token }}
           name: Latest QMK Firmware
           tag_name: ${{ inputs.release_name || 'latest' }}
           fail_on_unmatched_files: false
