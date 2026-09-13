@@ -2,9 +2,6 @@ name: Build QMK firmware
 
 on: [push, workflow_dispatch]
 
-permissions:
-  contents: write
-
 jobs:
   build:
     name: 'QMK Userspace Build'
