@@ -41,6 +41,7 @@ jobs:
           token: ${{ forgejo.token }}
           name: Latest QMK Firmware
           direction: upload
+          tag: ${{ inputs.release_name || 'latest' }}
           tag_name: ${{ inputs.release_name || 'latest' }}
           fail_on_unmatched_files: false
           draft: false
