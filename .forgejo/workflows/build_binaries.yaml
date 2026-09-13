@@ -13,6 +13,7 @@ jobs:
     with:
       qmk_repo: plodah/qmk_firmware
       qmk_ref: mybuilds-2026-06-15
+      release_name: automatic-build
   publish:
     name: 'QMK Userspace Publish'
     uses: ./.forgejo/workflows/qmk_userspace_publish.yml

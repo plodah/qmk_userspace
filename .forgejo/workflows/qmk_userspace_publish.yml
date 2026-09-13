@@ -43,7 +43,7 @@ jobs:
           tag_name: ${{ inputs.release_name || 'latest' }}
           fail_on_unmatched_files: false
           draft: false
-          prerelease: false
+          prerelease: true
           files: |
             **/*.hex
             **/*.bin
