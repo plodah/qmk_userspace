@@ -80,7 +80,7 @@ jobs:
           [ ! -f .failed ] || exit 1
 
       - name: Upload Binaries
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v3
         if: always() && !cancelled()
         continue-on-error: true
         with:
