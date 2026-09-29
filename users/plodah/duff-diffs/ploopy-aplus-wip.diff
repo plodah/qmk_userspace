@@ -1,0 +1,1990 @@
+diff --git a/keyboards/ploopyco/aplus/info.json b/keyboards/ploopyco/aplus/info.json
+new file mode 100644
+index 0000000000..19b438e80d
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/info.json
+@@ -0,0 +1,40 @@
++{
++    "keyboard_name": "Ploopy A+ Trackball",
++    "url": "www.ploopy.co",
++    "maintainer": "ploopyco",
++    "manufacturer": "Ploopy Corporation",
++    "processor": "RP2040",
++    "bootloader": "rp2040",
++    "bootloader_instructions": "Hold down the bottom left button while plugging USB cable in.",
++    "tags": ["trackball", "mouse", "scrollwheel"],
++    "usb": {
++        "vid": "0x5043",
++        "pid": "0x81DB",
++        "max_power": 100
++    },
++    "features": {
++        "bootmagic": true,
++        "extrakey": true,
++        "mousekey": true,
++        "nkro": true,
++        "pointing_device": true,
++        "rgblight": true
++    },
++    "layouts": {
++        "LAYOUT": {
++            "layout": [
++                {"matrix": [0, 1], "label":"Top Left Left", "x":0, "y":0, "h":2},
++                {"matrix": [0, 2], "label":"Top Left", "x":1.25, "y":0, "h":1.25},
++                {"matrix": [0, 3], "label":"Top Right", "x":2.5, "y":0, "h":1.25},
++                {"matrix": [0, 4], "label":"Top Right Right", "x":3.75, "y":0, "h":2},
++                {"matrix": [0, 0], "label":"Bottom Left", "x":0, "y":2.25, "w":1.75, "h":2},
++                {"matrix": [0, 5], "label":"Bottom Right", "x":3, "y":2.25, "w":1.75, "h":2},
++                {"matrix": [0, 6], "label":"Knob Left", "x":0.5, "y":4.5, "w":1.75, "h":1.5},
++                {"matrix": [0, 7], "label":"Knob Right", "x":2.5, "y":4.5, "w":1.75, "h":1.5}
++            ]
++        }
++    },
++    "rgblight": {
++        "led_count": 2
++    }
++}
+diff --git a/keyboards/ploopyco/aplus/keymaps/default/config.h b/keyboards/ploopyco/aplus/keymaps/default/config.h
+new file mode 100644
+index 0000000000..7fb2850c68
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/keymaps/default/config.h
+@@ -0,0 +1,33 @@
++/* Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
++ * Copyright 2019 Sunjun Kim
++ * Copyright 2020 Ploopy Corporation
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#pragma once
++
++#define POINTING_DEVICE_HIRES_SCROLL_ENABLE
++#define POINTING_DEVICE_HIRES_SCROLL_MULTIPLIER 120
++#define POINTING_DEVICE_HIRES_SCROLL_EXPONENT 0
++
++#define POINTING_DEVICE_INVERT_Y
++
++#define MOUSE_EXTENDED_REPORT
++#define WHEEL_EXTENDED_REPORT
++
++#define PLOOPY_DRAGSCROLL_MOMENTARY
++#define PLOOPY_DRAGSCROLL_DIVISOR_H 1.0
++#define PLOOPY_DRAGSCROLL_DIVISOR_V 0.3
++#define PLOOPY_DRAGSCROLL_INVERT
+diff --git a/keyboards/ploopyco/aplus/keymaps/default/keymap.c b/keyboards/ploopyco/aplus/keymaps/default/keymap.c
+new file mode 100644
+index 0000000000..99ef5fa269
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/keymaps/default/keymap.c
+@@ -0,0 +1,544 @@
++/* Copyright 2023 Colin Lam (Ploopy Corporation)
++ * Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
++ * Copyright 2019 Sunjun Kim
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++#include QMK_KEYBOARD_H
++
++#include "rgblight.h"
++#include "printf.h"
++
++#include "../../../common/tmag5273wheel.h"
++#include "pointing_device_gestures.h"
++
++/* State variables for wheels. */
++uint16_t leftwheel_deadzone_center = 0;
++uint16_t rightwheel_deadzone_center = 0;
++
++uint16_t leftwheel_current_position = 0;
++uint16_t rightwheel_current_position = 0;
++uint32_t last_scroll_time = 0;
++
++/* Add custom keycodes for control layer. */
++enum my_keycodes {
++  PKC_TGL_MIRROR = SAFE_RANGE,
++  PKC_TGL_VERT_SCRL,
++  PKC_TGL_HORIZ_SCRL,
++  PKC_TGL_DRAG_SCRL,
++  PKC_GESTURE,
++  PKC_DRAG_SCROLL,
++  PKC_ADJUST_LED_BRIGHTNESS,
++  PKC_BLINKY_DPI_CONFIG
++};
++
++/* Layer names. */
++enum {
++    LAYER_NAV_RIGHT_HANDED = 0,
++    LAYER_NAV_LEFT_HANDED,
++    LAYER_CONTROL
++};
++
++/* Keymap. */
++const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
++    [0] = LAYOUT( MS_BTN4, MS_BTN5, PKC_DRAG_SCROLL, MS_BTN2,
++                  MS_BTN1, MS_BTN3,
++                  MS_BTN1, MS_BTN2
++                )
++};
++
++/* Set sane defaults when EEPROM is reset. */
++void eeconfig_init_user(void) {
++
++    user_config.raw = 0;
++
++    user_config.left_handed = false;                // Right-handed.
++    user_config.horizontal_scroll_arrows = false;   // False = Scroll events, True = left/right arrows.
++    user_config.vertical_scroll_arrows = false;     // False = Scroll events, True = up/down arrows.
++    user_config.drag_scroll_mode = false;           // Hold to activate.
++    user_config.led_brightness = 4;                 // Brightest mode by default.
++
++    eeconfig_update_user(user_config.raw);
++}
++
++void keyboard_pre_init_user(void) {
++
++    /* Set up GPIO for both TMAG sensors. */
++    gpio_set_pin_output_push_pull(TMAG5273_D0_PWR_PIN);
++    gpio_set_pin_output_push_pull(TMAG5273_D1_PWR_PIN);
++    gpio_write_pin_low(TMAG5273_D0_PWR_PIN);
++    gpio_write_pin_low(TMAG5273_D1_PWR_PIN);
++
++}
++
++void keyboard_post_init_user(void) {
++    /* ============================ Debug Setup ============================ */
++
++    /* If you turn these on, also uncomment CONSOLE_ENABLE = yes in
++       post_rules.mk! */
++    //debug_enable = true;
++    //debug_matrix=true;
++    //debug_keyboard=true;
++    //debug_mouse=true;
++
++    /* ========================== Scroll Wheel Setup ======================= */
++
++    /* Start up the two wheels. */
++    tmag5273_init();
++
++    /* Init TMAG5273 D0 (left wheel) */
++    gpio_write_pin_high(TMAG5273_D0_PWR_PIN);
++    wait_us(370);  // TMAG tstart_power_up, plus 100us margin
++    tmag5273_init_device(TMAG5273_D0_I2C_ADDRESS);
++    wait_ms(20);
++    leftwheel_current_position = tmag5273_get_angle(TMAG5273_D0_I2C_ADDRESS);
++    leftwheel_deadzone_center = leftwheel_current_position;
++
++
++    /* Init TMAG5273 D1 (right wheel) */
++    gpio_write_pin_high(TMAG5273_D1_PWR_PIN);
++    wait_us(370);  // TMAG tstart_power_up, plus 100us margin
++    tmag5273_init_device(TMAG5273_D1_I2C_ADDRESS);
++    wait_ms(20);
++    rightwheel_current_position = tmag5273_get_angle(TMAG5273_D1_I2C_ADDRESS);
++    rightwheel_deadzone_center = rightwheel_current_position;
++
++
++    /* =================== Persistent Configuration Setup ================== */
++
++    /* Load up configuration details from the EEPROM. */
++    user_config.raw = eeconfig_read_user();
++
++    /* Set the startup layer based on handed-ness. */
++    if( user_config.left_handed ) {
++        layer_on(LAYER_NAV_LEFT_HANDED);
++    }
++
++
++    /* ============================ Lighting Setup ========================= */
++
++    /* Enable the LED layers. */
++    rgblight_layers = my_rgb_layers;
++
++    /* Enable RGB lighting for layer indicators. */
++    rgblight_enable_noeeprom();
++    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
++
++    /* Set an initial colour to establish a baseline brightness for the RGB layers. */
++    rgblight_sethsv(0, 0, RGBLIGHT_VAL_STEP * user_config.led_brightness);
++}
++
++bool process_record_user(uint16_t keycode, keyrecord_t* record) {
++    switch (keycode) {
++        case PKC_TGL_MIRROR:
++            if (record->event.pressed) {
++                /* Toggle handed-ness, record new state to EEPROM. */
++                user_config.left_handed ^= 1;
++                eeconfig_update_user(user_config.raw);
++
++                /* Activate the correct navigation layer and blink the LEDs. */
++                if( user_config.left_handed ) {
++                    dprintf( "Lefty nav mode.\n");
++                    layer_on(LAYER_NAV_LEFT_HANDED);
++                    rgblight_blink_layer(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT*2);
++                }
++                else {
++                    dprintf( "Righty nav mode.\n");
++                    layer_off(LAYER_NAV_LEFT_HANDED);
++                    rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, 2);
++                }
++            }
++            return true;
++        case PKC_TGL_VERT_SCRL:
++            if (record->event.pressed) {
++                user_config.vertical_scroll_arrows ^= 1;
++                eeconfig_update_user(user_config.raw);
++
++                if( user_config.vertical_scroll_arrows ) {
++                    rgblight_blink_layer(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT*2);
++                    dprintf("Vert. scroll = arrows.\n");
++                }
++                else {
++                    rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, 2);
++                    dprintf("Vert. scroll = scroll events.\n");
++                }
++            }
++            return true;
++        case PKC_TGL_HORIZ_SCRL:
++            if (record->event.pressed) {
++                user_config.horizontal_scroll_arrows ^= 1;
++                eeconfig_update_user(user_config.raw);
++
++                if( user_config.horizontal_scroll_arrows ) {
++                    rgblight_blink_layer(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT*2);
++                    dprintf("Horiz. scroll = arrows.\n");
++                }
++                else {
++                    rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, 2);
++                    dprintf("Horiz. scroll = scroll events.\n");
++                }
++            }
++            return true;
++        case PKC_TGL_DRAG_SCRL:
++            if (record->event.pressed) {
++                user_config.drag_scroll_mode ^= 1;
++                eeconfig_update_user(user_config.raw);
++
++                if( user_config.drag_scroll_mode ) {
++                    rgblight_blink_layer(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT*2);
++                    dprintf("Drag scroll: toggle to activate.\n");
++                }
++                else {
++                    rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, 2);
++                    dprintf("Drag scroll: hold to activate.\n");
++                }
++            }
++            return true;
++        case PKC_GESTURE:
++            if (record->event.pressed) {
++                /* Send correct gesture mode activation based on preference. */
++                pointing_device_gestures_start();
++                rgblight_set_layer_state(GESTURE_LAYER_COLOUR, true);
++            }
++            /* Switch is released. */
++            else {
++                pointing_device_gestures_end();
++                rgblight_set_layer_state(GESTURE_LAYER_COLOUR, false);
++            }
++            return true;
++        case PKC_DRAG_SCROLL:
++            if( user_config.drag_scroll_mode ) {
++                if (record->event.pressed) {
++                    toggle_drag_scroll();
++                }
++            }
++            /* Press and hold mode. */
++            else {
++                is_drag_scroll = record->event.pressed;
++            }
++            return true;
++        case PKC_ADJUST_LED_BRIGHTNESS:
++            /* Increase brightness in RGBLIGHT_VAL_STEP steps.
++               Go to minimum brightness if the max brightness is hit. */
++            if (record->event.pressed) {
++                if( rgblight_get_val() >= RGBLIGHT_VAL_STEP * 4 ) {
++                    rgblight_decrease_val_noeeprom();
++                    rgblight_decrease_val_noeeprom();
++                    rgblight_decrease_val_noeeprom();
++                    user_config.led_brightness = 1;
++                    eeconfig_update_user(user_config.raw);
++                }
++                else {
++                    rgblight_increase_val_noeeprom();
++                    user_config.led_brightness += 1;
++                    eeconfig_update_user(user_config.raw);
++                }
++
++                dprintf("Adjusted LED brightness. Current brightness = %d/255\n", rgblight_get_val());
++            }
++            return true;
++        case PKC_BLINKY_DPI_CONFIG:
++            if (record->event.pressed) {
++                cycle_dpi();
++
++                dprintf("DPI changed. Current DPI = %d\n", dpi_array[keyboard_config.dpi_config]);
++                rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, keyboard_config.dpi_config + 1);
++            }
++            return true;
++        default:
++            return true;
++    }
++}
++
++/* State variables for the scroll wheels. */
++int16_t leftwheel_lowres_scroll_tick = 0;
++int16_t rightwheel_lowres_scroll_tick = 0;
++
++int16_t leftwheel_arrow_scroll_tick = 0;
++int16_t rightwheel_arrow_scroll_tick = 0;
++
++int16_t leftwheel_volume_scroll_tick = 0;
++int16_t rightwheel_volume_scroll_tick = 0;
++
++uint32_t leftwheel_timeout = 0;
++uint32_t rightwheel_timeout = 0;
++
++report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
++    // throttle reads
++    if (timer_elapsed32(last_scroll_time) > 10) {
++        uint16_t leftwheel_rawangle = tmag5273_get_angle(TMAG5273_D0_I2C_ADDRESS);
++        uint16_t rightwheel_rawangle = tmag5273_get_angle(TMAG5273_D1_I2C_ADDRESS);
++
++        int16_t leftwheel_deadzone_distance = calculate_deadzone_distance( leftwheel_rawangle, &leftwheel_deadzone_center );
++        int16_t rightwheel_deadzone_distance = calculate_deadzone_distance( rightwheel_rawangle, &rightwheel_deadzone_center );
++
++        int16_t leftwheel_delta = calculate_wheel_delta( leftwheel_rawangle, leftwheel_current_position );
++        leftwheel_current_position = leftwheel_rawangle;
++
++        int16_t rightwheel_delta = calculate_wheel_delta( rightwheel_rawangle, rightwheel_current_position );
++        rightwheel_current_position = rightwheel_rawangle;
++
++        /* If either wheel moved, we reset the timeout counter. Else, we start
++           counting inactivity. */
++        if( abs(leftwheel_delta) > 2 ) {
++            leftwheel_timeout = 0;
++        }
++        else {
++            /* Don't increment forever, you'll get rollover. */
++            if( leftwheel_timeout < TMAG5273_DEADZONE_PROTECTOR_TIMEOUT ) {
++                leftwheel_timeout += timer_elapsed32(last_scroll_time);
++            }
++        }
++        if( abs(rightwheel_delta) > 2 ) {
++            rightwheel_timeout = 0;
++        }
++        else {
++            /* Don't increment forever, you'll get rollover. */
++            if( rightwheel_timeout < TMAG5273_DEADZONE_PROTECTOR_TIMEOUT ) {
++                rightwheel_timeout += timer_elapsed32(last_scroll_time);
++            }
++        }
++
++        /* Reset the counter so we know when to next perform all this scroll processing. */
++        last_scroll_time = timer_read32();
++
++        /* If either of the wheels times out, we move the deadzone window to
++           where the position is. This prevents spurious scroll events. */
++        if( leftwheel_timeout >= TMAG5273_DEADZONE_PROTECTOR_TIMEOUT &&
++            leftwheel_timeout < TMAG5273_DEADZONE_PROTECTOR_TIMEOUT * 2 ) {
++
++            leftwheel_deadzone_center = leftwheel_current_position;
++            dprintf("Left wheel timeout, deadzone moved to: %d\n", leftwheel_deadzone_center);
++
++            /* Set the timeout to a large number so that we only shift the window once. */
++            leftwheel_timeout = TMAG5273_DEADZONE_PROTECTOR_TIMEOUT * 4;
++        }
++        if( rightwheel_timeout >= TMAG5273_DEADZONE_PROTECTOR_TIMEOUT &&
++            rightwheel_timeout < TMAG5273_DEADZONE_PROTECTOR_TIMEOUT * 2 ) {
++
++            rightwheel_deadzone_center = rightwheel_current_position;
++            dprintf("Right wheel timeout, deadzone moved to: %d\n", rightwheel_deadzone_center);
++
++            /* Set the timeout to a large number so that we only shift the window once. */
++            rightwheel_timeout = TMAG5273_DEADZONE_PROTECTOR_TIMEOUT * 4;
++        }
++
++        /* If we're on the control layers, both wheels adjust the volume. */
++        if( layer_state_is(LAYER_CONTROL) ) {
++
++            leftwheel_volume_scroll_tick += leftwheel_delta;
++            rightwheel_volume_scroll_tick += rightwheel_delta;
++
++            if( leftwheel_volume_scroll_tick > TMAG5273_VOLUME_SCROLL_TICK_SIZE ) {
++                tap_code(KC_VOLU);
++                leftwheel_volume_scroll_tick = 0;
++            }
++            else if( leftwheel_volume_scroll_tick < -TMAG5273_VOLUME_SCROLL_TICK_SIZE ) {
++                tap_code(KC_VOLD);
++                leftwheel_volume_scroll_tick = 0;
++            }
++            if( rightwheel_volume_scroll_tick > TMAG5273_VOLUME_SCROLL_TICK_SIZE ) {
++                tap_code(KC_VOLU);
++                rightwheel_volume_scroll_tick = 0;
++            }
++            else if( rightwheel_volume_scroll_tick < -TMAG5273_VOLUME_SCROLL_TICK_SIZE ) {
++                tap_code(KC_VOLD);
++                rightwheel_volume_scroll_tick = 0;
++            }
++
++            /* Return early -- no other scrolling activity happens in the
++               control layer. */
++            return mouse_report;
++        }
++
++        /* If scroll arrow mode is activated for horizontal scrolling, then we do that.
++           This behaviour is the same across OSes. */
++        if( user_config.horizontal_scroll_arrows ) {
++
++            leftwheel_arrow_scroll_tick += leftwheel_delta;
++            rightwheel_arrow_scroll_tick += rightwheel_delta;
++
++            if( user_config.left_handed ) {
++                if( leftwheel_arrow_scroll_tick > TMAG5273_HORIZ_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_RIGHT);
++                    leftwheel_arrow_scroll_tick = 0;
++                }
++                else if( leftwheel_arrow_scroll_tick < -TMAG5273_HORIZ_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_LEFT);
++                    leftwheel_arrow_scroll_tick = 0;
++                }
++
++                /* Set the delta to zero so we don't scroll *and* arrow at the same time. */
++                leftwheel_delta = 0;
++            }
++            else {
++                if( rightwheel_arrow_scroll_tick > TMAG5273_HORIZ_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_RIGHT);
++                    rightwheel_arrow_scroll_tick = 0;
++                }
++                else if( rightwheel_arrow_scroll_tick < -TMAG5273_HORIZ_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_LEFT);
++                    rightwheel_arrow_scroll_tick = 0;
++                }
++                /* Set the delta to zero so we don't scroll *and* arrow at the same time. */
++                rightwheel_delta = 0;
++            }
++        }
++
++        /* If scroll arrow mode is activated for vertical scrolling, then we do that.
++           This behaviour is the same across OSes. */
++        if( user_config.vertical_scroll_arrows ) {
++
++            leftwheel_arrow_scroll_tick += leftwheel_delta;
++            rightwheel_arrow_scroll_tick += rightwheel_delta;
++
++            if( user_config.left_handed ) {
++                if( rightwheel_arrow_scroll_tick > TMAG5273_VERT_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_DOWN);
++                    rightwheel_arrow_scroll_tick = 0;
++                }
++                else if( rightwheel_arrow_scroll_tick < -TMAG5273_VERT_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_UP);
++                    rightwheel_arrow_scroll_tick = 0;
++                }
++                /* Set the delta to zero so we don't scroll *and* arrow at the same time. */
++                rightwheel_delta = 0;
++            }
++            else {
++                if( leftwheel_arrow_scroll_tick > TMAG5273_VERT_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_DOWN);
++                    leftwheel_arrow_scroll_tick = 0;
++                }
++                else if( leftwheel_arrow_scroll_tick < -TMAG5273_VERT_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_UP);
++                    leftwheel_arrow_scroll_tick = 0;
++                }
++                /* Set the delta to zero so we don't scroll *and* arrow at the same time. */
++                leftwheel_delta = 0;
++            }
++        }
++
++        /* If we're on Windows or Linux, send hi-res scroll events. */
++        if ( (detected_host_os() == OS_WINDOWS || detected_host_os() == OS_LINUX) ) {
++
++            if ( leftwheel_deadzone_distance > (TMAG5273_WHEEL_DEADZONE - 10) ||
++                 leftwheel_deadzone_distance < (-TMAG5273_WHEEL_DEADZONE + 10)) {
++
++                if( user_config.left_handed ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = leftwheel_delta / TMAG5273_HORIZONAL_WHEEL_SPEED_DIV;
++                    }
++
++                }
++                else {
++                    mouse_report.v = -leftwheel_delta / TMAG5273_VERTICAL_WHEEL_SPEED_DIV;
++                }
++            }
++            if ( rightwheel_deadzone_distance > (TMAG5273_WHEEL_DEADZONE - 10) ||
++                 rightwheel_deadzone_distance < (-TMAG5273_WHEEL_DEADZONE + 10)) {
++
++                if( user_config.left_handed ) {
++                    mouse_report.v = -rightwheel_delta / TMAG5273_VERTICAL_WHEEL_SPEED_DIV;
++                }
++                else {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = rightwheel_delta / TMAG5273_HORIZONAL_WHEEL_SPEED_DIV;
++                    }
++                }
++            }
++
++        } else {
++            /* In this case, we're on another OS, so we just send regular scroll events. */
++            /* Certain operating systems, like MacOS, don't play well with the
++               high-res scrolling implementation. For more details, see:
++               https://github.com/qmk/qmk_firmware/issues/17585#issuecomment-2325248167
++               128 gives the scroll wheels "ticks". */
++
++            leftwheel_lowres_scroll_tick += leftwheel_delta;
++            rightwheel_lowres_scroll_tick += rightwheel_delta;
++
++            if( user_config.left_handed ) {
++                if( leftwheel_lowres_scroll_tick > TMAG5273_LOWRES_TICK_SIZE ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = 1;
++                    }
++                    leftwheel_lowres_scroll_tick = 0;
++                }
++                else if( leftwheel_lowres_scroll_tick < -TMAG5273_LOWRES_TICK_SIZE ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = -1;
++                    }
++                    leftwheel_lowres_scroll_tick = 0;
++                }
++
++                if( rightwheel_lowres_scroll_tick > TMAG5273_LOWRES_TICK_SIZE ) {
++                    mouse_report.v = -1;
++                    rightwheel_lowres_scroll_tick = 0;
++                }
++                else if( rightwheel_lowres_scroll_tick < -TMAG5273_LOWRES_TICK_SIZE ) {
++                    mouse_report.v = 1;
++                    rightwheel_lowres_scroll_tick = 0;
++                }
++            }
++            else {
++                if( leftwheel_lowres_scroll_tick > TMAG5273_LOWRES_TICK_SIZE ) {
++                    mouse_report.v = -1;
++                    leftwheel_lowres_scroll_tick = 0;
++                }
++                else if( leftwheel_lowres_scroll_tick < -TMAG5273_LOWRES_TICK_SIZE ) {
++                    mouse_report.v = 1;
++                    leftwheel_lowres_scroll_tick = 0;
++                }
++
++                if( rightwheel_lowres_scroll_tick > TMAG5273_LOWRES_TICK_SIZE ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = 1;
++                    }
++                    rightwheel_lowres_scroll_tick = 0;
++                }
++                else if( rightwheel_lowres_scroll_tick < -TMAG5273_LOWRES_TICK_SIZE ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = -1;
++                    }
++                    rightwheel_lowres_scroll_tick = 0;
++                }
++            }
++        }
++
++        /* Set scroll data to zero if the corresponding button is
++           currently being held down. */
++
++        /* Check left knob. */
++        if( matrix_is_on(0,6) ) {
++            if( user_config.left_handed ) {
++                mouse_report.h = 0;
++            }
++            else {
++                mouse_report.v = 0;
++            }
++        }
++        /* Check right knob. */
++        if( matrix_is_on(0,7) ) {
++            if( user_config.left_handed ) {
++                mouse_report.v = 0;
++            }
++            else {
++                mouse_report.h = 0;
++            }
++        }
++
++    }
++
++    return mouse_report;
++}
+diff --git a/keyboards/ploopyco/aplus/keymaps/default/keymap.json b/keyboards/ploopyco/aplus/keymaps/default/keymap.json
+new file mode 100644
+index 0000000000..705237451b
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/keymaps/default/keymap.json
+@@ -0,0 +1,27 @@
++{
++    "modules": [
++        "drashna/pointing_device_accel",
++        "drashna/pointing_device_gestures"
++    ],
++    "config": {
++        "dynamic_keymap": {
++            "layer_count": 8
++        },
++        "features": {
++            "console": false,
++            "os_detection": true,
++            "via": true
++        },
++        "rgblight": {
++            "default": {
++                "sat": 0,
++                "val": 0
++            },
++            "layers": {
++                "enabled": true,
++                "blink": true
++            }
++        }
++
++    }
++}
+diff --git a/keyboards/ploopyco/aplus/keymaps/ploopyco/config.h b/keyboards/ploopyco/aplus/keymaps/ploopyco/config.h
+new file mode 100644
+index 0000000000..35c21cec81
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/keymaps/ploopyco/config.h
+@@ -0,0 +1,60 @@
++/* Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
++ * Copyright 2019 Sunjun Kim
++ * Copyright 2020 Ploopy Corporation
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#pragma once
++
++#define POINTING_DEVICE_HIRES_SCROLL_ENABLE
++#define POINTING_DEVICE_HIRES_SCROLL_MULTIPLIER 120
++#define POINTING_DEVICE_HIRES_SCROLL_EXPONENT 0
++
++#define POINTING_DEVICE_INVERT_Y
++
++#define MOUSE_EXTENDED_REPORT
++#define WHEEL_EXTENDED_REPORT
++
++/* How far you have to move the cursor to register a gesture. */
++#define POINTING_DEVICE_GESTURES_THRESHOLD 40
++
++/* Uncomment these lines for pointing device acceleration. */
++//#define POINTING_DEVICE_ACCEL_TAKEOFF 2.0      // lower/higher value = curve takes off more smoothly/abruptly
++//#define POINTING_DEVICE_ACCEL_GROWTH_RATE 0.25 // lower/higher value = curve reaches its upper limit slower/faster
++//#define POINTING_DEVICE_ACCEL_OFFSET 2.2       // lower/higher value = acceleration kicks in earlier/later
++//#define POINTING_DEVICE_ACCEL_LIMIT 0.2        // lower limit of accel curve (minimum acceleration factor)
++
++#define PLOOPY_DRAGSCROLL_MOMENTARY
++#define PLOOPY_DRAGSCROLL_DIVISOR_H 1.0
++#define PLOOPY_DRAGSCROLL_DIVISOR_V 0.3
++#define PLOOPY_DRAGSCROLL_INVERT
++
++#define RGBLIGHT_SLEEP
++#define RGBLIGHT_LAYERS_RETAIN_VAL
++/* On-board lighting is configurable in 4 steps. This variable configures
++   the step size in fractions of full brightness (out of 255). */
++#define RGBLIGHT_VAL_STEP 63
++#if RGBLIGHT_VAL_STEP > 63
++    #error "RGBLIGHT_VAL_STEP must be less than 64."
++#endif
++
++/* Define custom colours for effects */
++#define HSV_NAVBLUE             180, 220, 252
++#define HSV_NAVGREEN            66,  240, 252
++#define HSV_GESTUREYELLOW       10,  250, 252
++#define HSV_OPTIONCHANGED       240, 250, 252
++
++/* How long to blink for when an option-change button is pressed. */
++#define OPTION_CHANGE_BLINK_TIMEOUT 200
+diff --git a/keyboards/ploopyco/aplus/keymaps/ploopyco/keymap.c b/keyboards/ploopyco/aplus/keymaps/ploopyco/keymap.c
+new file mode 100644
+index 0000000000..123e3424b0
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/keymaps/ploopyco/keymap.c
+@@ -0,0 +1,712 @@
++/* Copyright 2023 Colin Lam (Ploopy Corporation)
++ * Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
++ * Copyright 2019 Sunjun Kim
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++#include QMK_KEYBOARD_H
++
++#include "rgblight.h"
++#include "printf.h"
++
++#include "../../../common/tmag5273wheel.h"
++#include "pointing_device_gestures.h"
++
++/* State variables for wheels. */
++uint16_t leftwheel_deadzone_center = 0;
++uint16_t rightwheel_deadzone_center = 0;
++
++uint16_t leftwheel_current_position = 0;
++uint16_t rightwheel_current_position = 0;
++uint32_t last_scroll_time = 0;
++
++/* Layer lighting, used to blink when making gestures. */
++const rgblight_segment_t PROGMEM righty_nav_layer_colour[] =        RGBLIGHT_LAYER_SEGMENTS( {0, 2, HSV_NAVBLUE} );
++const rgblight_segment_t PROGMEM lefty_nav_layer_colour[] =         RGBLIGHT_LAYER_SEGMENTS( {0, 2, HSV_NAVGREEN} );
++const rgblight_segment_t PROGMEM control_layer_colour[] =           RGBLIGHT_LAYER_SEGMENTS( {0, 2, HSV_RED} );
++const rgblight_segment_t PROGMEM gesture_layer_colour[] =           RGBLIGHT_LAYER_SEGMENTS( {0, 2, HSV_GESTUREYELLOW} );
++const rgblight_segment_t PROGMEM option_changed_layer_colour[] =    RGBLIGHT_LAYER_SEGMENTS( {0, 2, HSV_OPTIONCHANGED} );
++
++/* Lighting layer definitions. Later layers take precedence, so these
++   are defined in the order that they will be displayed in. */
++const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
++    righty_nav_layer_colour,
++    lefty_nav_layer_colour,
++    control_layer_colour,
++    gesture_layer_colour,
++    option_changed_layer_colour
++);
++
++/* Colour layer names. */
++enum {
++    RIGHTY_NAV_LAYER_COLOUR = 0,
++    LEFTY_NAV_LAYER_COLOUR,
++    CONTROL_LAYER_COLOUR,
++    GESTURE_LAYER_COLOUR,
++    OPTION_CHANGED_LAYER_COLOUR
++};
++
++ /* EEPROM memory for the various persistent states that the A+ can have.
++    See eeconfig_init_user() for default values and meanings. */
++typedef union {
++  uint32_t raw;
++  struct {
++    bool    left_handed :1;
++    bool    horizontal_scroll_arrows :1;
++    bool    vertical_scroll_arrows :1;
++    bool    drag_scroll_mode :1;
++    uint8_t led_brightness: 8;
++  };
++} user_config_t;
++
++user_config_t user_config;
++
++/* Add custom keycodes for control layer. */
++enum my_keycodes {
++  PKC_TGL_MIRROR = SAFE_RANGE,
++  PKC_TGL_VERT_SCRL,
++  PKC_TGL_HORIZ_SCRL,
++  PKC_TGL_DRAG_SCRL,
++  PKC_GESTURE,
++  PKC_DRAG_SCROLL,
++  PKC_ADJUST_LED_BRIGHTNESS,
++  PKC_BLINKY_DPI_CONFIG
++};
++
++/* Layer names. */
++enum {
++    LAYER_NAV_RIGHT_HANDED = 0,
++    LAYER_NAV_LEFT_HANDED,
++    LAYER_CONTROL
++};
++
++/* Override default function in submodule code so that we can blink whenever
++   a successful gesture is registered. */
++void pointing_device_gestures_trigger(uint8_t direction) {
++
++    /* Directions are numbered off 0-7, starting with east. */
++    switch( direction ) {
++        case 0: /* East, Next Virtual Desktop. */
++            /* On Windows, send CTRL + LGUI + RIGHT. */
++            if ( detected_host_os() == OS_WINDOWS ) {
++                tap_code16( LCG( KC_RIGHT ) );
++            }
++            /* On Linux, send CTRL + ALT + RIGHT. */
++            else if( detected_host_os() == OS_LINUX ) {
++                tap_code16( LCA( KC_RIGHT ) );
++            }
++            /* On MacOs, send Control + RIGHT. */
++            else {
++                tap_code16( LCTL( KC_RIGHT ) );
++            }
++            break;
++        case 1: /* South-East, Paste. */
++            tap_code16( C(KC_V) );
++            break;
++        case 2: /* South, Copy. */
++            tap_code16( C(KC_C) );
++            break;
++        case 3: /* South-West, Cut. */
++            tap_code16( C(KC_X) );
++            break;
++        case 4: /* West, Previous Virtual Desktop. */
++            /* On Windows, send CTRL + LGUI + LEFT. */
++            if ( detected_host_os() == OS_WINDOWS ) {
++                tap_code16( LCG( KC_LEFT ) );
++            }
++            /* On Linux, send CTRL + ALT + LEFT. */
++            else if( detected_host_os() == OS_LINUX ) {
++                tap_code16( LCA( KC_LEFT ) );
++            }
++            /* On MacOs, send Control + LEFT. */
++            else {
++                tap_code16( LCTL( KC_LEFT ) );
++            }
++            break;
++        case 5: /* North-West, Undo. */
++            tap_code16( C(KC_Z) );
++            break;
++        case 6: /* North, Play/Pause Audio. */
++            tap_code16( KC_MEDIA_PLAY_PAUSE );
++            break;
++        case 7: /* North-East, Redo. */
++            /* On Windows/Linux, send CTRL + Y. */
++            if ( detected_host_os() == OS_WINDOWS || detected_host_os() == OS_LINUX ) {
++                tap_code16( C(KC_Y) );
++            }
++            /* On MacOs, send CMD + SHIFT + Z. */
++            else {
++                register_code(KC_LCMD);
++                register_code(KC_LSFT);
++                tap_code(KC_Z);
++                unregister_code(KC_LCMD);
++                unregister_code(KC_LSFT);
++            }
++            break;
++        default:
++            break;
++    }
++
++    /* Flash light to indicate successful gesture processing. */
++    rgblight_blink_layer(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT*2);
++}
++
++/* Mouse gestures keymap. Since we cannot use custom keycodes in this array and
++   we've overridden the function that uses it, we define this here with
++   KC_NO (no action) to prevent a compiler error. See pointing_device_gestures_trigger()
++   for what the gestures actually do. */
++const uint16_t PROGMEM pointing_device_gestures[NUM_GESTURE_DIRECTIONS] =
++    GESTURES_CARDINAL_AND_ORDINAL_DIRECTIONS( KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO );
++
++/* Keymap. */
++const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
++    // Base layer with all of the mouse-related stuff for everyday use.
++    [LAYER_NAV_RIGHT_HANDED] = LAYOUT(  MS_BTN4, MS_BTN5, PKC_DRAG_SCROLL, MS_BTN2,
++                                        MS_BTN1, MS_BTN3,
++                                        PKC_GESTURE, TG(LAYER_CONTROL) ),
++    // Mirror-image of right-handed layout for lefties.
++    [LAYER_NAV_LEFT_HANDED] = LAYOUT(   MS_BTN2, PKC_DRAG_SCROLL, MS_BTN4, MS_BTN5,
++                                        MS_BTN3, MS_BTN1,
++                                        TG(LAYER_CONTROL), PKC_GESTURE ),
++    // Layer for all of the customization options.
++    [LAYER_CONTROL] = LAYOUT(           PKC_BLINKY_DPI_CONFIG, PKC_ADJUST_LED_BRIGHTNESS, PKC_TGL_VERT_SCRL, PKC_TGL_HORIZ_SCRL,
++                                        PKC_TGL_MIRROR, PKC_TGL_DRAG_SCRL,
++                                        TG(LAYER_CONTROL), TG(LAYER_CONTROL) ),
++    [3] = LAYOUT( _______, _______, _______, _______, _______, _______, _______, _______ ),
++    [4] = LAYOUT( _______, _______, _______, _______, _______, _______, _______, _______ ),
++    [5] = LAYOUT( _______, _______, _______, _______, _______, _______, _______, _______ ),
++    [6] = LAYOUT( _______, _______, _______, _______, _______, _______, _______, _______ ),
++    [7] = LAYOUT( _______, _______, _______, _______, _______, _______, _______, _______ )
++};
++
++/* Called whenever layers are modified. */
++layer_state_t layer_state_set_user(layer_state_t state) {
++    /* Set layer colours. */
++    switch (get_highest_layer(state)) {
++        case LAYER_NAV_RIGHT_HANDED:
++            rgblight_set_layer_state(RIGHTY_NAV_LAYER_COLOUR, true);
++
++            rgblight_set_layer_state(LEFTY_NAV_LAYER_COLOUR, false);
++            rgblight_set_layer_state(CONTROL_LAYER_COLOUR, false);
++
++            dprintf("change layer: right-handed nav\n");
++            break;
++        case LAYER_NAV_LEFT_HANDED:
++            rgblight_set_layer_state(LEFTY_NAV_LAYER_COLOUR, true);
++
++            rgblight_set_layer_state(RIGHTY_NAV_LAYER_COLOUR, false);
++            rgblight_set_layer_state(CONTROL_LAYER_COLOUR, false);
++
++            dprintf("change layer: left-handed nav\n");
++            break;
++        case LAYER_CONTROL:
++            rgblight_set_layer_state(CONTROL_LAYER_COLOUR, true);
++
++            rgblight_set_layer_state(RIGHTY_NAV_LAYER_COLOUR, false);
++            rgblight_set_layer_state(LEFTY_NAV_LAYER_COLOUR, false);
++
++            dprintf("change layer: control\n");
++            break;
++        default:
++            rgblight_setrgb(RGB_CYAN);
++            dprintf("change layer: oopsie, invalid layer!\n");
++            break;
++    }
++    return state;
++}
++
++/* Set sane defaults when EEPROM is reset. */
++void eeconfig_init_user(void) {
++
++    user_config.raw = 0;
++
++    user_config.left_handed = false;                // Right-handed.
++    user_config.horizontal_scroll_arrows = false;   // False = Scroll events, True = left/right arrows.
++    user_config.vertical_scroll_arrows = false;     // False = Scroll events, True = up/down arrows.
++    user_config.drag_scroll_mode = false;           // Hold to activate.
++    user_config.led_brightness = 4;                 // Brightest mode by default.
++
++    eeconfig_update_user(user_config.raw);
++}
++
++void keyboard_pre_init_user(void) {
++
++    /* Set up GPIO for both TMAG sensors. */
++    gpio_set_pin_output_push_pull(TMAG5273_D0_PWR_PIN);
++    gpio_set_pin_output_push_pull(TMAG5273_D1_PWR_PIN);
++    gpio_write_pin_low(TMAG5273_D0_PWR_PIN);
++    gpio_write_pin_low(TMAG5273_D1_PWR_PIN);
++
++}
++
++void keyboard_post_init_user(void) {
++    /* ============================ Debug Setup ============================ */
++
++    /* If you turn these on, also uncomment CONSOLE_ENABLE = yes in
++       post_rules.mk! */
++    //debug_enable = true;
++    //debug_matrix=true;
++    //debug_keyboard=true;
++    //debug_mouse=true;
++
++    /* ========================== Scroll Wheel Setup ======================= */
++
++    /* Start up the two wheels. */
++    tmag5273_init();
++
++    /* Init TMAG5273 D0 (left wheel) */
++    gpio_write_pin_high(TMAG5273_D0_PWR_PIN);
++    wait_us(370);  // TMAG tstart_power_up, plus 100us margin
++    tmag5273_init_device(TMAG5273_D0_I2C_ADDRESS);
++    wait_ms(20);
++    leftwheel_current_position = tmag5273_get_angle(TMAG5273_D0_I2C_ADDRESS);
++    leftwheel_deadzone_center = leftwheel_current_position;
++
++
++    /* Init TMAG5273 D1 (right wheel) */
++    gpio_write_pin_high(TMAG5273_D1_PWR_PIN);
++    wait_us(370);  // TMAG tstart_power_up, plus 100us margin
++    tmag5273_init_device(TMAG5273_D1_I2C_ADDRESS);
++    wait_ms(20);
++    rightwheel_current_position = tmag5273_get_angle(TMAG5273_D1_I2C_ADDRESS);
++    rightwheel_deadzone_center = rightwheel_current_position;
++
++
++    /* =================== Persistent Configuration Setup ================== */
++
++    /* Load up configuration details from the EEPROM. */
++    user_config.raw = eeconfig_read_user();
++
++    /* Set the startup layer based on handed-ness. */
++    if( user_config.left_handed ) {
++        layer_on(LAYER_NAV_LEFT_HANDED);
++    }
++
++
++    /* ============================ Lighting Setup ========================= */
++
++    /* Enable the LED layers. */
++    rgblight_layers = my_rgb_layers;
++
++    /* Enable RGB lighting for layer indicators. */
++    rgblight_enable_noeeprom();
++    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
++
++    /* Set an initial colour to establish a baseline brightness for the RGB layers. */
++    rgblight_sethsv(0, 0, RGBLIGHT_VAL_STEP * user_config.led_brightness);
++}
++
++bool process_record_user(uint16_t keycode, keyrecord_t* record) {
++    switch (keycode) {
++        case PKC_TGL_MIRROR:
++            if (record->event.pressed) {
++                /* Toggle handed-ness, record new state to EEPROM. */
++                user_config.left_handed ^= 1;
++                eeconfig_update_user(user_config.raw);
++
++                /* Activate the correct navigation layer and blink the LEDs. */
++                if( user_config.left_handed ) {
++                    dprintf( "Lefty nav mode.\n");
++                    layer_on(LAYER_NAV_LEFT_HANDED);
++                    rgblight_blink_layer(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT*2);
++                }
++                else {
++                    dprintf( "Righty nav mode.\n");
++                    layer_off(LAYER_NAV_LEFT_HANDED);
++                    rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, 2);
++                }
++            }
++            return true;
++        case PKC_TGL_VERT_SCRL:
++            if (record->event.pressed) {
++                user_config.vertical_scroll_arrows ^= 1;
++                eeconfig_update_user(user_config.raw);
++
++                if( user_config.vertical_scroll_arrows ) {
++                    rgblight_blink_layer(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT*2);
++                    dprintf("Vert. scroll = arrows.\n");
++                }
++                else {
++                    rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, 2);
++                    dprintf("Vert. scroll = scroll events.\n");
++                }
++            }
++            return true;
++        case PKC_TGL_HORIZ_SCRL:
++            if (record->event.pressed) {
++                user_config.horizontal_scroll_arrows ^= 1;
++                eeconfig_update_user(user_config.raw);
++
++                if( user_config.horizontal_scroll_arrows ) {
++                    rgblight_blink_layer(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT*2);
++                    dprintf("Horiz. scroll = arrows.\n");
++                }
++                else {
++                    rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, 2);
++                    dprintf("Horiz. scroll = scroll events.\n");
++                }
++            }
++            return true;
++        case PKC_TGL_DRAG_SCRL:
++            if (record->event.pressed) {
++                user_config.drag_scroll_mode ^= 1;
++                eeconfig_update_user(user_config.raw);
++
++                if( user_config.drag_scroll_mode ) {
++                    rgblight_blink_layer(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT*2);
++                    dprintf("Drag scroll: toggle to activate.\n");
++                }
++                else {
++                    rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, 2);
++                    dprintf("Drag scroll: hold to activate.\n");
++                }
++            }
++            return true;
++        case PKC_GESTURE:
++            if (record->event.pressed) {
++                /* Send correct gesture mode activation based on preference. */
++                pointing_device_gestures_start();
++                rgblight_set_layer_state(GESTURE_LAYER_COLOUR, true);
++            }
++            /* Switch is released. */
++            else {
++                pointing_device_gestures_end();
++                rgblight_set_layer_state(GESTURE_LAYER_COLOUR, false);
++            }
++            return true;
++        case PKC_DRAG_SCROLL:
++            if( user_config.drag_scroll_mode ) {
++                if (record->event.pressed) {
++                    toggle_drag_scroll();
++                }
++            }
++            /* Press and hold mode. */
++            else {
++                is_drag_scroll = record->event.pressed;
++            }
++            return true;
++        case PKC_ADJUST_LED_BRIGHTNESS:
++            /* Increase brightness in RGBLIGHT_VAL_STEP steps.
++               Go to minimum brightness if the max brightness is hit. */
++            if (record->event.pressed) {
++                if( rgblight_get_val() >= RGBLIGHT_VAL_STEP * 4 ) {
++                    rgblight_decrease_val_noeeprom();
++                    rgblight_decrease_val_noeeprom();
++                    rgblight_decrease_val_noeeprom();
++                    user_config.led_brightness = 1;
++                    eeconfig_update_user(user_config.raw);
++                }
++                else {
++                    rgblight_increase_val_noeeprom();
++                    user_config.led_brightness += 1;
++                    eeconfig_update_user(user_config.raw);
++                }
++
++                dprintf("Adjusted LED brightness. Current brightness = %d/255\n", rgblight_get_val());
++            }
++            return true;
++        case PKC_BLINKY_DPI_CONFIG:
++            if (record->event.pressed) {
++                cycle_dpi();
++
++                dprintf("DPI changed. Current DPI = %d\n", dpi_array[keyboard_config.dpi_config]);
++                rgblight_blink_layer_repeat(OPTION_CHANGED_LAYER_COLOUR, OPTION_CHANGE_BLINK_TIMEOUT, keyboard_config.dpi_config + 1);
++            }
++            return true;
++        default:
++            return true;
++    }
++}
++
++/* State variables for the scroll wheels. */
++int16_t leftwheel_lowres_scroll_tick = 0;
++int16_t rightwheel_lowres_scroll_tick = 0;
++
++int16_t leftwheel_arrow_scroll_tick = 0;
++int16_t rightwheel_arrow_scroll_tick = 0;
++
++int16_t leftwheel_volume_scroll_tick = 0;
++int16_t rightwheel_volume_scroll_tick = 0;
++
++uint32_t leftwheel_timeout = 0;
++uint32_t rightwheel_timeout = 0;
++
++report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
++    // throttle reads
++    if (timer_elapsed32(last_scroll_time) > 10) {
++        uint16_t leftwheel_rawangle = tmag5273_get_angle(TMAG5273_D0_I2C_ADDRESS);
++        uint16_t rightwheel_rawangle = tmag5273_get_angle(TMAG5273_D1_I2C_ADDRESS);
++
++        int16_t leftwheel_deadzone_distance = calculate_deadzone_distance( leftwheel_rawangle, &leftwheel_deadzone_center );
++        int16_t rightwheel_deadzone_distance = calculate_deadzone_distance( rightwheel_rawangle, &rightwheel_deadzone_center );
++
++        int16_t leftwheel_delta = calculate_wheel_delta( leftwheel_rawangle, leftwheel_current_position );
++        leftwheel_current_position = leftwheel_rawangle;
++
++        int16_t rightwheel_delta = calculate_wheel_delta( rightwheel_rawangle, rightwheel_current_position );
++        rightwheel_current_position = rightwheel_rawangle;
++
++        /* If either wheel moved, we reset the timeout counter. Else, we start
++           counting inactivity. */
++        if( abs(leftwheel_delta) > 2 ) {
++            leftwheel_timeout = 0;
++        }
++        else {
++            /* Don't increment forever, you'll get rollover. */
++            if( leftwheel_timeout < TMAG5273_DEADZONE_PROTECTOR_TIMEOUT ) {
++                leftwheel_timeout += timer_elapsed32(last_scroll_time);
++            }
++        }
++        if( abs(rightwheel_delta) > 2 ) {
++            rightwheel_timeout = 0;
++        }
++        else {
++            /* Don't increment forever, you'll get rollover. */
++            if( rightwheel_timeout < TMAG5273_DEADZONE_PROTECTOR_TIMEOUT ) {
++                rightwheel_timeout += timer_elapsed32(last_scroll_time);
++            }
++        }
++
++        /* Reset the counter so we know when to next perform all this scroll processing. */
++        last_scroll_time = timer_read32();
++
++        /* If either of the wheels times out, we move the deadzone window to
++           where the position is. This prevents spurious scroll events. */
++        if( leftwheel_timeout >= TMAG5273_DEADZONE_PROTECTOR_TIMEOUT &&
++            leftwheel_timeout < TMAG5273_DEADZONE_PROTECTOR_TIMEOUT * 2 ) {
++
++            leftwheel_deadzone_center = leftwheel_current_position;
++            dprintf("Left wheel timeout, deadzone moved to: %d\n", leftwheel_deadzone_center);
++
++            /* Set the timeout to a large number so that we only shift the window once. */
++            leftwheel_timeout = TMAG5273_DEADZONE_PROTECTOR_TIMEOUT * 4;
++        }
++        if( rightwheel_timeout >= TMAG5273_DEADZONE_PROTECTOR_TIMEOUT &&
++            rightwheel_timeout < TMAG5273_DEADZONE_PROTECTOR_TIMEOUT * 2 ) {
++
++            rightwheel_deadzone_center = rightwheel_current_position;
++            dprintf("Right wheel timeout, deadzone moved to: %d\n", rightwheel_deadzone_center);
++
++            /* Set the timeout to a large number so that we only shift the window once. */
++            rightwheel_timeout = TMAG5273_DEADZONE_PROTECTOR_TIMEOUT * 4;
++        }
++
++        /* If we're on the control layers, both wheels adjust the volume. */
++        if( layer_state_is(LAYER_CONTROL) ) {
++
++            leftwheel_volume_scroll_tick += leftwheel_delta;
++            rightwheel_volume_scroll_tick += rightwheel_delta;
++
++            if( leftwheel_volume_scroll_tick > TMAG5273_VOLUME_SCROLL_TICK_SIZE ) {
++                tap_code(KC_VOLU);
++                leftwheel_volume_scroll_tick = 0;
++            }
++            else if( leftwheel_volume_scroll_tick < -TMAG5273_VOLUME_SCROLL_TICK_SIZE ) {
++                tap_code(KC_VOLD);
++                leftwheel_volume_scroll_tick = 0;
++            }
++            if( rightwheel_volume_scroll_tick > TMAG5273_VOLUME_SCROLL_TICK_SIZE ) {
++                tap_code(KC_VOLU);
++                rightwheel_volume_scroll_tick = 0;
++            }
++            else if( rightwheel_volume_scroll_tick < -TMAG5273_VOLUME_SCROLL_TICK_SIZE ) {
++                tap_code(KC_VOLD);
++                rightwheel_volume_scroll_tick = 0;
++            }
++
++            /* Return early -- no other scrolling activity happens in the
++               control layer. */
++            return mouse_report;
++        }
++
++        /* If scroll arrow mode is activated for horizontal scrolling, then we do that.
++           This behaviour is the same across OSes. */
++        if( user_config.horizontal_scroll_arrows ) {
++
++            leftwheel_arrow_scroll_tick += leftwheel_delta;
++            rightwheel_arrow_scroll_tick += rightwheel_delta;
++
++            if( user_config.left_handed ) {
++                if( leftwheel_arrow_scroll_tick > TMAG5273_HORIZ_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_RIGHT);
++                    leftwheel_arrow_scroll_tick = 0;
++                }
++                else if( leftwheel_arrow_scroll_tick < -TMAG5273_HORIZ_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_LEFT);
++                    leftwheel_arrow_scroll_tick = 0;
++                }
++
++                /* Set the delta to zero so we don't scroll *and* arrow at the same time. */
++                leftwheel_delta = 0;
++            }
++            else {
++                if( rightwheel_arrow_scroll_tick > TMAG5273_HORIZ_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_RIGHT);
++                    rightwheel_arrow_scroll_tick = 0;
++                }
++                else if( rightwheel_arrow_scroll_tick < -TMAG5273_HORIZ_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_LEFT);
++                    rightwheel_arrow_scroll_tick = 0;
++                }
++                /* Set the delta to zero so we don't scroll *and* arrow at the same time. */
++                rightwheel_delta = 0;
++            }
++        }
++
++        /* If scroll arrow mode is activated for vertical scrolling, then we do that.
++           This behaviour is the same across OSes. */
++        if( user_config.vertical_scroll_arrows ) {
++
++            leftwheel_arrow_scroll_tick += leftwheel_delta;
++            rightwheel_arrow_scroll_tick += rightwheel_delta;
++
++            if( user_config.left_handed ) {
++                if( rightwheel_arrow_scroll_tick > TMAG5273_VERT_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_DOWN);
++                    rightwheel_arrow_scroll_tick = 0;
++                }
++                else if( rightwheel_arrow_scroll_tick < -TMAG5273_VERT_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_UP);
++                    rightwheel_arrow_scroll_tick = 0;
++                }
++                /* Set the delta to zero so we don't scroll *and* arrow at the same time. */
++                rightwheel_delta = 0;
++            }
++            else {
++                if( leftwheel_arrow_scroll_tick > TMAG5273_VERT_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_DOWN);
++                    leftwheel_arrow_scroll_tick = 0;
++                }
++                else if( leftwheel_arrow_scroll_tick < -TMAG5273_VERT_SCROLL_TICK_SIZE ) {
++                    tap_code(KC_UP);
++                    leftwheel_arrow_scroll_tick = 0;
++                }
++                /* Set the delta to zero so we don't scroll *and* arrow at the same time. */
++                leftwheel_delta = 0;
++            }
++        }
++
++        /* If we're on Windows or Linux, send hi-res scroll events. */
++        if ( (detected_host_os() == OS_WINDOWS || detected_host_os() == OS_LINUX) ) {
++
++            if ( leftwheel_deadzone_distance > (TMAG5273_WHEEL_DEADZONE - 10) ||
++                 leftwheel_deadzone_distance < (-TMAG5273_WHEEL_DEADZONE + 10)) {
++
++                if( user_config.left_handed ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = leftwheel_delta / TMAG5273_HORIZONAL_WHEEL_SPEED_DIV;
++                    }
++
++                }
++                else {
++                    mouse_report.v = -leftwheel_delta / TMAG5273_VERTICAL_WHEEL_SPEED_DIV;
++                }
++            }
++            if ( rightwheel_deadzone_distance > (TMAG5273_WHEEL_DEADZONE - 10) ||
++                 rightwheel_deadzone_distance < (-TMAG5273_WHEEL_DEADZONE + 10)) {
++
++                if( user_config.left_handed ) {
++                    mouse_report.v = -rightwheel_delta / TMAG5273_VERTICAL_WHEEL_SPEED_DIV;
++                }
++                else {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = rightwheel_delta / TMAG5273_HORIZONAL_WHEEL_SPEED_DIV;
++                    }
++                }
++            }
++
++        } else {
++            /* In this case, we're on another OS, so we just send regular scroll events. */
++            /* Certain operating systems, like MacOS, don't play well with the
++               high-res scrolling implementation. For more details, see:
++               https://github.com/qmk/qmk_firmware/issues/17585#issuecomment-2325248167
++               128 gives the scroll wheels "ticks". */
++
++            leftwheel_lowres_scroll_tick += leftwheel_delta;
++            rightwheel_lowres_scroll_tick += rightwheel_delta;
++
++            if( user_config.left_handed ) {
++                if( leftwheel_lowres_scroll_tick > TMAG5273_LOWRES_TICK_SIZE ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = 1;
++                    }
++                    leftwheel_lowres_scroll_tick = 0;
++                }
++                else if( leftwheel_lowres_scroll_tick < -TMAG5273_LOWRES_TICK_SIZE ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = -1;
++                    }
++                    leftwheel_lowres_scroll_tick = 0;
++                }
++
++                if( rightwheel_lowres_scroll_tick > TMAG5273_LOWRES_TICK_SIZE ) {
++                    mouse_report.v = -1;
++                    rightwheel_lowres_scroll_tick = 0;
++                }
++                else if( rightwheel_lowres_scroll_tick < -TMAG5273_LOWRES_TICK_SIZE ) {
++                    mouse_report.v = 1;
++                    rightwheel_lowres_scroll_tick = 0;
++                }
++            }
++            else {
++                if( leftwheel_lowres_scroll_tick > TMAG5273_LOWRES_TICK_SIZE ) {
++                    mouse_report.v = -1;
++                    leftwheel_lowres_scroll_tick = 0;
++                }
++                else if( leftwheel_lowres_scroll_tick < -TMAG5273_LOWRES_TICK_SIZE ) {
++                    mouse_report.v = 1;
++                    leftwheel_lowres_scroll_tick = 0;
++                }
++
++                if( rightwheel_lowres_scroll_tick > TMAG5273_LOWRES_TICK_SIZE ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = 1;
++                    }
++                    rightwheel_lowres_scroll_tick = 0;
++                }
++                else if( rightwheel_lowres_scroll_tick < -TMAG5273_LOWRES_TICK_SIZE ) {
++                    if( !user_config.horizontal_scroll_arrows ) {
++                        mouse_report.h = -1;
++                    }
++                    rightwheel_lowres_scroll_tick = 0;
++                }
++            }
++        }
++
++        /* Set scroll data to zero if the corresponding button is
++           currently being held down. */
++
++        /* Check left knob. */
++        if( matrix_is_on(0,6) ) {
++            if( user_config.left_handed ) {
++                mouse_report.h = 0;
++            }
++            else {
++                mouse_report.v = 0;
++            }
++        }
++        /* Check right knob. */
++        if( matrix_is_on(0,7) ) {
++            if( user_config.left_handed ) {
++                mouse_report.v = 0;
++            }
++            else {
++                mouse_report.h = 0;
++            }
++        }
++
++    }
++
++    return mouse_report;
++}
+diff --git a/keyboards/ploopyco/aplus/keymaps/ploopyco/keymap.json b/keyboards/ploopyco/aplus/keymaps/ploopyco/keymap.json
+new file mode 100644
+index 0000000000..705237451b
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/keymaps/ploopyco/keymap.json
+@@ -0,0 +1,27 @@
++{
++    "modules": [
++        "drashna/pointing_device_accel",
++        "drashna/pointing_device_gestures"
++    ],
++    "config": {
++        "dynamic_keymap": {
++            "layer_count": 8
++        },
++        "features": {
++            "console": false,
++            "os_detection": true,
++            "via": true
++        },
++        "rgblight": {
++            "default": {
++                "sat": 0,
++                "val": 0
++            },
++            "layers": {
++                "enabled": true,
++                "blink": true
++            }
++        }
++
++    }
++}
+diff --git a/keyboards/ploopyco/aplus/mcuconf.h b/keyboards/ploopyco/aplus/mcuconf.h
+new file mode 100644
+index 0000000000..2822a7f96e
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/mcuconf.h
+@@ -0,0 +1,27 @@
++/* Copyright 2023 Colin Lam (Ploopy Corporation)
++ * Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
++ * Copyright 2019 Sunjun Kim
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#pragma once
++
++#include_next <mcuconf.h>
++
++#undef RP_I2C_USE_I2C0
++#define RP_I2C_USE_I2C0 TRUE
++
++#undef RP_I2C_USE_I2C1
++#define RP_I2C_USE_I2C1 FALSE
+diff --git a/keyboards/ploopyco/aplus/post_rules.mk b/keyboards/ploopyco/aplus/post_rules.mk
+new file mode 100644
+index 0000000000..b1a920c99d
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/post_rules.mk
+@@ -0,0 +1,4 @@
++VPATH += keyboards/ploopyco/common
++SRC += tmag5273wheel.c
++I2C_DRIVER_REQUIRED = yes
++POINTING_DEVICE_DRIVER = pmw3360
+diff --git a/keyboards/ploopyco/aplus/readme.md b/keyboards/ploopyco/aplus/readme.md
+new file mode 100644
+index 0000000000..5d4b18f86d
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/readme.md
+@@ -0,0 +1,38 @@
++
++# Ploopyco A+ Trackball
++
++It's a DIY, QMK-powered trackball!
++
++* Keyboard Maintainer: [PloopyCo](https://github.com/ploopyco)
++* Hardware Supported: RP2040
++* Hardware Availability: [Store](https://ploopy.co), [GitHub](https://github.com/ploopyco)
++
++Make example for this keyboard (after setting up your build environment):
++
++    qmk compile -kb ploopyco/aplus/rev2_001 -km default
++
++# Building Firmware
++
++See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
++
++# Triggering the Bootloader
++
++## Bootmagic
++
++In most cases, you should be able to trigger the bootloader by holding down the bottom left key (not the wheel) while plugging your A+ in. If you messed up the firmware badly enough, this won't work, in which case you should see the section below.
++
++## Hardware Trigger
++
++[Do you see those two golden holes in the board](https://ploopy.co/wp-content/uploads/2023/11/boot.jpg)? Those are called **vias**. They act exactly like a switch does. Right now, that switch is OFF. However, if you take a paperclip or a pair of metal tweezers and touch those two vias, the two vias will form an electrical connection. Effectively, that switch turns ON.
++
++Go ahead and connect the two vias, and then (while the vias are connected) plug in the A+ board into your computer.
++
++The computer should recognise that a mass storage device was just plugged in. Once this is done, you should be able to drag and drop files onto the A+ board, as if the board was a USB drive. Feel free to remove the tweezers or paperclip at this point.
++
++If you want to upload a new firmware file (a ".uf2" file, like "aplus_awesome_version.uf2" or something), just drag it into the folder, and it'll automatically install on the A+ board and restart itself, in normal operating mode. You're done!
++
++**TIP**: If your firmware is in some kind of strange state and uploading new firmware isn't fixing it, try uploading [a flash nuke](https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython/circuitpython#flash-resetting-uf2-3083182) to the A+ board before flashing the new firmware. It wipes the memory of the A+ board completely clean, which can help clear a few types of errors.
++
++# Customizing your Ploopy A+
++
++You can find customziation options [here](../readme.md).
+diff --git a/keyboards/ploopyco/aplus/rev2_001/config.h b/keyboards/ploopyco/aplus/rev2_001/config.h
+new file mode 100644
+index 0000000000..20ec72dc48
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/rev2_001/config.h
+@@ -0,0 +1,40 @@
++/* Copyright 2023 Colin Lam (Ploopy Corporation)
++ * Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
++ * Copyright 2019 Sunjun Kim
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#pragma once
++
++#define UNUSABLE_PINS \
++    { GP6, GP10, GP16, GP18, GP19, GP20, GP22, GP24, GP25, GP26, GP28 }
++
++
++/* PMW3360 Settings */
++#define PMW33XX_LIFTOFF_DISTANCE 0x00
++#define PMW33XX_CS_PIN GP5
++#define SPI_SCK_PIN GP2
++#define SPI_MISO_PIN GP4
++#define SPI_MOSI_PIN GP3
++
++#define I2C_DRIVER I2CD0
++#define I2C1_SDA_PIN GP12
++#define I2C1_SCL_PIN GP13
++
++#define TMAG5273_D0_PWR_PIN GP9
++#define TMAG5273_D1_PWR_PIN GP14
++
++#define TMAG5273_D0_I2C_ADDRESS (0x50 << 1)
++#define TMAG5273_D1_I2C_ADDRESS (0x51 << 1)
+diff --git a/keyboards/ploopyco/aplus/rev2_001/keyboard.json b/keyboards/ploopyco/aplus/rev2_001/keyboard.json
+new file mode 100644
+index 0000000000..8a0add7212
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/rev2_001/keyboard.json
+@@ -0,0 +1,15 @@
++{
++    "usb": {
++        "device_version": "1.0.0"
++    },
++    "diode_direction": "COL2ROW",
++    "matrix_pins": {
++        "direct": [
++            ["GP7", "GP29", "GP27", "GP23", "GP21", "GP15", "GP8", "GP11"]
++        ]
++    },
++    "ws2812": {
++        "driver": "vendor",
++        "pin": "GP17"
++    }
++}
+diff --git a/keyboards/ploopyco/aplus/rev2_001/readme.md b/keyboards/ploopyco/aplus/rev2_001/readme.md
+new file mode 100644
+index 0000000000..adb91a462a
+--- /dev/null
++++ b/keyboards/ploopyco/aplus/rev2_001/readme.md
+@@ -0,0 +1,3 @@
++This is the R2.001+ version of Madromys. Future versions may have other features.
++
++See the [main readme](../readme.md) for more details.
+diff --git a/keyboards/ploopyco/common/tmag5273wheel.c b/keyboards/ploopyco/common/tmag5273wheel.c
+new file mode 100644
+index 0000000000..509d3f6eed
+--- /dev/null
++++ b/keyboards/ploopyco/common/tmag5273wheel.c
+@@ -0,0 +1,127 @@
++/* Copyright 2025 Colin Lam, Ploopy Corporation (contact@ploopy.co)
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#include <stdint.h>
++#include <math.h>
++#include <stdbool.h>
++#include <stdlib.h>
++#include "printf.h"
++#include "tmag5273wheel.h"
++
++void tmag5273_init(void) {
++    i2c_init();
++}
++
++// Finds a TMAG5273 device on the I2C bus, and initializes it.
++// The device_addr argument sets the found device's address to
++// device_addr.
++void tmag5273_init_device(uint8_t device_addr) {
++    uint16_t addr;
++
++    if (i2c_ping_address(TMAG5273A1_I2C_ADDRESS, 100) == I2C_STATUS_SUCCESS) {
++        addr = TMAG5273A1_I2C_ADDRESS;
++    } else if (i2c_ping_address(TMAG5273B1_I2C_ADDRESS, 100) == I2C_STATUS_SUCCESS) {
++        addr = TMAG5273B1_I2C_ADDRESS;
++    } else if (i2c_ping_address(TMAG5273C1_I2C_ADDRESS, 100) == I2C_STATUS_SUCCESS) {
++        addr = TMAG5273C1_I2C_ADDRESS;
++    } else if (i2c_ping_address(TMAG5273D1_I2C_ADDRESS, 100) == I2C_STATUS_SUCCESS) {
++        addr = TMAG5273D1_I2C_ADDRESS;
++    } else {
++        // printf("No TMAG5273 device found; exiting\n");
++        exit(1);
++    }
++
++    // Give found device a new device address
++    uint8_t i2c_address = device_addr | 0x1;
++    i2c_write_register(addr, REG_I2C_ADDRESS, &i2c_address, 1, 100);
++
++    // 32x oversampling
++    uint8_t device_config_1 = 0b101 << 2;
++
++    // Low noise mode
++    // Operating Mode: Continuous Measure Mode
++    uint8_t device_config_2 = (0b1 << 4) | (0b10);
++
++    // X and Y channel enabled
++    uint8_t sensor_config_1 = 0x30;
++
++    // Enable X and Y angle calculation
++    // X and Y magnetic ranges at +-80mT
++    uint8_t sensor_config_2 = (0x1 << 2) | (0b10);
++
++    uint8_t int_config = 0x1;
++
++    i2c_write_register(device_addr, REG_DEVICE_CONFIG_1, &device_config_1, 1, 100);
++    i2c_write_register(device_addr, REG_DEVICE_CONFIG_2, &device_config_2, 1, 100);
++    i2c_write_register(device_addr, REG_SENSOR_CONFIG_1, &sensor_config_1, 1, 100);
++    i2c_write_register(device_addr, REG_SENSOR_CONFIG_2, &sensor_config_2, 1, 100);
++    i2c_write_register(device_addr, REG_INT_CONFIG_1, &int_config, 1, 100);
++}
++
++uint16_t tmag5273_get_angle(uint8_t device_addr) {
++    uint8_t data[2];
++    i2c_read_register(device_addr, REG_ANGLE_RESULT_MSB, data, 2, 100);
++    uint16_t rawangle = (data[0] << 8) | data[1];
++    //printf("Angle: %d\n", rawangle);
++    return rawangle;
++}
++
++/* Calculate the distance between two wheel positions. Takes into account wraparound and the
++   size of the wheel. Positive values are clockwise distances, negative values CCW. */
++int16_t calculate_wheel_delta( uint16_t wheel_newangle, uint16_t wheel_oldangle ) {
++    int16_t wheel_delta = (int16_t)(wheel_newangle - wheel_oldangle);
++
++    if (wheel_delta > (TMAG5273_MAX_SENSOR_VALUE / 2)) {
++        wheel_delta -= TMAG5273_MAX_SENSOR_VALUE;
++    } else if (wheel_delta < -(TMAG5273_MAX_SENSOR_VALUE / 2)) {
++        wheel_delta += TMAG5273_MAX_SENSOR_VALUE;
++    }
++
++    return wheel_delta;
++}
++
++/* Returns the angular distance bewteen wheel_rawangle and _wheel_deadzone_center. Also updates
++   wheel_deadzone_center whenever there's a reason to move the deadzone. */
++int16_t calculate_deadzone_distance( uint16_t wheel_rawangle, uint16_t* wheel_deadzone_center ) {
++    uint16_t wheel_deadzone_lower = ( wheel_rawangle -
++                                          TMAG5273_WHEEL_DEADZONE +
++                                          TMAG5273_MAX_SENSOR_VALUE)
++                                        % TMAG5273_MAX_SENSOR_VALUE;
++    uint16_t wheel_deadzone_upper = ( wheel_rawangle +
++                                          TMAG5273_WHEEL_DEADZONE +
++                                          TMAG5273_MAX_SENSOR_VALUE)
++                                        % TMAG5273_MAX_SENSOR_VALUE;
++
++    int16_t wheel_deadzone_distance = ( wheel_rawangle -
++                                  *wheel_deadzone_center +
++                                  TMAG5273_MAX_SENSOR_VALUE)
++                                % TMAG5273_MAX_SENSOR_VALUE;
++
++    if (wheel_deadzone_distance > (TMAG5273_MAX_SENSOR_VALUE / 2)) {
++        wheel_deadzone_distance -= TMAG5273_MAX_SENSOR_VALUE;
++    } else if (wheel_deadzone_distance < -(TMAG5273_MAX_SENSOR_VALUE / 2)) {
++        wheel_deadzone_distance += TMAG5273_MAX_SENSOR_VALUE;
++    }
++
++    if( wheel_deadzone_distance > TMAG5273_WHEEL_DEADZONE ) {
++        *wheel_deadzone_center = wheel_deadzone_lower;
++    }
++    if( wheel_deadzone_distance < -TMAG5273_WHEEL_DEADZONE ) {
++        *wheel_deadzone_center = wheel_deadzone_upper;
++    }
++
++    return wheel_deadzone_distance;
++}
+diff --git a/keyboards/ploopyco/common/tmag5273wheel.h b/keyboards/ploopyco/common/tmag5273wheel.h
+new file mode 100644
+index 0000000000..b796c76d69
+--- /dev/null
++++ b/keyboards/ploopyco/common/tmag5273wheel.h
+@@ -0,0 +1,105 @@
++/* Copyright 2025 Colin Lam, Ploopy Corporation (contact@ploopy.co)
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#pragma once
++
++#include <stdint.h>
++#include "i2c_master.h"
++
++#define TMAG5273A1_I2C_ADDRESS (0x35 << 1)
++#define TMAG5273B1_I2C_ADDRESS (0x22 << 1)
++#define TMAG5273C1_I2C_ADDRESS (0x78 << 1)
++#define TMAG5273D1_I2C_ADDRESS (0x44 << 1)
++
++#define TMAG5273_MAX_SENSOR_VALUE 5760
++
++/* This value MUST be larger than 32 to function properly. */
++#define TMAG5273_WHEEL_DEADZONE 128
++#if TMAG5273_WHEEL_DEADZONE < 32
++    #error "TMAG5273_WHEEL_DEADZONE must be greater than 32."
++#endif
++// The speed divisor decreases the speed. 1 is base speed; 2 is divided by 2,
++// 3 is divided by 3, and so forth. For best results, make sure that
++// TMAG5273_WHEEL_SPEED_DIV is an integer divisor of
++// TMAG5273_WHEEL_DEADZONE (i.e. 3 is an integer divisor of 12, but
++// 5 is not).
++#define TMAG5273_VERTICAL_WHEEL_SPEED_DIV 4
++
++/* Use different divisors for horizontal and vertical scrolls because they
++   get used for different applications. */
++#define TMAG5273_HORIZONAL_WHEEL_SPEED_DIV 2
++
++/* This value determines how far apart scroll wheel "ticks" are when
++   emulating low-res scrolling. Tick units are in fractions of
++   TMAG5273_MAX_SENSOR_VALUE, which represents one physical revolution
++   of the wheel. 480 = 12 ticks per revolution. */
++#define TMAG5273_LOWRES_TICK_SIZE 480
++
++/* This value is the same as TMAG5273_LOWRES_TICK_SIZE but applies to
++   when the wheel is used to send left/right arrow keypresses for
++   horizontal scrolling. */
++#define TMAG5273_HORIZ_SCROLL_TICK_SIZE 360
++
++/* This value is the same as TMAG5273_LOWRES_TICK_SIZE but applies to
++   when the wheel is used to send up/down arrow keypresses for
++   vertical scrolling. */
++#define TMAG5273_VERT_SCROLL_TICK_SIZE 640
++
++/* This value is the same as TMAG5273_LOWRES_TICK_SIZE but applies to
++   when the wheel is used to adjust the volume. */
++#define TMAG5273_VOLUME_SCROLL_TICK_SIZE 200
++
++/* The time (in ms) to wait before shifting the deadzone a little to
++   prevent spurious scroll events. */
++#define TMAG5273_DEADZONE_PROTECTOR_TIMEOUT 512
++
++
++#define REG_DEVICE_CONFIG_1         0x00
++#define REG_DEVICE_CONFIG_2         0x01
++#define REG_SENSOR_CONFIG_1         0x02
++#define REG_SENSOR_CONFIG_2         0x03
++#define REG_X_THR_CONFIG            0x04
++#define REG_Y_THR_CONFIG            0x05
++#define REG_Z_THR_CONFIG            0x06
++#define REG_T_CONFIG                0x07
++#define REG_INT_CONFIG_1            0x08
++#define REG_MAG_GAIN_CONFIG         0x09
++#define REG_MAG_OFFSET_CONFIG_1     0x0A
++#define REG_MAG_OFFSET_CONFIG_2     0x0B
++#define REG_I2C_ADDRESS             0x0C
++#define REG_DEVICE_ID               0x0D
++#define REG_MANUFACTURER_ID_LSB     0x0E
++#define REG_MANUFACTURER_ID_MSB     0x0F
++#define REG_T_MSB_RESULT            0x10
++#define REG_T_LSB_RESULT            0x11
++#define REG_X_MSB_RESULT            0x12
++#define REG_X_LSB_RESULT            0x13
++#define REG_Y_MSB_RESULT            0x14
++#define REG_Y_LSB_RESULT            0x15
++#define REG_Z_MSB_RESULT            0x16
++#define REG_Z_LSB_RESULT            0x17
++#define REG_CONV_STATUS             0x18
++#define REG_ANGLE_RESULT_MSB        0x19
++#define REG_ANGLE_RESULT_LSB        0x1A
++#define REG_MAGNITUDE_RESULT        0x1B
++#define REG_DEVICE_STATUS           0x1C
++
++void tmag5273_init(void);
++void tmag5273_init_device(uint8_t);
++uint16_t tmag5273_get_angle(uint8_t);
++
++int16_t calculate_wheel_delta( uint16_t wheel_rawangle, uint16_t wheel_current_position );
++int16_t calculate_deadzone_distance( uint16_t wheel_rawangle, uint16_t* wheel_deadzone_center );
+diff --git a/keyboards/ploopyco/ploopyco.c b/keyboards/ploopyco/ploopyco.c
+index 642696be0f..9c0e17af77 100644
+--- a/keyboards/ploopyco/ploopyco.c
++++ b/keyboards/ploopyco/ploopyco.c
+@@ -18,6 +18,7 @@
+ 
+ #include "ploopyco.h"
+ #include "analog.h"
++#include "wait.h"
+ #include "opt_encoder.h"
+ 
+ // for legacy support
+@@ -59,7 +60,7 @@
+ #endif
+ 
+ keyboard_config_t keyboard_config;
+-uint16_t          dpi_array[] = PLOOPY_DPI_OPTIONS;
++uint16_t dpi_array[] = PLOOPY_DPI_OPTIONS;
+ #define DPI_OPTION_SIZE ARRAY_SIZE(dpi_array)
+ 
+ // Trackball State
+@@ -139,7 +140,6 @@ void cycle_dpi(void) {
+ }
+ 
+ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
+-    mouse_report = pointing_device_task_user(mouse_report);
+     if (is_drag_scroll) {
+         scroll_accumulated_h += (float)mouse_report.x / PLOOPY_DRAGSCROLL_DIVISOR_H;
+         scroll_accumulated_v += (float)mouse_report.y / PLOOPY_DRAGSCROLL_DIVISOR_V;
+@@ -164,6 +164,8 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
+         mouse_report.y = 0;
+     }
+ 
++    mouse_report = pointing_device_task_user(mouse_report);
++
+     return mouse_report;
+ }
+ 
+@@ -180,12 +182,9 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
+     }
+ #endif
+ 
+-    if (!process_record_user(keycode, record)) {
+-        return false;
+-    }
+-
+     if (keycode == DPI_CONFIG && record->event.pressed) {
+         cycle_dpi();
++        dprintf( "ploopyco.c: cycle_dpi() called, current DPI is %d\n", keyboard_config.dpi_config);
+     }
+ 
+     if (keycode == DRAG_SCROLL) {
+@@ -198,15 +197,15 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
+ #endif
+     }
+ 
++    if (!process_record_user(keycode, record)) {
++        return false;
++    }
++
+     return true;
+ }
+ 
+ // Hardware Setup
+ void keyboard_pre_init_kb(void) {
+-    // debug_enable  = true;
+-    // debug_matrix  = true;
+-    // debug_mouse   = true;
+-    // debug_encoder = true;
+ 
+     /* Ground all output pins connected to ground. This provides additional
+      * pathways to ground. If you're messing with this, know this: driving ANY
+@@ -236,6 +235,12 @@ void pointing_device_init_kb(void) {
+         eeconfig_init_kb();
+     }
+     pointing_device_set_cpi(dpi_array[keyboard_config.dpi_config]);
++
++    pointing_device_init_user();
++}
++
++void keyboard_post_init_kb(void) {
++    keyboard_post_init_user();
+ }
+ 
+ void eeconfig_init_kb(void) {
+diff --git a/keyboards/ploopyco/ploopyco.h b/keyboards/ploopyco/ploopyco.h
+index eadd04d3ae..ce1d019734 100644
+--- a/keyboards/ploopyco/ploopyco.h
++++ b/keyboards/ploopyco/ploopyco.h
+@@ -35,6 +35,8 @@ enum ploopy_keycodes {
+     DRAG_SCROLL,
+ };
+ 
++bool is_drag_scroll;
++
+ bool encoder_update_user(uint8_t index, bool clockwise);
+ bool encoder_update_kb(uint8_t index, bool clockwise);
+ void toggle_drag_scroll(void);
